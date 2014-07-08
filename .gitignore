@@ -2,6 +2,7 @@
 #################################################
 /Config/database.php
 /tmp
+/webroot/files/
 
 # OS generated files #
 ######################
