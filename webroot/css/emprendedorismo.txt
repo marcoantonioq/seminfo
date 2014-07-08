@@ -1,0 +1,3 @@
+Diretor -> Estratégico/Conceitual/Longo Prazo
+Gerente -> Tático/gerencial / médio prazo
+Funcionário -> Operacional/Técnico/Curto Prazo
