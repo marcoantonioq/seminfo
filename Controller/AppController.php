@@ -76,7 +76,7 @@ class AppController extends Controller {
             $this -> layout = 'user';
         }
         if($this->request->is('ajax')){$this->layout='ajax';}
-        //$this->Auth->allow();
+        $this->Auth->allow();
         //$this->Auth->deny();
 
     }

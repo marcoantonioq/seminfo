@@ -12,6 +12,15 @@ class Content extends AppModel {
 	public $useTable = 'contents';
 	public $order = array('Content.updated' => 'DESC');
 	
+	public $actsAs = array(
+        'Upload.Upload' => array(
+            'file' => array(
+                'fields' => array(
+                    'dir' => 'file_dir'
+                )
+            )
+        )
+    );
 
 /**
  * Validation rules

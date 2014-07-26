@@ -10,6 +10,15 @@ class Palestrante extends AppModel {
 	public $displayField = 'nome';
 	public $order = 'nome ASC';
 
+	public $actsAs = array(
+        'Upload.Upload' => array(
+            'file' => array(
+                'fields' => array(
+                    'dir' => 'file_dir'
+                )
+            )
+        )
+    );
 
 /**
  * Validation rules

@@ -12,7 +12,15 @@ class Programa extends AppModel {
 	public $displayField = 'nome';
 	public $useTable = 'programas';
 	//public $oder = array('Programa.horario_id' => 'asc');
-
+	public $actsAs = array(
+		'Upload.Upload' => array(
+			'file' => array(
+				'fields' => array(
+					'dir' => 'file_dir'
+				)
+			)
+		)
+	);	
 	
 /**
  * Validation rules

@@ -157,8 +157,48 @@ Cache::config('week', array(
  */
 
 
-// CakePlugin::load();
+CakePlugin::load(
+    array(
+        //'Locale',
+        'Upload',
+        'CakePdf' => array(
+            'bootstrap' => true, 
+            'routes' => true
+        )
+    )
+);
 
+Configure::write('CakePdf', array(
+    'engine' => 'CakePdf.DomPdf',
+    'margin' => array(
+        'bottom' => 0,
+        'left' => 0,
+        'right' => 0,
+        'top' => 0
+    ),
+    'pageSize' => 'A4',
+    'orientation' => 'landscape',    
+    'download' => false
+));
+
+/*
+Configure::write('CakePdf', array(
+    'engine' => 'CakePdf.WkHtmlToPdf',
+    'options' => array(
+        'print-media-type' => false,
+        'outline' => true,
+        'dpi' => 96
+    ),
+    'margin' => array(
+        'bottom' => 0,
+        'left' => 0,
+        'right' => 0,
+        'top' => 0
+    ),
+    'orientation' => 'landscape',
+    'download' => false
+));
+*/
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter . By Default CakePHP bundles two filters:
  *
@@ -168,17 +208,17 @@ Cache::config('week', array(
  * Feel free to remove or add filters as you see fit for your application. A few examples:
  *
  * Configure::write('Dispatcher.filters', array(
- *		'MyCacheFilter', //  will use MyCacheFilter class from the Routing/Filter package in your app.
- *		'MyPlugin.MyFilter', // will use MyFilter class from the Routing/Filter package in MyPlugin plugin.
- * 		array('callable' => $aFunction, 'on' => 'before', 'priority' => 9), // A valid PHP callback type to be called on beforeDispatch
- *		array('callable' => $anotherMethod, 'on' => 'after'), // A valid PHP callback type to be called on afterDispatch
+ *      'MyCacheFilter', //  will use MyCacheFilter class from the Routing/Filter package in your app.
+ *      'MyPlugin.MyFilter', // will use MyFilter class from the Routing/Filter package in MyPlugin plugin.
+ *      array('callable' => $aFunction, 'on' => 'before', 'priority' => 9), // A valid PHP callback type to be called on beforeDispatch
+ *      array('callable' => $anotherMethod, 'on' => 'after'), // A valid PHP callback type to be called on afterDispatch
  *
  * ));
  */
  
 Configure::write('Dispatcher.filters', array(
-	'AssetDispatcher',
-	'CacheDispatcher'
+    'AssetDispatcher',
+    'CacheDispatcher'
 ));
 
 /**
@@ -186,13 +226,13 @@ Configure::write('Dispatcher.filters', array(
  */
 App::uses('CakeLog', 'Log');
 CakeLog::config('debug', array(
-	'engine' => 'FileLog',
-	'types' => array('notice', 'info', 'debug'),
-	'file' => 'debug',
+    'engine' => 'FileLog',
+    'types' => array('notice', 'info', 'debug'),
+    'file' => 'debug',
 ));
 CakeLog::config('error', array(
-	'engine' => 'FileLog',
-	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
-	'file' => 'error',
+    'engine' => 'FileLog',
+    'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
+    'file' => 'error',
 ));
 include dirname(__FILE__).DS.'traducao_core.php';
