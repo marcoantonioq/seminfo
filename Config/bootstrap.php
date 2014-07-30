@@ -159,8 +159,6 @@ Cache::config('week', array(
 
 CakePlugin::load(
     array(
-        //'Locale',
-        'Upload',
         'CakePdf' => array(
             'bootstrap' => true, 
             'routes' => true

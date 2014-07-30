@@ -1,4 +1,3 @@
-<?php $cakeDescription = 'NUCLEO'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,12 +15,16 @@
 	echo $this->Html->meta('icon');
 
 	echo $this->Html->css(array(
-		'admin',
-		//'/css/twitter/bootstrap.min'
+		'bootstrap/css/bootstrap.min.css',
+		'bootstrap/css/bootstrap-responsive.min.css',
+		'back-end/icon',
+		'back-end/admin',
 	));
 	echo $this->Html->script(
 		array(
-			'ckeditor/ckeditor.js'
+			'ckeditor/ckeditor.js',
+			'jquery.js',
+			'/css/bootstrap/js/bootstrap.min.js',
 		)
 	);
 
@@ -32,18 +35,57 @@
 	?>
 </head>
 <body>
+	<div id="header">
+		<?php echo $this->element('admin/admin_menu', array(), array('cache' => array('key'=>'admin_menu', 'config'=>'hours')));?>
+		<div class='clearfix'></div>			
+	</div>
 	<div id="container">
-		<div id="header">
-			<?php //echo $this -> element('layout/logo', array('cache' => '+1 day')); ?>
-      		<?php echo $this -> element('layout/session-user'); ?>
-			<div class="clearfix"></div>
-			<div class='breadcrumbs'>
-				<?php echo $this->element('admin_menu', array(), array('cache' => array('key'=>'admin_menu', 'config'=>'hours')));?>
-				<div class='clearfix'></div>
-			</div>
-		</div>
-
+		 
 		<div id="content">
+
+			<div class="row-fluid">
+				<legend>
+					<?php echo __($title_for_layout); ?>
+				</legend>
+				<?php 
+					if(!empty($this->request->params['prefix'])){
+			        	$this->Html->addCrumb(
+			        		"Admin", 
+			        		array(
+			        			$this->request->params['prefix']=>true, 
+			        			'controller'=>'pages', 
+			        			'action'=>'home'
+		        			)
+	        			); 
+				    }
+
+				    if(!empty($this->request->params['controller'])){
+			        	$this->Html->addCrumb(
+			        		ucfirst(__($this->request->params['controller'])), 
+			        		array(
+			        			'controller'=>$this->request->params['controller'], 
+			        			'action'=>'index'
+		        			)
+	        			); 
+				    }
+
+				    if(!empty($this->request->params['action'])){
+			        	$this->Html->addCrumb(
+			        		ucfirst(__($this->request->params['action'])), 
+			        		array(
+			        			'action'=>$this->request->params['action'], 
+			        			'action'=>'index'
+		        			)
+	        			); 
+				    }
+
+				    foreach ($this->request->params['pass'] as $key => $value) {
+				        $this->Html->addCrumb( $value); 
+				    }
+				 ?>
+				 <?php echo $this->element('admin/breadcrumb') ?>
+			</div>
+
 			
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->Session->flash('auth'); ?>

@@ -10,16 +10,6 @@ class Event extends AppModel {
 	public $displayField = 'nome';
 	public $useTable = 'events';
 
-	public $actsAs = array(
-		'Upload.Upload' => array(
-			'file' => array(
-				'fields' => array(
-					'dir' => 'file_dir'
-				)
-			)
-		)
-	);
-
 /**
  * Validation rules
  *

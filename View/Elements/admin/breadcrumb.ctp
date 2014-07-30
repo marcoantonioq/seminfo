@@ -13,7 +13,7 @@ $crumbs = $this->Html->getCrumbs(' > ', array(
 			'javascript:history.back()', 
 			array(
 				'escape'=>false,
-				'class' => 'floatright'
+				'class' => 'right'
 			)
 		);?>
 

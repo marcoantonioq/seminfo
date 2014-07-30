@@ -1858,6 +1858,9 @@ msgstr "Usuário"
 msgid "Users"
 msgstr "Usuários"
 
+msgid "users"
+msgstr "usuários"
+
 msgid "Delete"
 msgstr "Apagar"
 
@@ -1878,3 +1881,10 @@ msgstr "Nome"
 
 msgid "Password"
 msgstr "Senha"
+
+msgid "admin_index"
+msgstr "index"
+
+msgid "admin_edit"
+msgstr "editar"
+
