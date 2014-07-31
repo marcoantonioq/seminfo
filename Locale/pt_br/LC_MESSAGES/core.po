@@ -1861,6 +1861,12 @@ msgstr "Usuários"
 msgid "users"
 msgstr "usuários"
 
+msgid "user_count"
+msgstr "Contador (usuários)"
+
+
+
+
 msgid "Delete"
 msgstr "Apagar"
 
@@ -1887,4 +1893,10 @@ msgstr "index"
 
 msgid "admin_edit"
 msgstr "editar"
+
+msgid "admin_view"
+msgstr "visualizar"
+
+msgid "admin_add"
+msgstr "adicionar"
 

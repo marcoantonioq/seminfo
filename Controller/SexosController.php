@@ -4,24 +4,52 @@ App::uses('AppController', 'Controller');
  * Sexos Controller
  *
  * @property Sexo $Sexo
+ * @property PaginatorComponent $Paginator
  */
 class SexosController extends AppController {
+
 	public function beforeFilter(){
 		parent::beforeFilter();
-        //$this->Auth->allow('login', 'logout', 'add');
+		$this->set('title_for_layout', 'Sexos');
 	}
+
 /**
- * index method
+ * Components
+ *
+ * @var array
+ */
+	public $components = array('Paginator');
+
+/**
+ * admin_index method
  *
  * @return void
  */
 	public function admin_index() {
-		$this->Sexo->recursive = -1;
-		$this->set('sexos', $this->paginate());
+		pr($this->request->data);
+		$this->Sexo->recursive = 0;
+		$this->set('sexos', $this->Paginator->paginate());
 	}
 
+
 /**
- * add method
+ * admin_view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function admin_view($id = null) {
+		if (!$this->Sexo->exists($id)) {
+			throw new NotFoundException(__('Inválido sexo'));
+		}
+		$options = array('conditions' => array('Sexo.' . $this->Sexo->primaryKey => $id));
+		$this->set('sexo', $this->Sexo->find('first', $options));
+	}
+
+
+/**
+ * admin_add method
  *
  * @return void
  */
@@ -29,16 +57,17 @@ class SexosController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Sexo->create();
 			if ($this->Sexo->save($this->request->data)) {
-				$this->Session->setFlash(__('sexo foi salvo'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('sexonão pôde ser salvo. Por favor, tente novamente.'));
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
 			}
 		}
 	}
 
+
 /**
- * edit method
+ * admin_edit method
  *
  * @throws NotFoundException
  * @param string $id
@@ -48,21 +77,22 @@ class SexosController extends AppController {
 		if (!$this->Sexo->exists($id)) {
 			throw new NotFoundException(__('Inválido sexo'));
 		}
-		if ($this->request->is('post') || $this->request->is('put')) {
+		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Sexo->save($this->request->data)) {
-				$this->Session->setFlash(__('sexo foi salvo'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('sexo não pôde ser salvo. Por favor, tente novamente..'));
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
 			}
 		} else {
 			$options = array('conditions' => array('Sexo.' . $this->Sexo->primaryKey => $id));
 			$this->request->data = $this->Sexo->find('first', $options);
 		}
 	}
+	
 
 /**
- * delete method
+ * admin_delete method
  *
  * @throws NotFoundException
  * @param string $id
@@ -75,10 +105,10 @@ class SexosController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Sexo->delete()) {
-			$this->Session->setFlash(__('Sexo delete'));
-			$this->redirect(array('action' => 'index'));
+	
+			$this->Session->setFlash(__('Foi excluído.'), 'success');
+		} else {
+			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'error');
 		}
-		$this->Session->setFlash(__('Sexo não foi excluída'));
-		$this->redirect(array('action' => 'index'));
-	}
-}
+		return $this->redirect(array('action' => 'index'));
+	}}

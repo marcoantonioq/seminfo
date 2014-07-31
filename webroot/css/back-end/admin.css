@@ -105,6 +105,16 @@ p {
 	box-shadow: 0 1px 0px rgba(255, 255, 255, 1);
 }
 
+.table thead input[type="checkbox"] {
+	width: 15px; 
+	height: 15px;
+	float:left;
+}
+
+.table thead .actions {
+	min-width: 70px;
+}
+
 .table tbody {background-color:#fafafa;}
 .table tbody + tbody {border-top: 2px solid #c4c4c4;}
 .table tbody tr:last-child{border-bottom: 1px solid #c4c4c4;}
@@ -227,28 +237,29 @@ th a.desc:after {
 	background: #efefef;
 	color: #c73e14;
 }
-
 /** Scaffold View **/
 dl {
 	line-height: 2em;
 	margin: 0em 0em;
-	width: 60%;
+	width: 100%;
 }
 dl dd:nth-child(4n+2),
 dl dt:nth-child(4n+1) {
-	background: #f4f4f4;
+	background: #F8F5F5;
 }
 
 dt {
 	font-weight: bold;
-	padding-left: 4px;
+	padding-left: 10px;
 	vertical-align: top;
 	width: 10em;
+	padding: 5px;
 }
 dd {
 	margin-left: 10em;
-	margin-top: -2em;
+	margin-top: -30px;
 	vertical-align: top;
+	padding: 5px;
 }
 
 /** Forms **/

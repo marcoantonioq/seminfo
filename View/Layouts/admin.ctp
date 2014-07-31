@@ -33,6 +33,18 @@
 	echo $this->fetch('script');
 	echo $this->fetch('script');
 	?>
+
+	<script>
+		function bloquearCtrlJ(){   // Verificação das Teclas  
+		    var tecla=window.event.keyCode;   //Para controle da tecla pressionada  
+		    var ctrl=window.event.ctrlKey;    //Para controle da Tecla CTRL  
+
+		    if (ctrl && tecla==74){    //Evita teclar ctrl + j  
+		        event.keyCode=0;  
+		        event.returnValue=false;  
+		    }  
+		}  
+	</script>
 </head>
 <body>
 	<div id="header">
@@ -93,11 +105,11 @@
 			<?php echo $this->fetch('content'); ?>
 		</div>
 
-		<div id="footer">
-			
-		</div>
-		<?php echo $this->element('sql_dump'); ?>
 
+	</div>
+	
+	<div id="footer">			
+		<?php echo $this->element('sql_dump'); ?>
 	</div>
 </body>
 </html>

@@ -32,6 +32,8 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+	
 	
 	/*function afterFind($results, $primary = false) {
 		foreach ($results as $key => $val) {

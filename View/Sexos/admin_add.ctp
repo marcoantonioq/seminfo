@@ -1,18 +1,55 @@
-<div class="sexos form">
-<?php echo $this->Form->create('Sexo'); ?>
-	<fieldset>
-		<legend><?php echo __('Novo sexo'); ?></legend>
-	<?php
-		echo $this->Form->input('nome');
-		echo $this->Form->input('sexo_count');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Enviar')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Ações'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Voltar'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('Usuários'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-	</ul>
+<div class="row-fluid">
+
+
+	<div class='span8'>		
+		<?php 
+			echo $this->Form->create('User'); 
+			$this->Form->inputDefaults(array(
+				'class'=>'span12'
+			));
+		?>
+		<?php  
+		
+
+			echo $this->Form->input('nome', array(
+				'label'=>ucfirst(__('nome')),
+			));
+
+			echo $this->Form->input('user_count', array(
+				'label'=>ucfirst(__('user_count')),
+			));			
+		?>
+
+		<div class="form-actions">			
+			<?php echo $this->Form->end(__('Enviar'), array('class'=>"btn")); ?>
+		</div>	
+
+	</div>
+
+	<div class="span4">
+		<div class="actions form-horizontal well ucase">
+			<h3><?php echo __('Actions'); ?></h3>
+			
+			<?php echo $this->Html->link('Voltar', 
+				array( 'action' => 'index'),
+				array('class'=> 'btn btn-block')
+			); ?>			
+			<?php echo $this->Form->postLink('Apagar',
+				array( 'action' => 'delete', $this->params['pass'][0]),
+                array('class'=> 'btn btn-block', 'style'=>'margin-top: 5px;'),
+                __('Tem certeza de que deseja excluir?')
+			);?>
+			<?php echo $this->Html->link('Visualizar', 
+				array('action' => 'view', $this->params['pass'][0]),
+				array('class'=> 'btn btn-block')
+			); ?>			
+
+            <?php 
+			
+			echo $this->Html->link('Novo',
+                array( 'action' => 'add'),
+                array('class'=> 'btn btn-block')
+            ); ?>		</div>
+	</div>
+
 </div>

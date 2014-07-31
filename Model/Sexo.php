@@ -6,8 +6,12 @@ App::uses('AppModel', 'Model');
  * @property User $User
  */
 class Sexo extends AppModel {
-	var $displayField = 'nome';
-	public $useTable = 'sexos';
+	public $displayField = 'id';
+
+	public $actsAs = array(
+		'Form'
+	);
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
