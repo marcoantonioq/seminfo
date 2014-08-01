@@ -95,8 +95,14 @@ p {
 
 /*Tables*/
 
+.tabela {
+	overflow-x: auto;	
+	padding: 1px;
+}
+
 .table thead th a {
-	/*padding: 9px;*/
+	padding: 25px 20px 5px 20px;
+	vertical-align:center;
 }
 
 .table {position: relative;}

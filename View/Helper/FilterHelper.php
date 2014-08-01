@@ -8,7 +8,7 @@ class FilterHelper extends AppHelper {
 		$this->Form->inputDefaults(array(
             'label'=>false,
             'div'=>false,
-            'class'=>'span6',
+            'class'=>'span12',
             'autocomplete'=>'off',
             'onfocus'=>'this.select();',
         ));
@@ -52,6 +52,7 @@ class FilterHelper extends AppHelper {
 					'title'=>'Filter',
 					'width'=>'20px',
 					'height'=>'20px',
+					'class'=>'left',
 				)
 			);
 		echo "</a>";

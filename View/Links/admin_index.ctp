@@ -26,11 +26,13 @@
             );
 			
 	 ?>
+	<div class="tabela">
 		<table class='responsive table table-bordered' id='checkAll'>
 		<thead>
 			<tr>
 				<th class='ch'>
-					<?php $this->Filter->img(); ?>				</th>
+					<?php $this->Filter->img(); ?>
+				</th>
 								
 				<th>
 					<?php 
@@ -222,6 +224,7 @@
 
 	<?php endforeach; ?>
 	</table>
+	</div>
 
 	<?php 	
         echo $this->Form->input('Pagination.limit', array(
