@@ -64,7 +64,8 @@ class AppController extends Controller {
     );
 	
 	public function beforeFilter() {
-		parent::beforeFilter();        
+		parent::beforeFilter();
+         $this->Security->validatePost = false;
         
         if(isset($this->request->params['prefix'])){
             if($this->request->params['prefix']=='admin'){

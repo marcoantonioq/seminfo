@@ -6,10 +6,7 @@ App::uses('AppModel', 'Model');
  * @property Link $Link
  */
 class Menu extends AppModel {
-	
-	public $displayField = 'title';
-	public $useTable = 'menus';
-
+	public $displayField = 'id';
 /**
  * Validation rules
  *
@@ -17,8 +14,8 @@ class Menu extends AppModel {
  */
 	public $validate = array(
 		'title' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -27,8 +24,8 @@ class Menu extends AppModel {
 			),
 		),
 		'alias' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -37,8 +34,8 @@ class Menu extends AppModel {
 			),
 		),
 		'class' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -69,10 +66,10 @@ class Menu extends AppModel {
 		'Link' => array(
 			'className' => 'Link',
 			'foreignKey' => 'menu_id',
-			'dependent' => true,
+			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => 'Link.lft ASC',
+			'order' => '',
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',

@@ -94,6 +94,11 @@ p {
 }
 
 /*Tables*/
+
+.table thead th a {
+	/*padding: 9px;*/
+}
+
 .table {position: relative;}
 .table td { border-top: 1px solid #c4c4c4; font-size: 13px;}
 .table thead th, .table tbody td {text-align: center;}
@@ -109,6 +114,10 @@ p {
 	width: 15px; 
 	height: 15px;
 	float:left;
+}
+
+.table .ch {
+	min-width: 20px;
 }
 
 .table thead .actions {
@@ -142,6 +151,9 @@ p {
    border-collapse: collapse;
    margin-top:-1px;
    margin-left:-1px;
+  overflow-x: auto;
+  /* display: block; */
+  min-height: 100px;
 }
 
 .table caption + thead tr:first-child th,.table caption + thead tr:first-child td,.table colgroup + thead tr:first-child th,
@@ -954,7 +966,7 @@ span.logo{
 #menu ul li a:hover {
 	background-color:#D6D6D6;
 	color: #6D6D6D;
-	border-bottom:3px solid #EA0000;
+	border-bottom:3px solid #57a957;
 }
 
 /* Colors */

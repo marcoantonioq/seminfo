@@ -1,35 +1,103 @@
-<div class="links form">
-<?php echo $this->Form->create('Link'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Link'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('parent_id');
-		echo $this->Form->input('menu_id');
-		echo $this->Form->input('title');
-		echo $this->Form->input('class');
-		echo $this->Form->input('description');
-		echo $this->Form->input('link');
-		echo $this->Form->input('target');
-		echo $this->Form->input('rel');
-		echo $this->Form->input('status');
-		echo $this->Form->input('lft');
-		echo $this->Form->input('rght');
-		echo $this->Form->input('visibility_roles');
-		echo $this->Form->input('params');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Enviar')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Ações'); ?></h3>
-	<ul>
+<div class="row-fluid">
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Link.id')), null, __('Tem certeza de que deseja excluir # %s?', $this->Form->value('Link.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('Listar Links'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('Listar Links'), array('controller' => 'links', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Parent Link'), array('controller' => 'links', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('Listar Menus'), array('controller' => 'menus', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Menu'), array('controller' => 'menus', 'action' => 'add')); ?> </li>
-	</ul>
+
+	<div class='span8'>		
+		<?php 
+			echo $this->Form->create('User'); 
+			$this->Form->inputDefaults(array(
+				'class'=>'span12'
+			));
+		?>
+		<?php  
+		
+
+			echo $this->Form->input('id', array(
+				'label'=>ucfirst(__('id')),
+			));
+
+			echo $this->Form->input('parent_id', array(
+				'label'=>ucfirst(__('parent_id')),
+			));
+
+			echo $this->Form->input('menu_id', array(
+				'label'=>ucfirst(__('menu_id')),
+			));
+
+			echo $this->Form->input('title', array(
+				'label'=>ucfirst(__('title')),
+			));
+
+			echo $this->Form->input('class', array(
+				'label'=>ucfirst(__('class')),
+			));
+
+			echo $this->Form->input('description', array(
+				'label'=>ucfirst(__('description')),
+			));
+
+			echo $this->Form->input('link', array(
+				'label'=>ucfirst(__('link')),
+			));
+
+			echo $this->Form->input('target', array(
+				'label'=>ucfirst(__('target')),
+			));
+
+			echo $this->Form->input('rel', array(
+				'label'=>ucfirst(__('rel')),
+			));
+
+			echo $this->Form->input('status', array(
+				'label'=>ucfirst(__('status')),
+			));
+
+			echo $this->Form->input('lft', array(
+				'label'=>ucfirst(__('lft')),
+			));
+
+			echo $this->Form->input('rght', array(
+				'label'=>ucfirst(__('rght')),
+			));
+
+			echo $this->Form->input('visibility_roles', array(
+				'label'=>ucfirst(__('visibility_roles')),
+			));
+
+			echo $this->Form->input('params', array(
+				'label'=>ucfirst(__('params')),
+			));			
+		?>
+
+		<div class="form-actions">			
+			<?php echo $this->Form->end(__('Enviar'), array('class'=>"btn")); ?>
+		</div>	
+
+	</div>
+
+	<div class="span4">
+		<div class="actions form-horizontal well ucase">
+			<h3><?php echo __('Actions'); ?></h3>
+			
+			<?php echo $this->Html->link('Voltar', 
+				array( 'action' => 'index'),
+				array('class'=> 'btn btn-block')
+			); ?>			
+			<?php echo $this->Form->postLink('Apagar',
+				array( 'action' => 'delete', $this->params['pass'][0]),
+                array('class'=> 'btn btn-block', 'style'=>'margin-top: 5px;'),
+                __('Tem certeza de que deseja excluir?')
+			);?>
+			<?php echo $this->Html->link('Visualizar', 
+				array('action' => 'view', $this->params['pass'][0]),
+				array('class'=> 'btn btn-block')
+			); ?>			
+
+            <?php 
+			
+			echo $this->Html->link('Novo',
+                array( 'action' => 'add'),
+                array('class'=> 'btn btn-block')
+            ); ?>		</div>
+	</div>
+
 </div>

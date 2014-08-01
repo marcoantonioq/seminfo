@@ -10,7 +10,7 @@ class SexosController extends AppController {
 
 	public function beforeFilter(){
 		parent::beforeFilter();
-		$this->set('title_for_layout', 'Sexos');
+		$this->set('title_for_layout', __('Sexos'));
 	}
 
 /**
@@ -26,7 +26,10 @@ class SexosController extends AppController {
  * @return void
  */
 	public function admin_index() {
-		pr($this->request->data);
+		if ($this->request->is('post')) {
+            $this->Paginator->settings = $this->Sexo->action($this->request->data);
+            echo $this->Session->setFlash('Filtro definido!', 'success');
+        }
 		$this->Sexo->recursive = 0;
 		$this->set('sexos', $this->Paginator->paginate());
 	}

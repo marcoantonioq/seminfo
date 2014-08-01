@@ -33,7 +33,11 @@ App::uses('Model', 'Model');
  */
 class AppModel extends Model {
 
-	
+	public $actsAs = array(
+		'Form'
+	);
+
+
 	
 	/*function afterFind($results, $primary = false) {
 		foreach ($results as $key => $val) {

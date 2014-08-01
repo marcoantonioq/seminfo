@@ -4,21 +4,39 @@ App::uses('AppController', 'Controller');
  * Menus Controller
  *
  * @property Menu $Menu
+ * @property PaginatorComponent $Paginator
  */
 class MenusController extends AppController {
 
+	public function beforeFilter(){
+		parent::beforeFilter();
+		$this->set('title_for_layout', __('Menus'));
+	}
+
 /**
- * index method
+ * Components
+ *
+ * @var array
+ */
+	public $components = array('Paginator');
+
+/**
+ * admin_index method
  *
  * @return void
  */
 	public function admin_index() {
+		if ($this->request->is('post')) {
+            $this->Paginator->settings = $this->Menu->action($this->request->data);
+            echo $this->Session->setFlash('Filtro definido!', 'success');
+        }
 		$this->Menu->recursive = 0;
-		$this->set('menus', $this->paginate());
+		$this->set('menus', $this->Paginator->paginate());
 	}
 
+
 /**
- * view method
+ * admin_view method
  *
  * @throws NotFoundException
  * @param string $id
@@ -31,10 +49,10 @@ class MenusController extends AppController {
 		$options = array('conditions' => array('Menu.' . $this->Menu->primaryKey => $id));
 		$this->set('menu', $this->Menu->find('first', $options));
 	}
-	
+
 
 /**
- * add method
+ * admin_add method
  *
  * @return void
  */
@@ -42,16 +60,17 @@ class MenusController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Menu->create();
 			if ($this->Menu->save($this->request->data)) {
-				$this->Session->setFlash(__('menu foi salvo'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('menunão pôde ser salvo. Por favor, tente novamente.'));
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
 			}
 		}
 	}
 
+
 /**
- * edit method
+ * admin_edit method
  *
  * @throws NotFoundException
  * @param string $id
@@ -61,21 +80,22 @@ class MenusController extends AppController {
 		if (!$this->Menu->exists($id)) {
 			throw new NotFoundException(__('Inválido menu'));
 		}
-		if ($this->request->is('post') || $this->request->is('put')) {
+		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Menu->save($this->request->data)) {
-				$this->Session->setFlash(__('menu foi salvo'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('menu não pôde ser salvo. Por favor, tente novamente..'));
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
 			}
 		} else {
 			$options = array('conditions' => array('Menu.' . $this->Menu->primaryKey => $id));
 			$this->request->data = $this->Menu->find('first', $options);
 		}
 	}
+	
 
 /**
- * delete method
+ * admin_delete method
  *
  * @throws NotFoundException
  * @param string $id
@@ -88,10 +108,10 @@ class MenusController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Menu->delete()) {
-			$this->Session->setFlash(__('Menu delete'));
-			$this->redirect(array('action' => 'index'));
+	
+			$this->Session->setFlash(__('Foi excluído.'), 'success');
+		} else {
+			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'error');
 		}
-		$this->Session->setFlash(__('Menu não foi excluída'));
-		$this->redirect(array('action' => 'index'));
-	}
-}
+		return $this->redirect(array('action' => 'index'));
+	}}

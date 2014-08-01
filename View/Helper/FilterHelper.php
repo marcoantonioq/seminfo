@@ -1,32 +1,10 @@
 <?php 
 App::uses('AppHelper', 'View/Helper'); 
-class LinkHelper extends AppHelper {
+class FilterHelper extends AppHelper {
 	public $helpers = array('Html', 'Form', 'Menu');
 
-	
-	public function icon($title, $icon = null, $url = '#', $params = array(), $message = null) {
-		$params += array(
-			'escape'=>false,
-		);
-		$link = $this->Html->link(
-			"<span class='{$icon}'></span>".__("{$title}"),
-			$url,
-			$params,
-			$message
-		);
-		return $link;
-	}
-
-	
-	public function status($value, $url = array()) {
-		$icon = ($value == 1) ? 'ok' : 'remove';
-		$class = ($value == 1) ? 'green' : 'red';
-
-		return $this->icon('', 'icon-' . $icon . ' ' . $class);		
-	}
-
-	public function filter($name){
-
+	public function conditions($name){
+		echo "<th>";
 		$this->Form->inputDefaults(array(
             'label'=>false,
             'div'=>false,
@@ -48,15 +26,35 @@ class LinkHelper extends AppHelper {
             '<=' => 'menor ou igual a'
         );
 
-		echo $conditions = $this->Form->input("conditions.$name", array(
+		echo $this->Form->input("conditions.$name", array(
             'options' => $options,
         ));
 
-        echo $this->Form->input('id', array(
+        echo $this->Form->input("Filter.$name", array(
+        	'type'=>'text',
 			'autofocus' => true,
 			'onkeydown'=>'bloquearCtrlJ();',
 			'placeholder' => ucfirst(__($name)).'...',
 		));
+		echo "</th>";
+	}
+
+	public function row($name){
+		echo $this->Form->checkbox("row.$name", array( 'class'=>'styled' ));
+	}
+
+
+	public function img(){
+		echo "<a href='#'' onclick='show()'>";
+			echo $this->Html->image(
+				'/img/template/icons/filters.png',
+				array(
+					'title'=>'Filter',
+					'width'=>'20px',
+					'height'=>'20px',
+				)
+			);
+		echo "</a>";
 	}
 
 

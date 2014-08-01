@@ -1,3 +1,4 @@
+
 <?php
 App::uses('AppController', 'Controller');
 /**
@@ -19,7 +20,7 @@ class EventsController extends AppController {
 	 */
 	public function index() {
 
-		$this -> Event -> recursive = -1;
+		$this->Event -> recursive = -1;
 
 		if ($this -> request -> is('requested')) {
 			$this -> paginate = $this->Event->getConditionsAtivo();
@@ -38,8 +39,13 @@ class EventsController extends AppController {
 	}
 
 	public function admin_index() {
-		$this -> Event -> recursive = 0;
-		$this -> set('events', $this -> paginate());
+		if ($this->request->is('post')) {
+            $this->Paginator->settings = $this->Event->action($this->request->data);
+            pr($this->Paginator->settings);
+            $this->Session->setFlash('Filtro definido!', 'success');
+        }
+
+		$this->set('events', $this->Paginator->paginate());
 	}
 
 	/**

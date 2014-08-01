@@ -8,15 +8,14 @@ App::uses('AppModel', 'Model');
  * @property Link $ChildLink
  */
 class Link extends AppModel {
-	
-	
-	public $name = 'Link';
-	public $displayField = 'title';
-	public $useTable = 'links';
-	
-	
+	public $displayField = 'id';
+/**
+ * Behaviors
+ *
+ * @var array
+ */
 	public $actsAs = array(
-		'Tree'
+		'Tree',
 	);
 
 /**
@@ -36,9 +35,9 @@ class Link extends AppModel {
 			),
 		),
 		'title' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				'message' => 'O título não pode estar vazio.',
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -46,9 +45,9 @@ class Link extends AppModel {
 			),
 		),
 		'link' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				'message' => 'O link não pode estar vazio.',
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -90,4 +89,26 @@ class Link extends AppModel {
 			'order' => ''
 		)
 	);
+
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'ChildLink' => array(
+			'className' => 'Link',
+			'foreignKey' => 'parent_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+
 }

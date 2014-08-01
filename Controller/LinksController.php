@@ -4,22 +4,39 @@ App::uses('AppController', 'Controller');
  * Links Controller
  *
  * @property Link $Link
+ * @property PaginatorComponent $Paginator
  */
 class LinksController extends AppController {
-	
+
+	public function beforeFilter(){
+		parent::beforeFilter();
+		$this->set('title_for_layout', __('Links'));
+	}
 
 /**
- * index method
+ * Components
+ *
+ * @var array
+ */
+	public $components = array('Paginator');
+
+/**
+ * admin_index method
  *
  * @return void
  */
 	public function admin_index() {
+		if ($this->request->is('post')) {
+            $this->Paginator->settings = $this->Link->action($this->request->data);
+            echo $this->Session->setFlash('Filtro definido!', 'success');
+        }
 		$this->Link->recursive = 0;
-		$this->set('links', $this->paginate());
+		$this->set('links', $this->Paginator->paginate());
 	}
 
+
 /**
- * view method
+ * admin_view method
  *
  * @throws NotFoundException
  * @param string $id
@@ -33,8 +50,9 @@ class LinksController extends AppController {
 		$this->set('link', $this->Link->find('first', $options));
 	}
 
+
 /**
- * add method
+ * admin_add method
  *
  * @return void
  */
@@ -42,19 +60,20 @@ class LinksController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Link->create();
 			if ($this->Link->save($this->request->data)) {
-				$this->Session->setFlash(__('link foi salvo'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('linknão pôde ser salvo. Por favor, tente novamente.'));
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
 			}
 		}
-		$parentLinks = $this->Link->find('list');
+		$parentLinks = $this->Link->ParentLink->find('list');
 		$menus = $this->Link->Menu->find('list');
 		$this->set(compact('parentLinks', 'menus'));
 	}
 
+
 /**
- * edit method
+ * admin_edit method
  *
  * @throws NotFoundException
  * @param string $id
@@ -64,12 +83,12 @@ class LinksController extends AppController {
 		if (!$this->Link->exists($id)) {
 			throw new NotFoundException(__('Inválido link'));
 		}
-		if ($this->request->is('post') || $this->request->is('put')) {
+		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Link->save($this->request->data)) {
-				$this->Session->setFlash(__('link foi salvo'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('link não pôde ser salvo. Por favor, tente novamente..'));
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
 			}
 		} else {
 			$options = array('conditions' => array('Link.' . $this->Link->primaryKey => $id));
@@ -79,9 +98,10 @@ class LinksController extends AppController {
 		$menus = $this->Link->Menu->find('list');
 		$this->set(compact('parentLinks', 'menus'));
 	}
+	
 
 /**
- * delete method
+ * admin_delete method
  *
  * @throws NotFoundException
  * @param string $id
@@ -94,10 +114,10 @@ class LinksController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Link->delete()) {
-			$this->Session->setFlash(__('Link delete'));
-			$this->redirect(array('action' => 'index'));
+	
+			$this->Session->setFlash(__('Foi excluído.'), 'success');
+		} else {
+			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'error');
 		}
-		$this->Session->setFlash(__('Link não foi excluída'));
-		$this->redirect(array('action' => 'index'));
-	}
-}
+		return $this->redirect(array('action' => 'index'));
+	}}

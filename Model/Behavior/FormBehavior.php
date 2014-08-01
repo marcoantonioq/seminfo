@@ -4,22 +4,11 @@ class FormBehavior extends ModelBehavior {
 	protected $data = array();
 	protected $pagination = array();
 
-	public function beforeFind(Model $model, $query = ""){
-		// echo "beforeFind: ";
-		// pr($query);
-		// pr($model);
-		//exit;
-	}
-	
 	public function action(Model &$Model, $data = array(), $pagination = array()) {
-		// pr($data);
-		// exit;
 		$this->Model = $Model;
 		$this->data = $data;
 		$this->pagination = $pagination;
-		$this->pagination = array_merge($pagination, $data['Pagination']);
-
-		return $this->data;
+		return $this->search();
 	}
 
 	public function pagination(Model &$Model) {
@@ -27,61 +16,67 @@ class FormBehavior extends ModelBehavior {
 	}
 	
 	private function search(){
-		if (empty($this->data['Filter']['type']) || empty($this->data['Filter']['filter'][0])) 
-			return null;
 
-		// $this->pagination['recursive'] = 1;
-		for ($i=4 ; $i >= 0; $i--) 
-		{
-			$type = $this->data['Filter']['type'][$i];
-			$filter = $this->data['Filter']['filter'][$i];			
-			$conditions = $this->data['Filter']['conditions'][$i];			
+		// pr($this->data); exit;
 
-			if(!empty($type)){
+		if(!empty($this->data['Filter'])){
+
+			foreach ($this->data['Filter'] as $column => $filter) {
+				
+				$conditions = $this->data['conditions'][$column];
+				$this->pagination += $this->data['Pagination'];
+				
+				if (empty($filter))
+					continue;
+
+				if(empty($conditions))
+					continue;
+
 				switch ($conditions) {
 					case 'LIKE':
-						$this->pagination['conditions']["$type LIKE"] = "%$filter%";
+						$this->pagination['conditions']['OR']['AND']["$column LIKE"] = "%$filter%";
 						break;
 					case 'NOT LIKE':
-						$this->pagination['conditions']["$type NOT LIKE"] = "%$filter%";
+						$this->pagination['conditions']['OR']['AND']["$column NOT LIKE"] = "%$filter%";
 						break;
 					case 'LIKE BEGIN':
-						$this->pagination['conditions']["$type LIKE"] = "$filter%";
+						$this->pagination['conditions']['OR']['AND']["$column LIKE"] = "$filter%";
 						break;
 					case 'LIKE END':
-						$this->pagination['conditions']["$type LIKE"] = "%$filter";
+						$this->pagination['conditions']['OR']['AND']["$column LIKE"] = "%$filter";
 						break;
 					case '!=':
-						$this->pagination['conditions']["$type !="] = "$filter";
+						$this->pagination['conditions']['OR']['AND']["$column !="] = "$filter";
 						break;
 					case '>':
-						$this->pagination['conditions']["$type >"] = "$filter";
+						$this->pagination['conditions']['OR']['AND']["$column >"] = "$filter";
 						break;
 					case '<':
-						$this->pagination['conditions']["$type <"] = "$filter";
+						$this->pagination['conditions']['OR']['AND']["$column <"] = "$filter";
 						break;
 					case '<=':
-						$this->pagination['conditions']["$type <="] = "$filter";
+						$this->pagination['conditions']['OR']['AND']["$column <="] = "$filter";
 						break;
 					case '>=':
-						$this->pagination['conditions']["$type >="] = "$filter";
+						$this->pagination['conditions']['OR']['AND']["$column >="] = "$filter";
 					case '=':
 					default:
-						$this->pagination['conditions']["$type"] = "$filter";
+						$this->pagination['conditions']['OR']['AND']["$column"] = "$filter";
 						break;
 						break;
 				}
 			}
+		}
 
-			if($i > 0){
-				$this->data['Filter']['type'][$i] = $this->data['Filter']['type'][$i-1];
-				$this->data['Filter']['filter'][$i] = $this->data['Filter']['filter'][$i-1];				
-				$this->data['Filter']['conditions'][$i] = $this->data['Filter']['conditions'][$i-1];				
+		if (!empty($this->data['row'])) {
+			foreach ($this->data['row'] as $id => $value) {
+				if ($value)
+					$this->pagination['conditions']['OR']['OR'][] = array("id"=>$id);
 			}
 		}
-		return $this->pagination;
 		// pr($this->data);
-		// pr($this->pagination); exit;
+		// pr($this->pagination); // exit;
+		return $this->pagination;
 	}
 
 	private function __delete( ) { 

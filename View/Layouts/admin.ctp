@@ -3,7 +3,7 @@
 <head>
 	<?php echo $this->Html->charset('UTF-8'); ?>
 	<title>
-		<?php echo $title_for_layout; ?>
+		<?php echo __($title_for_layout); ?>
 	</title
 >	
 	<?php
@@ -22,9 +22,10 @@
 	));
 	echo $this->Html->script(
 		array(
-			'ckeditor/ckeditor.js',
 			'jquery.js',
+			'ckeditor/ckeditor.js',
 			'/css/bootstrap/js/bootstrap.min.js',
+			'back-end/admin.js',
 		)
 	);
 
@@ -48,7 +49,16 @@
 </head>
 <body>
 	<div id="header">
-		<?php echo $this->element('admin/admin_menu', array(), array('cache' => array('key'=>'admin_menu', 'config'=>'hours')));?>
+		<?php echo $this->element(
+			'admin/admin_menu', 
+			array(), 
+			array(
+				'cache' => array(
+					'key'=>'admin_menu', 
+					'config'=>'hours'
+				)
+			)
+		);?>
 		<div class='clearfix'></div>			
 	</div>
 	<div id="container">

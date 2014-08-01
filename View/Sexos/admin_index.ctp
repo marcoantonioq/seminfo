@@ -7,7 +7,7 @@
 			$this->Form->inputDefaults(array(
 				'label'=>false,
 				'div'=>false,
-				'class'=>'span6 left',
+				'class'=>'span6',
 				'autocomplete'=>'off',
 				'onfocus'=>'this.select();',
 			));
@@ -24,65 +24,49 @@
                 '<'  => 'menor que',
                 '<=' => 'menor ou igual a'
             );
+			
 	 ?>
 		<table class='responsive table table-bordered' id='checkAll'>
 		<thead>
 			<tr>
-				<th id='masterCh' class='ch'>
-					
-				</th>
+				<th class='ch'>
+					<?php $this->Filter->img(); ?>				</th>
 								
 				<th>
-					
 					<?php 
-					echo $this->Paginator->sort('id', ucfirst(__('id')));
+						echo $this->Paginator->sort('id', ucfirst(__('id'))); 
 					?>				
 				</th>
 								
 				<th>
-					
 					<?php 
-					echo $this->Paginator->sort('nome', ucfirst(__('nome'))); 
+						echo $this->Paginator->sort('nome', ucfirst(__('nome'))); 
 					?>				
 				</th>
 								
 				<th>
-					
 					<?php 
-					echo $this->Paginator->sort('user_count', ucfirst(__('user_count'))); 
+						echo $this->Paginator->sort('user_count', ucfirst(__('user_count'))); 
 					?>				
 				</th>
+								
 				<th class="actions">
-					<?php echo __('Ações'); ?>				
+					
+					<?php echo __('Ações'); ?>
 				</th>
 			</tr>
-			<tr>
+			<tr id="filter" style="display:none;">
 				<th></th>
+									
+					<?php echo $this->Filter->conditions('id'); ?>
+									
+					<?php echo $this->Filter->conditions('nome'); ?>
+									
+					<?php echo $this->Filter->conditions('user_count'); ?>
+								
 				<th>
-					<?php 
-					echo $this->Form->input('conditions.id', array(
-		                'options' => $options,
-		            ));
-					echo $this->Form->input('id', array(
-						'autofocus' => true,
-						'onkeydown'=>'bloquearCtrlJ();',
-						'placeholder' => ucfirst(__('id')).'...',
-					));
-					 ?>
+
 				</th>
-				<th>
-					<?php 
-					echo $this->Form->input('conditions.nome', array(
-		                'options' => $options,
-		            ));
-					echo $this->Form->input('nome', array(
-						'onkeydown'=>'bloquearCtrlJ();',
-						'placeholder' => ucfirst(__('nome')).'...',
-					));
-					 ?>
-				</th>
-				<th></th>
-				<th></th>
 			</tr>
 		</thead>
 
@@ -110,17 +94,7 @@
 					array('action' => 'edit', 
 					$sexo['Sexo']['id']
 					)
-				); ?>				
-				
-				<?php 
-				// echo $this->Form->postLink(__('d'), 
-				//	array( 'action' => 'delete',
-				//	$sexo['Sexo']['id']
-				//	),
-				//	null,
-                //	__('Tem certeza de que deseja excluir?')
-				//); 
-				?>			</td>
+				); ?>			</td>
 
 	
 	</tr>
@@ -128,31 +102,33 @@
 	<?php endforeach; ?>
 	</table>
 
-	<?php 
+	<?php 	
         echo $this->Form->input('Pagination.limit', array(
             'label'=>"Limite",
             'type'=>'select',
-            'options'=> array('20'=>'20','50'=>'50','100'=>'100','500'=>'500','1000'=>'1000','10000'=>'10000'),
+            'options'=> array(
+				'20'=>'20',
+				'50'=>'50',
+				'100'=>'100',
+				'500'=>'500',
+				'1000'=>'1000',
+				'10000'=>'10000'
+			),
             'default'=>10,
             "class"=>"span2",
             'onchange'=>'this.form.submit();'
         ));
-    ?>
-	
+    ?> 
+    
 	<?php 
 		echo  $this->Form->button('Buscar', array(
 		'class'=>'btn',
 		'style'=>'margin-bottom: 10px;'
-		)); ?>
-	
-	<?php 
-		echo $this->Form->end('Imprimir'); 
-	?>	
-	
-	<?php 
-		echo $this->element('pagination'); 
+		)); 
 	?>
-	
+
+	<?php echo $this->Form->end('Imprimir'); ?>
+	<?php echo $this->element('pagination'); ?>
 	</div>
 
 	<dib class="span4">
