@@ -27,7 +27,7 @@
 			
 	 ?>
 	<div class="tabela">
-		<table class='responsive table table-bordered' id='checkAll'>
+		<table class='rwd-table'>
 		<thead>
 			<tr>
 				<th class='ch'>
@@ -35,101 +35,117 @@
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('id', ucfirst(__('id'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('parent_id', ucfirst(__('parent_id'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('menu_id', ucfirst(__('menu_id'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('title', ucfirst(__('title'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('class', ucfirst(__('class'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('description', ucfirst(__('description'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('link', ucfirst(__('link'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('target', ucfirst(__('target'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('rel', ucfirst(__('rel'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('status', ucfirst(__('status'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('lft', ucfirst(__('lft'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('rght', ucfirst(__('rght'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('visibility_roles', ucfirst(__('visibility_roles'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('params', ucfirst(__('params'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('updated', ucfirst(__('updated'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('created', ucfirst(__('created'))); 
 					?>				
 				</th>
-								
+				
 				<th class="actions">
 					
 					<?php echo __('Ações'); ?>
@@ -179,31 +195,31 @@
 		<?php foreach ($links as $link): ?>
 	<tr>
 
-		<td class="chChildren">
+		<td data-th='Selecionar' >
 			<?php echo $this->Form->checkbox('row.'.$link['Link']['id'], array( 'class'=>'styled' ));?>
 		</td>
-		<td><?php echo h($link['Link']['id']); ?>&nbsp;</td>
-		<td>
+		<td data-th='<?= __('id');?>' ><?php echo h($link['Link']['id']); ?>&nbsp;</td>
+		<td data-th='<?= __('parent_id');?>' >
 			<?php echo $this->Html->link($link['ParentLink']['id'], array('controller' => 'links', 'action' => 'view', $link['ParentLink']['id'])); ?>
 		</td>
-		<td>
+		<td data-th='<?= __('menu_id');?>' >
 			<?php echo $this->Html->link($link['Menu']['id'], array('controller' => 'menus', 'action' => 'view', $link['Menu']['id'])); ?>
 		</td>
-		<td><?php echo h($link['Link']['title']); ?>&nbsp;</td>
-		<td><?php echo h($link['Link']['class']); ?>&nbsp;</td>
-		<td><?php echo h($link['Link']['description']); ?>&nbsp;</td>
-		<td><?php echo h($link['Link']['link']); ?>&nbsp;</td>
-		<td><?php echo h($link['Link']['target']); ?>&nbsp;</td>
-		<td><?php echo h($link['Link']['rel']); ?>&nbsp;</td>
-		<td><?php echo h($link['Link']['status']); ?>&nbsp;</td>
-		<td><?php echo h($link['Link']['lft']); ?>&nbsp;</td>
-		<td><?php echo h($link['Link']['rght']); ?>&nbsp;</td>
-		<td><?php echo h($link['Link']['visibility_roles']); ?>&nbsp;</td>
-		<td><?php echo h($link['Link']['params']); ?>&nbsp;</td>
-		<td><?php echo h($link['Link']['updated']); ?>&nbsp;</td>
-		<td><?php echo h($link['Link']['created']); ?>&nbsp;</td>
+		<td data-th='<?= __('title');?>' ><?php echo h($link['Link']['title']); ?>&nbsp;</td>
+		<td data-th='<?= __('class');?>' ><?php echo h($link['Link']['class']); ?>&nbsp;</td>
+		<td data-th='<?= __('description');?>' ><?php echo h($link['Link']['description']); ?>&nbsp;</td>
+		<td data-th='<?= __('link');?>' ><?php echo h($link['Link']['link']); ?>&nbsp;</td>
+		<td data-th='<?= __('target');?>' ><?php echo h($link['Link']['target']); ?>&nbsp;</td>
+		<td data-th='<?= __('rel');?>' ><?php echo h($link['Link']['rel']); ?>&nbsp;</td>
+		<td data-th='<?= __('status');?>' ><?php echo h($link['Link']['status']); ?>&nbsp;</td>
+		<td data-th='<?= __('lft');?>' ><?php echo h($link['Link']['lft']); ?>&nbsp;</td>
+		<td data-th='<?= __('rght');?>' ><?php echo h($link['Link']['rght']); ?>&nbsp;</td>
+		<td data-th='<?= __('visibility_roles');?>' ><?php echo h($link['Link']['visibility_roles']); ?>&nbsp;</td>
+		<td data-th='<?= __('params');?>' ><?php echo h($link['Link']['params']); ?>&nbsp;</td>
+		<td data-th='<?= __('updated');?>' ><?php echo h($link['Link']['updated']); ?>&nbsp;</td>
+		<td data-th='<?= __('created');?>' ><?php echo h($link['Link']['created']); ?>&nbsp;</td>
 
-			<td class="actions">
+			<td data-th='Ações' class="actions">
 				
 				<?php 
 				echo $this->Html->link(__('v'), 

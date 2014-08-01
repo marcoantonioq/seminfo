@@ -5,11 +5,13 @@ App::uses('AppController', 'Controller');
  * Events Controller
  *
  * @property Event $Event
+ * @property PaginatorComponent $Paginator
  */
 class EventsController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
+		$this->set('title_for_layout', __('Events'));
 		$this -> Auth -> allow('index', 'view', 'recustIndex');
 	}
 
@@ -41,11 +43,11 @@ class EventsController extends AppController {
 	public function admin_index() {
 		if ($this->request->is('post')) {
             $this->Paginator->settings = $this->Event->action($this->request->data);
-            pr($this->Paginator->settings);
-            $this->Session->setFlash('Filtro definido!', 'success');
+            echo $this->Session->setFlash('Filtro definido!', 'success');
         }
-
-		$this->set('events', $this->Paginator->paginate());
+		$this->Event->recursive = 0;
+		$events = $this->Paginator->paginate();
+		$this->set(compact('events'));
 	}
 
 	/**

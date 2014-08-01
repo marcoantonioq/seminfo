@@ -26,30 +26,35 @@
             );
 			
 	 ?>
-		<table class='responsive table table-bordered' id='checkAll'>
+	<div class="tabela">
+		<table class='rwd-table'>
 		<thead>
 			<tr>
 				<th class='ch'>
-					<?php $this->Filter->img(); ?>				</th>
+					<?php $this->Filter->img(); ?>
+				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('id', ucfirst(__('id'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('nome', ucfirst(__('nome'))); 
 					?>				
 				</th>
 								
 				<th>
+					
 					<?php 
 						echo $this->Paginator->sort('user_count', ucfirst(__('user_count'))); 
 					?>				
 				</th>
-								
+				
 				<th class="actions">
 					
 					<?php echo __('Ações'); ?>
@@ -73,14 +78,14 @@
 		<?php foreach ($sexos as $sexo): ?>
 	<tr>
 
-		<td class="chChildren">
+		<td data-th='Selecionar' >
 			<?php echo $this->Form->checkbox('row.'.$sexo['Sexo']['id'], array( 'class'=>'styled' ));?>
 		</td>
-		<td><?php echo h($sexo['Sexo']['id']); ?>&nbsp;</td>
-		<td><?php echo h($sexo['Sexo']['nome']); ?>&nbsp;</td>
-		<td><?php echo h($sexo['Sexo']['user_count']); ?>&nbsp;</td>
+		<td data-th='<?= __('id');?>' ><?php echo h($sexo['Sexo']['id']); ?>&nbsp;</td>
+		<td data-th='<?= __('nome');?>' ><?php echo h($sexo['Sexo']['nome']); ?>&nbsp;</td>
+		<td data-th='<?= __('user_count');?>' ><?php echo h($sexo['Sexo']['user_count']); ?>&nbsp;</td>
 
-			<td class="actions">
+			<td data-th='Ações' class="actions">
 				
 				<?php 
 				echo $this->Html->link(__('v'), 
@@ -101,6 +106,7 @@
 
 	<?php endforeach; ?>
 	</table>
+	</div>
 
 	<?php 	
         echo $this->Form->input('Pagination.limit', array(
@@ -134,10 +140,17 @@
 	<dib class="span4">
 		<div class="actions well">
 		    <h3>Menu</h3>
-		    <?php echo $this->Html->link(__('Novo'), array('action' => 'add'), array('class'=>'btn btn-block')); ?>
-		    <?php echo $this->Html->link(__('Grupos'), array('controller' => 'groups', 'action' => 'index'), array('class'=>'btn btn-block')); ?> 		    
-		    <?php echo $this->Html->link(__('Sexo'), array('controller' => 'sexos', 'action' => 'add'), array('class'=>'btn btn-block')); ?>	
-			
+		    
+
+					<?php 
+					echo $this->Html->link('Users',
+						array('controller' => 'users', 'action' => 'index'),
+						array('class'=> 'btn btn-block')
+					);
+					?>
+
+
+<?php $this->end(); ?>			
 		</div>
 	</dib>
 </div>

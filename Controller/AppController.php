@@ -33,7 +33,13 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+/**
+ * Components
+ *
+ * @var array
+ */
     public $components = array(
+        'Paginator',
         'RequestHandler',
         'Security',
         'Session',

@@ -26,47 +26,126 @@
             );
 			
 	 ?>
-		<table class='responsive table table-bordered' id='checkAll'>
+
+<table class="rwd-table">
+	<thead>
+		<tr>
+			<th><a href="#">Movie Title</a></th>
+			<th>Genre</th>
+			<th>Year</th>
+			<th>Gross</th>
+		</tr>
+		<tr id="filter" style="display:none;">
+			<?php echo $this->Filter->conditions('id'); ?>
+			<?php echo $this->Filter->conditions('id'); ?>
+			<?php echo $this->Filter->conditions('id'); ?>
+			<?php echo $this->Filter->conditions('id'); ?>
+		</tr>
+	</thead>
+	  <tr>
+	    <td data-th="Movie Title">Star Wars</td>
+	    <td data-th="Genre">Adventure, Sci-fi</td>
+	    <td data-th="Year">1977</td>
+	    <td data-th="Gross">$460,935,665</td>
+	  </tr>
+	  <tr>
+	    <td data-th="Movie Title">Howard The Duck</td>
+	    <td data-th="Genre">"Comedy"</td>
+	    <td data-th="Year">1986</td>
+	    <td data-th="Gross">$16,295,774</td>
+	  </tr>
+	  <tr>
+	    <td data-th="Movie Title">American Graffiti</td>
+	    <td data-th="Genre">Comedy, Drama</td>
+	    <td data-th="Year">1973</td>
+	    <td data-th="Gross">$115,000,000</td>
+	  </tr>
+</table>
+
+	 
+	<div class="tabela">
+		<table class='rwd-table'>
 		<thead>
 			<tr>
-				<th>
-					<a href="#" onclick="show()">
-						<?php echo $this->Html->image(
-							'/img/template/icons/filters.png',
-							array(
-								'title'=>'Filter',
-								'width'=>'20px',
-								'height'=>'20px',
-							)
-						); ?>
-					</a>
+				<th class='ch'>
+					<?php $this->Filter->img(); ?>
 				</th>
 								
 				<th>
-					
 					<?php 
 						echo $this->Paginator->sort('id', ucfirst(__('id'))); 
 					?>				
 				</th>
 								
 				<th>
-					
 					<?php 
 						echo $this->Paginator->sort('nome', ucfirst(__('nome'))); 
 					?>				
 				</th>
 								
 				<th>
-					
 					<?php 
 						echo $this->Paginator->sort('local', ucfirst(__('local'))); 
 					?>				
 				</th>
-												
+								
 				<th>
-					
+					<?php 
+						echo $this->Paginator->sort('publicado', ucfirst(__('publicado'))); 
+					?>				
+				</th>
+								
+				<th>
 					<?php 
 						echo $this->Paginator->sort('status', ucfirst(__('status'))); 
+					?>				
+				</th>
+								
+				<th>
+					<?php 
+						echo $this->Paginator->sort('inicio', ucfirst(__('inicio'))); 
+					?>				
+				</th>
+								
+				<th>
+					<?php 
+						echo $this->Paginator->sort('termino', ucfirst(__('termino'))); 
+					?>				
+				</th>
+								
+				<th>
+					<?php 
+						echo $this->Paginator->sort('realizacao', ucfirst(__('realizacao'))); 
+					?>				
+				</th>
+								
+				<th>
+					<?php 
+						echo $this->Paginator->sort('descricao', ucfirst(__('descricao'))); 
+					?>				
+				</th>
+								
+				<th>
+					<?php 
+						echo $this->Paginator->sort('organizacao', ucfirst(__('organizacao'))); 
+					?>				
+				</th>
+								
+				<th>
+					<?php 
+						echo $this->Paginator->sort('holding_count', ucfirst(__('holding_count'))); 
+					?>				
+				</th>
+								
+				<th>
+					<?php 
+						echo $this->Paginator->sort('file', ucfirst(__('file'))); 
+					?>				
+				</th>
+								
+				<th>
+					<?php 
+						echo $this->Paginator->sort('file_dir', ucfirst(__('file_dir'))); 
 					?>				
 				</th>
 								
@@ -77,63 +156,33 @@
 			</tr>
 			<tr id="filter" style="display:none;">
 				<th></th>
+									
+					<?php echo $this->Filter->conditions('id'); ?>
+									
+					<?php echo $this->Filter->conditions('nome'); ?>
+									
+					<?php echo $this->Filter->conditions('local'); ?>
+									
+					<?php echo $this->Filter->conditions('publicado'); ?>
+									
+					<?php echo $this->Filter->conditions('status'); ?>
+									
+					<?php echo $this->Filter->conditions('inicio'); ?>
+									
+					<?php echo $this->Filter->conditions('termino'); ?>
+									
+					<?php echo $this->Filter->conditions('realizacao'); ?>
+									
+					<?php echo $this->Filter->conditions('descricao'); ?>
+									
+					<?php echo $this->Filter->conditions('organizacao'); ?>
+									
+					<?php echo $this->Filter->conditions('holding_count'); ?>
+									
+					<?php echo $this->Filter->conditions('file'); ?>
+									
+					<?php echo $this->Filter->conditions('file_dir'); ?>
 								
-				<th>
-					
-					<?php 
-					echo $this->Form->input('conditions.id', array(
-		                'options' => $options,
-		            ));
-					echo $this->Form->input('id', array(
-						'autofocus' => true,
-						'onkeydown'=>'bloquearCtrlJ();',
-						'placeholder' => ucfirst(__('id')).'...',
-					));
-					?>				
-				</th>
-								
-				<th>
-					
-					<?php 
-					echo $this->Form->input('conditions.nome', array(
-		                'options' => $options,
-		            ));
-					echo $this->Form->input('nome', array(
-						'autofocus' => true,
-						'onkeydown'=>'bloquearCtrlJ();',
-						'placeholder' => ucfirst(__('nome')).'...',
-					));
-					?>				
-				</th>
-								
-				<th>
-					
-					<?php 
-					echo $this->Form->input('conditions.local', array(
-		                'options' => $options,
-		            ));
-					echo $this->Form->input('local', array(
-						'autofocus' => true,
-						'onkeydown'=>'bloquearCtrlJ();',
-						'placeholder' => ucfirst(__('local')).'...',
-					));
-					?>				
-				</th>
-								
-				<th>
-					
-					<?php 
-					echo $this->Form->input('conditions.status', array(
-		                'options' => $options,
-		            ));
-					echo $this->Form->input('status', array(
-						'autofocus' => true,
-						'onkeydown'=>'bloquearCtrlJ();',
-						'placeholder' => ucfirst(__('status')).'...',
-					));
-					?>				
-				</th>
-					
 				<th>
 
 				</th>
@@ -149,7 +198,16 @@
 		<td><?php echo h($event['Event']['id']); ?>&nbsp;</td>
 		<td><?php echo h($event['Event']['nome']); ?>&nbsp;</td>
 		<td><?php echo h($event['Event']['local']); ?>&nbsp;</td>
+		<td><?php echo h($event['Event']['publicado']); ?>&nbsp;</td>
 		<td><?php echo h($event['Event']['status']); ?>&nbsp;</td>
+		<td><?php echo h($event['Event']['inicio']); ?>&nbsp;</td>
+		<td><?php echo h($event['Event']['termino']); ?>&nbsp;</td>
+		<td><?php echo h($event['Event']['realizacao']); ?>&nbsp;</td>
+		<td><?php echo h($event['Event']['descricao']); ?>&nbsp;</td>
+		<td><?php echo h($event['Event']['organizacao']); ?>&nbsp;</td>
+		<td><?php echo h($event['Event']['holding_count']); ?>&nbsp;</td>
+		<td><?php echo h($event['Event']['file']); ?>&nbsp;</td>
+		<td><?php echo h($event['Event']['file_dir']); ?>&nbsp;</td>
 
 			<td class="actions">
 				
@@ -172,6 +230,7 @@
 
 	<?php endforeach; ?>
 	</table>
+	</div>
 
 	<?php 	
         echo $this->Form->input('Pagination.limit', array(
@@ -205,10 +264,25 @@
 	<dib class="span4">
 		<div class="actions well">
 		    <h3>Menu</h3>
-		    <?php echo $this->Html->link(__('Novo'), array('action' => 'add'), array('class'=>'btn btn-block')); ?>
-		    <?php echo $this->Html->link(__('Grupos'), array('controller' => 'groups', 'action' => 'index'), array('class'=>'btn btn-block')); ?> 		    
-		    <?php echo $this->Html->link(__('Sexo'), array('controller' => 'sexos', 'action' => 'add'), array('class'=>'btn btn-block')); ?>	
-			
+		    
+
+					<?php 
+					echo $this->Html->link('Holdings',
+						array('controller' => 'holdings', 'action' => 'index'),
+						array('class'=> 'btn btn-block')
+					);
+					?>
+
+
+					<?php 
+					echo $this->Html->link('Programas',
+						array('controller' => 'programas', 'action' => 'index'),
+						array('class'=> 'btn btn-block')
+					);
+					?>
+
+
+<?php $this->end(); ?>			
 		</div>
 	</dib>
 </div>
