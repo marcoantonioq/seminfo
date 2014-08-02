@@ -61,7 +61,7 @@
 				</th>
 			</tr>
 			<tr id="filter" style="display:none;">
-				<th></th>
+				<td  class='invisible' data-th='Filtro'></td>
 									
 					<?php echo $this->Filter->conditions('id'); ?>
 									
@@ -69,9 +69,9 @@
 									
 					<?php echo $this->Filter->conditions('user_count'); ?>
 								
-				<th>
+				<td class='invisible'>
 
-				</th>
+				</td>
 			</tr>
 		</thead>
 
@@ -81,9 +81,21 @@
 		<td data-th='Selecionar' >
 			<?php echo $this->Form->checkbox('row.'.$sexo['Sexo']['id'], array( 'class'=>'styled' ));?>
 		</td>
-		<td data-th='<?= __('id');?>' ><?php echo h($sexo['Sexo']['id']); ?>&nbsp;</td>
-		<td data-th='<?= __('nome');?>' ><?php echo h($sexo['Sexo']['nome']); ?>&nbsp;</td>
-		<td data-th='<?= __('user_count');?>' ><?php echo h($sexo['Sexo']['user_count']); ?>&nbsp;</td>
+
+		<td data-th="<?= __('id');?>" >
+			<?php echo h($sexo['Sexo']['id']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('nome');?>" >
+			<?php echo h($sexo['Sexo']['nome']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('user_count');?>" >
+			<?php echo h($sexo['Sexo']['user_count']); ?>
+			&nbsp;
+		</td>
 
 			<td data-th='Ações' class="actions">
 				

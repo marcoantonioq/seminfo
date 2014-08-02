@@ -169,8 +169,8 @@ CakePlugin::load(
 CakePlugin::load(
     'Administrador', 
     array(
-        'bootstrap' => true, 
-        'routes' => true
+        'bootstrap' => false, 
+        'routes' => false
     )
 );
 
@@ -241,4 +241,4 @@ CakeLog::config('error', array(
     'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
     'file' => 'error',
 ));
-include dirname(__FILE__).DS.'traducao_core.php';
+// include dirname(__FILE__).DS.'traducao_core.php';

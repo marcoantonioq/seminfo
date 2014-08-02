@@ -95,21 +95,45 @@ p {
 
 /*Tables*/
 
+.rwd-table {
+  background: #F5F5F5;
+  /* color: #fff; */
+  border-radius: .4em;
+  overflow: hidden;
+  width: 100%;
+}
+.rwd-table tr {
+  border-color: #46627f;
+}
+.rwd-table th, .rwd-table td {
+  padding: .5em 1em;
+}
 
 .rwd-table {
-  margin: 1em 0;
-  min-width: 300px;
-  border: 1px solid #c4c4c4;
+	background: #F5F5F5;
+	border-radius: .4em;
+	overflow: hidden;
+	width: 100%;
+	min-width: 300px;
+	border: 1px solid #c4c4c4;
 }
-.rwd-table thead th {
-  	background: #ddd;
-}
+
 .rwd-table tr {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
 }
+
+.rwd-table tr:hover {
+  background-color: #e8eaeb;
+}
+
+.rwd-table .select {
+  background-color: #e8eaeb;	
+}
+
 .rwd-table th {
   display: none;
+  background: #ddd;
 }
 .rwd-table td {
   display: block;
@@ -126,15 +150,28 @@ p {
   width: 6.5em;
   display: inline-block;
 }
+
+.rwd-table th, .rwd-table td {
+  text-align: left;
+  min-width: 50px;
+}
+
+@media (max-width: 480px) {
+	.rwd-table th.ch{
+		display:block !important;
+		background: transparent;
+	}
+ 	.rwd-table th a {
+		padding: 10px 310px 10px 0px !important;
+	}
+}
+
 @media (min-width: 480px) {
+	
   .rwd-table td:before {
     display: none;
   }
-}
-.rwd-table th, .rwd-table td {
-  text-align: left;
-}
-@media (min-width: 480px) {
+  
   .rwd-table th, .rwd-table td {
     display: table-cell;
     padding: .25em .5em;
@@ -145,25 +182,10 @@ p {
   .rwd-table th:last-child, .rwd-table td:last-child {
     padding-right: 0;
   }
-}
-
-.rwd-table {
-  background: #F5F5F5;
-  /* color: #fff; */
-  border-radius: .4em;
-  overflow: hidden;
-  width: 100%;
-}
-.rwd-table tr {
-  border-color: #46627f;
-}
-.rwd-table th, .rwd-table td {
-  margin: .5em 1em;
-}
-@media (min-width: 480px) {
   .rwd-table th, .rwd-table td {
     padding: 1em !important;
   }
+  
 }
 
 .tabela {
@@ -847,11 +869,11 @@ section.top-nav {
 	display: inline-block;
 	float: right;
 	height: auto;
-	margin: 0px 30px 0px 15px;
 	overflow: visible;
+
 	position: absolute;
-	right: 15px;
-	top: 50px;
+	right: 20px;
+	top: 0px;
 }
 .top-nav li {
 	border-left: 1px solid #eee;

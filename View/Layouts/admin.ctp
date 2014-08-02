@@ -64,7 +64,7 @@
 	<div id="container">
 		 
 		<div id="content">
-
+			<?php echo $this->element('layout/session-user'); ?>
 			<div class="row-fluid">
 				<legend>
 					<?php echo __($title_for_layout); ?>

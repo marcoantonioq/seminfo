@@ -44,9 +44,10 @@ window.onkeydown = function (e) {
 
 }
 
-function bloquearCtrlJ(){   // Verificação das Teclas  
-    var tecla=window.event.keyCode;   //Para controle da tecla pressionada  
-    var ctrl=window.event.ctrlKey;    //Para controle da Tecla CTRL  
+// bloquear ctrl + j, para o leitor de codigo de bara
+function bloquearCtrlJ(){
+    var tecla=window.event.keyCode;
+    var ctrl=window.event.ctrlKey;
 
     if (ctrl && tecla==74){    //Evita teclar ctrl + j  
         event.keyCode=0;  
@@ -54,6 +55,7 @@ function bloquearCtrlJ(){   // Verificação das Teclas
     }  
 }  
 
+// Mostra tr filter, index
 function show(){
     if(document.getElementById('filter').style.display == "none"){  
         document.getElementById('filter').style.display = '';
@@ -61,3 +63,4 @@ function show(){
         document.getElementById('filter').style.display = 'none';  
     }  
 }
+

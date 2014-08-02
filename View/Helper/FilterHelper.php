@@ -4,7 +4,7 @@ class FilterHelper extends AppHelper {
 	public $helpers = array('Html', 'Form', 'Menu');
 
 	public function conditions($name){
-		echo "<th>";
+		echo "<td  data-th='".ucfirst(__($name))."'>";
 		$this->Form->inputDefaults(array(
             'label'=>false,
             'div'=>false,
@@ -36,7 +36,7 @@ class FilterHelper extends AppHelper {
 			'onkeydown'=>'bloquearCtrlJ();',
 			'placeholder' => ucfirst(__($name)).'...',
 		));
-		echo "</th>";
+		echo "</td>";
 	}
 
 	public function row($name){

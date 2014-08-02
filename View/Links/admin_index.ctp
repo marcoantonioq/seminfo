@@ -198,26 +198,84 @@
 		<td data-th='Selecionar' >
 			<?php echo $this->Form->checkbox('row.'.$link['Link']['id'], array( 'class'=>'styled' ));?>
 		</td>
-		<td data-th='<?= __('id');?>' ><?php echo h($link['Link']['id']); ?>&nbsp;</td>
-		<td data-th='<?= __('parent_id');?>' >
+
+		<td data-th="<?= __('id');?>" >
+			<?php echo h($link['Link']['id']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('parent_id');?>" >
 			<?php echo $this->Html->link($link['ParentLink']['id'], array('controller' => 'links', 'action' => 'view', $link['ParentLink']['id'])); ?>
 		</td>
-		<td data-th='<?= __('menu_id');?>' >
+
+		<td data-th="<?= __('menu_id');?>" >
 			<?php echo $this->Html->link($link['Menu']['id'], array('controller' => 'menus', 'action' => 'view', $link['Menu']['id'])); ?>
 		</td>
-		<td data-th='<?= __('title');?>' ><?php echo h($link['Link']['title']); ?>&nbsp;</td>
-		<td data-th='<?= __('class');?>' ><?php echo h($link['Link']['class']); ?>&nbsp;</td>
-		<td data-th='<?= __('description');?>' ><?php echo h($link['Link']['description']); ?>&nbsp;</td>
-		<td data-th='<?= __('link');?>' ><?php echo h($link['Link']['link']); ?>&nbsp;</td>
-		<td data-th='<?= __('target');?>' ><?php echo h($link['Link']['target']); ?>&nbsp;</td>
-		<td data-th='<?= __('rel');?>' ><?php echo h($link['Link']['rel']); ?>&nbsp;</td>
-		<td data-th='<?= __('status');?>' ><?php echo h($link['Link']['status']); ?>&nbsp;</td>
-		<td data-th='<?= __('lft');?>' ><?php echo h($link['Link']['lft']); ?>&nbsp;</td>
-		<td data-th='<?= __('rght');?>' ><?php echo h($link['Link']['rght']); ?>&nbsp;</td>
-		<td data-th='<?= __('visibility_roles');?>' ><?php echo h($link['Link']['visibility_roles']); ?>&nbsp;</td>
-		<td data-th='<?= __('params');?>' ><?php echo h($link['Link']['params']); ?>&nbsp;</td>
-		<td data-th='<?= __('updated');?>' ><?php echo h($link['Link']['updated']); ?>&nbsp;</td>
-		<td data-th='<?= __('created');?>' ><?php echo h($link['Link']['created']); ?>&nbsp;</td>
+
+		<td data-th="<?= __('title');?>" >
+			<?php echo h($link['Link']['title']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('class');?>" >
+			<?php echo h($link['Link']['class']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('description');?>" >
+			<?php echo h($link['Link']['description']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('link');?>" >
+			<?php echo h($link['Link']['link']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('target');?>" >
+			<?php echo h($link['Link']['target']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('rel');?>" >
+			<?php echo h($link['Link']['rel']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('status');?>" >
+			<?php echo h($link['Link']['status']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('lft');?>" >
+			<?php echo h($link['Link']['lft']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('rght');?>" >
+			<?php echo h($link['Link']['rght']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('visibility_roles');?>" >
+			<?php echo h($link['Link']['visibility_roles']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('params');?>" >
+			<?php echo h($link['Link']['params']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('updated');?>" >
+			<?php echo h($link['Link']['updated']); ?>
+			&nbsp;
+		</td>
+
+		<td data-th="<?= __('created');?>" >
+			<?php echo h($link['Link']['created']); ?>
+			&nbsp;
+		</td>
 
 			<td data-th='Ações' class="actions">
 				
