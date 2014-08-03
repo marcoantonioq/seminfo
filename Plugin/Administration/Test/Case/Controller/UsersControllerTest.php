@@ -13,47 +13,66 @@ class UsersControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'plugin.administration.user'
+		'plugin.administration.user',
+		'plugin.administration.group',
+		'plugin.administration.curso',
+		'plugin.administration.document',
+		'plugin.administration.sexo',
+		'plugin.administration.contact',
+		'plugin.administration.content',
+		'plugin.administration.type',
+		'plugin.administration.categoria',
+		'plugin.administration.holding',
+		'plugin.administration.event',
+		'plugin.administration.programa',
+		'plugin.administration.tipoprograma',
+		'plugin.administration.horario',
+		'plugin.administration.usersprograma',
+		'plugin.administration.palestrante',
+		'plugin.administration.programas_palestrante',
+		'plugin.administration.message',
+		'plugin.administration.typemessage',
+		'plugin.administration.users_message'
 	);
 
 /**
- * testAdminIndex method
+ * testIndex method
  *
  * @return void
  */
-	public function testAdminIndex() {
+	public function testIndex() {
 	}
 
 /**
- * testAdminView method
+ * testView method
  *
  * @return void
  */
-	public function testAdminView() {
+	public function testView() {
 	}
 
 /**
- * testAdminAdd method
+ * testAdd method
  *
  * @return void
  */
-	public function testAdminAdd() {
+	public function testAdd() {
 	}
 
 /**
- * testAdminEdit method
+ * testEdit method
  *
  * @return void
  */
-	public function testAdminEdit() {
+	public function testEdit() {
 	}
 
 /**
- * testAdminDelete method
+ * testDelete method
  *
  * @return void
  */
-	public function testAdminDelete() {
+	public function testDelete() {
 	}
 
 }

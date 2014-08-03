@@ -17,15 +17,15 @@
 	echo $this->Html->css(array(
 		'/bootstrap/css/bootstrap.min.css',
 		'/bootstrap/css/bootstrap-responsive.min.css',
-		'/administration/css/icon',
-		'/administration/css/admin',
+		'Administration.icon',
+		'Administration.admin',
 	));
 	echo $this->Html->script(
 		array(
 			'jquery.js',
-			'/administration/js/ckeditor/ckeditor.js',
 			'/bootstrap/js/bootstrap.min.js',
-			'/administration/js/admin.js',
+			'Administration.ckeditor/ckeditor.js',
+			'Administration.admin.js',
 		)
 	);
 

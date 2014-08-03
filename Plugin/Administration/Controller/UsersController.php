@@ -21,11 +21,11 @@ class UsersController extends AdministrationAppController {
 	public $components = array('Paginator');
 
 /**
- * admin_index method
+ * index method
  *
  * @return void
  */
-	public function admin_index() {
+	public function index() {
 		if ($this->request->is('post')) {
             $this->Paginator->settings = $this->User->action($this->request->data);
             echo $this->Session->setFlash('Filtro definido!', 'success');
@@ -36,13 +36,13 @@ class UsersController extends AdministrationAppController {
 
 
 /**
- * admin_view method
+ * view method
  *
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
-	public function admin_view($id = null) {
+	public function view($id = null) {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Inválido user'));
 		}
@@ -52,11 +52,11 @@ class UsersController extends AdministrationAppController {
 
 
 /**
- * admin_add method
+ * add method
  *
  * @return void
  */
-	public function admin_add() {
+	public function add() {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -66,17 +66,22 @@ class UsersController extends AdministrationAppController {
 				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
 			}
 		}
+		$groups = $this->User->Group->find('list');
+		$cursos = $this->User->Curso->find('list');
+		$sexos = $this->User->Sexo->find('list');
+		$messages = $this->User->Message->find('list');
+		$this->set(compact('groups', 'cursos', 'sexos', 'messages'));
 	}
 
 
 /**
- * admin_edit method
+ * edit method
  *
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
-	public function admin_edit($id = null) {
+	public function edit($id = null) {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Inválido user'));
 		}
@@ -91,17 +96,22 @@ class UsersController extends AdministrationAppController {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
 		}
+		$groups = $this->User->Group->find('list');
+		$cursos = $this->User->Curso->find('list');
+		$sexos = $this->User->Sexo->find('list');
+		$messages = $this->User->Message->find('list');
+		$this->set(compact('groups', 'cursos', 'sexos', 'messages'));
 	}
 	
 
 /**
- * admin_delete method
+ * delete method
  *
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
-	public function admin_delete($id = null) {
+	public function delete($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Inválido user'));

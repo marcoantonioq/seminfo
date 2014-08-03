@@ -71,14 +71,13 @@ class AppController extends Controller {
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
-         $this->Security->validatePost = false;
+        $this->Security->validatePost = false;
         
-        if(isset($this->request->params['prefix'])){
-            if($this->request->params['prefix']=='admin'){
+        if(isset($this->request->params['plugin'])){
+            if($this->request->params['plugin']=='administration'){
                 $this->layout = 'admin';
                 if (!env('HTTPS')){ $this->Security->blackHoleCallback = 'forceSSL'; $this->Security->requireSecure(); }                
             } 
-            if($this->request->params['prefix']=='ajax') $this->layout='ajax' ;
         }else{
             $this -> layout = 'user';
         }

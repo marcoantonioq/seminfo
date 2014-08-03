@@ -65,8 +65,8 @@ class UserFixture extends CakeTestFixture {
 			'image_dir' => 'Lorem ipsum dolor sit amet',
 			'message_count' => 1,
 			'usersprograma_count' => 1,
-			'updated' => '2014-08-03 03:48:28',
-			'created' => '2014-08-03 03:48:28'
+			'updated' => '2014-08-03 13:32:07',
+			'created' => '2014-08-03 13:32:07'
 		),
 	);
 
