@@ -1,0 +1,448 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"key",
+				"key2"
+			],
+			[
+				"ite",
+				"item2"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"arra",
+				"array"
+			],
+			[
+				"la",
+				"label	$this->Form->label()"
+			],
+			[
+				"arr",
+				"array"
+			],
+			[
+				"H",
+				"Html"
+			],
+			[
+				"border",
+				"border-left"
+			],
+			[
+				"find",
+				"find"
+			],
+			[
+				"cate",
+				"Category"
+			],
+			[
+				"reques",
+				"request"
+			],
+			[
+				"if",
+				"if	if …"
+			],
+			[
+				"req",
+				"request"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 222.0,
+		"selected_items":
+		[
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reide",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove ",
+				"Package Control: Remove Package"
+			],
+			[
+				"set ht",
+				"Set Syntax: HTML"
+			],
+			[
+				"set",
+				"Set Syntax: C"
+			],
+			[
+				"set c",
+				"Set Syntax: C"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"del",
+				"File: Delete"
+			],
+			[
+				"set latex",
+				"Set Syntax: LaTeX"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"file",
+				"File: Duplicate"
+			],
+			[
+				"latex",
+				"LaTeXTools: View PDF"
+			],
+			[
+				"git",
+				"Git: Commit"
+			],
+			[
+				"opn",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"la",
+				"LaTeXTools: Jump to PDF"
+			],
+			[
+				"late",
+				"LaTeXTools: View PDF"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"git: commit",
+				"Git: Commit"
+			],
+			[
+				"sear",
+				"File: Search Files"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/var/www/nucleo/app/View/Categoriaas/index.ctp",
+		"/var/www/nucleo/app/View/Users/index.ctp",
+		"/var/www/nucleo/app/Controller/ArtigosController.php",
+		"/var/www/nucleo/app/webroot/css/estilo.css",
+		"/home/marco/SparkleShare/SGA/.settings/com.aptana.editor.php.prefs",
+		"/home/marco/.cache/.fr-Ik4S77/acl_extras-master/README.md",
+		"/home/marco/.cache/.fr-Lf4YqQ/acl_extras-master/README.md",
+		"/home/marco/SparkleShare/Nucleo/app/Config/routes.php",
+		"/home/marco/SparkleShare/Nucleo/app/Config/bootstrap.php",
+		"/var/www/nucleo/app/View/Pages/home.ctp",
+		"/var/www/nucleo/app/View/Layouts/default.ctp",
+		"/var/www/nucleo/lib/Cake/Console/Templates/default/views/view.ctp",
+		"/var/www/nucleo/lib/Cake/Console/Templates/default/views/index.ctp",
+		"/var/www/nucleo/lib/Cake/Console/Templates/default/views/form.ctp",
+		"/var/www/nucleo/app/Config/database.php",
+		"/var/www/nucleo/app/View/Artigos/add.ctp",
+		"/var/www/nucleo/app/View/Layouts/js/default.ctp",
+		"/home/marco/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/marco/.config/sublime-text-2/Settings/SideBarEnhancements.json",
+		"/home/marco/SparkleShare/nucleo/app/Config/database.php",
+		"/home/marco/SparkleShare/php/index.php",
+		"/home/marco/.cache/.fr-42ueV1/Active-Admin-CakePHP-master/docs/admin_index.ctp",
+		"/home/marco/.cache/.fr-INcFyP/Active-Admin-CakePHP-master/Console/Command/ResourceShell.php",
+		"/home/marco/SparkleShare/sga/SparkleShare.txt",
+		"/home/marco/SparkleShare/sga/app/View/Doencas/edit.ctp",
+		"/home/marco/.cache/.fr-tncVa3/Active-Admin-CakePHP-master/Console/Command/ResourceShell.php",
+		"/home/marco/.cache/.fr-ZEom7M/Active-Admin-CakePHP-master/Config/routes.php",
+		"/var/www/nucleo/app/Config/core.php",
+		"/var/www/sga/app/View/Layouts/default.ctp",
+		"/var/www/nucleo/app/Config/database.php.default",
+		"/home/marco/Downloads/codigos do relatorio de threads/Executar.java",
+		"/home/marco/Downloads/codigos do relatorio de threads/TaskExecutor.java",
+		"/home/marco/Downloads/codigos do relatorio de threads/PrintTarefas.java",
+		"/home/marco/Downloads/codigos do relatorio de threads/PrintTask.java",
+		"/home/marco/Downloads/codigos do relatorio de threads/Criar.java",
+		"/home/marco/Downloads/codigos do relatorio de threads/ThreadCreator.java",
+		"/home/marco/Documentos/TCC/Monografia/Monografia.tex",
+		"/home/marco/Documentos/TCC/Monografia/textuais/cap1.tex",
+		"/home/marco/Documentos/TCC/Monografia/postextuais/bibliografia3.bib",
+		"/home/marco/Documentos/TCC/Monografia/postextuais/bibliografia.bib",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cursozf2/module/Livraria/view/livraria/index/index.phtml",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cursozf2/module/Livraria/src/Livraria/Controller/IndexController.php",
+		"/media/marco/marco/Documentos/Academico/Junior",
+		"/var/www/anotações/sql",
+		"/home/marco/Documentos/TCC/Monografia/pretextuais/resumo.tex",
+		"/home/marco/Documentos/TCC/Monografia/textuais/cap3.tex",
+		"/home/marco/Documentos/TCC/Monografia/textuais/cap4.tex",
+		"/home/marco/Documentos/TCC/Monografia/textuais/cap2.tex",
+		"/home/marco/Documentos/TCC/Monografia/Monografia.bbl",
+		"/home/marco/Documentos/TCC/Monografia/Monografia.out",
+		"/home/marco/Área de Trabalho/CakePHPContactFormWithFileUpload-master/README.md",
+		"/home/marco/Documentos/TCC/Monografia/Monografia.log.u1conflict",
+		"/home/marco/Documentos/TCC/Monografia/textuais/cap3.fls",
+		"/home/marco/.config/sublime-text-2/Packages/Language/pt_BR/pt_BR.dic",
+		"/home/marco/Documentos/TCC/Monografia/Monografia.fls",
+		"/home/marco/Documentos/TCC/Monografia.sublime-project",
+		"/home/marco/Documentos/TCC/Monografia/textuais/cap1.log",
+		"/home/marco/Documentos/TCC/Monografia/textuais/cap1.aux",
+		"/home/marco/workspace/Monografia",
+		"/home/marco/workspace/Monografia/Monografia.tex",
+		"/home/marco/workspace/Monografia/textuais/cap1.tex",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/Console/cake.php",
+		"/home/marco/Workspace/cakeblog/app/webroot/.htaccess",
+		"/home/marco/Workspace/cakeblog/app/.htaccess",
+		"/home/marco/Workspace/cakeblog/.htaccess",
+		"/home/marco/Workspace/cakeblog/app/View/Posts/add.ctp",
+		"/home/marco/Workspace/cakeblog/app/Controller/Comment.php",
+		"/home/marco/Workspace/cakeblog/app/Model/Post.php",
+		"/home/marco/Workspace/cakeblog/app/Model/Category.php",
+		"/home/marco/Workspace/cakeblog/app/Controller/PostsController.php",
+		"/home/marco/Workspace/cakeblog/app/View/Posts/edit.ctp",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/Controller/CategoriesController.php",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/View/Categories/index.ctp",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/Model/Post.php",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/Model/Category.php",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/View/Posts/view.ctp",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/View/Posts/index.ctp",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/View/Posts/category.ctp",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/Controller/PostsController.php",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/View/Posts/edit.ctp",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/View/Posts/add.ctp",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/webroot/css/cake.generic.css",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/Controller/CommentsController.php",
+		"/home/marco/Documents/Aptana Studio 3 Workspace/cakeblog/app/Controller/Comment.php",
+		"/home/marco/.config/sublime-text-2/Packages/SideBarEnhancements/messages/11.13.2012.1305.0.txt"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"#8fde62",
+			" <",
+			"sleepTime",
+			"taskName",
+			"tex",
+			"Controlador",
+			"acro",
+			"acrono",
+			"acron",
+			"ajax",
+			"cake",
+			"bibli",
+			"tex",
+			"MVC",
+			"item",
+			"idPo"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"time",
+			"tarefa"
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.108695652174,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 148.0
+	},
+	"output.git":
+	{
+		"height": 112.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"estilo",
+				"app/webroot/css/estilo.css"
+			],
+			[
+				"articontroller",
+				"app/Controller/ArtigosController.php"
+			],
+			[
+				"defaul",
+				"app/View/Layouts/default.ctp"
+			],
+			[
+				"de",
+				"app/View/Layouts/default.ctp"
+			],
+			[
+				"monotex",
+				"Monografia.tex"
+			],
+			[
+				"cap1",
+				"textuais/cap1.tex"
+			],
+			[
+				"bibli",
+				"postextuais/bibliografia3.bib"
+			],
+			[
+				"bibi",
+				"postextuais/bibliografia.bib"
+			],
+			[
+				"res",
+				"pretextuais/resumo.tex"
+			],
+			[
+				"mono",
+				"Monografia.tex"
+			],
+			[
+				"cap3",
+				"textuais/cap3.tex"
+			],
+			[
+				"cap2",
+				"textuais/cap2.tex"
+			],
+			[
+				"cap",
+				"textuais/cap1.tex"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": false,
+	"side_bar_visible": true,
+	"side_bar_width": 251.0,
+	"status_bar_visible": true
+}
