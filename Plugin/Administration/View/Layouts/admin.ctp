@@ -70,13 +70,14 @@
 					<?php echo __($title_for_layout); ?>
 				</legend>
 				<?php 
-					if(!empty($this->request->params['prefix'])){
+					// pr($this->request->params);
+					if(!empty($this->request->params['plugin'])){
 			        	$this->Html->addCrumb(
-			        		"Admin", 
+			        		"Administração", 
 			        		array(
-			        			$this->request->params['prefix']=>true, 
-			        			'controller'=>'pages', 
-			        			'action'=>'home'
+			        			'plugin' => $this->request->params['plugin'], 
+			        			'controller'=>'homes', 
+			        			'action'=>'index'
 		        			)
 	        			); 
 				    }

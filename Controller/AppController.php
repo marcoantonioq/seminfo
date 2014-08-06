@@ -47,7 +47,8 @@ class AppController extends Controller {
             'authenticate' => array(
                 'Form' => array(
                     'fields' => array(
-                        'username' => 'email'
+                        'username' => 'email',
+                        'password' => 'password'
                     ),
                     'scope'  => array(
                         'User.status' => 1
@@ -59,39 +60,52 @@ class AppController extends Controller {
             'authorize' => array('Controller'),
             'loginAction' => array(
                 'admin' => null,
-                'plugin' => null,
+                'plugin' => 'administration',
                 'controller' => 'users',
                 'action' => 'login'
             ),
-            'loginRedirect' => array('admin' => false,'controller' => 'homes', 'action' => 'index'),
-            'logoutRedirect' => array('admin' => false,'controller' => 'homes', 'action' => 'index'),
+            'loginRedirect' => array('admin' => false,'controller' => 'users', 'action' => 'index'),
+            'logoutRedirect' => array('admin' => false,'controller' => 'users', 'action' => 'index'),
             // */
         )
     );
-	
-	public function beforeFilter() {
-		parent::beforeFilter();
-        $this->Security->validatePost = false;
-        
-        if(isset($this->request->params['plugin'])){
-            if($this->request->params['plugin']=='administration'){
-                $this->layout = 'admin';
-                if (!env('HTTPS')){ $this->Security->blackHoleCallback = 'forceSSL'; $this->Security->requireSecure(); }                
-            } 
-        }else{
-            $this -> layout = 'user';
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+        // $this->Security->validatePost = false;
+        $this->layout = 'user';
+        if (!env('HTTPS')){ 
+            $this->Security->blackHoleCallback = 'forceSSL'; 
+            $this->Security->requireSecure(); 
         }
         if($this->request->is('ajax')){$this->layout='ajax';}
-        $this->Auth->allow();
-        //$this->Auth->deny();
+        
+        // $this->Auth->allow();
+        // $this->Auth->deny();
 
     }
+	
+	public function getUser(){
+        //pr($this->Auth->user());
+        return $this->Auth->user();
+    }
+
 
     public function forceSSL() {
         return $this->redirect('https://' . env('SERVER_NAME') . $this->here);
     }
 
     public function isAuthorized($user = null){
+
+        if ( isset($this->request->params['plugin'] )) {
+            if ( $this->request->params['plugin'] == 'administration') {
+                return (bool)($user['group_id'] == 1);
+            }
+        }
+
+        return true;
+
+
         // Apenas os administradores podem acessar as funções de administrador
         if (isset($this->request->params['admin'])) {
             //pr($this->request); exit;
@@ -104,10 +118,4 @@ class AppController extends Controller {
         // Default deny
         return false;
     }
-
-    public function getUserID(){
-        //pr($this->Auth->user());
-        return $this->Auth->user('id');
-    }
-
 }

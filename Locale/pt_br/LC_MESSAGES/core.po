@@ -1852,14 +1852,18 @@ msgstr "Descrição"
 msgid "Body"
 msgstr "Conteúdo"
 
-msgid "User"
-msgstr "Usuário"
 
 msgid "Users"
 msgstr "Usuários"
 
 msgid "users"
 msgstr "usuários"
+
+msgid "User"
+msgstr "Usuário"
+
+msgid "user"
+msgstr "usuário"
 
 msgid "user_count"
 msgstr "Contador (usuários)"

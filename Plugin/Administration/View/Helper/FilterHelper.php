@@ -33,7 +33,6 @@ class FilterHelper extends AppHelper {
         echo $this->Form->input("Filter.$name", array(
         	'type'=>'text',
 			'autofocus' => true,
-			'onkeydown'=>'bloquearCtrlJ();',
 			'placeholder' => ucfirst(__($name)).'...',
 		));
 		echo "</td>";
@@ -45,17 +44,15 @@ class FilterHelper extends AppHelper {
 
 
 	public function img(){
-		echo "<a href='#'' onclick='show()'>";
-			echo $this->Html->image(
-				'/administration/img/template/icons/filters.png',
-				array(
-					'title'=>'Filter',
-					'width'=>'20px',
-					'height'=>'20px',
-					'class'=>'left',
-				)
-			);
-		echo "</a>";
+		echo $this->Html->image(
+			'/administration/img/icons/filters.png',
+			array(
+				'title'=>'Filter',
+				'width'=>'20px',
+				'height'=>'20px',
+				'class'=>'left'
+			)
+		);
 	}
 
 

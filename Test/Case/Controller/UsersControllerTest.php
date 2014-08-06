@@ -15,54 +15,52 @@ class UsersControllerTest extends ControllerTestCase {
 	public $fixtures = array(
 		'app.user',
 		'app.group',
-		'app.curso',
-		'app.sexo',
+		'app.course',
 		'app.contact',
 		'app.content',
 		'app.holding',
-		'app.usersprograma',
 		'app.message',
 		'app.users_message'
 	);
 
 /**
- * testAdminIndex method
+ * testIndex method
  *
  * @return void
  */
-	public function testAdminIndex() {
+	public function testIndex() {
 	}
 
 /**
- * testAdminView method
+ * testView method
  *
  * @return void
  */
-	public function testAdminView() {
+	public function testView() {
 	}
 
 /**
- * testAdminAdd method
+ * testAdd method
  *
  * @return void
  */
-	public function testAdminAdd() {
+	public function testAdd() {
 	}
 
 /**
- * testAdminEdit method
+ * testEdit method
  *
  * @return void
  */
-	public function testAdminEdit() {
+	public function testEdit() {
 	}
 
 /**
- * testAdminDelete method
+ * testDelete method
  *
  * @return void
  */
-	public function testAdminDelete() {
+	public function testDelete() {
 	}
 
 }

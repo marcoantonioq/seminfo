@@ -4,23 +4,99 @@ App::uses('AdministrationAppModel', 'Administration.Model');
  * User Model
  *
  * @property Group $Group
- * @property Curso $Curso
- * @property Sexo $Sexo
+ * @property Course $Course
+ * @property Courses $Courses
  * @property Contact $Contact
  * @property Content $Content
  * @property Holding $Holding
- * @property Usersprograma $Usersprograma
  * @property Message $Message
  */
 class User extends AdministrationAppModel {
-	// public $displayField = 'id';
 /**
  * Display field
  *
  * @var string
  */
 	public $displayField = 'name';
+	public $order = array('User.name' => 'asc');
 
+/**
+ * Validation rules
+ *
+ * @var array
+ */
+	public $validate = array(
+		'group_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'name' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'sexo' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'password' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'email' => array(
+			'email' => array(
+				'rule' => array('email'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'cpf' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'phone' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
@@ -37,16 +113,16 @@ class User extends AdministrationAppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Curso' => array(
-			'className' => 'Curso',
-			'foreignKey' => 'curso_id',
+		'Course' => array(
+			'className' => 'Course',
+			'foreignKey' => 'course_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'Sexo' => array(
-			'className' => 'Sexo',
-			'foreignKey' => 'sexo_id',
+		'Courses' => array(
+			'className' => 'Courses',
+			'foreignKey' => 'courses_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -97,19 +173,6 @@ class User extends AdministrationAppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),
-		'Usersprograma' => array(
-			'className' => 'Usersprograma',
-			'foreignKey' => 'user_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
 		)
 	);
 
@@ -135,4 +198,44 @@ class User extends AdministrationAppModel {
 		)
 	);
 
+	public function beforeSave($options = array()) {
+    	$this->data['User']['cpf'] = str_replace(array('.', '-'), '', $this->data['User']['cpf']);
+	    if (empty($this->data['User']['password'])) {
+            unset($this->data['User']['password']);
+        } else {
+        	$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+        }
+	    return true;
+    }  
+
+    public function validaCPF($check){
+    	$cpf = $check['cpf'];
+    	$cpf = preg_replace('/[^0-9]/', '', $cpf);
+
+    	if( strlen($cpf) != 11) {
+    		return false;
+    	}
+
+    	$digitoA = 0;
+    	$digitoB = 0;
+    	for($i = 0, $x = 10; $i <= 8; $i++, $x--){
+    		$digitoA += $cpf[$i] * $x;
+    	}
+
+    	for($i = 0, $x = 11; $i <= 9; $i++, $x--){
+    		if (str_repeat($i, 11) == $cpf) { return false; }
+    		$digitoB += $cpf[$i] * $x;
+    	}
+
+    	$somaA = ( ($digitoA%11) < 2 ) ? 0 : 11-($digitoA%11);
+    	$somaB = ( ($digitoB%11) < 2 ) ? 0 : 11-($digitoB%11);
+
+    	if($somaA != $cpf[9] || $somaB != $cpf[10]){
+    		return false;
+    	}else{
+    		return true;
+    	}
+    	
+    	return false;
+    }
 }

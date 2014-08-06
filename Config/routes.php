@@ -32,7 +32,7 @@
  */
 	//Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'home'));
 	//Router::connect('/admin', array('controller' => 'pages', 'action' => 'home', 'admin' => true));
-	Router::connect('/admin', array('controller' => 'users', 'action' => 'index', 'admin' => true, 'prefix' => 'admin','layout' => 'admin'));
+	// Router::connect('/admin', array('controller' => 'users', 'action' => 'index', 'admin' => true, 'prefix' => 'admin','layout' => 'admin'));
 	Router::parseExtensions('rss', 'json', 'xml', 'pdf');
 /**
  * Load all plugin routes. See the CakePlugin documentation on

@@ -1,66 +1,82 @@
 /*
-by: Marco Antônio Queiroz
-Evento do teclado :) 
-	var asciiF2		= 113;
-	var asciiF3		= 114;
-	var asciiF4		= 115;
-	var asciiF5		= 116;
-	var asciiF6		= 117;
-	var asciiF11		= 122;
-	var asciiF12		= 123;
-	var asciiF1		= 112;
-
+	by: Marco Antônio Queiroz
+	IFGoiano
 */
+
+
+window.onload = function(){
+
+	// eventos
+	selectRow();
+
+	// Filtros Controller/index
+	var filtro = document.getElementById('filter');
+	if(filtro){		
+		display(filtro);
+		var ths = document.getElementsByTagName('th');
+		if( ths ){
+			ths[0].onclick = function(){
+				display(filtro);
+				document.getElementById("FilterId").focus();
+			}
+		}
+	}
+
+	// Mensagens (fechar messagem)
+	var message = document.getElementsByClassName('alert-message')[0];
+	if (message) {
+		var close = document.getElementsByClassName('close')[0];
+		close.onclick = function(){
+			display(message);
+		}
+	};
+}
+
 window.onkeydown = function (e) {
 
-	// alert(e.keyCode);
+	// bloquear ctrl + j, para o leitor de codigo de bara
+	if (e.ctrlKey && e.keyCode==74){    //Evita teclar ctrl + j  
+	    return false;
+	}
 
 	// Decla ctrl + f: filtro avançado
 	if (e.ctrlKey && e.keyCode == 70) {
-		show();
-		e.keyCode=0;  
-        e.returnValue=false;  
+		display(document.getElementById('filter'));
 		document.getElementById("FilterId").focus();
+		return false;
 	};
 
-	// Desativar tecla F5	
-	if (e.keyCode === 116) 
-	{
-		// var r = confirm("Confirmar reenvio do formulário???\nPode causar ERROR CAKE SECURITY\n\n A página que está atualizando usou as informação inseridas. Esta ação por padrão e bloqueada pelo cake security. Deseja continuar?");
-		// if(r == false){
-		// 	e.keyCode = 0;
-		// 	e.returnValue = false;
-		// 	return false;
-		// }
-		location.reload(true);
-		return true;
-	}
-	
-	
-	if (e.keyCode === 115)
-	{
-		alert("Menu F4");
-	}	 
-
 }
 
-// bloquear ctrl + j, para o leitor de codigo de bara
-function bloquearCtrlJ(){
-    var tecla=window.event.keyCode;
-    var ctrl=window.event.ctrlKey;
-
-    if (ctrl && tecla==74){    //Evita teclar ctrl + j  
-        event.keyCode=0;  
-        event.returnValue=false;  
-    }  
-}  
-
-// Mostra tr filter, index
-function show(){
-    if(document.getElementById('filter').style.display == "none"){  
-        document.getElementById('filter').style.display = '';
+// Mostrar ou ocultar campos
+function display(element){
+    if(element.style.display == "none"){  
+        element.style.display = ''; // DOM HTML
+        // element.setAttribute('style', ''); // DOM CORE
     }else{  
-        document.getElementById('filter').style.display = 'none';  
-    }  
+        element.style.display = 'none';  
+    }
 }
 
+
+function selectRow() {
+	if (document.getElementById("tableid1")) 
+	{
+	    var table = document.getElementById("tableid1");
+	    var rows = table.rows;
+
+	    for (var i = 0; i < rows.length; i++) 
+	    {
+	        rows[i].ondblclick = (function() 
+	        {
+	            return function() 
+	            {
+	            	var action = this.cells[this.cells.length-1];
+	            	var view = action.getElementsByClassName('view').item(0);
+	            	view.click();
+	            }    
+	        })(i);
+	    }
+		
+	};
+}

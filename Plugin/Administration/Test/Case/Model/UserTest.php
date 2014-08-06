@@ -15,23 +15,12 @@ class UserTest extends CakeTestCase {
 	public $fixtures = array(
 		'plugin.administration.user',
 		'plugin.administration.group',
-		'plugin.administration.curso',
-		'plugin.administration.document',
-		'plugin.administration.sexo',
+		'plugin.administration.course',
+		'plugin.administration.courses',
 		'plugin.administration.contact',
 		'plugin.administration.content',
-		'plugin.administration.type',
-		'plugin.administration.categoria',
 		'plugin.administration.holding',
-		'plugin.administration.event',
-		'plugin.administration.programa',
-		'plugin.administration.tipoprograma',
-		'plugin.administration.horario',
-		'plugin.administration.usersprograma',
-		'plugin.administration.palestrante',
-		'plugin.administration.programas_palestrante',
 		'plugin.administration.message',
-		'plugin.administration.typemessage',
 		'plugin.administration.users_message'
 	);
 

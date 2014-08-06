@@ -1,4 +1,6 @@
-<?php $mensagens_count = $this->requestAction('Users/mensagens_count'); ?>
+<?php 
+	// $mensagens_count = $this->requestAction('Users/mensagens_count'); 
+?>
 <?php if($mensagens_count > 0): ?>
 
 <li>
