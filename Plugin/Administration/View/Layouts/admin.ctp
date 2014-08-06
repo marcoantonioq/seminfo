@@ -84,7 +84,7 @@
 
 				    if(!empty($this->request->params['controller'])){
 			        	$this->Html->addCrumb(
-			        		ucfirst(__($this->request->params['controller'])), 
+			        		__(ucfirst($this->request->params['controller'])), 
 			        		array(
 			        			'controller'=>$this->request->params['controller'], 
 			        			'action'=>'index'

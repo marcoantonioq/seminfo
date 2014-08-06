@@ -9,8 +9,7 @@ class FilterHelper extends AppHelper {
             'label'=>false,
             'div'=>false,
             'class'=>'span12',
-            'autocomplete'=>'off',
-            'onfocus'=>'this.select();',
+            'autocomplete'=>'off'
         ));
 
 		$options = array(

@@ -1835,7 +1835,13 @@ msgid "Related %s"
 msgstr "Relacionado %s"
 
 msgid "Created"
-msgstr "Criado em"
+msgstr "Criado"
+
+msgid "created"
+msgstr "criado"
+
+msgid "notify"
+msgstr "notificar"
 
 msgid "Updated"
 msgstr "Atualizado em"
@@ -1843,7 +1849,13 @@ msgstr "Atualizado em"
 msgid "Modified"
 msgstr "Atualizado em"
 
+msgid "id"
+msgstr "identificador"
+
 msgid "Title"
+msgstr "Título"
+
+msgid "title"
 msgstr "Título"
 
 msgid "Description"
@@ -1852,6 +1864,8 @@ msgstr "Descrição"
 msgid "Body"
 msgstr "Conteúdo"
 
+msgid "body"
+msgstr "conteúdo"
 
 msgid "Users"
 msgstr "Usuários"
@@ -1865,17 +1879,149 @@ msgstr "Usuário"
 msgid "user"
 msgstr "usuário"
 
+msgid "group_id"
+msgstr "grupo(id)"
+
+msgid "group"
+msgstr "grupo"
+
+msgid "Group"
+msgstr "Grupo"
+
+msgid "Groups"
+msgstr "Grupos"
+
+msgid "Courses"
+msgstr "Cursos"
+
+msgid "course_id"
+msgstr "cursos(id)"
+
+msgid "Contacts"
+msgstr "Contatos"
+
+msgid "contact_id"
+msgstr "contato(id)"
+
+msgid "Contents"
+msgstr "Conteúdos"
+
+msgid "content_id"
+msgstr "conteúdos(id)"
+
+msgid "Holdings"
+msgstr "Participações"
+
+msgid "holding_id"
+msgstr "participação(id)"
+
+msgid "mensagen_id"
+msgstr "mensagen(id)"
+
+msgid "user_id"
+msgstr "usuário(id)"
+
+msgid "type_id"
+msgstr "tipo(id)"
+
+msgid "promoe"
+msgstr "promovido"
+
 msgid "user_count"
 msgstr "Contador (usuários)"
 
-
-
+msgid "path"
+msgstr "caminho"
 
 msgid "Delete"
 msgstr "Apagar"
 
 msgid "Messages"
 msgstr "Mensagens"
+
+msgid "events"
+msgstr "eventos"
+
+msgid "event"
+msgstr "evento"
+
+msgid "Events"
+msgstr "Eventos"
+
+msgid "event_id"
+msgstr "evento(id)"
+
+msgid "programs"
+msgstr "programas"
+
+msgid "program"
+msgstr "programa"
+
+msgid "Program"
+msgstr "Programa"
+
+msgid "Programs"
+msgstr "Programas"
+
+msgid "Speakers"
+msgstr "Palestrantes"
+
+msgid "matricula"
+msgstr "matrícula"
+
+msgid "speaker"
+msgstr "palestrante"
+
+msgid "speaker_id"
+msgstr "palestrante(id)"
+
+msgid "phone"
+msgstr "telefone"
+
+msgid "program_id"
+msgstr "programa(id)"
+
+msgid "typeprogram_id"
+msgstr "tipo(id)"
+
+msgid "Typeprograms"
+msgstr "Tipo programa"
+
+msgid "Types"
+msgstr "Tipos"
+
+msgid "type_id"
+msgstr "tipo(id)"
+
+msgid "typeprogram"
+msgstr "Tipo programa"
+
+msgid "Sponsorships"
+msgstr "Patrocínios"
+
+msgid "sponsorships"
+msgstr "patrocínios"
+
+msgid "sponsorship_id"
+msgstr "patrocínio(id)"
+
+msgid "description"
+msgstr "descrição"
+
+msgid "first"
+msgstr "início"
+
+msgid "last"
+msgstr "término"
+
+msgid "realization"
+msgstr "realização"
+
+msgid "organization"
+msgstr "organização"
+
+msgid "president"
+msgstr "presidente"
 
 msgid "View"
 msgstr "Visualizar"

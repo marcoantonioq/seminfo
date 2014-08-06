@@ -15,8 +15,10 @@ class FormBehavior extends ModelBehavior {
 		return $this->pagination;
 	}
 	
-	private function search(){
+	private function search()
+	{
 
+		// pr($this->Model); exit;
 		// pr($this->data); exit;
 
 		if(!empty($this->data['Filter'])){
@@ -34,34 +36,34 @@ class FormBehavior extends ModelBehavior {
 
 				switch ($conditions) {
 					case 'LIKE':
-						$this->pagination['conditions']['OR']['AND']["$column LIKE"] = "%$filter%";
+						$this->pagination['conditions']['OR']['AND']["{$this->Model->name}.$column LIKE"] = "%$filter%";
 						break;
 					case 'NOT LIKE':
-						$this->pagination['conditions']['OR']['AND']["$column NOT LIKE"] = "%$filter%";
+						$this->pagination['conditions']['OR']['AND']["{$this->Model->name}.$column NOT LIKE"] = "%$filter%";
 						break;
 					case 'LIKE BEGIN':
-						$this->pagination['conditions']['OR']['AND']["$column LIKE"] = "$filter%";
+						$this->pagination['conditions']['OR']['AND']["{$this->Model->name}.$column LIKE"] = "$filter%";
 						break;
 					case 'LIKE END':
-						$this->pagination['conditions']['OR']['AND']["$column LIKE"] = "%$filter";
+						$this->pagination['conditions']['OR']['AND']["{$this->Model->name}.$column LIKE"] = "%$filter";
 						break;
 					case '!=':
-						$this->pagination['conditions']['OR']['AND']["$column !="] = "$filter";
+						$this->pagination['conditions']['OR']['AND']["{$this->Model->name}.$column !="] = "$filter";
 						break;
 					case '>':
-						$this->pagination['conditions']['OR']['AND']["$column >"] = "$filter";
+						$this->pagination['conditions']['OR']['AND']["{$this->Model->name}.$column >"] = "$filter";
 						break;
 					case '<':
-						$this->pagination['conditions']['OR']['AND']["$column <"] = "$filter";
+						$this->pagination['conditions']['OR']['AND']["{$this->Model->name}.$column <"] = "$filter";
 						break;
 					case '<=':
-						$this->pagination['conditions']['OR']['AND']["$column <="] = "$filter";
+						$this->pagination['conditions']['OR']['AND']["{$this->Model->name}.$column <="] = "$filter";
 						break;
 					case '>=':
-						$this->pagination['conditions']['OR']['AND']["$column >="] = "$filter";
+						$this->pagination['conditions']['OR']['AND']["{$this->Model->name}.$column >="] = "$filter";
 					case '=':
 					default:
-						$this->pagination['conditions']['OR']['AND']["$column"] = "$filter";
+						$this->pagination['conditions']['OR']['AND']["{$this->Model->name}.$column"] = "$filter";
 						break;
 						break;
 				}

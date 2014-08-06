@@ -285,6 +285,10 @@ form .required label:after {
 	display:inline;
 }
 
+form .datetime .span12{
+	width:20%
+}
+
 /* Form errors */
 form .error {
 	background: #FFDACC;
