@@ -153,7 +153,7 @@
 	<tr>
 
 		<td data-th='Selecionar' >
-			<?php echo $this->Form->checkbox('row.'.$sponsorship['Sponsorship']['id'], array( 'class'=>'styled' ));?>
+			<?php echo $this->Form->checkbox('row.'.$sponsorship['Sponsorship']['id'], array( 'class'=>'rowfilter' ));?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('id'));?>" >

@@ -156,15 +156,6 @@ Cache::config('week', array(
  *
  */
 
-
-CakePlugin::load(
-    array(
-        'CakePdf' => array(
-            'bootstrap' => true, 
-            'routes' => true
-        )
-    )
-);
 CakePlugin::load(
     'Administration', 
     array(
@@ -173,37 +164,6 @@ CakePlugin::load(
     )
 );
 
-// Configure::write('CakePdf', array(
-//     'engine' => 'CakePdf.DomPdf',
-//     'margin' => array(
-//         'bottom' => 0,
-//         'left' => 0,
-//         'right' => 0,
-//         'top' => 0
-//     ),
-//     'pageSize' => 'A4',
-//     'orientation' => 'landscape',    
-//     'download' => false
-// ));
-
-/*
-Configure::write('CakePdf', array(
-    'engine' => 'CakePdf.WkHtmlToPdf',
-    'options' => array(
-        'print-media-type' => false,
-        'outline' => true,
-        'dpi' => 96
-    ),
-    'margin' => array(
-        'bottom' => 0,
-        'left' => 0,
-        'right' => 0,
-        'top' => 0
-    ),
-    'orientation' => 'landscape',
-    'download' => false
-));
-*/
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter . By Default CakePHP bundles two filters:
  *

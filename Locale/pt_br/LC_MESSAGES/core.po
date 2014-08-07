@@ -1924,6 +1924,9 @@ msgstr "conteúdos(id)"
 msgid "Holdings"
 msgstr "Participações"
 
+msgid "holding"
+msgstr "participação"
+
 msgid "holding_id"
 msgstr "participação(id)"
 
@@ -1980,6 +1983,9 @@ msgstr "Programas"
 
 msgid "Speakers"
 msgstr "Palestrantes"
+
+msgid "Speaker"
+msgstr "Palestrante"
 
 msgid "matricula"
 msgstr "matrícula"
@@ -2067,3 +2073,41 @@ msgstr "adicionar"
 
 msgid "admin_home"
 msgstr "home"
+
+msgid "institution"
+msgstr "instituição"
+
+msgid "duration"
+msgstr "duração"
+
+msgid "date_begin"
+msgstr "data de início"
+
+msgid "date_end"
+msgstr "data de término"
+
+msgid "time_begin"
+msgstr "hora de início"
+
+msgid "time_end"
+msgstr "hora de término"
+
+msgid "min_presence"
+msgstr "mínimo de presença"
+
+msgid "presenca"
+msgstr "presença"
+
+msgid "name"
+msgstr "nome"
+
+msgid "certify"
+msgstr "cetificado"
+
+msgid "certify_speakers"
+msgstr "cetificado palestrantes"
+
+msgid "certify_speakers"
+msgstr "cetificado palestrantes"
+
+

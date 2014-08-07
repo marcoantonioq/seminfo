@@ -19,7 +19,15 @@ class HomesController extends AdministrationAppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array(
+		'Paginator', 
+		'Session',
+		'RequestHandler',
+	);
+	public $helpers = array(
+		'Js' => array('Prototype'),
+	);
+
 
 /**
  * index method
@@ -31,8 +39,9 @@ class HomesController extends AdministrationAppController {
             $this->Paginator->settings = $this->Home->action($this->request->data);
             echo $this->Session->setFlash('Filtro definido!', 'success');
         }
-		$this->Home->recursive = 0;
-		$this->set('homes', $this->Paginator->paginate());
+		// $this->Home->recursive = 0;
+		$this->set('dados',$this->request->data);
+		// $this->set('homes', $this->Paginator->paginate());
 	}
 
 

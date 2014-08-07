@@ -24,54 +24,29 @@
 						array('class'=> 'btn btn-block btn-success')
 					);
 			    ?> 
-		    
 
-					<?php 
-					echo $this->Html->link(__('Groups'),
-						array('controller' => 'groups', 'action' => 'index'),
-						array('class'=> 'btn btn-block')
-					);
-					?>
+				<?php 
+				echo $this->Html->link(__('Contacts'),
+					array('controller' => 'contacts', 'action' => 'index'),
+					array('class'=> 'btn btn-block')
+				);
+				?>
 
+				<?php 
+				echo $this->Html->link(__('Holdings'),
+					array('controller' => 'holdings', 'action' => 'index'),
+					array('class'=> 'btn btn-block')
+				);
+				?>
 
-					<?php 
-					echo $this->Html->link(__('Courses'),
-						array('controller' => 'courses', 'action' => 'index'),
-						array('class'=> 'btn btn-block')
-					);
-					?>
+				
 
-
-					<?php 
-					echo $this->Html->link(__('Contacts'),
-						array('controller' => 'contacts', 'action' => 'index'),
-						array('class'=> 'btn btn-block')
-					);
-					?>
-
-
-					<?php 
-					echo $this->Html->link(__('Contents'),
-						array('controller' => 'contents', 'action' => 'index'),
-						array('class'=> 'btn btn-block')
-					);
-					?>
-
-
-					<?php 
-					echo $this->Html->link(__('Holdings'),
-						array('controller' => 'holdings', 'action' => 'index'),
-						array('class'=> 'btn btn-block')
-					);
-					?>
-
-
-					<?php 
-					echo $this->Html->link(__('Messages'),
-						array('controller' => 'messages', 'action' => 'index'),
-						array('class'=> 'btn btn-block')
-					);
-					?>
+				<?php 
+				echo $this->Html->link(__('Groups'),
+					array('controller' => 'groups', 'action' => 'index'),
+					array('class'=> 'btn btn-block')
+				);
+				?>
 			
 		</div>
 	</div>
@@ -281,7 +256,7 @@
 	<tr>
 
 		<td data-th='Selecionar' >
-			<?php echo $this->Form->checkbox('row.'.$user['User']['id'], array( 'class'=>'styled' ));?>
+			<?php echo $this->Form->checkbox('row.'.$user['User']['id'], array( 'class'=>'rowfilter' ));?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('id'));?>" >

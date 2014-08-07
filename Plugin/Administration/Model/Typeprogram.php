@@ -7,13 +7,6 @@ App::uses('AdministrationAppModel', 'Administration.Model');
  */
 class Typeprogram extends AdministrationAppModel {
 /**
- * Use table
- *
- * @var mixed False or table name
- */
-	public $useTable = 'typeprogram';
-
-/**
  * Display field
  *
  * @var string

@@ -65,4 +65,21 @@ class Holding extends AdministrationAppModel {
 			'order' => ''
 		)
 	);
+
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+
+	public function participacao($id, $action = ""){
+		$participacao = $this->read(array('id', 'presenca'), $id);
+		switch ($action) {
+			case 'sum': $participacao['Holding']['presenca'] += 1;
+				break;
+			case 'sub': $participacao['Holding']['presenca'] -= 1;
+		}
+		$this->save($participacao);
+		return $participacao['Holding']['presenca'];
+	}
 }

@@ -1,7 +1,7 @@
 
 <div class="row-fluid">
     <div class="span12 well">
-		<?php echo $this->Html->link('Novo '.__('holding'),
+		<?php echo $this->Html->link('Nova '.__('holding'),
 				array('controller' => 'holdings', 'action' => 'add'),
 				array('class'=> 'btn btn-success')
 			)." ";
@@ -19,7 +19,7 @@
 	<div class="span12">
 		<div class="actions well">
 		    <h3>Menu</h3>
-			    <?php echo $this->Html->link('Novo '.__('holding'),
+			    <?php echo $this->Html->link('Nova '.__('holding'),
 						array('controller' => 'holdings', 'action' => 'add'),
 						array('class'=> 'btn btn-block btn-success')
 					);
@@ -177,7 +177,7 @@
 	<tr>
 
 		<td data-th='Selecionar' >
-			<?php echo $this->Form->checkbox('row.'.$holding['Holding']['id'], array( 'class'=>'styled' ));?>
+			<?php echo $this->Form->checkbox('row.'.$holding['Holding']['id'], array( 'class'=>'rowfilter' ));?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('id'));?>" >
@@ -213,8 +213,59 @@
 			&nbsp;
 		</td>
 
-		<td data-th="<?= ucfirst(__('presenca'));?>" >
-			<?php echo h($holding['Holding']['presenca']); ?>
+		<td data-th="<?= ucfirst(__('presenca'));?>"  style="text-align: center;">
+
+			<div id="presenca" style="text-align: center;">
+				<?php echo h($holding['Holding']['presenca']); ?>				
+			</div>
+			
+			<?php 
+				echo $this->Html->link("-", "#", 
+					array(
+						'id'=>'menos', 
+						'class'=>'red btn bold'
+					)
+				); 
+
+				echo $this->Html->link("+", "#", 
+					array(
+						'id'=>'mais', 
+						'class'=>'green btn bold'
+					)
+				); 
+			?>
+
+
+			<script class="javascript">
+				$(document).ready(function() {	
+					$("#menos").click(function(){	
+						$.get( 
+							"https://localhost/urutai/seminfo/administration/holdings/presenca/sub",
+							null, 
+							function(data) {	
+								$("#presenca").html(data); 
+							}
+						);
+						return false;
+					});	
+				});
+
+				$(document).ready(function() {	
+					$("#mais").click(function(){	
+						$.get( 
+							"https://localhost/urutai/seminfo/administration/holdings/presenca/sum",
+							null, 
+							function(data) {	
+								$("#presenca").html(data); 
+							}
+						);
+						return false;
+					});	
+				});
+
+
+			</script>
+
 			&nbsp;
 		</td>
 

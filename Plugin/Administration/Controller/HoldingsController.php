@@ -27,12 +27,35 @@ class HoldingsController extends AdministrationAppController {
  * @return void
  */
 	public function index() {
-		if ($this->request->is('post')) {
+		if ($this->request->is('post')) 
+		{
             $this->Paginator->settings = $this->Holding->action($this->request->data);
             echo $this->Session->setFlash('Filtro definido!', 'success');
+        } 
+        else if ($this->request->is('ajax')) {
+        	$this->render("Holdings/ajax/presenca");
+			$this->set('data', $this->request->data);
         }
 		$this->Holding->recursive = 0;
 		$this->set('holdings', $this->Paginator->paginate());
+
+	}
+
+
+/**
+ * index method
+ *
+ * @return void
+ */
+	public function presenca() {
+        if ($this->request->is('ajax')) {
+			$this->set('var', $this->Holding->participacao(1, $this->request->params['pass'][0]));
+        	$this->render("Holdings/ajax/presenca");
+        	return true;
+        }
+        $this->redirect($this->referer());
+
+
 	}
 
 

@@ -225,7 +225,7 @@
 	<tr>
 
 		<td data-th='Selecionar' >
-			<?php echo $this->Form->checkbox('row.'.$link['Link']['id'], array( 'class'=>'styled' ));?>
+			<?php echo $this->Form->checkbox('row.'.$link['Link']['id'], array( 'class'=>'rowfilter' ));?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('id'));?>" >

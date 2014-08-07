@@ -101,6 +101,7 @@ p {
 }
 .rwd-table tr {
   border-color: #46627f;
+  cursor: pointer;
 }
 
 .rwd-table th:first-child{
@@ -451,6 +452,10 @@ p.error em {
 
 .btn {
 	font-size: 13px;
+}
+
+.bold {
+	font-weight: bold;
 }
 
 /** Related **/

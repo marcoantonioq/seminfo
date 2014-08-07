@@ -6,13 +6,6 @@
 class TypeprogramFixture extends CakeTestFixture {
 
 /**
- * Table name
- *
- * @var string
- */
-	public $table = 'typeprogram';
-
-/**
  * Fields
  *
  * @var array

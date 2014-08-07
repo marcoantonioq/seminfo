@@ -39,7 +39,12 @@ class FilterHelper extends AppHelper {
 	}
 
 	public function row($name){
-		echo $this->Form->checkbox("row.$name", array( 'class'=>'styled' ));
+		echo $this->Form->checkbox(
+			"row.$name", 
+			array( 
+				'class'=>'rowfilter'
+			)
+		);
 	}
 
 

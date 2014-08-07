@@ -104,7 +104,7 @@ class UsersController extends AdministrationAppController {
 			$this->layout = 'pdf';		
 		    $this->Mpdf->init();
 		    $this->Mpdf->setFilename('Etiquetas.pdf'); 		    
-		    $this->Mpdf->setOutput('I');
+		    // $this->Mpdf->setOutput('I');
 		    $this->Mpdf->SetColumns(2);
         }
         else {

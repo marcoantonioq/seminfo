@@ -29,6 +29,11 @@
 
 			echo $this->Form->input('sexo', array(
 				'label'=>ucfirst(__('sexo')),
+				'type'=>'select',
+				'options'=>array(
+					'Masculino'=>'Masculino',
+					'Femino'=>'Femino'
+				)
 			));
 
 			echo $this->Form->input('username', array(

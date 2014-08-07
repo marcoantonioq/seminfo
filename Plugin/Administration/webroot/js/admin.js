@@ -89,6 +89,23 @@ function selectRow() {
 	    var table = document.getElementById("tableid1");
 	    var rows = table.rows;
 
+	    var checkbox=table.getElementsByClassName('rowfilter');
+	    for (var i = 0; i < checkbox.length; i++) 
+	    {
+	    	checkbox[i].onclick = function(e)
+	    	{
+				var evt = e ? e : window.event;
+	        	if(evt.stopPropagation)
+	        	{
+	        		evt.stopPropagation();
+	        	} else 
+	        	{
+	        		evt.cancelBubble = true;
+	        	}
+	        	return true;
+	        }
+    	};
+
 	    for (var i = 0; i < rows.length; i++) 
 	    {
 	        rows[i].ondblclick = (function() 
@@ -98,6 +115,16 @@ function selectRow() {
 	            	var action = this.cells[this.cells.length-1];
 	            	var view = action.getElementsByClassName('view').item(0);
 	            	view.click();
+	            }    
+	        })(i);
+
+	        rows[i].onclick = (function() 
+	        {
+	            return function(e) 
+	            {
+	            	var action = this.cells[0];
+	            	var checkbox = action.getElementsByClassName('rowfilter').item(0);
+	            	checkbox.click();
 	            }    
 	        })(i);
 	    }
