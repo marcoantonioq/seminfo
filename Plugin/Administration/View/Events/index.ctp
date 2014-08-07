@@ -1,5 +1,52 @@
+
 <div class="row-fluid">
-	<div class="span8">		
+    <div class="span12 well">
+		<?php echo $this->Html->link('Novo '.__('event'),
+				array('controller' => 'events', 'action' => 'add'),
+				array('class'=> 'btn btn-success')
+			)." ";
+
+			echo $this->Html->link('Menu', '#',
+				array('class'=> 'btn btn-info','id'=>'btnmenu')
+			);
+
+		?> 
+    </div>
+</div>
+
+
+<div id="rowmenus" class="row-fluid">
+	<div class="span12">
+		<div class="actions well">
+		    <h3>Menu</h3>
+			    <?php echo $this->Html->link('Novo '.__('event'),
+						array('controller' => 'events', 'action' => 'add'),
+						array('class'=> 'btn btn-block btn-success')
+					);
+			    ?> 
+		    
+
+					<?php 
+					echo $this->Html->link(__('Programs'),
+						array('controller' => 'programs', 'action' => 'index'),
+						array('class'=> 'btn btn-block')
+					);
+					?>
+
+
+					<?php 
+					echo $this->Html->link(__('Sponsorships'),
+						array('controller' => 'sponsorships', 'action' => 'index'),
+						array('class'=> 'btn btn-block')
+					);
+					?>
+			
+		</div>
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="span12">		
 
 	<?php 
 			echo $this->Form->create('Filter');
@@ -225,24 +272,28 @@
 			<td data-th='Ações' class="actions">
 				
 				<?php 
-				echo $this->Html->link(__('v'), 
+				echo $this->Html->link('<span class="icon12 brocco-icon-search"></span>', 
 					array(
 						'action' => 'view', 
 						$event['Event']['id']
 					),
 					array(
+						'escape'=>false,
+						'title'=>'Visualizar',
 						'class'=>'view',
 					)
 				); ?>				
 				
 				<?php 
-				echo $this->Html->link(__('e'), 
+				echo $this->Html->link('<span class="icon12 brocco-icon-pencil"></span>', 
 					array(
 						'action' => 'edit', 
 						$event['Event']['id']
 					),
 					array(
+						'escape'=>false,
 						'class'=>'edit',
+						'title'=>'Editar',
 					)
 				); ?>
 			</td>
@@ -279,35 +330,7 @@
 		)); 
 	?>
 
-	<?php echo $this->Form->end('Imprimir'); ?>
+	<?php echo $this->Form->end(); ?>
 	<?php echo $this->element('layout/pagination'); ?>
 	</div>
-
-	<dib class="span4">
-		<div class="actions well">
-		    <h3>Menu</h3>
-			    <?php echo $this->Html->link('Novo '.__('event'),
-						array('controller' => 'events', 'action' => 'add'),
-						array('class'=> 'btn btn-block')
-					);
-			    ?> 
-		    
-
-					<?php 
-					echo $this->Html->link(__('Programs'),
-						array('controller' => 'programs', 'action' => 'index'),
-						array('class'=> 'btn btn-block')
-					);
-					?>
-
-
-					<?php 
-					echo $this->Html->link(__('Sponsorships'),
-						array('controller' => 'sponsorships', 'action' => 'index'),
-						array('class'=> 'btn btn-block')
-					);
-					?>
-			
-		</div>
-	</dib>
 </div>

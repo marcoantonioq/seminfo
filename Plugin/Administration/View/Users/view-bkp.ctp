@@ -1,9 +1,14 @@
 <div class="row-fluid">
-
+<?php 
+    // pr($user); 
+?>
 	
 	<div class='span8'>
 	    <dl>
-			<dt><?php echo ucfirst(__('id')); ?></dt>
+			<dt>
+                <?php echo ucfirst(__('id')); ?>
+                <input type="hidden" value="<?=str_pad($user['User']['id'], 13, '0', STR_PAD_LEFT);?>" id="id">
+            </dt>
             <dd>
                 <?php echo h($user['User']['id']); ?>
                 &nbsp;
@@ -98,6 +103,14 @@
                 <?php echo $this->Html->link($user['Courses']['name'], array('controller' => 'courses', 'action' => 'view', $user['Courses']['id'])); ?>
                 &nbsp;
             </dd>
+            <dt>Código de barra</dt>
+            <dd>
+                <canvas id="ean" width="200" height="100"></canvas>
+                <script type="text/javascript">
+                    var id = document.getElementById('id').value;
+                    $("#ean").EAN13(id);
+                </script>
+            </dd>
 		</dl>
 	</div>
 
@@ -112,15 +125,15 @@
 
 			<?php echo $this->Html->link('Novo '.__('user'),
                 array( 'action' => 'edit', $this->params['pass'][0]),
-                array('class'=> 'btn btn-block')
+                array('class'=> 'btn btn-block btn-success')
             ); ?>
             <?php echo $this->Html->link('Editar',
                 array( 'action' => 'edit', $this->params['pass'][0]),
-                array('class'=> 'btn btn-block')
+                array('class'=> 'btn btn-block btn-warning')
             ); ?>			
 			<?php echo $this->Form->postLink('Apagar',
 				array( 'action' => 'delete', $this->params['pass'][0]),
-                array('class'=> 'btn btn-block', 'style'=>'margin-top: 5px;'),
+                array('class'=> 'btn btn-block btn-danger', 'style'=>'margin-top: 5px;'),
                 __('Tem certeza de que deseja excluir?')
 			);?>
 		</div>

@@ -5,9 +5,7 @@
 
 
 window.onload = function(){
-
-	// eventos
-	selectRow();
+	
 
 	// Filtros Controller/index
 	var filtro = document.getElementById('filter');
@@ -27,9 +25,22 @@ window.onload = function(){
 	if (message) {
 		var close = document.getElementsByClassName('close')[0];
 		close.onclick = function(){
-			display(message);
+			return display(message);
 		}
 	};
+
+	// Menu index hidden
+	if(document.getElementById('btnmenu')){
+		var btnmenu = document.getElementById('btnmenu');
+		var rowmenus = document.getElementById('rowmenus');
+		display(rowmenus);
+		btnmenu.onclick = function(){			
+			return display(rowmenus);
+		}
+	}
+
+	// eventos de linhas tabelas
+	selectRow();
 }
 
 window.onkeydown = function (e) {
@@ -46,6 +57,18 @@ window.onkeydown = function (e) {
 		return false;
 	};
 
+	if (e.keyCode == 116) 
+	{
+		// var r = confirm("Confirmar reenvio do formulário???\nPode causar ERROR CAKE SECURITY\n\n A página que está atualizando usou as informação inseridas. Esta ação por padrão e bloqueada pelo cake security. Deseja continuar?");
+		// if(r == false){
+		// 	e.keyCode = 0;
+		// 	e.returnValue = false;
+		// 	return false;
+		// }
+		location.reload(true);
+		return false;
+	}
+
 }
 
 // Mostrar ou ocultar campos
@@ -56,6 +79,7 @@ function display(element){
     }else{  
         element.style.display = 'none';  
     }
+    return false;
 }
 
 

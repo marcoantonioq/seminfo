@@ -1,1 +1,1 @@
-Bem vindo administrador
+Bem vindo Administrador

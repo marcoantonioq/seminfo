@@ -1894,8 +1894,17 @@ msgstr "Grupos"
 msgid "Courses"
 msgstr "Cursos"
 
+msgid "course"
+msgstr "curso"
+
 msgid "course_id"
 msgstr "cursos(id)"
+
+msgid "courses_id"
+msgstr "cursos(id)"
+
+
+
 
 msgid "Contacts"
 msgstr "Contatos"
@@ -1905,6 +1914,9 @@ msgstr "contato(id)"
 
 msgid "Contents"
 msgstr "Conteúdos"
+
+msgid "content"
+msgstr "conteúdo"
 
 msgid "content_id"
 msgstr "conteúdos(id)"
@@ -1923,6 +1935,9 @@ msgstr "usuário(id)"
 
 msgid "type_id"
 msgstr "tipo(id)"
+
+msgid "type"
+msgstr "tipo"
 
 msgid "promoe"
 msgstr "promovido"

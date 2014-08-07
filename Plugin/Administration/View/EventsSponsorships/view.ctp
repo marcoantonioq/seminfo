@@ -31,19 +31,24 @@
 			); ?>
 
 			<?php echo $this->Html->link('Novo '.__('eventsSponsorship'),
-                array( 'action' => 'edit', $this->params['pass'][0]),
-                array('class'=> 'btn btn-block')
+                array( 'action' => 'add'),
+                array('class'=> 'btn btn-block btn-success')
             ); ?>
             <?php echo $this->Html->link('Editar',
                 array( 'action' => 'edit', $this->params['pass'][0]),
-                array('class'=> 'btn btn-block')
+                array('class'=> 'btn btn-block btn-warning')
             ); ?>			
 			<?php echo $this->Form->postLink('Apagar',
 				array( 'action' => 'delete', $this->params['pass'][0]),
-                array('class'=> 'btn btn-block', 'style'=>'margin-top: 5px;'),
+                array('class'=> 'btn btn-block btn-danger', 'style'=>'margin-top: 5px;'),
                 __('Tem certeza de que deseja excluir?')
 			);?>
 		</div>
 	</div>
+</div>
+
+
+<div class="row-fluid">
+			
 
 </div>

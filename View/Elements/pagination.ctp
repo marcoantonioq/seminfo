@@ -12,3 +12,5 @@
 	echo $this->Paginator->next(__('proximo') . ' >', array(), null, array('class' => 'next disabled'));
 ?>
 </div>
+
+</p>

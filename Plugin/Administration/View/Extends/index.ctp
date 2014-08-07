@@ -55,7 +55,7 @@
         )); 
     ?>
 
-    <?php echo $this->Form->end('Imprimir'); ?>
+    <?php echo $this->Form->end( ); ?>
     <?php echo $this->element('pagination'); ?>
     </div>
 

@@ -136,19 +136,184 @@
 			); ?>
 
 			<?php echo $this->Html->link('Novo '.__('program'),
-                array( 'action' => 'edit', $this->params['pass'][0]),
-                array('class'=> 'btn btn-block')
+                array( 'action' => 'add'),
+                array('class'=> 'btn btn-block btn-success')
             ); ?>
             <?php echo $this->Html->link('Editar',
                 array( 'action' => 'edit', $this->params['pass'][0]),
-                array('class'=> 'btn btn-block')
+                array('class'=> 'btn btn-block btn-warning')
             ); ?>			
 			<?php echo $this->Form->postLink('Apagar',
 				array( 'action' => 'delete', $this->params['pass'][0]),
-                array('class'=> 'btn btn-block', 'style'=>'margin-top: 5px;'),
+                array('class'=> 'btn btn-block btn-danger', 'style'=>'margin-top: 5px;'),
                 __('Tem certeza de que deseja excluir?')
 			);?>
 		</div>
 	</div>
+</div>
+
+
+<div class="row-fluid">
+		
+		
+<?php if (!empty($program['Holding'])): ?>
+
+		<h3>
+			<a href="#" onclick="display(document.getElementById('Holding')); return false;">
+				<?php echo __('Holdings'); ?>			</a>
+		</h3>
+		
+	<div class="tabela " id="Holding" style="display: none;">
+	<table id="tableid1" class='rwd-table'>
+		<tr>
+			<th><?php echo __('id'); ?></th>
+		<th><?php echo __('user_id'); ?></th>
+		<th><?php echo __('program_id'); ?></th>
+		<th><?php echo __('status'); ?></th>
+		<th><?php echo __('certificado'); ?></th>
+		<th><?php echo __('credenciado'); ?></th>
+		<th><?php echo __('reservas'); ?></th>
+		<th><?php echo __('presenca'); ?></th>
+		<th><?php echo __('created'); ?></th>
+		<th><?php echo __('updated'); ?></th>
+			<th data-th="Ações" class="actions"><?php echo __('Actions'); ?></th>
+		</tr>
+		<?php foreach ($program['Holding'] as $holding): ?>
+		<tr>
+			<td data-th=<?= ucfirst(__('id')) ?> ><?php echo $holding['id']; ?></td>
+			<td data-th=<?= ucfirst(__('user_id')) ?> ><?php echo $holding['user_id']; ?></td>
+			<td data-th=<?= ucfirst(__('program_id')) ?> ><?php echo $holding['program_id']; ?></td>
+			<td data-th=<?= ucfirst(__('status')) ?> ><?php echo $holding['status']; ?></td>
+			<td data-th=<?= ucfirst(__('certificado')) ?> ><?php echo $holding['certificado']; ?></td>
+			<td data-th=<?= ucfirst(__('credenciado')) ?> ><?php echo $holding['credenciado']; ?></td>
+			<td data-th=<?= ucfirst(__('reservas')) ?> ><?php echo $holding['reservas']; ?></td>
+			<td data-th=<?= ucfirst(__('presenca')) ?> ><?php echo $holding['presenca']; ?></td>
+			<td data-th=<?= ucfirst(__('created')) ?> ><?php echo $holding['created']; ?></td>
+			<td data-th=<?= ucfirst(__('updated')) ?> ><?php echo $holding['updated']; ?></td>
+			<td data-th="Ações" class="actions">
+
+			<?php 
+				echo $this->Html->link('<span class="icon12 brocco-icon-search"></span>', 
+					array(
+						'controller' => 'holdings', 
+						'action' => 'view', 
+						$holding['id']
+					),
+					array(
+						'escape'=>false,
+						'title'=>'Visualizar',
+						'class'=>'view',
+					)
+				); 
+				
+				echo $this->Html->link('<span class="icon12 brocco-icon-pencil"></span>', 
+					array(
+						'controller' => 'holdings', 
+						'action' => 'edit', 
+						$holding['id']
+					),
+					array(
+						'escape'=>false,
+						'class'=>'edit',
+						'title'=>'Editar',
+					)
+				);
+
+			?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+		</table>
+	</div>
+
+<?php endif; ?>
+
+
+	
+		
+<?php if (!empty($program['Speaker'])): ?>
+
+		<h3>
+			<a href="#" onclick="display(document.getElementById('Speaker')); return false;">
+				<?php echo __('Speakers'); ?>			</a>
+		</h3>
+		
+	<div class="tabela " id="Speaker" style="display: none;">
+	<table id="tableid2" class='rwd-table'>
+		<tr>
+			<th><?php echo __('id'); ?></th>
+		<th><?php echo __('name'); ?></th>
+		<th><?php echo __('institution'); ?></th>
+		<th><?php echo __('phone'); ?></th>
+		<th><?php echo __('email'); ?></th>
+		<th><?php echo __('description'); ?></th>
+		<th><?php echo __('twitter'); ?></th>
+		<th><?php echo __('facebook'); ?></th>
+		<th><?php echo __('blog'); ?></th>
+		<th><?php echo __('linkedin'); ?></th>
+		<th><?php echo __('lattes'); ?></th>
+		<th><?php echo __('file'); ?></th>
+		<th><?php echo __('file_dir'); ?></th>
+		<th><?php echo __('created'); ?></th>
+		<th><?php echo __('updated'); ?></th>
+			<th data-th="Ações" class="actions"><?php echo __('Actions'); ?></th>
+		</tr>
+		<?php foreach ($program['Speaker'] as $speaker): ?>
+		<tr>
+			<td data-th=<?= ucfirst(__('id')) ?> ><?php echo $speaker['id']; ?></td>
+			<td data-th=<?= ucfirst(__('name')) ?> ><?php echo $speaker['name']; ?></td>
+			<td data-th=<?= ucfirst(__('institution')) ?> ><?php echo $speaker['institution']; ?></td>
+			<td data-th=<?= ucfirst(__('phone')) ?> ><?php echo $speaker['phone']; ?></td>
+			<td data-th=<?= ucfirst(__('email')) ?> ><?php echo $speaker['email']; ?></td>
+			<td data-th=<?= ucfirst(__('description')) ?> ><?php echo $speaker['description']; ?></td>
+			<td data-th=<?= ucfirst(__('twitter')) ?> ><?php echo $speaker['twitter']; ?></td>
+			<td data-th=<?= ucfirst(__('facebook')) ?> ><?php echo $speaker['facebook']; ?></td>
+			<td data-th=<?= ucfirst(__('blog')) ?> ><?php echo $speaker['blog']; ?></td>
+			<td data-th=<?= ucfirst(__('linkedin')) ?> ><?php echo $speaker['linkedin']; ?></td>
+			<td data-th=<?= ucfirst(__('lattes')) ?> ><?php echo $speaker['lattes']; ?></td>
+			<td data-th=<?= ucfirst(__('file')) ?> ><?php echo $speaker['file']; ?></td>
+			<td data-th=<?= ucfirst(__('file_dir')) ?> ><?php echo $speaker['file_dir']; ?></td>
+			<td data-th=<?= ucfirst(__('created')) ?> ><?php echo $speaker['created']; ?></td>
+			<td data-th=<?= ucfirst(__('updated')) ?> ><?php echo $speaker['updated']; ?></td>
+			<td data-th="Ações" class="actions">
+
+			<?php 
+				echo $this->Html->link('<span class="icon12 brocco-icon-search"></span>', 
+					array(
+						'controller' => 'speakers', 
+						'action' => 'view', 
+						$speaker['id']
+					),
+					array(
+						'escape'=>false,
+						'title'=>'Visualizar',
+						'class'=>'view',
+					)
+				); 
+				
+				echo $this->Html->link('<span class="icon12 brocco-icon-pencil"></span>', 
+					array(
+						'controller' => 'speakers', 
+						'action' => 'edit', 
+						$speaker['id']
+					),
+					array(
+						'escape'=>false,
+						'class'=>'edit',
+						'title'=>'Editar',
+					)
+				);
+
+			?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+		</table>
+	</div>
+
+<?php endif; ?>
+
+
+		
 
 </div>

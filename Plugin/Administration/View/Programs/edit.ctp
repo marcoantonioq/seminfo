@@ -103,10 +103,18 @@
 				'label'=>ucfirst(__('Speaker')),
 			));			
 		?>
+		<div class="form-actions form-horizontal">
+			<?php			  echo $this->Form->button('Enviar', array(
+				'class'=>'btn btn-info'
+			))." ";
+			echo $this->Form->button('Limpar', array(
+				'type'=>'reset',
+				'class'=>'btn btn-warning'
+			));
+			
+			echo $this->Form->end();
 
-		<div class="form-actions">			
-			<?php echo $this->Form->end(__('Enviar'), array('class'=>"btn")); ?>
-		</div>	
+			?>		</div>
 
 	</div>
 
@@ -118,21 +126,16 @@
 				array( 'action' => 'index'),
 				array('class'=> 'btn btn-block')
 			); ?>
-			<?php 			
-			echo $this->Html->link('Novo '.__('program'),
-                array( 'action' => 'add'),
-                array('class'=> 'btn btn-block')
-            ); ?>
-					
-			<?php  echo $this->Form->postLink('Apagar',
-				array( 'action' => 'delete', $this->params['pass'][0]),
-                array('class'=> 'btn btn-block', 'style'=>'margin-top: 5px;'),
-                __('Tem certeza de que deseja excluir?')
-			);?>
+		
 			<?php  echo $this->Html->link('Visualizar', 
 				array('action' => 'view', $this->params['pass'][0]),
-				array('class'=> 'btn btn-block')
-			); ?>
+				array('class'=> 'btn btn-block btn-success')
+			); ?>			
+			<?php  echo $this->Form->postLink('Apagar',
+				array( 'action' => 'delete', $this->params['pass'][0]),
+                array('class'=> 'btn btn-block btn-danger', 'style'=>'margin-top: 5px;'),
+                __('Tem certeza de que deseja excluir?')
+			);?>
 				</div>
 	</div>
 

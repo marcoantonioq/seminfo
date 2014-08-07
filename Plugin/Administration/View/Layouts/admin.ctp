@@ -19,6 +19,7 @@
 		'/bootstrap/css/bootstrap-responsive.min.css',
 		'Administration.icon',
 		'Administration.admin',
+		"Administration.icons",
 	));
 	echo $this->Html->script(
 		array(
@@ -26,6 +27,7 @@
 			'/bootstrap/js/bootstrap.min.js',
 			'Administration.ckeditor/ckeditor.js',
 			'Administration.admin.js',
+			'Administration.jquery-barcode-en13.js',
 		)
 	);
 
@@ -35,17 +37,6 @@
 	echo $this->fetch('script');
 	?>
 
-	<script>
-		function bloquearCtrlJ(){   // Verificação das Teclas  
-		    var tecla=window.event.keyCode;   //Para controle da tecla pressionada  
-		    var ctrl=window.event.ctrlKey;    //Para controle da Tecla CTRL  
-
-		    if (ctrl && tecla==74){    //Evita teclar ctrl + j  
-		        event.keyCode=0;  
-		        event.returnValue=false;  
-		    }  
-		}  
-	</script>
 </head>
 <body>
 	<div id="header">
@@ -59,7 +50,6 @@
 				)
 			)
 		);?>
-		<div class='clearfix'></div>			
 	</div>
 	<div id="container">
 		 
@@ -120,7 +110,11 @@
 	</div>
 	
 	<div id="footer">			
+		<div class="marco">
+			Desenvolvido por Marco Antônio Queiroz | TADS turma de 2011 | <a target="_blank" href="https://www.facebook.com/marcoaq7">facebook</a> | <a href="br.linkedin.com/pub/marco-antônio-queiroz/2b/539/4b8/" target="_blank">linkedin</a> | email: marco.aq7@gmail.com
+		</div>
 		<?php echo $this->element('sql_dump'); ?>
 	</div>
+	
 </body>
 </html>

@@ -73,7 +73,7 @@ class FormBehavior extends ModelBehavior {
 		if (!empty($this->data['row'])) {
 			foreach ($this->data['row'] as $id => $value) {
 				if ($value)
-					$this->pagination['conditions']['OR']['OR'][] = array("id"=>$id);
+					$this->pagination['conditions']['OR']['OR'][] = array("{$this->Model->name}.id"=>$id);
 			}
 		}
 		// pr($this->data);
