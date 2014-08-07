@@ -4,8 +4,7 @@
 	<?php echo $this->Html->charset('UTF-8'); ?>
 	<title>
 		<?php echo __($title_for_layout); ?>
-	</title
->	
+	</title>	
 	<?php
 	setlocale(LC_ALL, 'pt_BR.utf-8', 'pt_BR', 'pt-br');
 	date_default_timezone_set('America/Sao_Paulo');

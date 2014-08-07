@@ -15,6 +15,8 @@ class UsersController extends AdministrationAppController {
 		$this->Auth->allow('login', 'logout');
 	}
 
+	public $components = array('Mpdf'); 
+
 /**
  * Components
  *
@@ -81,6 +83,33 @@ class UsersController extends AdministrationAppController {
         }
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
+	}
+
+
+/**
+ * labels method
+ *
+ * @return void
+ */
+	public function labels() {
+
+		if ($this->request->is('post')) 
+		{
+            $this->Paginator->settings = $this->User->action($this->request->data);
+            $this->User->recursive = -1;
+            $users = $this->Paginator->paginate();
+            $this->set(compact('users'));
+
+            // render pdf
+			$this->layout = 'pdf';		
+		    $this->Mpdf->init();
+		    $this->Mpdf->setFilename('Etiquetas.pdf'); 		    
+		    $this->Mpdf->setOutput('I');
+		    $this->Mpdf->SetColumns(2);
+        }
+        else {
+        	$this->redirect(array('action'=>'index'));
+        }
 	}
 
 

@@ -173,18 +173,18 @@ CakePlugin::load(
     )
 );
 
-Configure::write('CakePdf', array(
-    'engine' => 'CakePdf.DomPdf',
-    'margin' => array(
-        'bottom' => 0,
-        'left' => 0,
-        'right' => 0,
-        'top' => 0
-    ),
-    'pageSize' => 'A4',
-    'orientation' => 'landscape',    
-    'download' => false
-));
+// Configure::write('CakePdf', array(
+//     'engine' => 'CakePdf.DomPdf',
+//     'margin' => array(
+//         'bottom' => 0,
+//         'left' => 0,
+//         'right' => 0,
+//         'top' => 0
+//     ),
+//     'pageSize' => 'A4',
+//     'orientation' => 'landscape',    
+//     'download' => false
+// ));
 
 /*
 Configure::write('CakePdf', array(

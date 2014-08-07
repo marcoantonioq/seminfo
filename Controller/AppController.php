@@ -72,13 +72,15 @@ class AppController extends Controller {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        // $this->Security->validatePost = false;
+        $this->Security->validatePost = false;
         $this->layout = 'user';
         if (!env('HTTPS')){ 
             $this->Security->blackHoleCallback = 'forceSSL'; 
             $this->Security->requireSecure(); 
         }
-        if($this->request->is('ajax')){$this->layout='ajax';}
+        if($this->request->is('ajax')){
+            $this->layout='ajax';
+        }
         
         // $this->Auth->allow();
         // $this->Auth->deny();

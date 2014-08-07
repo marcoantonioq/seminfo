@@ -435,6 +435,14 @@
 		'class'=>'btn',
 		'style'=>'margin-bottom: 10px;'
 		)); 
+	?> 
+
+	<?php 
+		echo  $this->Form->button('Etiquetas', array(
+			'class'=>'btn',
+			'style'=>'margin-bottom: 10px;',
+			'formaction'=>'users/labels',
+		)); 
 	?>
 
 	<?php echo $this->Form->end(); ?>

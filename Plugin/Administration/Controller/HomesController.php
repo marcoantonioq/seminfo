@@ -115,4 +115,12 @@ class HomesController extends AdministrationAppController {
 			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'error');
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+
+	public function ajaxmsg(){ 
+		// $this->layout = "ajax"; 
+		//aqui poderiamos ter, requisições a banco de dados 
+		//validações, chamada à outas DataSources etc.	
+		$this->set("mensagem","Olá Mundo! CakePHP Ajax");	
+	}
+}
