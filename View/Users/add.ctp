@@ -9,14 +9,12 @@
 			));
 		?>
 		<?php  
-		
-
-			echo $this->Form->input('id', array(
-				'label'=>ucfirst(__('id')),
-			));
-
+			
+			// colocar validação no model para este campo
 			echo $this->Form->input('group_id', array(
 				'label'=>ucfirst(__('group_id')),
+				'type'=>'hidden',
+				'value'=>3
 			));
 
 			echo $this->Form->input('course_id', array(
@@ -41,7 +39,6 @@
 
 			echo $this->Form->input('password', array(
 				'label'=>ucfirst(__('password')),
-				'value'=>''
 			));
 
 			echo $this->Form->input('email', array(
@@ -107,16 +104,6 @@
 				array( 'action' => 'index'),
 				array('class'=> 'btn btn-block')
 			); ?>
-		
-			<?php  echo $this->Html->link('Visualizar', 
-				array('action' => 'view', $this->params['pass'][0]),
-				array('class'=> 'btn btn-block btn-success')
-			); ?>			
-			<?php  echo $this->Form->postLink('Apagar',
-				array( 'action' => 'delete', $this->params['pass'][0]),
-                array('class'=> 'btn btn-block btn-danger', 'style'=>'margin-top: 5px;'),
-                __('Tem certeza de que deseja excluir?')
-			);?>
 				</div>
 	</div>
 

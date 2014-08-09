@@ -141,7 +141,9 @@
 				</th>
 			</tr>
 			<tr id="filter">
-				<td></td>
+				<td>
+					<?php echo $this->Form->checkbox('all.row', array( 'id'=>'allrow' ));?>
+				</td>
 									
 					<?php echo $this->Filter->conditions('id'); ?>
 									
@@ -203,68 +205,17 @@
 
 		<td data-th="<?= ucfirst(__('credenciado'));?>" >
 			<?php echo h($holding['Holding']['credenciado']); ?>
-			&nbsp;
 		</td>
 
 		<td data-th="<?= ucfirst(__('reservas'));?>" >
 			<?php echo h($holding['Holding']['reservas']); ?>
-			&nbsp;
 		</td>
 
-		<td data-th="<?= ucfirst(__('presenca'));?>"  style="text-align: center;">
-
-			<div id="presenca<?=$holding['Holding']['id'];?>" style="text-align: center;">
-				<?php echo h($holding['Holding']['presenca']); ?>				
-			</div>
-			
-			<?php 
-				echo $this->Html->link("-", "#", 
-					array(
-						'id'=>'menos'.$holding['Holding']['id'], 
-						'class'=>'red btn bold'
-					)
-				); 
-
-				echo $this->Html->link("+", "#", 
-					array(
-						'id'=>'mais'.$holding['Holding']['id'], 
-						'class'=>'green btn bold'
-					)
-				); 
-			?>
-
-
-			<script class="javascript">
-				$(document).ready(function() {	
-					$("#menos<?=$holding['Holding']['id'];?>").click(function(){	
-						$.get( 
-							"https://localhost/seminfo/administration/holdings/presenca/<?=$holding['Holding']['id'];?>/sub",
-							null, 
-							function(data) {	
-								$("#presenca<?=$holding['Holding']['id'];?>").html(data); 
-							}
-						);
-						return false;
-					});	
-				});
-
-				$(document).ready(function() {	
-					$("#mais<?=$holding['Holding']['id'];?>").click(function(){	
-						$.get( 
-							"https://localhost/seminfo/administration/holdings/presenca/<?=$holding['Holding']['id'];?>/sum",
-							null, 
-							function(data) {	
-								$("#presenca<?=$holding['Holding']['id'];?>").html(data); 
-							}
-						);
-						return false;
-					});	
-				});
-
-
-			</script>
-
-			&nbsp;
+		<td data-th="<?= ucfirst(__('presenca'));?>">
+			<?php $class = ($this->Date->isToday($holding['Holding']['date_presenca'] )) ? "" : "addpresence"; ?>
+			<span class="<?=$class ?> green btn bold" value="<?=$holding['Holding']['id']?>" >
+				<?php echo $holding['Holding']['presenca']; ?>
+			</span>
 		</td>
 
 		<td data-th="<?= ucfirst(__('created'));?>" >
@@ -343,7 +294,7 @@
 		echo  $this->Form->button('Presença', array(
 		'class'=>'btn',
 		'style'=>'margin-bottom: 10px;',
-		'formaction'=>'/seminfo/administration/holdings/presenca',
+		'formaction'=>'/seminfo/administration/holdings/presence',
 		)); 
 	?>
 

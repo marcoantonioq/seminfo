@@ -16,6 +16,7 @@ class UsersControllerTest extends ControllerTestCase {
 		'app.user',
 		'app.group',
 		'app.course',
+		'app.courses',
 		'app.contact',
 		'app.content',
 		'app.holding',

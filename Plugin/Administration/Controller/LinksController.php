@@ -29,7 +29,7 @@ class LinksController extends AdministrationAppController {
 	public function index() {
 		if ($this->request->is('post')) {
             $this->Paginator->settings = $this->Link->action($this->request->data);
-            echo $this->Session->setFlash('Filtro definido!', 'success');
+            echo $this->Session->setFlash('Filtro definido!', 'layout/success');
         }
 		$this->Link->recursive = 0;
 		$this->set('links', $this->Paginator->paginate());
@@ -61,10 +61,10 @@ class LinksController extends AdministrationAppController {
 		if ($this->request->is('post')) {
 			$this->Link->create();
 			if ($this->Link->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		}
 		$parentLinks = $this->Link->ParentLink->find('list');
@@ -86,10 +86,10 @@ class LinksController extends AdministrationAppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Link->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		} else {
 			$options = array('conditions' => array('Link.' . $this->Link->primaryKey => $id));
@@ -116,9 +116,9 @@ class LinksController extends AdministrationAppController {
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Link->delete()) {
 	
-			$this->Session->setFlash(__('Foi excluído.'), 'success');
+			$this->Session->setFlash(__('Foi excluído.'), 'layout/success');
 		} else {
-			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'error');
+			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'layout/error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}}

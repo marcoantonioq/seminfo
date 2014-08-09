@@ -11,42 +11,65 @@
 			);
 
 		?> 
-		<div id="rowmenus">
-		<hr>
-				<?php echo $this->Html->link('Novo '.__('user'),
+		<div id="rowmenus" class="row-fluid">
+		    <h3>Menu</h3>
+			    <?php echo $this->Html->link('Novo '.__('user'),
 						array('controller' => 'users', 'action' => 'add'),
 						array('class'=> 'btn btn-block btn-success')
 					);
-				?> 
+			    ?> 
+		    
 
-				<?php 
-				echo $this->Html->link(__('Contacts'),
-					array('controller' => 'contacts', 'action' => 'index'),
-					array('class'=> 'btn btn-block')
-				);
-				?>
-
-				<?php 
-				echo $this->Html->link(__('Holdings'),
-					array('controller' => 'holdings', 'action' => 'index'),
-					array('class'=> 'btn btn-block')
-				);
-				?>
+					<?php 
+					echo $this->Html->link(__('Groups'),
+						array('controller' => 'groups', 'action' => 'index'),
+						array('class'=> 'btn btn-block')
+					);
+					?>
 
 
+					<?php 
+					echo $this->Html->link(__('Courses'),
+						array('controller' => 'courses', 'action' => 'index'),
+						array('class'=> 'btn btn-block')
+					);
+					?>
 
-				<?php 
-				echo $this->Html->link(__('Groups'),
-					array('controller' => 'groups', 'action' => 'index'),
-					array('class'=> 'btn btn-block')
-				);
-				?>
 
+					<?php 
+					echo $this->Html->link(__('Contacts'),
+						array('controller' => 'contacts', 'action' => 'index'),
+						array('class'=> 'btn btn-block')
+					);
+					?>
+
+
+					<?php 
+					echo $this->Html->link(__('Contents'),
+						array('controller' => 'contents', 'action' => 'index'),
+						array('class'=> 'btn btn-block')
+					);
+					?>
+
+
+					<?php 
+					echo $this->Html->link(__('Holdings'),
+						array('controller' => 'holdings', 'action' => 'index'),
+						array('class'=> 'btn btn-block')
+					);
+					?>
+
+
+					<?php 
+					echo $this->Html->link(__('Messages'),
+						array('controller' => 'messages', 'action' => 'index'),
+						array('class'=> 'btn btn-block')
+					);
+					?>
+			
 		</div>
-    </div>
+	</div>
 </div>
-
-
 
 <div class="row-fluid">
 	<div class="span12">		
@@ -205,7 +228,7 @@
 			</tr>
 			<tr id="filter">
 				<td>
-					<?php echo $this->Form->checkbox('all.row', array( 'id'=>'allrow' ));?>
+					<?php echo $this->Form->checkbox('all.row', array( 'id'=>'allrow' ));?>					
 				</td>
 									
 					<?php echo $this->Filter->conditions('id'); ?>
@@ -407,23 +430,6 @@
 		echo  $this->Form->button('Buscar', array(
 		'class'=>'btn',
 		'style'=>'margin-bottom: 10px;'
-		)); 
-	?> 
-
-	<?php 
-		echo  $this->Form->button('Etiquetas', array(
-			'class'=>'btn',
-			'style'=>'margin-bottom: 10px;',
-			'formaction'=>'/seminfo/administration/users/labels',
-		)); 
-	?>
-
-
-	<?php 
-		echo  $this->Form->button('Credenciar', array(
-			'class'=>'btn',
-			'style'=>'margin-bottom: 10px;',
-			'formaction'=>'/seminfo/administration/users/credenciar',
 		)); 
 	?>
 

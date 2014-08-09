@@ -18,13 +18,11 @@ class FormBehavior extends ModelBehavior {
 	private function search()
 	{
 
-		// pr($this->Model); exit;
-		// pr($this->data); exit;
-
 		if(!empty($this->data['Filter'])){
+			// pr($this->data);
 
 			foreach ($this->data['Filter'] as $column => $filter) {
-				
+
 				$conditions = $this->data['conditions'][$column];
 				$this->pagination += $this->data['Pagination'];
 				
@@ -76,8 +74,6 @@ class FormBehavior extends ModelBehavior {
 					$this->pagination['conditions']['OR']['OR'][] = array("{$this->Model->name}.id"=>$id);
 			}
 		}
-		// pr($this->data);
-		// pr($this->pagination); // exit;
 		return $this->pagination;
 	}
 
@@ -103,4 +99,6 @@ class FormBehavior extends ModelBehavior {
 		}
 		return $return;
 	}
+
+	
 }

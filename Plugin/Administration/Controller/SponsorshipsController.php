@@ -29,7 +29,7 @@ class SponsorshipsController extends AdministrationAppController {
 	public function index() {
 		if ($this->request->is('post')) {
             $this->Paginator->settings = $this->Sponsorship->action($this->request->data);
-            echo $this->Session->setFlash('Filtro definido!', 'success');
+            echo $this->Session->setFlash('Filtro definido!', 'layout/success');
         }
 		$this->Sponsorship->recursive = 0;
 		$this->set('sponsorships', $this->Paginator->paginate());
@@ -61,10 +61,10 @@ class SponsorshipsController extends AdministrationAppController {
 		if ($this->request->is('post')) {
 			$this->Sponsorship->create();
 			if ($this->Sponsorship->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		}
 		$events = $this->Sponsorship->Event->find('list');
@@ -85,10 +85,10 @@ class SponsorshipsController extends AdministrationAppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Sponsorship->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		} else {
 			$options = array('conditions' => array('Sponsorship.' . $this->Sponsorship->primaryKey => $id));
@@ -114,9 +114,9 @@ class SponsorshipsController extends AdministrationAppController {
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Sponsorship->delete()) {
 	
-			$this->Session->setFlash(__('Foi excluído.'), 'success');
+			$this->Session->setFlash(__('Foi excluído.'), 'layout/success');
 		} else {
-			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'error');
+			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'layout/error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}}

@@ -34,7 +34,7 @@ class UsersController extends AdministrationAppController {
     	$this->layout = 'login';
     	if ($this->request->is('post')) {
             if ($this->Auth->login()) {
-                $this->Session->setFlash('Logado com sucesso.', 'success');
+                $this->Session->setFlash('Logado com sucesso.', 'layout/success');
                 return $this->redirect($this->Auth->redirect());
             } else {
                 $this->Session->setFlash('Nome de usuário ou senha estava incorreta.');
@@ -48,7 +48,7 @@ class UsersController extends AdministrationAppController {
  * @return void
  */
     function logout() {
-        $this->Session->setFlash('Até logo!', 'success');
+        $this->Session->setFlash('Até logo!', 'layout/success');
     	if (env('HTTPS')){ $this->_unforceSSL; }
         $this->redirect($this->Auth->logout());
     }
@@ -79,7 +79,7 @@ class UsersController extends AdministrationAppController {
 	public function index() {
 		if ($this->request->is('post')) {
             $this->Paginator->settings = $this->User->action($this->request->data);
-            echo $this->Session->setFlash('Filtro definido!', 'success');
+            echo $this->Session->setFlash('Filtro definido!', 'layout/success');
         }
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
@@ -124,7 +124,7 @@ class UsersController extends AdministrationAppController {
             $this->User->recursive = -1;
             $users = $this->Paginator->paginate();
             $message = $this->User->credenciar($users);
-            echo $this->Session->setFlash('Credenciamento realizado!'.$message, 'success');
+            echo $this->Session->setFlash('Credenciamento realizado!'.$message, 'layout/success');
 
         }
         else {
@@ -162,10 +162,10 @@ class UsersController extends AdministrationAppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		}
 		$groups = $this->User->Group->find('list');
@@ -189,10 +189,10 @@ class UsersController extends AdministrationAppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
@@ -221,9 +221,9 @@ class UsersController extends AdministrationAppController {
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->User->delete()) {
 	
-			$this->Session->setFlash(__('Foi excluído.'), 'success');
+			$this->Session->setFlash(__('Foi excluído.'), 'layout/success');
 		} else {
-			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'error');
+			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'layout/error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

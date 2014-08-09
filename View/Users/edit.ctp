@@ -41,7 +41,6 @@
 
 			echo $this->Form->input('password', array(
 				'label'=>ucfirst(__('password')),
-				'value'=>''
 			));
 
 			echo $this->Form->input('email', array(

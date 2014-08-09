@@ -20,9 +20,11 @@
 	echo $this->Html->script(
 		array(
 			'jquery.js',
+			'jquery.mask.min.js',
 			'/bootstrap/js/bootstrap.min.js',
-			'Administration.ckeditor/ckeditor.js',
 			'Administration.admin.js',
+			'Administration.ajax.js',
+			'Administration.ckeditor/ckeditor.js',
 			'Administration.jquery-barcode-en13.js',
 		)
 	);
@@ -94,7 +96,6 @@
 				 <?php echo $this->element('admin/breadcrumb') ?>
 			</div>
 
-			
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->Session->flash('auth'); ?>
 

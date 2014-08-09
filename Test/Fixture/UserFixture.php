@@ -13,7 +13,7 @@ class UserFixture extends CakeTestFixture {
 	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'primary'),
 		'group_id' => array('type' => 'integer', 'null' => false, 'default' => '2', 'unsigned' => false, 'key' => 'index'),
-		'course_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'index'),
+		'course_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 10, 'unsigned' => false),
 		'matricula' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 45, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'sexo' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 250, 'collate' => 'utf8_general_ci', 'comment' => 'Select (', 'charset' => 'utf8'),
@@ -29,12 +29,13 @@ class UserFixture extends CakeTestFixture {
 		'holding_count' => array('type' => 'integer', 'null' => true, 'default' => '0', 'unsigned' => false),
 		'updated' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
+		'courses_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false, 'key' => 'index'),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
 			'email_UNIQUE' => array('column' => 'email', 'unique' => 1),
 			'cpf_UNIQUE' => array('column' => 'cpf', 'unique' => 1),
 			'fk_users_grupos1_idx' => array('column' => 'group_id', 'unique' => 0),
-			'fk_users_courses1_idx' => array('column' => 'course_id', 'unique' => 0)
+			'fk_users_courses2_idx' => array('column' => 'courses_id', 'unique' => 0)
 		),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
@@ -62,8 +63,9 @@ class UserFixture extends CakeTestFixture {
 			'image' => 'Lorem ipsum dolor sit amet',
 			'image_dir' => 'Lorem ipsum dolor sit amet',
 			'holding_count' => 1,
-			'updated' => '2014-08-06 13:19:42',
-			'created' => '2014-08-06 13:19:42'
+			'updated' => '2014-08-10 01:09:04',
+			'created' => '2014-08-10 01:09:04',
+			'courses_id' => 1
 		),
 	);
 

@@ -30,7 +30,7 @@ class HoldingsController extends AdministrationAppController {
 		if ($this->request->is('post')) 
 		{
             $this->Paginator->settings = $this->Holding->action($this->request->data);
-            echo $this->Session->setFlash('Filtro definido!', 'success');
+            echo $this->Session->setFlash('Filtro definido!', 'layout/success');
         } 
         else if ($this->request->is('ajax')) {
         	$this->render("Holdings/ajax/presenca");
@@ -47,19 +47,18 @@ class HoldingsController extends AdministrationAppController {
  *
  * @return void
  */
-	public function presenca($id = null, $action = null) {
+	public function presence($id = null, $action = null) {
         if ($this->request->is('ajax')) {
-			$this->set('var', $this->Holding->participacao($id, $action));
-        	$this->render("Holdings/ajax/presenca");
+			$this->set('var', $this->Holding->presence($id, $action));
+        	$this->render("Holdings/ajax/presence");
         	return true;
         }
 		if($this->request->is('post')){
 			$message = "";
 			foreach ($this->request->data['row'] as $id => $value) {
-				$message .= $this->set('var', $this->Holding->participacao($id, 'sum'));
+				$message .= $this->set('var', $this->Holding->presence($id, 'sum'));
 			}
-			echo $this->Session->setFlash('Presença confirmada!', 'success');
-			// pr($this->request->data); exit;
+			echo $this->Session->setFlash('Presença confirmada!', 'layout/success');
 		}
         $this->redirect($this->referer());
 	}
@@ -90,10 +89,10 @@ class HoldingsController extends AdministrationAppController {
 		if ($this->request->is('post')) {
 			$this->Holding->create();
 			if ($this->Holding->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		}
 		$users = $this->Holding->User->find('list');
@@ -115,10 +114,10 @@ class HoldingsController extends AdministrationAppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Holding->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		} else {
 			$options = array('conditions' => array('Holding.' . $this->Holding->primaryKey => $id));
@@ -145,9 +144,9 @@ class HoldingsController extends AdministrationAppController {
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Holding->delete()) {
 	
-			$this->Session->setFlash(__('Foi excluído.'), 'success');
+			$this->Session->setFlash(__('Foi excluído.'), 'layout/success');
 		} else {
-			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'error');
+			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'layout/error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}}

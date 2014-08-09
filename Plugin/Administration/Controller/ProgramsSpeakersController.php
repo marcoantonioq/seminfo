@@ -29,7 +29,7 @@ class ProgramsSpeakersController extends AdministrationAppController {
 	public function index() {
 		if ($this->request->is('post')) {
             $this->Paginator->settings = $this->ProgramsSpeaker->action($this->request->data);
-            echo $this->Session->setFlash('Filtro definido!', 'success');
+            echo $this->Session->setFlash('Filtro definido!', 'layout/success');
         }
 		$this->ProgramsSpeaker->recursive = 0;
 		$this->set('programsSpeakers', $this->Paginator->paginate());
@@ -61,10 +61,10 @@ class ProgramsSpeakersController extends AdministrationAppController {
 		if ($this->request->is('post')) {
 			$this->ProgramsSpeaker->create();
 			if ($this->ProgramsSpeaker->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		}
 		$programs = $this->ProgramsSpeaker->Program->find('list');
@@ -86,10 +86,10 @@ class ProgramsSpeakersController extends AdministrationAppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->ProgramsSpeaker->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'success');
+				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'error');
+				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		} else {
 			$options = array('conditions' => array('ProgramsSpeaker.' . $this->ProgramsSpeaker->primaryKey => $id));
@@ -116,9 +116,9 @@ class ProgramsSpeakersController extends AdministrationAppController {
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->ProgramsSpeaker->delete()) {
 	
-			$this->Session->setFlash(__('Foi excluído.'), 'success');
+			$this->Session->setFlash(__('Foi excluído.'), 'layout/success');
 		} else {
-			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'error');
+			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'layout/error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}}

@@ -1,5 +1,5 @@
 <?php
-App::uses('AdministrationAppModel', 'Administration.Model');
+App::uses('AppModel', 'Model');
 /**
  * User Model
  *
@@ -11,15 +11,7 @@ App::uses('AdministrationAppModel', 'Administration.Model');
  * @property Holding $Holding
  * @property Message $Message
  */
-class User extends AdministrationAppModel {
-/**
- * Display field
- *
- * @var string
- */
-	public $displayField = 'name';
-	public $order = array('User.name' => 'asc');
-
+class User extends AppModel {
 /**
  * Validation rules
  *
@@ -80,14 +72,6 @@ class User extends AdministrationAppModel {
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'validaCPF' => array(
-				'rule' => array('validaCPF'),
-				'message' => 'CPF invalido',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -205,85 +189,5 @@ class User extends AdministrationAppModel {
 			'finderQuery' => '',
 		)
 	);
-
-	public function beforeSave($options = array()) {
-
-    	$this->data['User']['cpf'] = str_replace(array('.', '-'), '', $this->data['User']['cpf']);
-    	$this->data['User']['phone'] = str_replace(array('.', '-', '(', ')', ' '), '', $this->data['User']['phone']);
-		// pr($this->data); exit;
-	    if (empty($this->data['User']['password'])) {
-            unset($this->data['User']['password']);
-        } else {
-        	$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
-        }
-	    return true;
-    }  
-
-    public function validaCPF($check){
-    	$cpf = $check['cpf'];
-    	$cpf = preg_replace('/[^0-9]/', '', $cpf);
-
-    	if( strlen($cpf) != 11) {
-    		return false;
-    	}
-
-    	$digitoA = 0;
-    	$digitoB = 0;
-    	for($i = 0, $x = 10; $i <= 8; $i++, $x--){
-    		$digitoA += $cpf[$i] * $x;
-    	}
-
-    	for($i = 0, $x = 11; $i <= 9; $i++, $x--){
-    		if (str_repeat($i, 11) == $cpf) { return false; }
-    		$digitoB += $cpf[$i] * $x;
-    	}
-
-    	$somaA = ( ($digitoA%11) < 2 ) ? 0 : 11-($digitoA%11);
-    	$somaB = ( ($digitoB%11) < 2 ) ? 0 : 11-($digitoB%11);
-
-    	if($somaA != $cpf[9] || $somaB != $cpf[10]){
-    		return false;
-    	}else{
-    		return true;
-    	}
-    	
-    	return false;
-    }
-
-/**
- * credenciar method
- *
- * @var string
- */
-
-	public function credenciar($users)
-	{
-		$message = "";		
-		$status = true;
-		// pr($users); 
-		foreach ($users as $user) 
-		{
-			$participacoes = $this->Holding->find('all',array(
-				'recursive'=>2,
-				// 'fields'=>array('id', 'credenciado', 'program_id'),
-				'conditions'=> array(
-					"Holding.user_id"=>$user['User']['id']
-				)
-			));
-			
-			foreach ($participacoes as $participacao) 
-			{
-				$participacao['Holding']['credenciado'] = 1;
-				if (!$this->Holding->save($participacao)) 
-					$status = false;
-			}
-			$message .= ($status) ? 
-				"<br>{$user['User']['name']}, foi credenciado com sucesso!":
-				"<br>Erro ao credenciar {$user['User']['name']}!";				
-		}
-
-		return $message;
-
-	}
 
 }

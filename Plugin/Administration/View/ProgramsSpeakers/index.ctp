@@ -105,7 +105,9 @@
 				</th>
 			</tr>
 			<tr id="filter">
-				<td></td>
+				<td>
+					<?php echo $this->Form->checkbox('all.row', array( 'id'=>'allrow' ));?>
+				</td>
 									
 					<?php echo $this->Filter->conditions('id'); ?>
 									

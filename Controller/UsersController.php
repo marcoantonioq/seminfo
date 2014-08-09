@@ -1,17 +1,16 @@
 <?php
-App::uses('AdministrationAppController', 'Administration.Controller');
+App::uses('AppController', 'Controller');
 /**
- * Contacts Controller
+ * Users Controller
  *
- * @property Contact $Contact
+ * @property User $User
  * @property PaginatorComponent $Paginator
- * @property SessionComponent $Session
  */
-class ContactsController extends AdministrationAppController {
+class UsersController extends AppController {
 
 	public function beforeFilter(){
 		parent::beforeFilter();
-		$this->set('title_for_layout', __('Contacts'));
+		$this->set('title_for_layout', __('Users'));
 	}
 
 /**
@@ -19,7 +18,7 @@ class ContactsController extends AdministrationAppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator');
 
 /**
  * index method
@@ -28,11 +27,11 @@ class ContactsController extends AdministrationAppController {
  */
 	public function index() {
 		if ($this->request->is('post')) {
-            $this->Paginator->settings = $this->Contact->action($this->request->data);
+            $this->Paginator->settings = $this->User->action($this->request->data);
             echo $this->Session->setFlash('Filtro definido!', 'layout/success');
         }
-		$this->Contact->recursive = 0;
-		$this->set('contacts', $this->Paginator->paginate());
+		$this->User->recursive = 0;
+		$this->set('users', $this->Paginator->paginate());
 	}
 
 
@@ -44,11 +43,11 @@ class ContactsController extends AdministrationAppController {
  * @return void
  */
 	public function view($id = null) {
-		if (!$this->Contact->exists($id)) {
-			throw new NotFoundException(__('Inválido contact'));
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Inválido user'));
 		}
-		$options = array('conditions' => array('Contact.' . $this->Contact->primaryKey => $id));
-		$this->set('contact', $this->Contact->find('first', $options));
+		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+		$this->set('user', $this->User->find('first', $options));
 	}
 
 
@@ -59,16 +58,19 @@ class ContactsController extends AdministrationAppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->Contact->create();
-			if ($this->Contact->save($this->request->data)) {
+			$this->User->create();
+			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		}
-		$users = $this->Contact->User->find('list');
-		$this->set(compact('users'));
+		$groups = $this->User->Group->find('list');
+		$courses = $this->User->Course->find('list');
+		$courses = $this->User->Course->find('list');
+		$messages = $this->User->Message->find('list');
+		$this->set(compact('groups', 'courses', 'courses', 'messages'));
 	}
 
 
@@ -80,22 +82,25 @@ class ContactsController extends AdministrationAppController {
  * @return void
  */
 	public function edit($id = null) {
-		if (!$this->Contact->exists($id)) {
-			throw new NotFoundException(__('Inválido contact'));
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Inválido user'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Contact->save($this->request->data)) {
+			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		} else {
-			$options = array('conditions' => array('Contact.' . $this->Contact->primaryKey => $id));
-			$this->request->data = $this->Contact->find('first', $options);
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			$this->request->data = $this->User->find('first', $options);
 		}
-		$users = $this->Contact->User->find('list');
-		$this->set(compact('users'));
+		$groups = $this->User->Group->find('list');
+		$courses = $this->User->Course->find('list');
+		$courses = $this->User->Course->find('list');
+		$messages = $this->User->Message->find('list');
+		$this->set(compact('groups', 'courses', 'courses', 'messages'));
 	}
 	
 
@@ -107,12 +112,12 @@ class ContactsController extends AdministrationAppController {
  * @return void
  */
 	public function delete($id = null) {
-		$this->Contact->id = $id;
-		if (!$this->Contact->exists()) {
-			throw new NotFoundException(__('Inválido contact'));
+		$this->User->id = $id;
+		if (!$this->User->exists()) {
+			throw new NotFoundException(__('Inválido user'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Contact->delete()) {
+		if ($this->User->delete()) {
 	
 			$this->Session->setFlash(__('Foi excluído.'), 'layout/success');
 		} else {

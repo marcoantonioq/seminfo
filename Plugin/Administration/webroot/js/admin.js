@@ -69,6 +69,14 @@ navigation = function(){
 	    }
 	}
 
+	$("#allrow").click(function(event) {
+		var check = this.checked;
+		var rows = $(":input[id^=row]");
+		rows.each(function(){
+			this.checked = check;
+		});
+	});
+
 	/*$("input[type=checkbox][checked]").each(function(index, element){
 			var id = $(this).attr('id');
 			var row = $("table.rwd-table tbody tr")
@@ -85,10 +93,19 @@ plugins = function()
     );
 }
 
+form = function()
+{
+	// Gerando Barcode js
+    $("form:not(#FilterIndexForm) :input[id$=Cpf]").mask("999.999.999-99");
+    $("form:not(#FilterIndexForm) :input[id$=Phone]").mask("(99) 9999-9999");
+    $("form:not(#FilterIndexForm) :input[id$=Password]").val("");
+}
+
+
 $(document).ready(function(){
 	navigation();
 	plugins();
-	// Admin.form();
+	form();
 	// Admin.extra();	
 });
 

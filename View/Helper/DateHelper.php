@@ -41,5 +41,15 @@ class DateHelper extends AppHelper {
 
 		}
 	}
+
+	public function isToday($date, $date2=null)
+	{
+		$hoje = date('Ymd');
+		$date1 = date('Ymd', strtotime($date));
+
+		if ($date1 == $hoje) {
+			return true;
+		}
+	}
 } 
 ?>
