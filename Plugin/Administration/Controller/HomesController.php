@@ -46,18 +46,14 @@ class HomesController extends AdministrationAppController {
 
 
 /**
- * view method
+ * sobre method
  *
  * @throws NotFoundException
- * @param string $id
+ * @param void
  * @return void
  */
-	public function view($id = null) {
-		if (!$this->Home->exists($id)) {
-			throw new NotFoundException(__('Inválido home'));
-		}
-		$options = array('conditions' => array('Home.' . $this->Home->primaryKey => $id));
-		$this->set('home', $this->Home->find('first', $options));
+	public function sobre() {
+		
 	}
 
 

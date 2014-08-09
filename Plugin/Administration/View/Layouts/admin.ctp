@@ -7,9 +7,6 @@
 	</title>	
 	<?php
 	setlocale(LC_ALL, 'pt_BR.utf-8', 'pt_BR', 'pt-br');
-	date_default_timezone_set('America/Sao_Paulo');
-
-	//echo "Data: ".date('d/m/Y H:i:s');
 	
 	echo $this->Html->meta('icon');
 
@@ -108,9 +105,6 @@
 	</div>
 	
 	<div id="footer">			
-		<div class="marco">
-			Desenvolvido por Marco Antônio Queiroz | TADS turma de 2011 | <a target="_blank" href="https://www.facebook.com/marcoaq7">facebook</a> | <a href="br.linkedin.com/pub/marco-antônio-queiroz/2b/539/4b8/" target="_blank">linkedin</a> | email: marco.aq7@gmail.com
-		</div>
 		<?php echo $this->element('sql_dump'); ?>
 	</div>
 	

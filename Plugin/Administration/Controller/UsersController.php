@@ -114,6 +114,30 @@ class UsersController extends AdministrationAppController {
 
 
 /**
+ * credencar method
+ *
+ * @return void
+ */
+	public function credenciar( ) {
+		if ($this->request->is('post')) {
+            $this->Paginator->settings = $this->User->action($this->request->data);
+            $this->User->recursive = -1;
+            $users = $this->Paginator->paginate();
+            $message = $this->User->credenciar($users);
+            echo $this->Session->setFlash('Credenciamento realizado!'.$message, 'success');
+
+        }
+        else {
+        	$this->redirect(array('action'=>'index'));
+        }
+        
+        $this->redirect(array('action'=>'index'));
+	}
+
+
+
+
+/**
  * view method
  *
  * @throws NotFoundException

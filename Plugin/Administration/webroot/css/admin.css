@@ -76,31 +76,20 @@ p {
 	min-height: 300px;
 }
 
-
-#footer {
-	/* position:absolute; */
-	/* bottom: 0px; */
-	
-}
-.marco {
-	background: #EDEDED;
-	box-shadow: 0 -2px 10px rgba(0,0,0,.1), 0 1px 10px rgba(0,0,0,.2);
-	font-weight: normal;
-	padding: 15px;
-	position: relative;
-}
-
 /*Tables*/
 
 .rwd-table {
   background: #F5F5F5;
-  /* color: #fff; */
   border-radius: .4em;
   overflow: hidden;
   width: 100%;
 }
+
+.rwd-table thead tr{
+	border-bottom: 1px solid #c4c4c4;;
+}
+
 .rwd-table tr {
-  border-color: #46627f;
   cursor: pointer;
 }
 
@@ -138,7 +127,11 @@ p {
   border-bottom: 1px solid #ddd;
 }
 
-.rwd-table tr:hover {
+.rwd-table tr:hover{
+  background-color: #F0F2F3;
+}
+
+.rwd-table .active, .rwd-table .active:hover {
   background-color: #e8eaeb;
 }
 

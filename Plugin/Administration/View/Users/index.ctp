@@ -11,19 +11,13 @@
 			);
 
 		?> 
-    </div>
-</div>
-
-
-<div id="rowmenus" class="row-fluid">
-	<div class="span12">
-		<div class="actions well">
-		    <h3>Menu</h3>
-			    <?php echo $this->Html->link('Novo '.__('user'),
+		<div id="rowmenus">
+		<hr>
+				<?php echo $this->Html->link('Novo '.__('user'),
 						array('controller' => 'users', 'action' => 'add'),
 						array('class'=> 'btn btn-block btn-success')
 					);
-			    ?> 
+				?> 
 
 				<?php 
 				echo $this->Html->link(__('Contacts'),
@@ -39,7 +33,7 @@
 				);
 				?>
 
-				
+
 
 				<?php 
 				echo $this->Html->link(__('Groups'),
@@ -47,10 +41,12 @@
 					array('class'=> 'btn btn-block')
 				);
 				?>
-			
+
 		</div>
-	</div>
+    </div>
 </div>
+
+
 
 <div class="row-fluid">
 	<div class="span12">		
@@ -81,7 +77,7 @@
 			
 	 ?>
 	<div class="tabela">
-		<table id="tableid1" class='rwd-table'>
+		<table class='rwd-table'>
 		<thead>
 			<tr>
 				<th>
@@ -416,7 +412,16 @@
 		echo  $this->Form->button('Etiquetas', array(
 			'class'=>'btn',
 			'style'=>'margin-bottom: 10px;',
-			'formaction'=>'users/labels',
+			'formaction'=>'/seminfo/administration/users/labels',
+		)); 
+	?>
+
+
+	<?php 
+		echo  $this->Form->button('Credenciar', array(
+			'class'=>'btn',
+			'style'=>'margin-bottom: 10px;',
+			'formaction'=>'/seminfo/administration/users/credenciar',
 		)); 
 	?>
 

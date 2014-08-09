@@ -43,19 +43,25 @@ class HoldingsController extends AdministrationAppController {
 
 
 /**
- * index method
+ * presenca method
  *
  * @return void
  */
-	public function presenca() {
+	public function presenca($id = null, $action = null) {
         if ($this->request->is('ajax')) {
-			$this->set('var', $this->Holding->participacao(1, $this->request->params['pass'][0]));
+			$this->set('var', $this->Holding->participacao($id, $action));
         	$this->render("Holdings/ajax/presenca");
         	return true;
         }
+		if($this->request->is('post')){
+			$message = "";
+			foreach ($this->request->data['row'] as $id => $value) {
+				$message .= $this->set('var', $this->Holding->participacao($id, 'sum'));
+			}
+			echo $this->Session->setFlash('Presença confirmada!', 'success');
+			// pr($this->request->data); exit;
+		}
         $this->redirect($this->referer());
-
-
 	}
 
 

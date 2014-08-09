@@ -73,13 +73,37 @@ class Holding extends AdministrationAppModel {
  */
 
 	public function participacao($id, $action = ""){
-		$participacao = $this->read(array('id', 'presenca'), $id);
-		switch ($action) {
-			case 'sum': $participacao['Holding']['presenca'] += 1;
-				break;
-			case 'sub': $participacao['Holding']['presenca'] -= 1;
+		
+		$participacao = $this->read(array('id', 'presenca', 'date_presenca'), $id);
+		
+		$hoje = date('Ymd');
+		$date_presenca = date('Ymd', strtotime($participacao['Holding']['date_presenca']));
+
+		if( $hoje == $date_presenca )
+		{
+			return "<span class=\"red\">Esta participação já possui presença hoje: </span>".$participacao['Holding']['presenca'];
+		} 
+		else 
+		{
+			$participacao['Holding']['date_presenca'] = date("Y-m-d h:m:s");
+			if($action == 'sum') $participacao['Holding']['presenca'] += 1;
+			if($action == 'sub') $participacao['Holding']['presenca'] -= 1;
+			$this->save($participacao);
+			return $participacao['Holding']['presenca'];
 		}
-		$this->save($participacao);
-		return $participacao['Holding']['presenca'];
+
+	}
+
+	/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+
+	public function status($id, $status){
+		$status = $this->read(array('id', 'status'), $id);
+		$status['Holding']['status'] = ($status['Holding']['status'] == 0) ? 0 : 1;
+		$this->save($status);
+		return $status['Holding']['status'];
 	}
 }

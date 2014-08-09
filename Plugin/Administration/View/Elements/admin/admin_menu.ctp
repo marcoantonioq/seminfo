@@ -57,7 +57,12 @@
 		<li>
 			<?php 
 				echo $this->Html->link(
-				'Configurações', '#');
+					'Sobre', 
+					array(
+						'controller'=>'homes',
+						'action'=>'sobre'
+					)
+				);
 				 ?>
 		</li>
 	</ul>

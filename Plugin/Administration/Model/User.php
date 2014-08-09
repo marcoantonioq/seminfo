@@ -238,4 +238,46 @@ class User extends AdministrationAppModel {
     	
     	return false;
     }
+
+/**
+ * credenciar method
+ *
+ * @var string
+ */
+
+	public function credenciar($users)
+	{
+		$message = "";		
+		$status = true;
+		// pr($users); 
+		foreach ($users as $user) 
+		{
+			$participacoes = $this->Holding->find('all',array(
+				'recursive'=>2,
+				// 'fields'=>array('id', 'credenciado', 'program_id'),
+				'conditions'=> array(
+					"Holding.user_id"=>$user['User']['id']
+				)
+			));
+			
+			foreach ($participacoes as $participacao) 
+			{
+				$participacao['Holding']['credenciado'] = 1;
+				if (!$this->Holding->save($participacao)) 
+					$status = false;
+			}
+			if($status)
+			{
+				$message .="<br>{$user['User']['name']}, foi credenciado com sucesso!";
+			}
+			else 
+			{
+				$message .="<br>Erro ao credenciar {$user['User']['name']}!";				
+			}
+		}
+
+		return $message;
+
+	}
+
 }

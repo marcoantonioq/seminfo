@@ -4,130 +4,115 @@
 */
 
 
-window.onload = function(){
-	
+/**
+ * Navigation
+ *
+ * @return void
+ */
 
-	// Filtros Controller/index
-	var filtro = document.getElementById('filter');
-	if(filtro){		
-		display(filtro);
-		var ths = document.getElementsByTagName('th');
-		if( ths ){
-			ths[0].onclick = function(){
-				display(filtro);
-				document.getElementById("FilterId").focus();
-			}
-		}
+
+navigation = function(){
+	$('.close').click(function(){
+		$('.alert-message').fadeToggle();
+		return false;
+	});
+
+	// tables
+	$('#filter').hide();
+	$('table th:first').click(function(){
+		$('#filter').fadeToggle();
+		$('#FilterId').focus();
+		return false;
+	});
+
+	$('#rowmenus').hide();
+	$('#btnmenu').click(function(){
+		$('#rowmenus').fadeToggle();
+		return false;
+	});
+
+
+	function filterTable(){
+		return true;
 	}
 
-	// Mensagens (fechar messagem)
-	var message = document.getElementsByClassName('alert-message')[0];
-	if (message) {
-		var close = document.getElementsByClassName('close')[0];
-		close.onclick = function(){
-			return display(message);
-		}
-	};
+	$("table.rwd-table tbody tr")
+		// row checked
+		.each(ativaRow)
+		.click(function() {
+		    var checkbox = $(this).find("input[id^=row]");
+		    checkbox.trigger('click');
+		    if(checkbox[1].checked){
+				$(this).addClass('active');
+		    }
+		    else{
+		    	$(this).removeClass('active');
+		    }
+		})
+		.dblclick(function(){
+		    var view = $(this).find("td:last a[class=view]");
+		    view[0].click();
+		})
+		.find("input[id^=row]")
+			.click(function(e){
+				e.stopPropagation();
+			});
 
-	// Menu index hidden
-	if(document.getElementById('btnmenu')){
-		var btnmenu = document.getElementById('btnmenu');
-		var rowmenus = document.getElementById('rowmenus');
-		display(rowmenus);
-		btnmenu.onclick = function(){			
-			return display(rowmenus);
-		}
+
+	function ativaRow( ){
+		var checkbox = $(this).find("input[id^=row]");
+		if(checkbox[1].checked){
+			$(this).addClass('active');
+	    }
+	    else{
+	    	$(this).removeClass('active');
+	    }
 	}
 
-	// eventos de linhas tabelas
-	selectRow();
+	/*$("input[type=checkbox][checked]").each(function(index, element){
+			var id = $(this).attr('id');
+			var row = $("table.rwd-table tbody tr")
+				.find("input[id="+id+"]");
+	}).this.append("<h1 class='red'>Marco</h1>");*/
 }
 
-window.onkeydown = function (e) {
 
-	// bloquear ctrl + j, para o leitor de codigo de bara
-	if (e.ctrlKey && e.keyCode==74){    //Evita teclar ctrl + j  
+plugins = function()
+{
+	// Gerando Barcode js
+    $("#barcode").EAN13(
+    	$('#barcode').attr('value')
+    );
+}
+
+$(document).ready(function(){
+	navigation();
+	plugins();
+	// Admin.form();
+	// Admin.extra();	
+});
+
+
+$(window).keydown(function(e){
+	// bloquear ctrl + j, 
+	// para o leitor de codigo de barras
+	if (e.ctrlKey && e.keyCode==74){
 	    return false;
 	}
 
 	// Decla ctrl + f: filtro avançado
-	if (e.ctrlKey && e.keyCode == 70) {
-		display(document.getElementById('filter'));
-		document.getElementById("FilterId").focus();
+	if (e.ctrlKey && e.keyCode == 70) 
+	{
+		$("#filter").show(1000);
+		$("#FilterId").focus();
 		return false;
 	};
 
+	// F5: reload page
 	if (e.keyCode == 116) 
 	{
-		// var r = confirm("Confirmar reenvio do formulário???\nPode causar ERROR CAKE SECURITY\n\n A página que está atualizando usou as informação inseridas. Esta ação por padrão e bloqueada pelo cake security. Deseja continuar?");
-		// if(r == false){
-		// 	e.keyCode = 0;
-		// 	e.returnValue = false;
-		// 	return false;
-		// }
 		location.reload(true);
 		return false;
 	}
-
-}
-
-// Mostrar ou ocultar campos
-function display(element){
-    if(element.style.display == "none"){  
-        element.style.display = ''; // DOM HTML
-        // element.setAttribute('style', ''); // DOM CORE
-    }else{  
-        element.style.display = 'none';  
-    }
-    return false;
-}
-
-
-function selectRow() {
-	if (document.getElementById("tableid1")) 
-	{
-	    var table = document.getElementById("tableid1");
-	    var rows = table.rows;
-
-	    var checkbox=table.getElementsByClassName('rowfilter');
-	    for (var i = 0; i < checkbox.length; i++) 
-	    {
-	    	checkbox[i].onclick = function(e)
-	    	{
-				var evt = e ? e : window.event;
-	        	if(evt.stopPropagation)
-	        	{
-	        		evt.stopPropagation();
-	        	} else 
-	        	{
-	        		evt.cancelBubble = true;
-	        	}
-	        	return true;
-	        }
-    	};
-
-	    for (var i = 0; i < rows.length; i++) 
-	    {
-	        rows[i].ondblclick = (function() 
-	        {
-	            return function() 
-	            {
-	            	var action = this.cells[this.cells.length-1];
-	            	var view = action.getElementsByClassName('view').item(0);
-	            	view.click();
-	            }    
-	        })(i);
-
-	        rows[i].onclick = (function() 
-	        {
-	            return function(e) 
-	            {
-	            	var action = this.cells[0];
-	            	var checkbox = action.getElementsByClassName('rowfilter').item(0);
-	            	checkbox.click();
-	            }    
-	        })(i);
-	    }
-		
-	};
-}
+	
+})

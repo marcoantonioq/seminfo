@@ -11,14 +11,8 @@
 			);
 
 		?> 
-    </div>
-</div>
-
-
-<div id="rowmenus" class="row-fluid">
-	<div class="span12">
-		<div class="actions well">
-		    <h3>Menu</h3>
+		<div id="rowmenus">
+		<hr>
 			    <?php echo $this->Html->link('Nova '.__('holding'),
 						array('controller' => 'holdings', 'action' => 'add'),
 						array('class'=> 'btn btn-block btn-success')
@@ -194,7 +188,11 @@
 		</td>
 
 		<td data-th="<?= ucfirst(__('status'));?>" >
-			<?php echo h($holding['Holding']['status']); ?>
+			<?php
+				echo ($holding['Holding']['status'] == 1 ) ?
+				"<span class='green btn'>:)</span>":
+				"<span class='red btn'>:(</span>";
+			?>			
 			&nbsp;
 		</td>
 
@@ -215,21 +213,21 @@
 
 		<td data-th="<?= ucfirst(__('presenca'));?>"  style="text-align: center;">
 
-			<div id="presenca" style="text-align: center;">
+			<div id="presenca<?=$holding['Holding']['id'];?>" style="text-align: center;">
 				<?php echo h($holding['Holding']['presenca']); ?>				
 			</div>
 			
 			<?php 
 				echo $this->Html->link("-", "#", 
 					array(
-						'id'=>'menos', 
+						'id'=>'menos'.$holding['Holding']['id'], 
 						'class'=>'red btn bold'
 					)
 				); 
 
 				echo $this->Html->link("+", "#", 
 					array(
-						'id'=>'mais', 
+						'id'=>'mais'.$holding['Holding']['id'], 
 						'class'=>'green btn bold'
 					)
 				); 
@@ -238,12 +236,12 @@
 
 			<script class="javascript">
 				$(document).ready(function() {	
-					$("#menos").click(function(){	
+					$("#menos<?=$holding['Holding']['id'];?>").click(function(){	
 						$.get( 
-							"https://localhost/urutai/seminfo/administration/holdings/presenca/sub",
+							"https://localhost/seminfo/administration/holdings/presenca/<?=$holding['Holding']['id'];?>/sub",
 							null, 
 							function(data) {	
-								$("#presenca").html(data); 
+								$("#presenca<?=$holding['Holding']['id'];?>").html(data); 
 							}
 						);
 						return false;
@@ -251,12 +249,12 @@
 				});
 
 				$(document).ready(function() {	
-					$("#mais").click(function(){	
+					$("#mais<?=$holding['Holding']['id'];?>").click(function(){	
 						$.get( 
-							"https://localhost/urutai/seminfo/administration/holdings/presenca/sum",
+							"https://localhost/seminfo/administration/holdings/presenca/<?=$holding['Holding']['id'];?>/sum",
 							null, 
 							function(data) {	
-								$("#presenca").html(data); 
+								$("#presenca<?=$holding['Holding']['id'];?>").html(data); 
 							}
 						);
 						return false;
@@ -339,6 +337,17 @@
 		'style'=>'margin-bottom: 10px;'
 		)); 
 	?>
+
+
+	<?php 
+		echo  $this->Form->button('Presença', array(
+		'class'=>'btn',
+		'style'=>'margin-bottom: 10px;',
+		'formaction'=>'/seminfo/administration/holdings/presenca',
+		)); 
+	?>
+
+
 
 	<?php echo $this->Form->end(); ?>
 	<?php echo $this->element('layout/pagination'); ?>

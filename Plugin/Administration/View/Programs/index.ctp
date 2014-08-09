@@ -11,14 +11,8 @@
 			);
 
 		?> 
-    </div>
-</div>
-
-
-<div id="rowmenus" class="row-fluid">
-	<div class="span12">
-		<div class="actions well">
-		    <h3>Menu</h3>
+		<div id="rowmenus">
+		<hr>
 			    <?php echo $this->Html->link('Novo '.__('program'),
 						array('controller' => 'programs', 'action' => 'add'),
 						array('class'=> 'btn btn-block btn-success')

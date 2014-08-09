@@ -5,7 +5,6 @@
 	    <dl>
 			<dt>
                 <?php echo ucfirst(__('id')); ?>
-                <input type="hidden" value="<?=str_pad($user['User']['id'], 13, '0', STR_PAD_LEFT);?>" id="id">
             </dt>
             <dd>
                 <?php echo h($user['User']['id']); ?>
@@ -103,11 +102,7 @@
             </dd>
             <dt>Código de barra</dt>
             <dd>
-                <canvas id="ean" width="200" height="100"></canvas>
-                <script type="text/javascript">
-                    var id = document.getElementById('id').value;
-                    $("#ean").EAN13(id);
-                </script>
+                <canvas id="barcode" value="<?=str_pad($user['User']['id'], 13, '0', STR_PAD_LEFT);?>" width="200" height="100"></canvas>
             </dd>
 		</dl>
 	</div>
