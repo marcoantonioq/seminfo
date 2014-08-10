@@ -127,13 +127,6 @@ class User extends AdministrationAppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'Courses' => array(
-			'className' => 'Courses',
-			'foreignKey' => 'courses_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		)
 	);
 

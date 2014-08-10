@@ -191,13 +191,7 @@
 						echo $this->Paginator->sort('created', ucfirst(__('created'))); 
 					?>				
 				</th>
-												
-				<th>
-					<?php 
-						echo $this->Paginator->sort('courses_id', ucfirst(__('courses_id'))); 
-					?>				
-				</th>
-				
+									
 				<th class="actions">
 					
 					<?php echo __('Ações'); ?>
@@ -243,8 +237,6 @@
 					<?php echo $this->Filter->conditions('updated'); ?>
 									
 					<?php echo $this->Filter->conditions('created'); ?>
-									
-					<?php echo $this->Filter->conditions('courses_id'); ?>
 								
 				<td></td>
 			</tr>
@@ -343,10 +335,6 @@
 		<td data-th="<?= ucfirst(__('created'));?>" >
 			<?php echo h($user['User']['created']); ?>
 			&nbsp;
-		</td>
-
-		<td data-th="<?= ucfirst(__('courses_id'));?>" >
-			<?php echo $this->Html->link($user['Courses']['name'], array('controller' => 'courses', 'action' => 'view', $user['Courses']['id'])); ?>
 		</td>
 
 			<td data-th='Ações' class="actions">

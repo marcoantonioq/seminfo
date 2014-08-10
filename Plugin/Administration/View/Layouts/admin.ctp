@@ -13,7 +13,6 @@
 	echo $this->Html->css(array(
 		'/bootstrap/css/bootstrap.min.css',
 		'/bootstrap/css/bootstrap-responsive.min.css',
-		'Administration.icon',
 		'Administration.admin',
 		"Administration.icons",
 	));

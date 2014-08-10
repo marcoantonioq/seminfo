@@ -82,7 +82,7 @@ class AppController extends Controller {
             $this->layout='ajax';
         }
         
-        $this->Auth->allow();
+        // $this->Auth->allow();
         // $this->Auth->deny();
 
     }

@@ -11,6 +11,7 @@ class UsersController extends AppController {
 	public function beforeFilter(){
 		parent::beforeFilter();
 		$this->set('title_for_layout', __('Users'));
+		$this->Auth->allow('login', 'logout', 'getseminfo2013', 'add');
 	}
 
 /**

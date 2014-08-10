@@ -89,7 +89,6 @@
 		<th><?php echo __('holding_count'); ?></th>
 		<th><?php echo __('updated'); ?></th>
 		<th><?php echo __('created'); ?></th>
-		<th><?php echo __('courses_id'); ?></th>
 			<th data-th="Ações" class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		<?php foreach ($group['User'] as $user): ?>
@@ -112,7 +111,6 @@
 			<td data-th=<?= ucfirst(__('holding_count')) ?> ><?php echo $user['holding_count']; ?></td>
 			<td data-th=<?= ucfirst(__('updated')) ?> ><?php echo $user['updated']; ?></td>
 			<td data-th=<?= ucfirst(__('created')) ?> ><?php echo $user['created']; ?></td>
-			<td data-th=<?= ucfirst(__('courses_id')) ?> ><?php echo $user['courses_id']; ?></td>
 			<td data-th="Ações" class="actions">
 
 			<?php 

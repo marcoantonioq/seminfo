@@ -6,9 +6,9 @@
 		<?php echo $this -> Html -> charset('UTF-8'); ?>
 		<title><?php echo $cakeDescription ?>:
 			<?php echo $title_for_layout; ?></title>
-		<?php echo $this -> Html -> meta('icon');
-		setlocale(LC_ALL, 'pt_BR.utf-8', 'pt_BR', 'pt-br', 'ptb', 'portuguese-brazil', 'bra', 'brazil');
-		date_default_timezone_set('America/Sao_Paulo');
+		<?php 
+		echo $this -> Html -> meta('icon');
+
 		echo $this -> Html -> css('users');
 
 		echo $this -> fetch('meta');

@@ -1,3 +1,7 @@
+<h2>Cadastro do usuário</h2>
+
+
+
 <div class="row-fluid">
 
 
@@ -32,7 +36,7 @@
 				'type'=>'select',
 				'options'=>array(
 					'Masculino'=>'Masculino',
-					'Femino'=>'Femino'
+					'Feminino'=>'Feminino'
 				)
 			));
 
@@ -74,10 +78,6 @@
 
 			echo $this->Form->input('holding_count', array(
 				'label'=>ucfirst(__('holding_count')),
-			));
-
-			echo $this->Form->input('courses_id', array(
-				'label'=>ucfirst(__('courses_id')),
 			));
 
 			echo $this->Form->input('Message', array(

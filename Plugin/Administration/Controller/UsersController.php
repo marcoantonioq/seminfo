@@ -12,7 +12,7 @@ class UsersController extends AdministrationAppController {
 	public function beforeFilter(){
 		parent::beforeFilter();
 		$this->set('title_for_layout', __('Users'));
-		$this->Auth->allow('login', 'logout');
+		$this->Auth->allow('login', 'logout', 'getseminfo2013');
 	}
 
 	public $components = array('Mpdf'); 
@@ -227,4 +227,40 @@ class UsersController extends AdministrationAppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+
+/**
+ * getUser Seminfo 2013 method 
+ *
+ * @throws NotFoundException
+ * @param string $cpf
+ * @return User
+ */
+
+	public function getseminfo2013($cpf) {
+		// if ($this->request->is('ajax')) {
+			$json = null;
+			$user = $this->User->query("SELECT * FROM ifgoiano_seminfo2013.users WHERE cpf = $cpf LIMIT 1;");
+			if(!empty($user[0]['users']))
+			{
+				function encode_items(&$item, $key){
+				    $item = utf8_encode($item);
+				}
+				$user = $user[0]['users'];
+				array_walk_recursive($user, 'encode_items');
+				$json = json_encode($user);
+				// echo json_last_error();
+			}
+
+			$this->set(compact('json'));
+			$this->layout = "ajax";
+			$this->render('Users/ajax/getseminfo2013');
+			return true;
+		// } else {
+			// $this->redirect($this->referer());			
+		// }
+
+	}
+
+
 }

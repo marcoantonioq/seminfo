@@ -75,10 +75,6 @@
 				'label'=>ucfirst(__('holding_count')),
 			));
 
-			echo $this->Form->input('courses_id', array(
-				'label'=>ucfirst(__('courses_id')),
-			));
-
 			echo $this->Form->input('Message', array(
 				'label'=>ucfirst(__('Message')),
 			));			

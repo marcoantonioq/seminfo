@@ -19,7 +19,15 @@ class UsersControllerTest extends ControllerTestCase {
 		'app.courses',
 		'app.contact',
 		'app.content',
+		'app.type',
 		'app.holding',
+		'app.program',
+		'app.event',
+		'app.sponsorship',
+		'app.events_sponsorship',
+		'app.typeprogram',
+		'app.speaker',
+		'app.programs_speaker',
 		'app.message',
 		'app.users_message'
 	);
