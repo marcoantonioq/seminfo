@@ -19,15 +19,6 @@
 					);
 			    ?> 
 		    
-
-					<?php 
-					echo $this->Html->link(__('Events'),
-						array('controller' => 'events', 'action' => 'index'),
-						array('class'=> 'btn btn-block')
-					);
-					?>
-
-
 					<?php 
 					echo $this->Html->link(__('Typeprograms'),
 						array('controller' => 'typeprograms', 'action' => 'index'),

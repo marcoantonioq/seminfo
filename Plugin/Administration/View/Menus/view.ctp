@@ -94,11 +94,11 @@
 <?php if (!empty($menu['Link'])): ?>
 
 		<h3>
-			<a href="#" onclick="display(document.getElementById('Link')); return false;">
+			<a href="#" id="viewtable" >
 				<?php echo __('Links'); ?>			</a>
 		</h3>
 		
-	<div class="tabela " id="Link" style="display: none;">
+	<div class="tabela" >
 	<table id="tableid1" class='rwd-table'>
 		<tr>
 			<th><?php echo __('id'); ?></th>

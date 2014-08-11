@@ -156,11 +156,11 @@
 <?php if (!empty($program['Speaker'])): ?>
 
 		<h3>
-			<a href="#" onclick="display(document.getElementById('Speaker')); return false;">
+			<a href="#" id="viewtable" >
 				<?php echo __('Speakers'); ?>			</a>
 		</h3>
 		
-	<div class="tabela " id="Speaker" style="display: none;">
+	<div class="tabela" >
 	<table id="tableid2" class='rwd-table'>
 		<tr>
 			<th><?php echo __('id'); ?></th>

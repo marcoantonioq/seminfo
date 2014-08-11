@@ -104,11 +104,11 @@
 <?php if (!empty($event['Program'])): ?>
 
 		<h3>
-			<a href="#" onclick="display(document.getElementById('Program')); return false;">
+			<a href="#" id="viewtable" >
 				<?php echo __('Programs'); ?>			</a>
 		</h3>
 		
-	<div class="tabela " id="Program" style="display: none;">
+	<div class="tabela" >
 	<table id="tableid1" class='rwd-table'>
 		<tr>
 			<th><?php echo __('id'); ?></th>
@@ -207,11 +207,11 @@
 <?php if (!empty($event['Sponsorship'])): ?>
 
 		<h3>
-			<a href="#" onclick="display(document.getElementById('Sponsorship')); return false;">
+			<a href="#" id="viewtable" >
 				<?php echo __('Sponsorships'); ?>			</a>
 		</h3>
 		
-	<div class="tabela " id="Sponsorship" style="display: none;">
+	<div class="tabela" >
 	<table id="tableid2" class='rwd-table'>
 		<tr>
 			<th><?php echo __('id'); ?></th>

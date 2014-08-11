@@ -95,7 +95,7 @@
             </dd>
             <dt><?php echo ucfirst(__('Courses')); ?></dt>
             <dd>
-                <?php echo $this->Html->link($user['Courses']['name'], array('controller' => 'courses', 'action' => 'view', $user['Courses']['id'])); ?>
+                <?php echo $this->Html->link($user['Course']['name'], array('controller' => 'courses', 'action' => 'view', $user['Course']['id'])); ?>
                 &nbsp;
             </dd>
 		</dl>
@@ -134,11 +134,11 @@
 <?php if (!empty($user['Contact'])): ?>
 
 		<h3>
-			<a href="#" onclick="display(document.getElementById('Contact')); return false;">
+			<a href="#" id="viewtable" >
 				<?php echo __('Contacts'); ?>			</a>
 		</h3>
 		
-	<div class="tabela " id="Contact" style="display: none;">
+	<div class="tabela" >
 	<table class='rwd-table'>
 		<tr>
 			<th><?php echo __('id'); ?></th>
@@ -215,11 +215,11 @@
 <?php if (!empty($user['Content'])): ?>
 
 		<h3>
-			<a href="#" onclick="display(document.getElementById('Content')); return false;">
+			<a href="#" id="viewtable" >
 				<?php echo __('Contents'); ?>			</a>
 		</h3>
 		
-	<div class="tabela " id="Content" style="display: none;">
+	<div class="tabela" >
 	<table class='rwd-table'>
 		<tr>
 			<th><?php echo __('id'); ?></th>
@@ -294,11 +294,11 @@
 <?php if (!empty($user['Holding'])): ?>
 
 		<h3>
-			<a href="#" onclick="display(document.getElementById('Holding')); return false;">
+			<a href="#" id="viewtable" >
 				<?php echo __('Holdings'); ?>			</a>
 		</h3>
 		
-	<div class="tabela " id="Holding" style="display: none;">
+	<div class="tabela" >
 	<table class='rwd-table'>
 		<tr>
 			<th><?php echo __('id'); ?></th>
@@ -371,11 +371,11 @@
 <?php if (!empty($user['Message'])): ?>
 
 		<h3>
-			<a href="#" onclick="display(document.getElementById('Message')); return false;">
+			<a href="#" id="viewtable" >
 				<?php echo __('Messages'); ?>			</a>
 		</h3>
 		
-	<div class="tabela " id="Message" style="display: none;">
+	<div class="tabela" >
 	<table class='rwd-table'>
 		<tr>
 			<th><?php echo __('id'); ?></th>

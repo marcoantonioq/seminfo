@@ -79,11 +79,11 @@
 <?php if (!empty($sponsorship['Event'])): ?>
 
 		<h3>
-			<a href="#" onclick="display(document.getElementById('Event')); return false;">
+			<a href="#" id="viewtable" >
 				<?php echo __('Events'); ?>			</a>
 		</h3>
 		
-	<div class="tabela " id="Event" style="display: none;">
+	<div class="tabela" >
 	<table id="tableid1" class='rwd-table'>
 		<tr>
 			<th><?php echo __('id'); ?></th>

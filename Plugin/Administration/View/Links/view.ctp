@@ -119,11 +119,11 @@
 <?php if (!empty($link['ChildLink'])): ?>
 
 		<h3>
-			<a href="#" onclick="display(document.getElementById('ChildLink')); return false;">
+			<a href="#" id="viewtable" >
 				<?php echo __('Links'); ?>			</a>
 		</h3>
 		
-	<div class="tabela " id="ChildLink" style="display: none;">
+	<div class="tabela" >
 	<table id="tableid1" class='rwd-table'>
 		<tr>
 			<th><?php echo __('id'); ?></th>

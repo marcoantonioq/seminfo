@@ -79,7 +79,7 @@
 					?>				
 				</th>
 												
-				<th>
+				<th class="minimizar">
 					<?php 
 						echo $this->Paginator->sort('alias', ucfirst(__('alias'))); 
 					?>				

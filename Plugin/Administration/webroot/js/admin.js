@@ -17,7 +17,7 @@ navigation = function(){
 		return false;
 	});
 
-	// tables
+	// filter
 	$('#filter').hide();
 	$('table th:first').click(function(){
 		$('#filter').fadeToggle();
@@ -25,50 +25,99 @@ navigation = function(){
 		return false;
 	});
 
+	// menu
 	$('#rowmenus').hide();
 	$('#btnmenu').click(function(){
 		$('#rowmenus').fadeToggle();
 		return false;
 	});
 
+	/*
+		Table.rwd-table
+	*/
 
-	function filterTable(){
-		return true;
-	}
+
+	// Delegação de tarefas
+
+	// mostra coluna
+	$("body").delegate('a.columnfilter', 'click', function(event) {
+		$(this).each(function(index){
+			column = $(this).attr('value');
+
+			$("table.rwd-table thead th:eq('"+column+"')").show();
+			$("table.rwd-table thead td:eq('"+column+"')").show();
+			$("table.rwd-table tbody td:eq('"+column+"')").show();
+			// $("table.rwd-table thead th:contains('"+column+"')").append('Some text');
+			$(this).hide();
+		})
+		
+	});
+
+	// variavel tabela
+	var table = $("table.rwd-table");
+		table
+		.find(" thead tr th")
+			.each(function(index, el) {
+
+				var th = $(this);
+
+				$(this).find('a').prepend("<span class='icomoon-icon-checkbox'><span>");
+				table.before('<a value="'+index+'" class="columnfilter label"> + '+$(this).text()+'</a> ');
+				$('a.columnfilter').hide();
+
+				$(this).find('span').click(function(event){
+					$("a.columnfilter[value="+index+"]").show();
+					th.hide();
+					table.find('thead tr td:eq('+index+')').hide();
+					table.find('tbody tr td:eq('+index+')').hide();
+
+					return false;
+					event.stopPropagation();
+				});
+			});
+
+
 
 	$("table.rwd-table tbody tr")
-		// row checked
-		.each(ativaRow)
 		.click(function() {
 		    var checkbox = $(this).find("input[id^=row]");
 		    checkbox.trigger('click');
-		    if(checkbox[1].checked){
-				$(this).addClass('active');
-		    }
-		    else{
-		    	$(this).removeClass('active');
-		    }
 		})
 		.dblclick(function(){
 		    var view = $(this).find("td:last a[class=view]");
 		    view[0].click();
 		})
-		.find("input[id^=row]")
-			.click(function(e){
+		.find("td").each(function(index, el) {
+			var data = $(this).attr('data-th');
+			$(this).attr('title', data);
+		})
+		.find("input[id^=row]").each(function(index, el) {				
+			var input = $(this);
+			var tr = input.parents('tr');
+			ativar(tr, input[0].checked);
+			$(this).click(function(e){
+				ativar(tr, input[0].checked);
 				e.stopPropagation();
 			});
+		});
 
-
-	function ativaRow( ){
-		var checkbox = $(this).find("input[id^=row]");
-		if(checkbox[1].checked){
-			$(this).addClass('active');
+	function ativar(elemento, check){
+		if(check){
+			elemento.addClass('active');
 	    }
 	    else{
-	    	$(this).removeClass('active');
+	    	elemento.removeClass('active');
 	    }
 	}
 
+	// função para manter fadetaglle antigos na view (codigo js em html)
+	function display(alement){
+		alert(element);
+		// element.show();
+		return false;
+	}
+
+	// Marcar todas celulas
 	$("#allrow").click(function(event) {
 		var check = this.checked;
 		var rows = $(":input[id^=row]");
@@ -77,11 +126,6 @@ navigation = function(){
 		});
 	});
 
-	/*$("input[type=checkbox][checked]").each(function(index, element){
-			var id = $(this).attr('id');
-			var row = $("table.rwd-table tbody tr")
-				.find("input[id="+id+"]");
-	}).this.append("<h1 class='red'>Marco</h1>");*/
 }
 
 

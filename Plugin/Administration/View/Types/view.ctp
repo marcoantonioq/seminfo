@@ -69,11 +69,11 @@
 <?php if (!empty($type['Content'])): ?>
 
 		<h3>
-			<a href="#" onclick="display(document.getElementById('Content')); return false;">
+			<a href="#" id="viewtable" >
 				<?php echo __('Contents'); ?>			</a>
 		</h3>
 		
-	<div class="tabela " id="Content" style="display: none;">
+	<div class="tabela" >
 	<table id="tableid1" class='rwd-table'>
 		<tr>
 			<th><?php echo __('id'); ?></th>

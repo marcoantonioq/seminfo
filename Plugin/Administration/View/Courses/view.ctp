@@ -79,11 +79,11 @@
 <?php if (!empty($course['User'])): ?>
 
 		<h3>
-			<a href="#" onclick="display(document.getElementById('User')); return false;">
+			<a href="#" id="viewtable" >
 				<?php echo __('Users'); ?>			</a>
 		</h3>
 		
-	<div class="tabela " id="User" style="display: none;">
+	<div class="tabela" >
 	<table id="tableid1" class='rwd-table'>
 		<tr>
 			<th><?php echo __('id'); ?></th>
