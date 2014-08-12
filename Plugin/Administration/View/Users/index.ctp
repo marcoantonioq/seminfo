@@ -1,5 +1,5 @@
 
-<div class="row-fluid">
+<div class="row-fluid no-print">
     <div class="span12 well">
 		<?php echo $this->Html->link('Novo '.__('user'),
 				array('controller' => 'users', 'action' => 'add'),

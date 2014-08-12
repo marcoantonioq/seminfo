@@ -47,11 +47,12 @@
 			)
 		);?>
 	</div>
+	
 	<div id="container">
 		 
 		<div id="content">
-			<?php echo $this->element('layout/session-user'); ?>
-			<div class="row-fluid">
+			<div class="row-fluid no-print">
+				<?php echo $this->element('layout/session-user'); ?>
 				<legend>
 					<?php echo __($title_for_layout); ?>
 				</legend>
@@ -93,12 +94,13 @@
 				    }
 				 ?>
 				 <?php echo $this->element('admin/breadcrumb') ?>
+				<?php echo $this->Session->flash(); ?>
+				<?php echo $this->Session->flash('auth'); ?>
 			</div>
 
-			<?php echo $this->Session->flash(); ?>
-			<?php echo $this->Session->flash('auth'); ?>
-
-			<?php echo $this->fetch('content'); ?>
+			<div class="print">
+				<?php echo $this->fetch('content'); ?>
+			</div>
 		</div>
 
 
@@ -108,5 +110,6 @@
 		<?php echo $this->element('sql_dump'); ?>
 	</div>
 	
+	<div id="print">&nbsp; </div>	
 </body>
 </html>

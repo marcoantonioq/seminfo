@@ -562,3 +562,103 @@ span.rednum {
 .orange{color:#FF7A00;}
 .red{color:red;}
 .green{color:green;}
+
+@media print {
+	* {
+		background:transparent !important;
+		color:#000 !important;
+		text-shadow:none !important;
+		filter:none !important;
+		-ms-filter:none !important;
+	}
+	 
+	body {
+		margin:0;
+		padding:0;
+		line-height: 1.4em;
+		font: 10pt Georgia, "Times New Roman", Times, serif;
+		color: #000;
+	}
+ 
+	h1 {
+	font-size: 24pt;
+	}
+	 
+	h2 {
+	font-size: 18pt;
+	}
+	 
+	h3 {
+	font-size: 14pt;
+	}
+
+	a, a:visited {
+	text-decoration: underline;
+	}
+
+	a:link:after, a:visited:after {
+	content: " (" attr(href) ") ";
+	}
+
+	a:after, a[href^="javascript:"]:after, a[href^="#"]:after { 
+	content: ""; 
+	}
+	p a {
+	word-wrap: break-word;
+	}
+
+	p {
+	widows: 3;
+	}
+
+	p {
+	orphans: 3;
+	}
+
+	.page-break { 
+	page-break-before: always; 
+	}
+
+	@page {
+		margin: 0.5cm;
+	}
+
+
+	.print {
+		display:block;
+	}
+ 
+	.columnfilter,
+	.paging,
+	.well,
+	.icomoon-icon-checkbox,
+	#header,
+	#footer,
+	.no-print { 
+		background: red !important;
+		display: none;
+	}
+
+	#container { 
+		width:  210mm; 
+		margin: 0; 
+		float: none !important; 
+	}
+
+	.rwd-table th {
+	  display: none;
+	  background: #ddd;
+	}
+	.rwd-table td {
+	  display: block;
+	}
+
+	.rwd-table td:before {
+	  content: attr(data-th) ": ";
+	  font-weight: bold;
+	  width: 6.5em;
+	  display: inline-block;
+	}
+
+
+}
