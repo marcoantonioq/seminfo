@@ -1,8 +1,7 @@
 <?php
 	echo $this->Paginator->counter(array(
-	'format' => __('Paginas {:page} de {:pages}, mostrando {:current} registros fora de {:count} total.')
+	'format' => __('Paginas {:page}/{:pages}. Registros {:current}/{:count}.')
 	));
-	//'format' => __('Paginas {:page} de {:pages}, mostrando {:current} registros fora de {:count} total, começando no registro {:start}, indo em {:end}.')
 ?>	
 </p>
 <div class="paging">

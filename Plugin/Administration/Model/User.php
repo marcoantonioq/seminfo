@@ -87,7 +87,7 @@ class User extends AdministrationAppModel {
 			),
 			'validaCPF' => array(
 				'rule' => array('validaCPF'),
-				'message' => 'CPF invalido',
+				'message' => 'CPF inválido',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

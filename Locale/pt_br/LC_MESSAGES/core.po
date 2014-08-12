@@ -2074,6 +2074,9 @@ msgstr "adicionar"
 msgid "admin_home"
 msgstr "home"
 
+msgid "Homes"
+msgstr "Home page"
+
 msgid "institution"
 msgstr "instituição"
 

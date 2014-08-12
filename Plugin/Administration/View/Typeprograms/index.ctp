@@ -67,7 +67,7 @@
 					<?php $this->Filter->img(); ?>
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('id', ucfirst(__('id'))); 
 					?>				
@@ -79,7 +79,7 @@
 					?>				
 				</th>
 												
-				<th class="minimizar">
+				<th>
 					<?php 
 						echo $this->Paginator->sort('alias', ucfirst(__('alias'))); 
 					?>				

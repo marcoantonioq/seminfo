@@ -43,40 +43,43 @@ navigation = function(){
 	$("body").delegate('a.columnfilter', 'click', function(event) {
 		$(this).each(function(index){
 			column = $(this).attr('value');
-
-			$("table.rwd-table thead th:eq('"+column+"')").show();
-			$("table.rwd-table thead td:eq('"+column+"')").show();
-			$("table.rwd-table tbody td:eq('"+column+"')").show();
-			// $("table.rwd-table thead th:contains('"+column+"')").append('Some text');
+			$("table.rwd-table tr").find('td:eq('+column+'), th:eq('+column+')').show();
 			$(this).hide();
-		})
-		
+		})		
 	});
 
 	// variavel tabela
 	var table = $("table.rwd-table");
-		table
-		.find(" thead tr th")
-			.each(function(index, el) {
 
-				var th = $(this);
+	table
+	.find("tr th")
+		.each(function(column, el) {
+			// navegation table tr th:eq(x)
+			var th = $(this);
+			var tds = $("table.rwd-table tr").find('td:eq('+column+'), th:eq('+column+')');
 
-				$(this).find('a').prepend("<span class='icomoon-icon-checkbox'><span>");
-				table.before('<a value="'+index+'" class="columnfilter label"> + '+$(this).text()+'</a> ');
-				$('a.columnfilter').hide();
+			// add elements
+			table.before('<a value="'+column+'" class="columnfilter label"> + '+$(this).text()+'</a> ');
+			th.find('a').prepend("<span class='icomoon-icon-checkbox'><span>");
 
-				$(this).find('span').click(function(event){
-					$("a.columnfilter[value="+index+"]").show();
-					th.hide();
-					table.find('thead tr td:eq('+index+')').hide();
-					table.find('tbody tr td:eq('+index+')').hide();
+			// get elements
+			var filter = $("a.columnfilter[value="+column+"]");
 
-					return false;
-					event.stopPropagation();
-				});
+			// evento de click span link
+			th.find('span').click(function(){			
+				tds.hide();
+				filter.show();
+				return false;
 			});
 
-
+			// ocutar tr hide
+			if(th.attr('class') == "hide")
+			{
+				tds.hide();
+			} else {
+				filter.hide();
+			}
+		});
 
 	$("table.rwd-table tbody tr")
 		.click(function() {

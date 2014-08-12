@@ -37,6 +37,7 @@
 
 			echo $this->Form->input('presenca', array(
 				'label'=>ucfirst(__('presenca')),
+				'readonly'=>'true'
 			));			
 		?>
 		<div class="form-actions form-horizontal">

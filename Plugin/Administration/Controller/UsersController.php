@@ -238,7 +238,7 @@ class UsersController extends AdministrationAppController {
  */
 
 	public function getseminfo2013($cpf) {
-		// if ($this->request->is('ajax')) {
+		if ($this->request->is('ajax')) {
 			$json = null;
 			$user = $this->User->query("SELECT * FROM ifgoiano_seminfo2013.users WHERE cpf = $cpf LIMIT 1;");
 			if(!empty($user[0]['users']))
@@ -256,11 +256,9 @@ class UsersController extends AdministrationAppController {
 			$this->layout = "ajax";
 			$this->render('Users/ajax/getseminfo2013');
 			return true;
-		// } else {
-			// $this->redirect($this->referer());			
-		// }
+		} else {
+			$this->redirect($this->referer());			
+		}
 
 	}
-
-
 }

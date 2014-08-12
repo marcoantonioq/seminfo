@@ -316,7 +316,7 @@ form .required label:after {
 	display:inline;
 }
 
-form .datetime .span12{
+form .datetime .span12, form .date .span12, form .time .span12{
 	width:20%
 }
 

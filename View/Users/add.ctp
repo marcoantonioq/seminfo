@@ -43,7 +43,18 @@
 
 		 ?>
 
-		<a  id="send" href="#" class="btn">Digite o seu cpf para continuar. Informação obrigatória para geração de certificado</a>
+		 <?php echo $this->Html->link(
+		 	"Digite o cpf para continuar. Informação obrigatória para geração de certificado", 
+		 	array(
+		 		'plugin'=>'administration', 
+		 		'controller'=>'users',
+		 		'action'=>'getseminfo2013'
+	 		),
+	 		array(
+	 			'class'=>'btn',
+	 			'id'=>'sendgetseminfo2013'
+	 		)
+		 ); ?>
 
 		<div id="formcomplite">
 			
@@ -118,24 +129,23 @@
 				));			
 				
 			?>
-
-
-		<div class="form-actions form-horizontal">
-			<?php			  
-			echo $this->Form->button('Enviar', array(
-				'class'=>'btn btn-info'
-			))." ";
-			echo $this->Form->button('Limpar', array(
-				'type'=>'reset',
-				'class'=>'btn btn-warning'
-			));
-			
-			echo $this->Form->end();
-
-			?>		
 		</div>
+	</div>
 
-		</div>
+	<div class="form-actions form-horizontal">
+		<?php			  
+		echo $this->Form->button('Enviar', array(
+			'class'=>'btn btn-info'
+		))." ";
+		echo $this->Form->button('Limpar', array(
+			'type'=>'reset',
+			'class'=>'btn btn-warning'
+		));
+		
+		echo $this->Form->end();
+
+		?>		
+
 	</div>
 
 </div>

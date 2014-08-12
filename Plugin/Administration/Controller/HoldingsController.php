@@ -48,8 +48,10 @@ class HoldingsController extends AdministrationAppController {
  * @return void
  */
 	public function presence($id = null, $action = null) {
+		
+		$this->set('var', $this->Holding->presence($id, $action));
+		
         if ($this->request->is('ajax')) {
-			$this->set('var', $this->Holding->presence($id, $action));
         	$this->render("Holdings/ajax/presence");
         	return true;
         }

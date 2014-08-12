@@ -125,4 +125,5 @@ class UsersController extends AppController {
 			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'layout/error');
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

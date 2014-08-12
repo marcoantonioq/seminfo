@@ -6,6 +6,7 @@
 
 # OS generated files #
 ######################
+sftp-config.json
 .DS_Store
 .DS_Store?
 ._*

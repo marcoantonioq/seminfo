@@ -212,10 +212,21 @@
 		</td>
 
 		<td data-th="<?= ucfirst(__('presenca'));?>">
-			<?php $class = ($this->Date->isToday($holding['Holding']['date_presenca'] )) ? "" : "addpresence"; ?>
-			<span class="<?=$class ?> green btn bold" value="<?=$holding['Holding']['id']?>" >
-				<?php echo $holding['Holding']['presenca']; ?>
-			</span>
+			<?php 
+				$class = ($this->Date->isToday($holding['Holding']['date_presenca'] )) ? "" : "addpresence";
+				echo $this->Html->link($holding['Holding']['presenca'],
+					array(
+						'controller'=>'holdings', 
+						'action'=>'presence',
+						$holding['Holding']['id'],
+						'sum'
+					),
+					array(
+						'class'=>$class." green btn bold",
+						'value'=>$holding['Holding']['id']
+					)
+				); 
+			?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('created'));?>" >

@@ -3,11 +3,6 @@
 	IFGoiano
 */
 
-var setings = {
-	'url':'https://localhost/seminfo',
-	'administration':'https://localhost/seminfo/administration/'
-}
-
 /**
  * Navigation
  *
@@ -17,39 +12,82 @@ var setings = {
 ajax = function(){
 	$("#formcomplite").hide();
 
+	function validaCPF(cpf){
+
+    	if( cpf.length == 11) {
+
+	    	var digitoA = 0;
+	    	var digitoB = 0;
+
+	    	var i = 0;
+	    	var x = 0;
+	    	for (i=0, x=10;  i <= 8;  i++, x--) {
+	    		digitoA += cpf[i] * x;
+	    	};
+
+	    	i = 0;
+	    	x = 0;
+	    	for (i=0, x=11;  i <= 9;  i++, x--) {
+	    		digitoB += cpf[i] * x;
+	    	};
+
+	    	somaA = ( (digitoA % 11) < 2 ) ? 0 : 11-(digitoA % 11);
+	    	somaB = ( (digitoB % 11) < 2 ) ? 0 : 11-(digitoB % 11);
+
+	    	if(somaA != cpf[9] || somaB != cpf[10]){
+	    		return false;
+	    	}
+	    	else{
+	    		return true;
+	    	}	    	
+    	}
+	    return false;
+	}
+
 
 	
 	$("#UserCpf")
 		.keyup(function(e){
 
 			var cpf = $(this);			
-			var message = $(this).val().replace(/\./gi, '').replace(/\-/gi, '');
-			var messageLength = message.length;
-			
-			if(messageLength == 11){
-				$.get(
-					setings.administration+'users/getseminfo2013/'+message,
-					null,
-					function(data) 
-					{
-						var user = JSON.parse(data);
-						$("#UserName").val(user.name);
-						var sexo = (user.sexo_id) ? "Masculino" : "Feminino";
-						$("#UserSexo").val(sexo);
-						$("#UserUsername").val(user.username);
-						$("#UserPassword").val();
-						$("#UserEmail").val(user.email);
-						$("#UserPhone").val(user.telefone);
-						$("#UserWebsite").val(user.website);
-						$("#UserCoursesId").val(user.curso_id);
-					}
-				);
-				cpf.attr('readonly', 'readonly');
-				$("#send").hide();
-				$("#formcomplite").show();
+			var getCpf = $(this).val().replace(/\./gi, '').replace(/\-/gi, '');
+			var getCpfLength = getCpf.length;
 
-			} else {
+			if(getCpfLength == 11){
 
+				$(".cpfinvalido").hide();
+				var v = cpf.parent();
+				
+				if( validaCPF(getCpf) )
+				{
+					v.removeClass('error');
+
+					$.get(
+						$("#sendgetseminfo2013")[0]+'/'+getCpf,
+						null,
+						function(data) 
+						{
+							var user = JSON.parse(data);
+							$("#UserName").val(user.name);
+							var sexo = (user.sexo_id) ? "Masculino" : "Feminino";
+							$("#UserSexo").val(sexo);
+							$("#UserUsername").val(user.username);
+							$("#UserPassword").val("");
+							$("#UserEmail").val(user.email);
+							$("#UserPhone").val(user.telefone);
+							$("#UserWebsite").val(user.website);
+							$("#UserCoursesId").val(user.curso_id);
+						}
+					);
+					cpf.attr('readonly', 'readonly');
+					$("#sendgetseminfo2013").hide();
+					$("#formcomplite").show();
+				}
+				else
+				{
+					v.addClass('error');
+					v.append('<div class="cpfinvalido error-message">CPF inválido!!!</div>');
+				}
 			}
 
 		})
@@ -72,46 +110,3 @@ $(document).ready(function(){
 	plugins();
 	ajax();
 });
-
-
-
-/*
-
-2014
-'course_id' : ''
-'matricula' : ''
-'name' : ''
-'sexo' : ''
-'username' : ''
-'password' : ''
-'email' : ''
-'cpf' : ''
-'phone' : ''
-'status' : ''
-'website' : ''
-'image' : ''
-'image_dir' : ''
-'holding_count' : ''
-'updated' : ''
-'created' : ''
-
-2013
-group_id
-curso_id
-matricula
-name
-sexo
-username
-password
-email
-cpf
-telefone
-status
-website
-image
-image_dir
-message_count
-usersprograma_count
-updated
-created
-*/

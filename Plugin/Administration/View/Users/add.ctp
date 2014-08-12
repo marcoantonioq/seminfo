@@ -1,6 +1,7 @@
-<h2>Cadastro do usuário</h2>
-
-
+<?php 
+	echo $this->Html->script(array('/js/userload/users.js'));
+	echo $this->fetch('script');
+ ?>
 
 <div class="row-fluid">
 
@@ -14,76 +15,111 @@
 		?>
 		<?php  
 		
-
+			// validar no model
 			echo $this->Form->input('group_id', array(
 				'label'=>ucfirst(__('group_id')),
-			));
-
-			echo $this->Form->input('course_id', array(
-				'label'=>ucfirst(__('course_id')),
-			));
-
-			echo $this->Form->input('matricula', array(
-				'label'=>ucfirst(__('matricula')),
-			));
-
-			echo $this->Form->input('name', array(
-				'label'=>ucfirst(__('name')),
-			));
-
-			echo $this->Form->input('sexo', array(
-				'label'=>ucfirst(__('sexo')),
-				'type'=>'select',
-				'options'=>array(
-					'Masculino'=>'Masculino',
-					'Feminino'=>'Feminino'
-				)
-			));
-
-			echo $this->Form->input('username', array(
-				'label'=>ucfirst(__('username')),
-			));
-
-			echo $this->Form->input('password', array(
-				'label'=>ucfirst(__('password')),
-			));
-
-			echo $this->Form->input('email', array(
-				'label'=>ucfirst(__('email')),
+				'type'=>'hidden'
 			));
 
 			echo $this->Form->input('cpf', array(
 				'label'=>ucfirst(__('cpf')),
+				'maxLength'=>'14',
+				'placeholder' => 'Digite cpf...',
+				'pattern' => "^\d{3}.\d{3}.\d{3}-\d{2}$",
+				'placeholder'=>"111.111.111-11"
 			));
 
-			echo $this->Form->input('phone', array(
-				'label'=>ucfirst(__('phone')),
-			));
+		 ?>
 
-			echo $this->Form->input('status', array(
-				'label'=>ucfirst(__('status')),
-			));
+		 <?php echo $this->Html->link(
+		 	"Digite o cpf para continuar. Informação obrigatória para geração de certificado", 
+		 	array(
+		 		'plugin'=>'administration', 
+		 		'controller'=>'users',
+		 		'action'=>'getseminfo2013'
+	 		),
+	 		array(
+	 			'class'=>'btn',
+	 			'id'=>'sendgetseminfo2013'
+	 		)
+		 ); ?>
 
-			echo $this->Form->input('website', array(
-				'label'=>ucfirst(__('website')),
-			));
+		<div id="formcomplite">
+			
+			<?php 
+				echo $this->Form->input('name', array(
+					'label' => 'Nome completo: ',
+					'placeholder' => 'Digite seu nome. Necessario para impressão certificado',
+					'div'=>'clearfix'
+				));
 
-			echo $this->Form->input('image', array(
-				'label'=>ucfirst(__('image')),
-			));
+				echo $this->Form->input('course_id', array(
+					'empty' => 'Selecione',
+	        		'label' => 'Estuda nesta instiução?',
+	        		'div'=>'clearfix',
+	        		'type' => 'hidden'
+				));
 
-			echo $this->Form->input('image_dir', array(
-				'label'=>ucfirst(__('image_dir')),
-			));
+				echo $this->Form->input('matricula', array(
+					'label' => 'Qual sua matricula?', 
+					'div'=>'clearfix',
+	        		'type' => 'hidden'
+				));
 
-			echo $this->Form->input('holding_count', array(
-				'label'=>ucfirst(__('holding_count')),
-			));
+				echo $this->Form->input('sexo', array(
+					'label'=>ucfirst(__('sexo')),
+					'empty'=>'Selecione',
+					'type'=>'select',
+					'options'=>array(
+						'Masculino'=>'Masculino',
+						'Feminino'=>'Feminino'
+					)
+				));
 
-			echo $this->Form->input('Message', array(
-				'label'=>ucfirst(__('Message')),
-			));			
-		?>
+				echo $this->Form->input('username', array(
+					'label'=>ucfirst(__('username')),
+				));
+
+				echo $this->Form->input('password', array(
+					'label'=>ucfirst(__('password')),
+				));
+
+				echo $this->Form->input('email', array(
+					'label'=>ucfirst(__('email')),
+				));
+
+				echo $this->Form->input('phone', array(
+					'label'=>ucfirst(__('phone')),
+				));
+
+				echo $this->Form->input('status', array(
+					'label'=>ucfirst(__('status')),
+				));
+
+				echo $this->Form->input('website', array(
+					'label'=>ucfirst(__('website')),
+				));
+
+				echo $this->Form->input('image', array(
+					'label'=>ucfirst(__('image')),
+				));
+
+				echo $this->Form->input('image_dir', array(
+					'label'=>ucfirst(__('image_dir')),
+				));
+
+				echo $this->Form->input('holding_count', array(
+					'label'=>ucfirst(__('holding_count')),
+				));
+
+				echo $this->Form->input('Message', array(
+					'label'=>ucfirst(__('Message')),
+				));			
+				
+			?>
+		</div>
+
+
 		<div class="form-actions form-horizontal">
 			<?php			  echo $this->Form->button('Enviar', array(
 				'class'=>'btn btn-info'
@@ -95,7 +131,8 @@
 			
 			echo $this->Form->end();
 
-			?>		</div>
+			?>	
+		</div>
 
 	</div>
 
