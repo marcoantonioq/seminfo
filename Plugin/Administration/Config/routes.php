@@ -8,3 +8,4 @@ Router::connect('/administration', array(
 
 Router::connect('/', array('controller' => 'homes', 'action' => 'index'));
 Router::parseExtensions('rss', 'json', 'xml', 'pdf');
+Router::setExtensions(array('pdf'));

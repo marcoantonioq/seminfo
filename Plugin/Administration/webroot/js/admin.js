@@ -135,9 +135,10 @@ navigation = function(){
 plugins = function()
 {
 	// Gerando Barcode js
-    $("#barcode").EAN13(
-    	$('#barcode').attr('value')
-    );
+    $(".barcode").each(function(index, el) {
+    	var code = $(this).attr('value');
+    	$(this).EAN13(code);
+    });
 }
 
 form = function()
@@ -146,6 +147,18 @@ form = function()
     $("form:not(#FilterIndexForm) :input[id$=Cpf]").mask("999.999.999-99");
     $("form:not(#FilterIndexForm) :input[id$=Phone]").mask("(99) 9999-9999");
     $("form:not(#FilterIndexForm) :input[id$=Password]").val("");
+
+    //  input int
+    $("input[type=number]").bind('keydown', function(e){
+    	// alert(keyCode);
+    	var keyCode = e.which;
+    	var isStandart = (keyCode > 47 && keyCode < 58);
+    	var isOther = (",8,46,37,38,39,40,".indexOf(","+keyCode+",") > -1);
+    	if (isStandart || isOther) {
+    		return true;
+    	};
+    	return false;
+    });
 }
 
 

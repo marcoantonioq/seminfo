@@ -97,7 +97,7 @@
             </dd>
             <dt>Código de barra</dt>
             <dd>
-                <canvas id="barcode" value="<?=str_pad($user['User']['id'], 13, '0', STR_PAD_LEFT);?>" width="200" height="100"></canvas>
+                <canvas class="barcode" value="<?=str_pad($user['User']['id'], 13, '0', STR_PAD_LEFT);?>" width="200" height="100"></canvas>
             </dd>
 		</dl>
 	</div>

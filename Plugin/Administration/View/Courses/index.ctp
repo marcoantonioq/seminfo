@@ -67,7 +67,7 @@
 					<?php $this->Filter->img(); ?>
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('id', ucfirst(__('id'))); 
 					?>				
@@ -79,25 +79,25 @@
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('description', ucfirst(__('description'))); 
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('body', ucfirst(__('body'))); 
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('file', ucfirst(__('file'))); 
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('file_dir', ucfirst(__('file_dir'))); 
 					?>				

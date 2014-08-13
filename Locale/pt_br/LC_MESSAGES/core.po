@@ -1976,10 +1976,10 @@ msgid "program"
 msgstr "programa"
 
 msgid "Program"
-msgstr "Programa"
+msgstr "Programação"
 
 msgid "Programs"
-msgstr "Programas"
+msgstr "Programações"
 
 msgid "Speakers"
 msgstr "Palestrantes"
