@@ -1,15 +1,16 @@
 <?php 
 App::uses('AppHelper', 'View/Helper'); 
 class LinkHelper extends AppHelper {
-	public $helpers = array('Html', 'Form', 'Menu');
+	public $helpers = array('Html', 'Form');
 
 	
 	public function icon($title, $icon = null, $url = '#', $params = array(), $message = null) {
 		$params += array(
 			'escape'=>false,
+			'class'=>$icon
 		);
 		$link = $this->Html->link(
-			"<span class='{$icon}'></span>".__("{$title}"),
+			__("{$title}"),
 			$url,
 			$params,
 			$message
@@ -18,11 +19,18 @@ class LinkHelper extends AppHelper {
 	}
 
 	
-	public function status($value, $url = array()) {
-		$icon = ($value == 1) ? 'ok' : 'remove';
-		$class = ($value == 1) ? 'green' : 'red';
-
-		return $this->icon('', 'icon-' . $icon . ' ' . $class);		
+	public function status($id, $paramnsaction, $status) {
+		// pr($this); exit;
+		$url = array(
+			'plugin' => $this->request->params['plugin'],
+			'controller' =>$this->request->params['controller'],
+			'action' => 'status',
+			$id,
+			$paramnsaction,
+			($status)?1:0,
+		);
+		$class = ($status == 1) ? 'icon-ok' : 'icon-remove';
+		return $this->icon('', $class, $url);
 	}
 
 	public function filter($name){

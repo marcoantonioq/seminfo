@@ -1,3 +1,4 @@
+
 /*
 	by: Marco Antônio Queiroz
 	IFGoiano
@@ -147,6 +148,7 @@ form = function()
     $("form:not(#FilterIndexForm) :input[id$=Cpf]").mask("999.999.999-99");
     $("form:not(#FilterIndexForm) :input[id$=Phone]").mask("(99) 9999-9999");
     $("form:not(#FilterIndexForm) :input[id$=Password]").val("");
+    $("form:not(#FilterIndexForm) textarea").attr('class', 'ckeditor');;
 
     //  input int
     $("input[type=number]").bind('keydown', function(e){

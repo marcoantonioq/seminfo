@@ -74,6 +74,15 @@ class Holding extends AdministrationAppModel {
 		)
 	);
 
+	public function beforeSave($option = array()){
+
+		// Caso presence >= min_presence program certificate true
+		$program = $this->Program->read(null, $this->data['Holding']['program_id']);
+		if($this->data['Holding']['presenca'] >= $program['Program']['min_presence']) {
+			$this->data['Holding']['certificado'] = true;
+		}
+	}
+
 /**
  * belongsTo associations
  *

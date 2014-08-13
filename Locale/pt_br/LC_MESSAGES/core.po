@@ -2113,4 +2113,8 @@ msgstr "cetificado palestrantes"
 msgid "certify_speakers"
 msgstr "cetificado palestrantes"
 
+msgid "price"
+msgid "price"
+msgstr "preço"
+
 

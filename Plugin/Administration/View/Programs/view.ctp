@@ -30,97 +30,97 @@
             </dd>
 			<dt><?php echo ucfirst(__('status')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['status']); ?>
+                <?=$program['Program']['status']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('price')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['price']); ?>
+                <?=$program['Program']['price']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('vagas')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['vagas']); ?>
+                <?=$program['Program']['vagas']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('reservations')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['reservations']); ?>
+                <?=$program['Program']['reservations']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('duration')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['duration']); ?>
+                <?=$program['Program']['duration']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('content')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['content']); ?>
+                <?=$program['Program']['content']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('date_begin')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['date_begin']); ?>
+                <?=$program['Program']['date_begin']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('date_end')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['date_end']); ?>
+                <?=$program['Program']['date_end']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('time_begin')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['time_begin']); ?>
+                <?=$program['Program']['time_begin']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('time_end')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['time_end']); ?>
+                <?=$program['Program']['time_end']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('min_presence')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['min_presence']); ?>
+                <?=$program['Program']['min_presence']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('file')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['file']); ?>
+                <?=$program['Program']['file']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('file_dir')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['file_dir']); ?>
+                <?=$program['Program']['file_dir']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('certify')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['certify']); ?>
+                <?=$program['Program']['certify']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('certify_speakers')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['certify_speakers']); ?>
+                <?=$program['Program']['certify_speakers']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('description')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['description']); ?>
+                <?=$program['Program']['description']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('created')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['created']); ?>
+                <?=$program['Program']['created']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('updated')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['updated']); ?>
+                <?=$program['Program']['updated']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('holdding_count')); ?></dt>
             <dd>
-                <?php echo h($program['Program']['holdding_count']); ?>
+                <?=$program['Program']['holdding_count']; ?>
                 &nbsp;
             </dd>
 		</dl>

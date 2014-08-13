@@ -19,7 +19,7 @@ class HoldingsController extends AdministrationAppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Paginator', 'Session', 'Mpdf');
 
 /**
  * index method
@@ -151,4 +151,37 @@ class HoldingsController extends AdministrationAppController {
 			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'layout/error');
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+
+/**
+ * certificados method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+
+	public function certificados($id) {
+
+		$this->Holding->id = $id;
+		if (!$this->Holding->exists()) {
+			throw new NotFoundException(__('Inválido holding'));
+		}
+		
+        $holding = $this->Holding->read(null, $id);
+
+        $this->set(compact('holding'));
+
+        // render pdf
+	    $this->Mpdf->init(array('format'=>"A4-L"));
+	    $this->Mpdf->SetDisplayMode('fullpage');
+	    $this->Mpdf->setFilename('Certificados.pdf');
+	    $this->Mpdf->setOutput('I');
+	    
+		$this->layout = 'pdf';
+		$this->render("Users/pdf/certificados");
+	}
+
+
+
+}

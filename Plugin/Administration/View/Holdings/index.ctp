@@ -111,7 +111,7 @@
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('reservas', ucfirst(__('reservas'))); 
 					?>				
@@ -123,13 +123,13 @@
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('created', ucfirst(__('created'))); 
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">	
 					<?php 
 						echo $this->Paginator->sort('updated', ucfirst(__('updated'))); 
 					?>				
@@ -190,25 +190,21 @@
 		</td>
 
 		<td data-th="<?= ucfirst(__('status'));?>" >
-			<?php
-				echo ($holding['Holding']['status'] == 1 ) ?
-				"<span class='green btn'>:)</span>":
-				"<span class='red btn'>:(</span>";
-			?>			
+			<?php echo $this->Link->status($holding['Holding']['id'], 'status', $holding['Holding']['status']); ?>			
 			&nbsp;
 		</td>
 
 		<td data-th="<?= ucfirst(__('certificado'));?>" >
-			<?php echo h($holding['Holding']['certificado']); ?>
+			<?php echo $this->Link->status($holding['Holding']['id'], 'certificado', $holding['Holding']['certificado']); ?>
 			&nbsp;
 		</td>
 
 		<td data-th="<?= ucfirst(__('credenciado'));?>" >
-			<?php echo h($holding['Holding']['credenciado']); ?>
+			<?php echo $this->Link->status($holding['Holding']['id'],  'credenciado', $holding['Holding']['credenciado']); ?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('reservas'));?>" >
-			<?php echo h($holding['Holding']['reservas']); ?>
+			<?php echo $this->Link->status($holding['Holding']['id'],  'reservas', $holding['Holding']['reservas']); ?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('presenca'));?>">
@@ -264,6 +260,20 @@
 						'escape'=>false,
 						'class'=>'edit',
 						'title'=>'Editar',
+					)
+				); ?>
+
+				<?php 
+				echo $this->Html->link('<span class="icon12  icomoon-icon-pencil-2"></span>', 
+					array(
+						'action' => 'certificados', 
+						$holding['Holding']['id']
+					),
+					array(
+						'target'=>'_blank',
+						'escape'=>false,
+						'class'=>'certificado',
+						'title'=>'Certificado',
 					)
 				); ?>
 			</td>

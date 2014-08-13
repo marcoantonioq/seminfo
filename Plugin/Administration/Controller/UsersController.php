@@ -93,8 +93,8 @@ class UsersController extends AdministrationAppController {
  */
 	public function labels() {
 
-		if ($this->request->is('post')) 
-		{
+		// if ($this->request->is('post')) 
+		// {
             $this->Paginator->settings = $this->User->action($this->request->data);
             $this->User->recursive = -1;
             $users = $this->Paginator->paginate();
@@ -104,17 +104,14 @@ class UsersController extends AdministrationAppController {
 			$this->layout = 'pdf';		
 		    $this->Mpdf->init();
 		    $this->Mpdf->setFilename('Etiquetas.pdf'); 		    
-		    // $this->Mpdf->setOutput('I');
-		    // $this->Mpdf->SetColumns(2);
+		    $this->Mpdf->SetColumns(2);
+		    $this->Mpdf->setOutput('D');
 
-		    $this->render = false;
-		    return true;
-        }
-        else {
-        	$this->redirect(array('action'=>'index'));
-        }
+        // }
+        // else {
+        // 	$this->redirect(array('action'=>'index'));
+        // }
 	}
-
 
 /**
  * credencar method

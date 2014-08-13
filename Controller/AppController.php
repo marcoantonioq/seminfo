@@ -82,7 +82,7 @@ class AppController extends Controller {
             $this->layout='ajax';
         }
         
-        // $this->Auth->allow();
+        $this->Auth->allow();
         // $this->Auth->deny();
 
     }
@@ -119,5 +119,11 @@ class AppController extends Controller {
         }
         // Default deny
         return false;
+    }
+
+    public function status($id, $action, $status = null){
+        $controller = $this->uses[0];
+        // pr($this->referer()); exit;
+        $this->redirect($this->referer());
     }
 }
