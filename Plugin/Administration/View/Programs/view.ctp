@@ -91,6 +91,7 @@
 			<dt><?php echo ucfirst(__('file_dir')); ?></dt>
             <dd>
                 <?=$program['Program']['file_dir']; ?>
+                <?=$this->Html->image($program['Program']['file_dir']); ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('certify')); ?></dt>

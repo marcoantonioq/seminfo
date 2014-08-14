@@ -9,14 +9,14 @@ class UploadBehavior extends ModelBehavior {
 	public $defaults = array(
 		'dir' => null,
 		'config' => null,
-		/*
+		
 		'config' => array(
 			'pasta'=>array(
 				'field'=>'title',
 				'field_dir'=>'caminho'
 			)
 		),
-		*/
+		
 		'tamanho' => 1048576,
 		'deleteFolderOnDelete' => false,
 		'mode' => 0777,
@@ -32,17 +32,17 @@ class UploadBehavior extends ModelBehavior {
 		'image/x-icon',
 	);
 
-	public function setup(Model $model, $config = array()) {
+	public function setup(Model $Model, $config = array()) {
 		$this->defaults['config'] = $config;
 		//pr($this->defaults['config']);
 		//exit;
 	}
 
-	public function afterDelete(Model $model) {
+	public function afterDelete(Model $Model) {
 		
-		/*foreach ($this->settings[$model->alias] as $field => $options) {
+		/*foreach ($this->settings[$Model->alias] as $field => $options) {
 			if ($options['deleteFolderOnDelete'] == true) {
-				$this->deleteFolder($model, $options['path']);
+				$this->deleteFolder($Model, $options['path']);
 				return true;
 			}
 		}
@@ -50,50 +50,58 @@ class UploadBehavior extends ModelBehavior {
 		return true;
 	}
 
-	public function beforeSave(Model $model, $config = array()){
-		//pr($model->data);
+	public function beforeSave(Model $Model, $option = array()){
+
 		foreach ($this->defaults['config'] as $folder => $config) 
 		{
-			//pr($model->data[$model->name][$config['field']]); exit;
-			if( !empty($model->data[$model->name][$config['field']]['name']) )
+				
+			if( !empty($Model->data[$Model->name][$config['field']]['name']) )
 	    	{
-				extract($model->data[$model->name][$config['field']]);
+
+				extract($Model->data[$Model->name][$config['field']]);
+					// [name] => Captura de tela de 2014-08-09 20:07:12.png
+					// [type] => image/png
+					// [tmp_name] => /opt/lampp/temp/phpMTbbRg
+					// [error] => 0
+					// [size] => 124793
+
+
 				if ($error == 0) 
 				{
-					if (array_search($type, $this->_imagetypes) === false) 
-					{
+					if (array_search($type, $this->_imagetypes) === false) {
 						return 'O tipo de arquivo enviado é inválido!';
 					} 
-					else if ($size > $this->defaults['tamanho']) 
-					{
+					else if ($size > $this->defaults['tamanho']) {
 						return 'O tamanho do arquivo enviado é maior que o limite!';
 					} 
-					else 
-					{
-						new Folder("files/{$model->name}", true, $this->defaults['mode']); 
-						new Folder("files/{$model->name}/{$folder}", true, $this->defaults['mode']); 
+					else {
+						new Folder("files/{$Model->name}", true, $this->defaults['mode']); 
+						new Folder("files/{$Model->name}/{$folder}", true, $this->defaults['mode']); 
 
-						$nome = $model->data[$model->name][$model->primaryKey].'.'.pathinfo($name, PATHINFO_EXTENSION);
-						$upload = move_uploaded_file($tmp_name, WWW_ROOT.'files'.DS.$model->name.DS.$folder.DS.$nome);
-						//echo WWW_ROOT.'files'.DS.$model->name.DS.$folder.DS.$nome; exit;
-						
+						// "files/Model/Pasta/"
+						$File_dir = "/files".DS."{$Model->name}".DS."{$folder}".DS;
+						// /var/www/+File_dir
+						$Path =  WWW_ROOT.$File_dir;
+						// Nome_Arauivo
+						$Name = $Model->data[$Model->name][$Model->primaryKey].'.'.pathinfo($name, PATHINFO_EXTENSION);
+
+						// movendo arquivo tmp
+						$upload = move_uploaded_file($tmp_name, $Path.DS.$Name);
+
 						if ($upload == true) 
 						{
-							$model->data[$model->name][$config['field']] = $model->data[$model->name][$config['field']]['name'];
-							$model->data[$model->name][$config['field_dir']] = DS.'files'.DS.$model->name.DS.$folder.DS.$nome;
+							$Model->data[$Model->name][$config['field']] = $name;
+							$Model->data[$Model->name][$config['field_dir']] = $File_dir.$Name;
 						}
 					}
 				}
-				else 
-				{
+				else {
 					return 'Ocorreu algum erro com o upload, por favor tente novamente!';
 				}
 	    	}
-	    	else
-	    	{	    		
-	    		if ( is_array( $model->data[$model->name][$config['field']] ) ) 
-	    		{
-	    			unset($model->data[$model->name][$config['field']]);
+	    	else {
+	    		if ( is_array( $Model->data[$Model->name][$config['field']] ) ) {
+	    			unset($Model->data[$Model->name][$config['field']]);
 	    		}
 	    	}
 		}

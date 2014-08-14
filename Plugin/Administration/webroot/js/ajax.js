@@ -16,6 +16,33 @@ administration = function() {
 				return false;
 			});
 		});
+
+	$(".statusAjax")
+		.each(function(){
+
+			var icon = $(this);
+			
+			icon.click(function(event) {				
+				$.ajax({
+				type: "GET",
+				    url: $(this)[0].href,
+				    success: function(data) {
+				        if(data == 1) {
+				        	icon.removeAttr('class', 'icon-remove');
+				        	icon.attr('class', 'icon-ok');
+				        } else {
+				        	icon.removeAttr('class', 'icon-ok');
+				        	icon.attr('class', 'icon-remove');
+				        }
+				    },
+				    error: function(data){
+				    	alert("fail");
+				    }
+
+				});
+				return false;
+			});
+		})
 }
 
 $(document).ready(function() {	

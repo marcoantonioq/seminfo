@@ -145,10 +145,27 @@ plugins = function()
 form = function()
 {
 	// Gerando Barcode js
-    $("form:not(#FilterIndexForm) :input[id$=Cpf]").mask("999.999.999-99");
-    $("form:not(#FilterIndexForm) :input[id$=Phone]").mask("(99) 9999-9999");
-    $("form:not(#FilterIndexForm) :input[id$=Password]").val("");
-    $("form:not(#FilterIndexForm) textarea").attr('class', 'ckeditor');;
+	if ( $("form:not(#FilterIndexForm)") ) {
+
+    	$("form:not(#FilterIndexForm) :input[id$=Cpf]").mask("999.999.999-99")
+    	$("form:not(#FilterIndexForm) :input[id$=Phone]").mask("(99) 9999-9999")
+    	$("form:not(#FilterIndexForm) :input[id$=Password]").val("")
+    	$("form:not(#FilterIndexForm) textarea").attr('class', 'ckeditor')
+    	$("form:not(#FilterIndexForm) :input[id$=Password]").val("")
+    	// input file
+    	$("form:not(#FilterIndexForm) :input[id$=Image]")
+    	.attr('type', 'file')
+    	$("form:not(#FilterIndexForm) :input[id$=File]")
+    	.attr('type', 'file')
+    	$("form:not(#FilterIndexForm) :input[type=file]")
+    	.addClass('btn btn-file')
+    	$("form:not(#FilterIndexForm) :input[id$=ImageDir]").parent().hide()
+    	$("form:not(#FilterIndexForm) :input[id$=FileDir]").parent().hide()
+    	// input count
+    	$("form:not(#FilterIndexForm) :input[id$=Count]").parent().hide()
+
+	};
+
 
     //  input int
     $("input[type=number]").bind('keydown', function(e){

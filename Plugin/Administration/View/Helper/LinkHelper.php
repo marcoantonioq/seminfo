@@ -29,7 +29,7 @@ class LinkHelper extends AppHelper {
 			$paramnsaction,
 			($status)?1:0,
 		);
-		$class = ($status == 1) ? 'icon-ok' : 'icon-remove';
+		$class = ($status == 1) ? 'statusAjax icon-ok' : 'statusAjax icon-remove';
 		return $this->icon('', $class, $url);
 	}
 

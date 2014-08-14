@@ -18,6 +18,7 @@
 			// validar no model
 			echo $this->Form->input('group_id', array(
 				'label'=>ucfirst(__('group_id')),
+				'value'=>3, // publico
 				'type'=>'hidden'
 			));
 
@@ -100,17 +101,17 @@
 					'label'=>ucfirst(__('website')),
 				));
 
-				echo $this->Form->input('image', array(
-					'label'=>ucfirst(__('image')),
-				));
+				// echo $this->Form->input('image', array(
+				// 	'label'=>ucfirst(__('image')),
+				// ));
 
-				echo $this->Form->input('image_dir', array(
-					'label'=>ucfirst(__('image_dir')),
-				));
+				// echo $this->Form->input('image_dir', array(
+				// 	'label'=>ucfirst(__('image_dir')),
+				// ));
 
-				echo $this->Form->input('holding_count', array(
-					'label'=>ucfirst(__('holding_count')),
-				));
+				// echo $this->Form->input('holding_count', array(
+				// 	'label'=>ucfirst(__('holding_count')),
+				// ));
 
 				echo $this->Form->input('Message', array(
 					'label'=>ucfirst(__('Message')),

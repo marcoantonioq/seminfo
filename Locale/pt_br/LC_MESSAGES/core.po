@@ -2114,7 +2114,15 @@ msgid "certify_speakers"
 msgstr "cetificado palestrantes"
 
 msgid "price"
-msgid "price"
 msgstr "preço"
+
+msgid "file"
+msgstr "arquivo (foto)"
+
+msgid "file_dir"
+msgstr "caminho arquivo (foto)"
+
+msgid "reservations"
+msgstr "reservas"
 
 

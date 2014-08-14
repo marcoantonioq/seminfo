@@ -244,7 +244,9 @@ class UsersController extends AdministrationAppController {
 			if(!empty($user[0]['users']))
 			{
 				function encode_items(&$item, $key){
-				    $item = utf8_encode($item);
+					$utf8 = $item;
+					$item = mb_convert_encoding($utf8, 'ISO-8859-1', 'UTF-8');
+				    // $item = utf8_encode($iso88591_2);
 				}
 				$user = $user[0]['users'];
 				array_walk_recursive($user, 'encode_items');

@@ -77,9 +77,13 @@ class Holding extends AdministrationAppModel {
 	public function beforeSave($option = array()){
 
 		// Caso presence >= min_presence program certificate true
-		$program = $this->Program->read(null, $this->data['Holding']['program_id']);
-		if($this->data['Holding']['presenca'] >= $program['Program']['min_presence']) {
-			$this->data['Holding']['certificado'] = true;
+		if(!empty($this->data['Holding']['program_id'])){
+			$program = $this->Program->read(null, $this->data['Holding']['program_id']);
+			if($this->data['Holding']['presenca'] >= $program['Program']['min_presence']) {
+				$this->data['Holding']['certificado'] = true;
+			}else{
+				$this->data['Holding']['certificado'] = false;
+			}			
 		}
 	}
 
@@ -112,7 +116,7 @@ class Holding extends AdministrationAppModel {
  * @var array
  */
 
-	public function status($id, $status){
+	public function status($id, $status = null){
 		$status = $this->read(array('id', 'status'), $id);
 		$status['Holding']['status'] = ($status['Holding']['status'] == 0) ? 0 : 1;
 		$this->save($status);

@@ -11,6 +11,21 @@ class FormBehavior extends ModelBehavior {
 		return $this->search();
 	}
 
+	public function statusAjax(Model &$Model, $id, $column){
+
+		$toggle = $Model->find("first", array(
+			'recursive'=>-1, 
+			'conditions'=>array(
+				$Model->name.".id" => $id
+			)
+		));
+		if(!empty($toggle[$Model->name])){
+			echo $toggle[$Model->name][$column] = ($toggle[$Model->name][$column]) ? 0 : 1;
+			$Model->save($toggle);
+			return $toggle[$Model->name][$column];			
+		}
+	}
+
 	public function pagination(Model &$Model) {
 		return $this->pagination;
 	}

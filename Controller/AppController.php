@@ -122,8 +122,15 @@ class AppController extends Controller {
     }
 
     public function status($id, $action, $status = null){
-        $controller = $this->uses[0];
-        // pr($this->referer()); exit;
-        $this->redirect($this->referer());
+        // if($this->request->is("ajax")){
+            $model = $this->modelClass;
+            $id = $this->request->params['pass'][0];
+            $action = $this->request->params['pass'][1];
+            $this->$model->statusAjax($id, $action);
+            $this->layout = "ajax";
+            $this->render("/Common/ajax");
+            // return true;
+        // }
+        // $this->redirect($this->referer());
     }
 }
