@@ -19,14 +19,17 @@ class User extends AdministrationAppModel {
  */
 	public $displayField = 'name';
 	public $order = array('User.name' => 'asc');
+
+
 	public $actsAs = array(
-		'Upload' => array(
-			'foto' => array(
-	            'field' => 'image',
-	            'field_dir' => 'image_dir',
-			),
-        ),
-    );
+	    'Upload' => array(
+	        'foto' => array(
+	        	'field' => 'image',
+	        	'field_dir' => 'image_dir',
+	        )
+	    )
+	);
+
 
 /**
  * Validation rules

@@ -17,13 +17,13 @@ class Program extends AdministrationAppModel {
 	public $displayField = 'name';
 
 	public $actsAs = array(
-		'Upload' => array(
-			'foto' => array(
-	            'field' => 'file',
-	            'field_dir' => 'file_dir',
-			),
-        ),
-    );
+	    'Upload' => array(
+	        'foto' => array(
+	        	'field' => 'file',
+	        	'field_dir' => 'file_dir',
+	        )
+	    )
+	);
 
 /**
  * Validation rules

@@ -78,20 +78,19 @@ class UploadBehavior extends ModelBehavior {
 						new Folder("files/{$Model->name}", true, $this->defaults['mode']); 
 						new Folder("files/{$Model->name}/{$folder}", true, $this->defaults['mode']); 
 
-						// "files/Model/Pasta/"
-						$File_dir = "/files".DS."{$Model->name}".DS."{$folder}".DS;
-						// /var/www/+File_dir
-						$Path =  WWW_ROOT.$File_dir;
-						// Nome_Arauivo
-						$Name = $Model->data[$Model->name][$Model->primaryKey].'.'.pathinfo($name, PATHINFO_EXTENSION);
+						$Model->data['tmp'][$folder]['field'] = $config['field'];
+						$Model->data['tmp'][$folder]['field_dir'] = $config['field_dir'];
+						$Model->data['tmp'][$folder]['extencion'] = pathinfo($name, PATHINFO_EXTENSION);
+						$Model->data['tmp'][$folder]['path_dir'] = "/files/{$Model->name}/{$folder}/";
+						$Model->data['tmp'][$folder]['path_file'] = WWW_ROOT."files/{$Model->name}/{$folder}/".date("YmdHmi");
 
 						// movendo arquivo tmp
-						$upload = move_uploaded_file($tmp_name, $Path.DS.$Name);
-
+						$upload = move_uploaded_file($tmp_name, $Model->data['tmp'][$folder]['path_file']);
 						if ($upload == true) 
 						{
 							$Model->data[$Model->name][$config['field']] = $name;
-							$Model->data[$Model->name][$config['field_dir']] = $File_dir.$Name;
+							$Model->data[$Model->name][$config['field_dir']] = $Model->data['tmp'][$folder]['path_file'];
+							// unset($Model->data['tmp']);
 						}
 					}
 				}
@@ -107,5 +106,25 @@ class UploadBehavior extends ModelBehavior {
 		}
 		return true;
     }
+
+    public function afterSave(Model $Model, $created, $options = array()){    	
+    	if(!empty($Model->data['tmp'])){
+    		foreach ($Model->data['tmp'] as $folder => $tmp) {
+		    	
+		    	$origem = $tmp['path_file'];
+		    	echo $destino = $tmp['path_dir'].$Model->data[$Model->name][$Model->primaryKey].'.'.$tmp['extencion'];
+		    	
+		    	$Model->data[$Model->name][$tmp['field_dir']] = $destino;
+
+		    	copy($origem, WWW_ROOT.$destino);
+				unlink($origem);
+
+    		}
+    	}
+		unset($Model->data['tmp']);
+		// pr($Model->data); exit;
+    }
+
+
 
 }
