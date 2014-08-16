@@ -85,6 +85,7 @@ navigation = function(){
 	$("table.rwd-table tbody tr")
 		.click(function() {
 		    var checkbox = $(this).find("input[id^=row]");
+		    $(this).find("input[id^=row]")
 		    checkbox.trigger('click');
 		})
 		.dblclick(function(){

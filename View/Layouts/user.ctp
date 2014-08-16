@@ -11,9 +11,15 @@
 
 		echo $this -> Html -> css('users');
 
+		echo $this->Html->script(
+		array(
+			'jquery.js',
+			'users.js',
+		)
+	);
+
 		echo $this -> fetch('meta');
 		echo $this -> fetch('css');
-		echo $this -> fetch('script');
 		echo $this -> fetch('script');
 	?>
 	</head>
@@ -39,11 +45,9 @@
 					<?php echo $this->fetch('sidebar') ?>
 				</div>
 			</div>
-			<div id="footer">
-				<div class="wrapper">
+			<div id="footer" class="wrapper">
 					<?php echo $this -> element('footer', array(), array('cache' => array('key' => 'Elements_footer', 'config' => 'day'))); ?>
-				</div>
-			</div>
+			</div>	
 			<?php echo $this->element('sql_dump'); ?>
 			<div id="bottom">
 				<div class="wrapper">

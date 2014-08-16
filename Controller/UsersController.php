@@ -5,21 +5,71 @@ App::uses('AppController', 'Controller');
  *
  * @property User $User
  * @property PaginatorComponent $Paginator
+ * @property SessionComponent $Session
  */
 class UsersController extends AppController {
 
 	public function beforeFilter(){
 		parent::beforeFilter();
 		$this->set('title_for_layout', __('Users'));
-		$this->Auth->allow('login', 'logout', 'getseminfo2013', 'add');
+		$this->Auth->allow('login', 'logout', 'getseminfo2013');
 	}
+
+	public $components = array('Mpdf'); 
 
 /**
  * Components
  *
  * @var array
  */
-	public $components = array('Paginator');
+	// public $components = array('Paginator', 'Session');
+
+
+/**
+ * login method
+ *
+ * @return void
+ */
+	function login() {
+    	$this->layout = 'login';
+    	if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                $this->Session->setFlash('Logado com sucesso.', 'layout/success');
+                return $this->redirect($this->Auth->redirect());
+            } else {
+                $this->Session->setFlash('Nome de usuário ou senha estava incorreta.');
+            }
+        }
+    }
+
+/**
+ * logout method
+ *
+ * @return void
+ */
+    function logout() {
+        $this->Session->setFlash('Até logo!', 'layout/success');
+    	if (env('HTTPS')){ $this->_unforceSSL; }
+        $this->redirect($this->Auth->logout());
+    }
+
+/**
+ * mensagens method
+ *
+ * @return int
+ */
+	public function mensagens_count(){
+		if($this->request->is('requested')){
+			$user = $this->getUser();
+			$count = $this->User->UsersMessage->find('count', array(
+        		'conditions' => array(
+        			'UsersMessage.user_id' => $user['id']
+    			)
+			));
+			return $count;
+		}
+	}
+
 
 /**
  * index method
@@ -34,6 +84,57 @@ class UsersController extends AppController {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
 	}
+
+
+/**
+ * labels method
+ *
+ * @return void
+ */
+	public function labels() {
+
+		// if ($this->request->is('post')) 
+		// {
+            $this->Paginator->settings = $this->User->action($this->request->data);
+            $this->User->recursive = -1;
+            $users = $this->Paginator->paginate();
+            $this->set(compact('users'));
+
+            // render pdf
+			$this->layout = 'pdf';		
+		    $this->Mpdf->init();
+		    $this->Mpdf->setFilename('Etiquetas.pdf'); 		    
+		    $this->Mpdf->SetColumns(2);
+		    $this->Mpdf->setOutput('D');
+
+        // }
+        // else {
+        // 	$this->redirect(array('action'=>'index'));
+        // }
+	}
+
+/**
+ * credencar method
+ *
+ * @return void
+ */
+	public function credenciar( ) {
+		if ($this->request->is('post')) {
+            $this->Paginator->settings = $this->User->action($this->request->data);
+            $this->User->recursive = -1;
+            $users = $this->Paginator->paginate();
+            $message = $this->User->credenciar($users);
+            echo $this->Session->setFlash('Credenciamento realizado!'.$message, 'layout/success');
+
+        }
+        else {
+        	$this->redirect(array('action'=>'index'));
+        }
+        
+        $this->redirect(array('action'=>'index'));
+	}
+
+
 
 
 /**
@@ -125,5 +226,41 @@ class UsersController extends AppController {
 			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'layout/error');
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+
+/**
+ * getUser Seminfo 2013 method 
+ *
+ * @throws NotFoundException
+ * @param string $cpf
+ * @return User
+ */
+
+	public function getseminfo2013($cpf) {
+		if ($this->request->is('ajax')) {
+			$json = null;
+			$user = $this->User->query("SELECT * FROM ifgoiano_seminfo2013.users WHERE cpf = $cpf LIMIT 1;");
+			if(!empty($user[0]['users']))
+			{
+				function encode_items(&$item, $key){
+					$utf8 = $item;
+					$item = mb_convert_encoding($utf8, 'ISO-8859-1', 'UTF-8');
+				    // $item = utf8_encode($iso88591_2);
+				}
+				$user = $user[0]['users'];
+				array_walk_recursive($user, 'encode_items');
+				$json = json_encode($user);
+				// echo json_last_error();
+			}
+
+			$this->set(compact('json'));
+			$this->layout = "ajax";
+			$this->render('Users/ajax/getseminfo2013');
+			return true;
+		} else {
+			$this->redirect($this->referer());			
+		}
+
 	}
 }

@@ -48,6 +48,20 @@ class Holding extends AdministrationAppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'presenca' => array(
+			'presenceValidade' => array(
+				'rule' => array('presenceValidade'),
+				'message' => 'Já possui presença hoje. :('
+			),
+			'numeric' => array(
+				'rule' => array('numeric'),
+				'message' => 'Apenas numeros',
+				'allowEmpty' => true,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -86,6 +100,26 @@ class Holding extends AdministrationAppModel {
 			}			
 		}
 	}
+
+
+/**
+ * valida presence
+ *
+ * @var array
+ */
+
+	public function presenceValidade($check){
+
+		if(!empty($this->date['Holding']['presenca'])) {
+			$hoje = date('Ymd');
+			$date_presenca = date('Ymd', strtotime($participacao['Holding']['date_presenca']));
+			if( $hoje == $date_presenca ){
+				return false;
+			}
+		}
+		return true;
+	}
+
 
 /**
  * belongsTo associations

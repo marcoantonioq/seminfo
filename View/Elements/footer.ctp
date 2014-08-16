@@ -6,8 +6,8 @@
 					<?php echo $this->Html->link(
 						'Home',
 						array(
-							'controller' => 'homes',
-							'action' => 'index'
+							'controller' => 'users',
+							'action' => 'add'
 						),
 						array('escape' => false)
 					); ?>
@@ -29,7 +29,7 @@
 					<?php echo $this->Html->link(
 						'Cursos',
 						array(
-							'controller' => 'cursos',
+							'controller' => 'courses',
 							'action' => 'index'
 						),
 						array('escape' => true)

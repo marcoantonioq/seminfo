@@ -73,6 +73,42 @@ class MessagesController extends AdministrationAppController {
 
 
 /**
+ * send method
+ *
+ * @return void
+ */
+	public function send( ) {
+		if ($this->request->is('post')) {
+
+			if(!empty($this->request->data['rowuser'])){
+				
+				$options['recursive'] = -1;
+
+				foreach ($this->request->data['rowuser'] as $id => $value) {
+					if($value){
+						$options['conditions']['OR'][] = array("User.id"=>$id);
+					}
+				}
+				
+				$users = $this->Message->User->find("all", $options);
+				$this->request->data = array();
+				$this->request->data['User'] = array();
+				foreach ($users as $key => $user) {
+					$this->request->data['User'][$key] = $user['User'];
+				}
+
+				// pr($users);
+	            // pr($this->request->data);
+			}
+		}
+		$users = $this->Message->User->find('list');
+		$this->set(compact('users'));
+
+		$this->render("/Messages/add");
+	}	
+
+
+/**
  * edit method
  *
  * @throws NotFoundException

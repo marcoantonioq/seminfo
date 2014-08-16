@@ -6,12 +6,12 @@
 			<!-- Navigation -->
 			<ul id="nav" class="sf-menu sf-js-enabled sf-shadow">
 
-				<li class="current-menu-item">
+				<li>
 					<?php echo $this->Html->link(
 						'Home <span class="subheader">Bem vindo</span>',
 						array(
-							'controller' => 'homes',
-							'action' => 'index'
+							'controller' => 'users',
+							'action' => 'add'
 						),
 						array(
 							'escape' => false, 
@@ -36,7 +36,7 @@
 					<?php echo $this->Html->link(
 						'Cursos <span class="subheader">Nossos Cursos</span>',
 						array(
-							'controller' => 'cursos',
+							'controller' => 'courses',
 							'action' => 'index'
 						),
 						array('escape' => false)
@@ -53,7 +53,22 @@
 						array('escape' => false)
 					); ?>
 				</li>
-				
+              	<li>
+					<?php echo $this->Html->link(
+						'Programação <span class="subheader">A mais Diversa</span>',
+						array(
+							'controller' => 'programs',
+							'action' => 'index'
+						),
+						array(
+							'escape' => false, 
+							'title' => 'Confira todos os enventos'
+						)
+					); ?>
+					
+				</li>
+                                
+                             
 				<li>
 					<?php echo $this->Html->link(
 						'Contato <span class="subheader">Pagina de Contato</span>',

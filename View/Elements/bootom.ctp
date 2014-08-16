@@ -1,9 +1,9 @@
-<div id="bottom-text">
+<div id="ttom-text">
 	<a href="http://ifgoiano.edu.br/urutai/home/" target="_blank">
 		Instituto Federal Goiano
 	</a> 
 	-
-	<a href="/"> Nucleo</a> 
+        <a href="<?php array("controller"=> "homes")?>"> Nucleo</a> 
 </div>
 <!-- 
 <ul class="social ">

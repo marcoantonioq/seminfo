@@ -1,22 +1,37 @@
 administration = function() {
-	
-	$(".addpresence")
-		.each(function(){
-			$(this).click(function(event) {
-				var span = $(this);
-				var id = $(this).attr('value');
-				$.get( 
-					$(this)[0].href,
-					null, 
-					function(data) {
-						span.html(data);
-						span.removeClass('addpresence');
-					}
-				);
-				return false;
-			});
-		});
 
+	$(".sendAjax").each(function(index, el) {
+		$(this).click(function(event) {
+			var box = $(this);
+			var id = $(this).attr('value');
+			$.get( 
+				$(this)[0].href,
+				null, 
+				function(data) {
+					box.html(data);
+				}
+			);
+			return false;
+		});
+	});
+
+
+	// para presence diferentes da data atual add class addpresence
+	$(".presence").each(function(index, el) {
+		var data = new Date($(this).attr("date"));
+		var currenteDate = new Date();
+		var cd = currenteDate.getFullYear()+''+(currenteDate.getUTCMonth()+1)+''+currenteDate.getDate();
+		var d = data.getFullYear()+''+(data.getUTCMonth()+1)+''+data.getDate();
+
+		if (cd > d) { 
+			$(this).addClass('addpresence');
+		};
+
+		$(this).click(function(){
+			$(this).removeClass('addpresence');
+		});	
+	});
+	
 	$(".statusAjax")
 		.each(function(){
 
@@ -28,15 +43,15 @@ administration = function() {
 				    url: $(this)[0].href,
 				    success: function(data) {
 				        if(data == 1) {
-				        	icon.removeAttr('class', 'icon-remove');
-				        	icon.attr('class', 'icon-ok');
+				  	      	icon.removeClass('icon-remove');
+				        	icon.addClass('icon-ok');
 				        } else {
-				        	icon.removeAttr('class', 'icon-ok');
-				        	icon.attr('class', 'icon-remove');
+				        	icon.removeClass('icon-ok');
+				        	icon.addClass('icon-remove');
 				        }
 				    },
 				    error: function(data){
-				    	alert("fail");
+				    	alert("fail. :(");
 				    }
 
 				});

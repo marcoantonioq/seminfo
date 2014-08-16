@@ -20,15 +20,6 @@ class User extends AppModel {
 	public $displayField = 'name';
 	public $order = array('User.name' => 'asc');
 
-	public $actsAs = array(
-	    'Upload' => array(
-	        'foto' => array(
-	        	'field' => 'image',
-	        	'field_dir' => 'image_dir',
-	        )
-	    )
-	);
-
 /**
  * Validation rules
  *
@@ -96,7 +87,7 @@ class User extends AppModel {
 			),
 			'validaCPF' => array(
 				'rule' => array('validaCPF'),
-				'message' => 'CPF invalido',
+				'message' => 'CPF inválido',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

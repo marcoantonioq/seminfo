@@ -5,7 +5,6 @@
 
 	echo $this->Html->script(
 		array(
-			'jquery.js',
 			'jquery.mask.min.js',
 			'/js/userload/users.js',
 		)

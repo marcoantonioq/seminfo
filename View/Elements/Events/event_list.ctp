@@ -7,7 +7,7 @@
 			<?php foreach ($events as $event): ?>
 				<li>
 					<?php if(!empty($event['Event']['file_dir'])){
-						echo $this->Html->image('/files/event/file/'.$event['Event']['file_dir'].'/'.$event['Event']['file'],
+						echo $this->Html->image('/files/'.$event['Event']['file_dir'].'/'.$event['Event']['file'],
 							array(
 								'alt' => 'Imagem: '.$event['Event']['nome'],
 								'width' => "270px",
@@ -32,7 +32,7 @@
 					
 					
 					<div class="excerpt">
-						<?= $this->Html->link($event['Event']['nome'], array('controller' => 'events', 'action' => 'view', $event['Event']['id']), array('class' => 'header', 'title' => 'Saiba tudo sobre '.$event['Event']['nome']) ); ?>
+						<?= $this->Html->link($event['Event']['name'], array('controller' => 'events', 'action' => 'view', $event['Event']['id']), array('class' => 'header', 'title' => 'Saiba tudo sobre '.$event['Event']['name']) ); ?>
 					</div>
 					<?php /*echo $this->Html->link('<span>Saiba mais</span>',
 						array(

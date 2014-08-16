@@ -11,5 +11,5 @@
 	<?php foreach($types as $key => $tipo): ?>
 		<li><?= $this->Html->link($tipo['Type']['alias'], array('controller' => 'types', 'action' => 'view', $tipo['Type']['id']));  ?></li>
 	<?php endforeach;  ?>
-	
+	 
 </ul>

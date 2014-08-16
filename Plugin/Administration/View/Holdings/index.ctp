@@ -183,6 +183,7 @@
 
 		<td data-th="<?= ucfirst(__('user_id'));?>" >
 			<?php echo $this->Html->link($holding['User']['name'], array('controller' => 'users', 'action' => 'view', $holding['User']['id'])); ?>
+			<?php echo $this->Form->checkbox('rowuser.'.$holding['User']['id'], array( 'class'=>'rowfilter hide' ));?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('program_id'));?>" >
@@ -209,7 +210,6 @@
 
 		<td data-th="<?= ucfirst(__('presenca'));?>">
 			<?php 
-				$class = ($this->Date->isToday($holding['Holding']['date_presenca'] )) ? "" : "addpresence";
 				echo $this->Html->link($holding['Holding']['presenca'],
 					array(
 						'controller'=>'holdings', 
@@ -218,8 +218,9 @@
 						'sum'
 					),
 					array(
-						'class'=>$class." green btn bold",
-						'value'=>$holding['Holding']['id']
+						'class'=>"sendAjax presence green btn bold",
+						'value'=>$holding['Holding']['id'],
+						'date' => $holding['Holding']['date_presenca']
 					)
 				); 
 			?>
@@ -316,6 +317,15 @@
 		'class'=>'btn',
 		'style'=>'margin-bottom: 10px;',
 		'formaction'=>'/seminfo/administration/holdings/presence',
+		)); 
+	?>
+
+	
+	<?php 
+		echo  $this->Form->button('Enviar mensagem', array(
+		'class'=>'btn',
+		'style'=>'margin-bottom: 10px;',
+		'formaction'=>'/seminfo/administration/messages/send',
 		)); 
 	?>
 

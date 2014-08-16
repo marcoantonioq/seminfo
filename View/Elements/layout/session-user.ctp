@@ -1,4 +1,5 @@
  <section class='top-nav'>
+     <a></a>
 		<?php if( $this->Session->check('Auth.User.id') ): ?>
 			<?php $user =  $this->Session->read('Auth.User'); ?>
 			<?php 

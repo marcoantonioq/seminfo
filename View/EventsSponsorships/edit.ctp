@@ -1,0 +1,62 @@
+<div class="row-fluid">
+
+
+	<div class='span8'>		
+		<?php 
+			echo $this->Form->create('EventsSponsorship'); 
+			$this->Form->inputDefaults(array(
+				'class'=>'span12'
+			));
+		?>
+		<?php  
+		
+
+			echo $this->Form->input('event_id', array(
+				'label'=>ucfirst(__('event_id')),
+			));
+
+			echo $this->Form->input('sponsorship_id', array(
+				'label'=>ucfirst(__('sponsorship_id')),
+			));
+
+			echo $this->Form->input('id', array(
+				'label'=>ucfirst(__('id')),
+			));			
+		?>
+		<div class="form-actions form-horizontal">
+			<?php			  echo $this->Form->button('Enviar', array(
+				'class'=>'btn btn-info'
+			))." ";
+			echo $this->Form->button('Limpar', array(
+				'type'=>'reset',
+				'class'=>'btn btn-warning'
+			));
+			
+			echo $this->Form->end();
+
+			?>		</div>
+
+	</div>
+
+	<div class="span4">
+		<div class="actions form-horizontal well ucase">
+			<h3><?php echo __('Actions'); ?></h3>
+			
+			<?php  echo $this->Html->link('Voltar', 
+				array( 'action' => 'index'),
+				array('class'=> 'btn btn-block')
+			); ?>
+		
+			<?php  echo $this->Html->link('Visualizar', 
+				array('action' => 'view', $this->params['pass'][0]),
+				array('class'=> 'btn btn-block btn-success')
+			); ?>			
+			<?php  echo $this->Form->postLink('Apagar',
+				array( 'action' => 'delete', $this->params['pass'][0]),
+                array('class'=> 'btn btn-block btn-danger', 'style'=>'margin-top: 5px;'),
+                __('Tem certeza de que deseja excluir?')
+			);?>
+				</div>
+	</div>
+
+</div>

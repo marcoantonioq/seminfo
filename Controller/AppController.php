@@ -41,7 +41,12 @@ class AppController extends Controller {
     public $components = array(
         'Paginator',
         'RequestHandler',
-        'Security',
+        'Security' => array(
+            'csrfUseOnce' => false,
+            "validatePost" => false,
+            "enabled" => false,
+            "csrfCheck" => false,
+        ),
         'Session',
         'Auth' => array(
             'authenticate' => array(
@@ -86,12 +91,6 @@ class AppController extends Controller {
         // $this->Auth->deny();
 
     }
-	
-	public function getUser(){
-        //pr($this->Auth->user());
-        return $this->Auth->user();
-    }
-
 
     public function forceSSL() {
         return $this->redirect('https://' . env('SERVER_NAME') . $this->here);

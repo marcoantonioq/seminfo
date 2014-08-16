@@ -139,15 +139,9 @@ p {
 #footer{
 	position: relative;
 	color: #fff;
+	background-color: #fff;
+	border-top: 1px solid #000;
 }
-
-/* #footer{
-	height: 300px;
-	position: relative;
-	background: url('/img/template/gears-background.png') repeat-x bottom center;
-	color: #332C2C;
-} */
-
 /* FOOTER - COLS ------------------------------------------------------------*/
 
 #footer-cols{
@@ -155,6 +149,7 @@ p {
 	overflow: hidden;
 	color: #bbbaba;
 	line-height: 1.5em;
+	
 }
 
 #footer-cols li.col{
@@ -167,10 +162,9 @@ p {
 }
 
 #footer-cols li.col>h6{
-	color: #d7d7d7;
+	color: #505050;
 	margin-top: 30px;
 	margin-bottom: 20px;
-	text-shadow: 0px -2px rgba(0, 0, 0, .8);
 }
 
 #footer-cols li.clear-col{ clear:left; }
@@ -199,11 +193,7 @@ p {
 
 #footer-cols li.col ul li a{
 	text-decoration: none;
-	color: #bbbaba;
-}
-
-#footer-cols li.col ul li a:hover{
-	color: #fff;
+	color: #4E4E4E;
 }
 
 /* FOOTER BOTTOM --------------------------------------------------------*/

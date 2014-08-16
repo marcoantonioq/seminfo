@@ -303,8 +303,7 @@
 		</td>
 
 		<td data-th="<?= ucfirst(__('status'));?>" >
-			<?php echo h($user['User']['status']); ?>
-			&nbsp;
+			<?php echo $this->Link->status($user['User']['id'], "status", $user['User']['status']); ?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('website'));?>" >

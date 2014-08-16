@@ -99,7 +99,7 @@ class UploadBehavior extends ModelBehavior {
 				}
 	    	}
 	    	else {
-	    		if ( is_array( $Model->data[$Model->name][$config['field']] ) ) {
+	    		if ( !empty($Model->data[$Model->name][$config['field']]) && is_array( $Model->data[$Model->name][$config['field']] ) ) {
 	    			unset($Model->data[$Model->name][$config['field']]);
 	    		}
 	    	}
