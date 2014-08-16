@@ -11,6 +11,20 @@
 
 
 $(document).ready(function(){
+
+	$(window).bind('scroll', function() {
+   		var navHeight = 114
+		if ( $(window).scrollTop() > navHeight ) {
+			$('#content').css("top", "80px");
+			$('#menu').addClass('fixed');
+		}
+		else {
+			$('#content').css("top", "0px");
+			$('#menu').removeClass('fixed');
+
+		}
+	});
+
 	// alert(url);
 	var url = window.location.pathname;
 	// alert(url);

@@ -9,7 +9,9 @@
 		<?php 
 		echo $this -> Html -> meta('icon');
 
-		echo $this -> Html -> css('users');
+		echo $this->Html->css(array(
+			"/css/users.css"
+		));
 
 		echo $this->Html->script(
 		array(
@@ -22,6 +24,17 @@
 		echo $this -> fetch('css');
 		echo $this -> fetch('script');
 	?>
+	
+	<style>
+
+		.fixed {
+			position: fixed; 
+			top: 0; 
+			/*height: 70px; */
+			z-index: 9999;
+		}
+	</style>
+
 	</head>
 	<body>
 		<div id="container">

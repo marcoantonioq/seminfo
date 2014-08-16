@@ -13,6 +13,16 @@
 
 
 navigation = function(){
+
+	// alert(url);
+	var url = window.location.pathname;
+	if(url == "/seminfo/administration" || url == "/seminfo/administration/") {
+		$('#menu a[href="'+url+'"]').addClass('current-menu-item');		
+	} else {
+		url = url.substring(0, 29);
+		$('#menu a[href^="'+url+'"]').addClass('current-menu-item');
+	}
+
 	$('.close').click(function(){
 		$('.alert-message').fadeToggle();
 		return false;
