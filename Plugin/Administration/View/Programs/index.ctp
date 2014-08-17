@@ -220,7 +220,7 @@
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('holdding_count', ucfirst(__('holdding_count'))); 
 					?>				
@@ -319,8 +319,7 @@
 		</td>
 
 		<td data-th="<?= ucfirst(__('status'));?>" >
-			<?php echo h($program['Program']['status']); ?>
-			&nbsp;
+			<?php echo $this->Link->status($program['Program']['id'], 'status', $program['Program']['status']); ?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('price'));?>" >

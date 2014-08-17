@@ -216,13 +216,11 @@
 		</td>
 
 		<td data-th="<?= ucfirst(__('published'));?>" >
-			<?php echo h($event['Event']['published']); ?>
-			&nbsp;
+			<?php echo $this->Link->status($event['Event']['id'], 'published', $event['Event']['published']); ?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('status'));?>" >
-			<?php echo h($event['Event']['status']); ?>
-			&nbsp;
+			<?php echo $this->Link->status($event['Event']['id'], 'status', $event['Event']['status']); ?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('first'));?>" >

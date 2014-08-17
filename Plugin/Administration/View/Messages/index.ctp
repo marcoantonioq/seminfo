@@ -79,7 +79,7 @@
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('body', ucfirst(__('body'))); 
 					?>				
@@ -155,18 +155,15 @@
 		</td>
 
 		<td data-th="<?= ucfirst(__('body'));?>" >
-			<?php echo h($message['Message']['body']); ?>
-			&nbsp;
+			<?php echo $message['Message']['body']; ?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('notify'));?>" >
-			<?php echo h($message['Message']['notify']); ?>
-			&nbsp;
+			<?php echo $this->Link->status($message['Message']['id'], 'notify', $message['Message']['notify']); ?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('status'));?>" >
-			<?php echo h($message['Message']['status']); ?>
-			&nbsp;
+			<?php echo $this->Link->status($message['Message']['id'], 'status', $message['Message']['status']); ?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('updated'));?>" >

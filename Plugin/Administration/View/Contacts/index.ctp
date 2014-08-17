@@ -212,7 +212,7 @@
 		</td>
 
 		<td data-th="<?= ucfirst(__('body'));?>" >
-			<?php echo h($contact['Contact']['body']); ?>
+			<?php echo $contact['Contact']['body']; ?>
 			&nbsp;
 		</td>
 

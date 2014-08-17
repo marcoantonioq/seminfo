@@ -10,7 +10,9 @@
 		echo $this -> Html -> meta('icon');
 
 		echo $this->Html->css(array(
-			"/css/users.css"
+			"/css/reset.css",
+			"/css/estilo.css",
+			"/css/users.css",
 		));
 
 		echo $this->Html->script(
@@ -32,6 +34,14 @@
 			top: 0; 
 			/*height: 70px; */
 			z-index: 9999;
+		}
+
+				
+		#footer{
+			position: relative;
+			color: #fff;
+			background-color: #fff;
+			border-top: 1px solid #000;
 		}
 	</style>
 

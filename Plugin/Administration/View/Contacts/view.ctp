@@ -25,7 +25,7 @@
             </dd>
 			<dt><?php echo ucfirst(__('body')); ?></dt>
             <dd>
-                <?php echo h($contact['Contact']['body']); ?>
+                <?php echo $contact['Contact']['body']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('name')); ?></dt>

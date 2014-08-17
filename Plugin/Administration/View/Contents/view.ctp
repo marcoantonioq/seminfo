@@ -25,7 +25,7 @@
             </dd>
 			<dt><?php echo ucfirst(__('body')); ?></dt>
             <dd>
-                <?php echo h($content['Content']['body']); ?>
+                <?php echo $content['Content']['body']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('status')); ?></dt>

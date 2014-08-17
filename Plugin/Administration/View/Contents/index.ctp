@@ -211,13 +211,12 @@
 		</td>
 
 		<td data-th="<?= ucfirst(__('body'));?>" >
-			<?php echo h($content['Content']['body']); ?>
+			<?php echo $content['Content']['body']; ?>
 			&nbsp;
 		</td>
 
 		<td data-th="<?= ucfirst(__('status'));?>" >
-			<?php echo h($content['Content']['status']); ?>
-			&nbsp;
+			<?php echo $this->Link->status($content['Content']['id'], 'status', $content['Content']['status']); ?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('promote'));?>" >

@@ -20,7 +20,7 @@
             </dd>
 			<dt><?php echo ucfirst(__('body')); ?></dt>
             <dd>
-                <?php echo h($course['Course']['body']); ?>
+                <?php echo $course['Course']['body']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('file')); ?></dt>

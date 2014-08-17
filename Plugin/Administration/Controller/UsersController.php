@@ -77,7 +77,10 @@ class UsersController extends AdministrationAppController {
  * @return void
  */
 	public function index() {
+
+
 		if ($this->request->is('post')) {
+			// pr($this->request->data); exit;
             $this->Paginator->settings = $this->User->action($this->request->data);
             echo $this->Session->setFlash('Filtro definido!', 'layout/success');
         }

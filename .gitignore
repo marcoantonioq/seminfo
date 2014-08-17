@@ -1,6 +1,8 @@
 # User specific & automatically generated files #
 #################################################
 /Config/database.php
+/Config/database.php-default
+/Config/email.php
 /tmp
 /webroot/files/
 

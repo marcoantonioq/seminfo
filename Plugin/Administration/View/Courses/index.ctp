@@ -168,7 +168,7 @@
 		</td>
 
 		<td data-th="<?= ucfirst(__('body'));?>" >
-			<?php echo h($course['Course']['body']); ?>
+			<?php echo $course['Course']['body']; ?>
 			&nbsp;
 		</td>
 

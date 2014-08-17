@@ -1,6 +1,5 @@
 @charset "utf-8";
 
-@import url('reset.css');
 @font-face{
 	font-family: Alpha;
 	src:url(fonts/alpha.ttf);

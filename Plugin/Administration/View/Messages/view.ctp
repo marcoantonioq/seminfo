@@ -15,7 +15,7 @@
             </dd>
 			<dt><?php echo ucfirst(__('body')); ?></dt>
             <dd>
-                <?php echo h($message['Message']['body']); ?>
+                <?php echo $message['Message']['body']; ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('notify')); ?></dt>
