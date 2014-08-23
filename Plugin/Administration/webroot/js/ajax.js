@@ -39,7 +39,7 @@ administration = function() {
 			
 			icon.click(function(event) {				
 				$.ajax({
-				type: "GET",
+					type: "GET",
 				    url: $(this)[0].href,
 				    success: function(data) {
 				        if(data == 1) {
@@ -47,8 +47,13 @@ administration = function() {
 				        	icon.addClass('icon-ok');
 				        } else {
 				        	icon.removeClass('icon-ok');
+				        	icon.removeClass('beforeAjax');
 				        	icon.addClass('icon-remove');
 				        }
+				    },
+				    beforeSend: function(){
+				        icon.removeClass('icon-ok');
+				        icon.addClass('beforeAjax');
 				    },
 				    error: function(data){
 				    	alert("fail. :(");

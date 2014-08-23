@@ -3,6 +3,7 @@
 /Config/database.php
 /Config/database.php-default
 /Config/email.php
+Config/email.php
 /tmp
 /webroot/files/
 

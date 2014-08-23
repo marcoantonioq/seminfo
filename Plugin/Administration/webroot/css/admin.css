@@ -567,6 +567,14 @@ span.rednum {
 .red{color:red;}
 .green{color:green;}
 
+.beforeAjax {
+	background-image: url("ajax-loader.gif");
+	display: inline-block;
+	height: 18px;
+	width: 18px;
+    background-repeat: no-repeat;
+}
+
 @media print {
 	* {
 		background:transparent !important;

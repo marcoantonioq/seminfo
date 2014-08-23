@@ -4,14 +4,5 @@
   "port": 22014,
   "username": "marco",
   "password": "nucleo@admin",
-  "keyfile": "/home/marco/htdocs/seminfo/app/",
-  "passphrase": "",
-  "target": "/var/www/seminfo/app/",
-  "ignore": [
-    ".git/**"
-    ".sublime-(project|workspace)"
-    ".sublime-(project|workspace)"
-    "sftp-config(-alt\\d?)?\\.json"
-    "sftp-conffig.json"
-  ]
+  "target": "/var/www/seminfo/app"
 }
