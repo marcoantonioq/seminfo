@@ -25,7 +25,7 @@
 				<?php echo $this->Html->link(
 					'Login', 
 					array(
-						'plugin'=>'administration',
+						// 'plugin'=>'administration',
 						'controller'=>'users',
 						'action'=>'login'
 					)

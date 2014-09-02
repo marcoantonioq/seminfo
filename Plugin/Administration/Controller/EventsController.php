@@ -47,6 +47,7 @@ class EventsController extends AdministrationAppController {
 		if (!$this->Event->exists($id)) {
 			throw new NotFoundException(__('Inválido event'));
 		}
+		$this->Event->recursive = 0;
 		$options = array('conditions' => array('Event.' . $this->Event->primaryKey => $id));
 		$this->set('event', $this->Event->find('first', $options));
 	}

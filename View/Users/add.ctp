@@ -123,9 +123,9 @@
 					'label'=>ucfirst(__('holding_count')),
 				));
 
-				echo $this->Form->input('Message', array(
-					'label'=>ucfirst(__('Message')),
-				));			
+				// echo $this->Form->input('Message', array(
+				// 	'label'=>ucfirst(__('Message')),
+				// ));			
 				
 			?>
 		</div>

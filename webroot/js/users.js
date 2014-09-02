@@ -32,7 +32,13 @@ $(document).ready(function(){
 		$('#nav a[href="'+url+'"]').parents("li").addClass('current-menu-item');		
 	} else {
 		url = url.substring(0, 15);
-		$('#nav a[href^="'+url+'"]').parents("li").addClass('current-menu-item');		
+		$('#nav a[href^="'+url+'"]').parents("li").addClass('current-menu-item');
+	}
+
+
+	if(url.indexOf("speakers") != -1 || url.indexOf("holdings") != -1 ) {
+		alert("speakers");
+		$('#nav a[href^="/seminfo/programs"').parents("li").addClass('current-menu-item');
 	}
 
 });

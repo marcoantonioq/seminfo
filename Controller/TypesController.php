@@ -10,8 +10,9 @@ App::uses('AppController', 'Controller');
 class TypesController extends AppController {
 
 	public function beforeFilter(){
-		parent::beforeFilter();
 		$this->set('title_for_layout', __('Types'));
+		$this->Auth->allow('index', 'add', 'view');
+		parent::beforeFilter();
 	}
 
 /**

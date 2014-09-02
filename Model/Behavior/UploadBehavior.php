@@ -108,20 +108,22 @@ class UploadBehavior extends ModelBehavior {
     }
 
     public function afterSave(Model $Model, $created, $options = array()){    	
+    	// pr($Model->data);
     	if(!empty($Model->data['tmp'])){
     		foreach ($Model->data['tmp'] as $folder => $tmp) {
 		    	
 		    	$origem = $tmp['path_file'];
-		    	echo $destino = $tmp['path_dir'].$Model->data[$Model->name][$Model->primaryKey].'.'.$tmp['extencion'];
+		    	$destino = $tmp['path_dir'].$Model->data[$Model->name][$Model->primaryKey].'.'.$tmp['extencion'];
 		    	
 		    	$Model->data[$Model->name][$tmp['field_dir']] = $destino;
 
 		    	copy($origem, WWW_ROOT.$destino);
 				unlink($origem);
 
+				unset($Model->data['tmp']);
+				$Model->save($Model->data[$Model->name]);
     		}
     	}
-		unset($Model->data['tmp']);
 		// pr($Model->data); exit;
     }
 

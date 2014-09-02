@@ -10,8 +10,9 @@ App::uses('AppController', 'Controller');
 class MessagesController extends AppController {
 
 	public function beforeFilter(){
-		parent::beforeFilter();
 		$this->set('title_for_layout', __('Messages'));
+		$this->Auth->allow('index', 'add', 'view');
+		parent::beforeFilter();
 	}
 
 /**

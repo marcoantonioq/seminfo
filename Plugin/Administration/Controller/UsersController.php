@@ -12,7 +12,7 @@ class UsersController extends AdministrationAppController {
 	public function beforeFilter(){
 		parent::beforeFilter();
 		$this->set('title_for_layout', __('Users'));
-		$this->Auth->allow('login', 'logout', 'getseminfo2013');
+		$this->Auth->allow('index', 'add', 'view', 'getseminfo2013', 'login');
 	}
 
 	public $components = array('Mpdf'); 
@@ -24,34 +24,16 @@ class UsersController extends AdministrationAppController {
  */
 	// public $components = array('Paginator', 'Session');
 
-
-/**
- * login method
- *
- * @return void
- */
-	function login() {
-    	$this->layout = 'login';
-    	if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-                $this->Session->setFlash('Logado com sucesso.', 'layout/success');
-                return $this->redirect($this->Auth->redirect());
-            } else {
-                $this->Session->setFlash('Nome de usuário ou senha estava incorreta.');
-            }
-        }
-    }
-
-/**
- * logout method
- *
- * @return void
- */
-    function logout() {
-        $this->Session->setFlash('Até logo!', 'layout/success');
-    	if (env('HTTPS')){ $this->_unforceSSL; }
-        $this->redirect($this->Auth->logout());
-    }
+	public function login(){
+		$this->render(false);
+		$this->redirect(
+			array(
+				'plugin'=>false, 
+				'controller'=>'users', 
+				'action'=>'login'
+			)
+		);
+	}
 
 /**
  * mensagens method
@@ -152,7 +134,9 @@ class UsersController extends AdministrationAppController {
 			throw new NotFoundException(__('Inválido user'));
 		}
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));
+		$programas = $this->User->Holding->Program->find("list");
+		$user = $this->User->find('first', $options);
+		$this->set(compact('user', 'programas'));
 	}
 
 

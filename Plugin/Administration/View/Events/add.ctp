@@ -3,7 +3,7 @@
 
 	<div class='span8'>		
 		<?php 
-			echo $this->Form->create('Event'); 
+			echo $this->Form->create('Event', array('type'=>'file')); 
 			$this->Form->inputDefaults(array(
 				'class'=>'span12'
 			));

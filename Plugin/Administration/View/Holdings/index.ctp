@@ -197,7 +197,20 @@
 
 		<td data-th="<?= ucfirst(__('certificado'));?>" >
 			<?php echo $this->Link->status($holding['Holding']['id'], 'certificado', $holding['Holding']['certificado']); ?>
-			&nbsp;
+			<?php 
+				echo $this->Html->link('<span class="icon12  icomoon-icon-pencil-2"></span>', 
+					array(
+						'action' => 'certificados', 
+						$holding['Holding']['id']
+					),
+					array(
+						'target'=>'_blank',
+						'escape'=>false,
+						'class'=>'certificado',
+						'title'=>'Certificado',
+					)
+				); 
+			?>
 		</td>
 
 		<td data-th="<?= ucfirst(__('credenciado'));?>" >
@@ -210,7 +223,7 @@
 
 		<td data-th="<?= ucfirst(__('presenca'));?>">
 			<?php 
-				echo $this->Html->link($holding['Holding']['presenca'],
+				echo $this->Html->link($holding['Holding']['presenca']+"&nbsp;",
 					array(
 						'controller'=>'holdings', 
 						'action'=>'presence',
@@ -224,6 +237,7 @@
 					)
 				); 
 			?>
+			&nbsp;
 		</td>
 
 		<td data-th="<?= ucfirst(__('created'));?>" >
@@ -261,20 +275,6 @@
 						'escape'=>false,
 						'class'=>'edit',
 						'title'=>'Editar',
-					)
-				); ?>
-
-				<?php 
-				echo $this->Html->link('<span class="icon12  icomoon-icon-pencil-2"></span>', 
-					array(
-						'action' => 'certificados', 
-						$holding['Holding']['id']
-					),
-					array(
-						'target'=>'_blank',
-						'escape'=>false,
-						'class'=>'certificado',
-						'title'=>'Certificado',
 					)
 				); ?>
 			</td>

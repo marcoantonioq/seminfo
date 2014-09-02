@@ -10,8 +10,9 @@ App::uses('AppController', 'Controller');
 class ProgramsSpeakersController extends AppController {
 
 	public function beforeFilter(){
-		parent::beforeFilter();
 		$this->set('title_for_layout', __('ProgramsSpeakers'));
+		$this->Auth->allow('index', 'add', 'view');
+		parent::beforeFilter();
 	}
 
 /**

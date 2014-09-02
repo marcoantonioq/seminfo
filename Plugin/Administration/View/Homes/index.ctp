@@ -1,9 +1,5 @@
 Bem vindo Administrador
 
-<div><a id="click">Click aqui</a></div>
-<div id="msg"></div> 
-
-
 <div class="center">
 	Desenvolvido por Marco Antônio Queiroz 
 	<br>TADS turma de 2011 

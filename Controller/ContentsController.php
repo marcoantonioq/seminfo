@@ -14,6 +14,7 @@ class ContentsController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->set('title_for_layout', __('Contents'));
+        $this->Auth->allow('index', 'add', 'view');
     }
 
     /**

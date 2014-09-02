@@ -10,8 +10,9 @@ App::uses('AppController', 'Controller');
 class ProgramsController extends AppController {
 
 	public function beforeFilter(){
-		parent::beforeFilter();
 		$this->set('title_for_layout', __('Programs'));
+		$this->Auth->allow('index', 'add', 'view');
+		parent::beforeFilter();
 	}
 
 /**
@@ -33,6 +34,8 @@ class ProgramsController extends AppController {
         }
 		$this->Program->recursive = 0;
 		$this->set('programs', $this->Paginator->paginate());
+                
+                
 	}
 
 

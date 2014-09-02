@@ -64,13 +64,12 @@ class AppController extends Controller {
             'authError' => 'Você não possui autorização para executar esta ação.',
             'authorize' => array('Controller'),
             'loginAction' => array(
-                'admin' => null,
-                'plugin' => 'administration',
+                'plugin' => false,
                 'controller' => 'users',
                 'action' => 'login'
             ),
-            'loginRedirect' => array('admin' => false,'controller' => 'users', 'action' => 'index'),
-            'logoutRedirect' => array('admin' => false,'controller' => 'users', 'action' => 'index'),
+            'loginRedirect' => array('plugin' => false, 'controller' => 'users', 'action' => 'login'),
+            'logoutRedirect' => array('plugin' => false, 'controller' => 'users', 'action' => 'login'),
             // */
         )
     );
@@ -87,7 +86,7 @@ class AppController extends Controller {
             $this->layout='ajax';
         }
         
-        $this->Auth->allow();
+        // $this->Auth->allow();
         // $this->Auth->deny();
 
     }
@@ -103,7 +102,6 @@ class AppController extends Controller {
                 return (bool)($user['group_id'] == 1);
             }
         }
-
         return true;
 
 

@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 /**
  * Users Controller
  *
@@ -10,9 +11,9 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
 
 	public function beforeFilter(){
-		parent::beforeFilter();
 		$this->set('title_for_layout', __('Users'));
-		$this->Auth->allow('login', 'logout', 'getseminfo2013');
+		$this->Auth->allow('login', 'logout', 'getseminfo2013', 'index', 'add', 'recuperar');
+		parent::beforeFilter();
 	}
 
 	public $components = array('Mpdf'); 
@@ -49,7 +50,7 @@ class UsersController extends AppController {
  */
     function logout() {
         $this->Session->setFlash('Até logo!', 'layout/success');
-    	if (env('HTTPS')){ $this->_unforceSSL; }
+    	// if (env('HTTPS')){ $this->_unforceSSL; }
         $this->redirect($this->Auth->logout());
     }
 
@@ -263,4 +264,68 @@ class UsersController extends AppController {
 		}
 
 	}
+        
+        function geraSenha($tamanho = 6, $maiusculas = true, $numeros = true, $simbolos = false){
+		$lmin = 'abcdefghijklmnopqrstuvwxyz';
+		$lmai = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$num = '1234567890';
+		$simb = '!@#$%*-';
+		$retorno = '';
+		$caracteres = '';
+
+		$caracteres .= $lmin;
+		if ($maiusculas) $caracteres .= $lmai;
+		if ($numeros) $caracteres .= $num;
+		if ($simbolos) $caracteres .= $simb;
+
+		$len = strlen($caracteres);
+		for ($n = 1; $n <= $tamanho; $n++) {
+		$rand = mt_rand(1, $len);
+		$retorno .= $caracteres[$rand-1];
+		}
+		return $retorno;
+	}
+        
+       public function recuperar(){
+		if ($this->request->is('post') || $this->request->is('put')) {
+
+			$email = $this->request->data['recuperar']['email'];
+			$cpf = str_replace(array('.','-'), '', $this->request->data['recuperar']['cpf']);
+			$password = $this->geraSenha(8, true, true);
+			$validation = $this -> User -> find('first', array(
+					'recursive'		=> -1,
+					'conditions'	=> array(
+						'User.email'	=> $email,
+						'User.cpf'		=> $cpf
+					),
+				)
+			);
+
+			if (!empty($validation)) {
+				$validation['User']['password'] = $password;
+				$validation['User']['password2'] = $password;
+				$Email = new CakeEmail('smtp');
+				$Email->to($validation['User']['email']);
+				$Email->subject('Recuperação de Senha');
+				$Email->viewVars($validation);
+				$Email->emailFormat('html');
+				$Email->template('recuperar');
+
+				if($Email->send()){
+					if (!$this->User->save($validation)) {
+						$this->Session->setFlash(__('Não foi possível alterar senha.'));
+					}
+					$this->Session->setFlash("Senha enviada para ".$email." com sucesso", 'success');
+					return $this->redirect(array('controller'=>'users', 'action'=>'login'));
+				}else{
+					$this->Session->setFlash("Erro ao enviar email de recuperação!", 'error');
+				}
+			}else{
+				$this->Session->setFlash(" Informações invalidas!");
+			}
+		}
+	} 
+        
+        
+        
 }

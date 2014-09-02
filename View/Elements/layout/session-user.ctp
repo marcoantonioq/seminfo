@@ -1,22 +1,19 @@
  <section class='top-nav'>
-     <a></a>
 		<?php if( $this->Session->check('Auth.User.id') ): ?>
 			<?php $user =  $this->Session->read('Auth.User'); ?>
-			<?php 
-				// echo $this -> element(
-				// 	'layout/alert-message', 
-				// 	array('user'=>$user), 
-				// 	array(
-				// 		'cache' => array(
-				// 			'key' => 'alert-messages'.$user['id'], 
-				// 			'config' => 'brief'
-				// 		)
-				// 	)
-				// ); 
-			?>
+			<li>
+				<?php echo $this->Html->link($user['name'],array(
+					'controller' => 'users', 
+					'action' => 'index'
+				),
+				array(
+					'escape' => false,
+				));?>
+			</li>
+
 			<li>
 				<?php echo $this->Html->link(
-					'Sair', 
+					'Sair',
 					'/users/logout',
 					array(
 						'escape' => false
@@ -28,6 +25,7 @@
 				<?php echo $this->Html->link(
 					'Login', 
 					array(
+						// 'plugin'=>'administration',
 						'controller'=>'users',
 						'action'=>'login'
 					)

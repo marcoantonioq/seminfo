@@ -97,7 +97,9 @@
             </dd>
             <dt>Código de barra</dt>
             <dd>
-                <canvas class="barcode" value="<?=str_pad($user['User']['id'], 13, '0', STR_PAD_LEFT);?>" width="200" height="100"></canvas>
+                <canvas class="barcode" value="<?=str_pad($user['User']['id'], 13, '0', STR_PAD_LEFT);?>" width="200" height="100">
+
+                </canvas>
             </dd>
 		</dl>
 	</div>
@@ -129,168 +131,7 @@
 </div>
 
 
-<div class="row-fluid">
-		
-		
-<?php if (!empty($user['Contact'])): ?>
-
-		<h3>
-			<a href="#" id="viewtable" >
-				<?php echo __('Contacts'); ?>			</a>
-		</h3>
-		
-	<div class="tabela" >
-	<table id="tableid1" class='rwd-table'>
-		<tr>
-			<th><?php echo __('id'); ?></th>
-		<th><?php echo __('user_id'); ?></th>
-		<th><?php echo __('title'); ?></th>
-		<th><?php echo __('alias'); ?></th>
-		<th><?php echo __('body'); ?></th>
-		<th><?php echo __('name'); ?></th>
-		<th><?php echo __('phone'); ?></th>
-		<th><?php echo __('email'); ?></th>
-		<th><?php echo __('status'); ?></th>
-		<th><?php echo __('archive'); ?></th>
-		<th><?php echo __('notify'); ?></th>
-		<th><?php echo __('updated'); ?></th>
-		<th><?php echo __('created'); ?></th>
-			<th data-th="Ações" class="actions"><?php echo __('Actions'); ?></th>
-		</tr>
-		<?php foreach ($user['Contact'] as $contact): ?>
-		<tr>
-			<td data-th=<?= ucfirst(__('id')) ?> ><?php echo $contact['id']; ?></td>
-			<td data-th=<?= ucfirst(__('user_id')) ?> ><?php echo $contact['user_id']; ?></td>
-			<td data-th=<?= ucfirst(__('title')) ?> ><?php echo $contact['title']; ?></td>
-			<td data-th=<?= ucfirst(__('alias')) ?> ><?php echo $contact['alias']; ?></td>
-			<td data-th=<?= ucfirst(__('body')) ?> ><?php echo $contact['body']; ?></td>
-			<td data-th=<?= ucfirst(__('name')) ?> ><?php echo $contact['name']; ?></td>
-			<td data-th=<?= ucfirst(__('phone')) ?> ><?php echo $contact['phone']; ?></td>
-			<td data-th=<?= ucfirst(__('email')) ?> ><?php echo $contact['email']; ?></td>
-			<td data-th=<?= ucfirst(__('status')) ?> ><?php echo $contact['status']; ?></td>
-			<td data-th=<?= ucfirst(__('archive')) ?> ><?php echo $contact['archive']; ?></td>
-			<td data-th=<?= ucfirst(__('notify')) ?> ><?php echo $contact['notify']; ?></td>
-			<td data-th=<?= ucfirst(__('updated')) ?> ><?php echo $contact['updated']; ?></td>
-			<td data-th=<?= ucfirst(__('created')) ?> ><?php echo $contact['created']; ?></td>
-			<td data-th="Ações" class="actions">
-
-			<?php 
-				echo $this->Html->link('<span class="icon12 brocco-icon-search"></span>', 
-					array(
-						'controller' => 'contacts', 
-						'action' => 'view', 
-						$contact['id']
-					),
-					array(
-						'escape'=>false,
-						'title'=>'Visualizar',
-						'class'=>'view',
-					)
-				); 
-				
-				echo $this->Html->link('<span class="icon12 brocco-icon-pencil"></span>', 
-					array(
-						'controller' => 'contacts', 
-						'action' => 'edit', 
-						$contact['id']
-					),
-					array(
-						'escape'=>false,
-						'class'=>'edit',
-						'title'=>'Editar',
-					)
-				);
-
-			?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-		</table>
-	</div>
-
-<?php endif; ?>
-
-
-	
-		
-<?php if (!empty($user['Content'])): ?>
-
-		<h3>
-			<a href="#" id="viewtable" >
-				<?php echo __('Contents'); ?>			</a>
-		</h3>
-		
-	<div class="tabela" >
-	<table id="tableid2" class='rwd-table'>
-		<tr>
-			<th><?php echo __('id'); ?></th>
-		<th><?php echo __('user_id'); ?></th>
-		<th><?php echo __('type_id'); ?></th>
-		<th><?php echo __('title'); ?></th>
-		<th><?php echo __('body'); ?></th>
-		<th><?php echo __('status'); ?></th>
-		<th><?php echo __('promote'); ?></th>
-		<th><?php echo __('path'); ?></th>
-		<th><?php echo __('file'); ?></th>
-		<th><?php echo __('file_dir'); ?></th>
-		<th><?php echo __('updated'); ?></th>
-		<th><?php echo __('created'); ?></th>
-			<th data-th="Ações" class="actions"><?php echo __('Actions'); ?></th>
-		</tr>
-		<?php foreach ($user['Content'] as $content): ?>
-		<tr>
-			<td data-th=<?= ucfirst(__('id')) ?> ><?php echo $content['id']; ?></td>
-			<td data-th=<?= ucfirst(__('user_id')) ?> ><?php echo $content['user_id']; ?></td>
-			<td data-th=<?= ucfirst(__('type_id')) ?> ><?php echo $content['type_id']; ?></td>
-			<td data-th=<?= ucfirst(__('title')) ?> ><?php echo $content['title']; ?></td>
-			<td data-th=<?= ucfirst(__('body')) ?> ><?php echo $content['body']; ?></td>
-			<td data-th=<?= ucfirst(__('status')) ?> ><?php echo $content['status']; ?></td>
-			<td data-th=<?= ucfirst(__('promote')) ?> ><?php echo $content['promote']; ?></td>
-			<td data-th=<?= ucfirst(__('path')) ?> ><?php echo $content['path']; ?></td>
-			<td data-th=<?= ucfirst(__('file')) ?> ><?php echo $content['file']; ?></td>
-			<td data-th=<?= ucfirst(__('file_dir')) ?> ><?php echo $content['file_dir']; ?></td>
-			<td data-th=<?= ucfirst(__('updated')) ?> ><?php echo $content['updated']; ?></td>
-			<td data-th=<?= ucfirst(__('created')) ?> ><?php echo $content['created']; ?></td>
-			<td data-th="Ações" class="actions">
-
-			<?php 
-				echo $this->Html->link('<span class="icon12 brocco-icon-search"></span>', 
-					array(
-						'controller' => 'contents', 
-						'action' => 'view', 
-						$content['id']
-					),
-					array(
-						'escape'=>false,
-						'title'=>'Visualizar',
-						'class'=>'view',
-					)
-				); 
-				
-				echo $this->Html->link('<span class="icon12 brocco-icon-pencil"></span>', 
-					array(
-						'controller' => 'contents', 
-						'action' => 'edit', 
-						$content['id']
-					),
-					array(
-						'escape'=>false,
-						'class'=>'edit',
-						'title'=>'Editar',
-					)
-				);
-
-			?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-		</table>
-	</div>
-
-<?php endif; ?>
-
-
-	
+<div class="row-fluid">		
 		
 <?php if (!empty($user['Holding'])): ?>
 
@@ -303,7 +144,6 @@
 	<table id="tableid3" class='rwd-table'>
 		<tr>
 			<th><?php echo __('id'); ?></th>
-		<th><?php echo __('user_id'); ?></th>
 		<th><?php echo __('program_id'); ?></th>
 		<th><?php echo __('status'); ?></th>
 		<th><?php echo __('certificado'); ?></th>
@@ -317,13 +157,49 @@
 		<?php foreach ($user['Holding'] as $holding): ?>
 		<tr>
 			<td data-th=<?= ucfirst(__('id')) ?> ><?php echo $holding['id']; ?></td>
-			<td data-th=<?= ucfirst(__('user_id')) ?> ><?php echo $holding['user_id']; ?></td>
-			<td data-th=<?= ucfirst(__('program_id')) ?> ><?php echo $holding['program_id']; ?></td>
+			<td data-th=<?= ucfirst(__('program_id')) ?> ><?php echo $programas[$holding['program_id']]; ?></td>
 			<td data-th=<?= ucfirst(__('status')) ?> ><?php echo $holding['status']; ?></td>
-			<td data-th=<?= ucfirst(__('certificado')) ?> ><?php echo $holding['certificado']; ?></td>
-			<td data-th=<?= ucfirst(__('credenciado')) ?> ><?php echo $holding['credenciado']; ?></td>
-			<td data-th=<?= ucfirst(__('reservas')) ?> ><?php echo $holding['reservas']; ?></td>
-			<td data-th=<?= ucfirst(__('presenca')) ?> ><?php echo $holding['presenca']; ?></td>
+			<td data-th=<?= ucfirst(__('certificado')) ?> >
+				<?php echo $this->Link->status($holding['id'], 'certificado', $holding['certificado']); ?>
+				<?php 
+					echo $this->Html->link('<span class="icon12  icomoon-icon-pencil-2"></span>', 
+						array(
+							'action' => 'certificados', 
+							$holding['id']
+						),
+						array(
+							'target'=>'_blank',
+							'escape'=>false,
+							'class'=>'certificado',
+							'title'=>'Certificado',
+						)
+					); 
+				?>
+			</td>
+			<td data-th=<?= ucfirst(__('credenciado')) ?> >
+				<?php echo $this->Link->status($holding['id'],  'credenciado', $holding['credenciado']); ?>
+			</td>
+			<td data-th=<?= ucfirst(__('reservas')) ?> >
+				<?php echo $this->Link->status($holding['id'],  'reservas', $holding['reservas']); ?>
+			</td>
+			<td data-th=<?= ucfirst(__('presenca')) ?> >
+				<?php 
+					echo $this->Html->link($holding['presenca']+"&nbsp;",
+						array(
+							'controller'=>'holdings', 
+							'action'=>'presence',
+							$holding['id'],
+							'sum'
+						),
+						array(
+							'class'=>"sendAjax presence green btn bold",
+							'value'=>$holding['id'],
+							'date' => $holding['date_presenca']
+						)
+					); 
+				?>
+				&nbsp;
+			</td>
 			<td data-th=<?= ucfirst(__('created')) ?> ><?php echo $holding['created']; ?></td>
 			<td data-th=<?= ucfirst(__('updated')) ?> ><?php echo $holding['updated']; ?></td>
 			<td data-th="Ações" class="actions">
@@ -363,77 +239,5 @@
 	</div>
 
 <?php endif; ?>
-
-
-	
-		
-<?php if (!empty($user['Message'])): ?>
-
-		<h3>
-			<a href="#" id="viewtable" >
-				<?php echo __('Messages'); ?>			</a>
-		</h3>
-		
-	<div class="tabela" >
-	<table id="tableid4" class='rwd-table'>
-		<tr>
-			<th><?php echo __('id'); ?></th>
-		<th><?php echo __('title'); ?></th>
-		<th><?php echo __('body'); ?></th>
-		<th><?php echo __('notify'); ?></th>
-		<th><?php echo __('status'); ?></th>
-		<th><?php echo __('updated'); ?></th>
-		<th><?php echo __('created'); ?></th>
-			<th data-th="Ações" class="actions"><?php echo __('Actions'); ?></th>
-		</tr>
-		<?php foreach ($user['Message'] as $message): ?>
-		<tr>
-			<td data-th=<?= ucfirst(__('id')) ?> ><?php echo $message['id']; ?></td>
-			<td data-th=<?= ucfirst(__('title')) ?> ><?php echo $message['title']; ?></td>
-			<td data-th=<?= ucfirst(__('body')) ?> ><?php echo $message['body']; ?></td>
-			<td data-th=<?= ucfirst(__('notify')) ?> ><?php echo $message['notify']; ?></td>
-			<td data-th=<?= ucfirst(__('status')) ?> ><?php echo $message['status']; ?></td>
-			<td data-th=<?= ucfirst(__('updated')) ?> ><?php echo $message['updated']; ?></td>
-			<td data-th=<?= ucfirst(__('created')) ?> ><?php echo $message['created']; ?></td>
-			<td data-th="Ações" class="actions">
-
-			<?php 
-				echo $this->Html->link('<span class="icon12 brocco-icon-search"></span>', 
-					array(
-						'controller' => 'messages', 
-						'action' => 'view', 
-						$message['id']
-					),
-					array(
-						'escape'=>false,
-						'title'=>'Visualizar',
-						'class'=>'view',
-					)
-				); 
-				
-				echo $this->Html->link('<span class="icon12 brocco-icon-pencil"></span>', 
-					array(
-						'controller' => 'messages', 
-						'action' => 'edit', 
-						$message['id']
-					),
-					array(
-						'escape'=>false,
-						'class'=>'edit',
-						'title'=>'Editar',
-					)
-				);
-
-			?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-		</table>
-	</div>
-
-<?php endif; ?>
-
-
-		
 
 </div>

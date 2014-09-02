@@ -15,10 +15,9 @@
 				<li>
 					<?php if(!empty($course['Course']['file_dir'])){
 						echo $this->Html->link(
-						$this->Html->image('/files/curso/file/'.$course['Course']['file_dir'].'/'.$course['Course']['file'],array(
+						$this->Html->image($course['Course']['file_dir'],array(
 								'width' => "282px",
-								'height'=>'150px', 
-								'alt' => $curso['Course']['file'])),
+								'height'=>'150px')),
 						array(
 							'controller' => 'cursos',
 							'action' => 'view',

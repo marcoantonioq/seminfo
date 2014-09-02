@@ -1,5 +1,7 @@
 <?php
+
 App::uses('AppController', 'Controller');
+
 /**
  * Holdings Controller
  *
@@ -9,179 +11,166 @@ App::uses('AppController', 'Controller');
  */
 class HoldingsController extends AppController {
 
-	public function beforeFilter(){
-		parent::beforeFilter();
-		$this->set('title_for_layout', __('Holdings'));
-	}
+    public function beforeFilter() {
+        $this->set('title_for_layout', __('Holdings'));
+        $this->Auth->allow('index', 'add', 'view');
+        parent::beforeFilter();
+    }
 
-/**
- * Components
- *
- * @var array
- */
-	public $components = array('Paginator', 'Session', 'Mpdf');
+    /**
+     * Components
+     *
+     * @var array
+     */
+    public $components = array('Paginator', 'Session', 'Mpdf');
 
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		if ($this->request->is('post')) 
-		{
-            $this->Paginator->settings = $this->Holding->action($this->request->data);
-            echo $this->Session->setFlash('Filtro definido!', 'layout/success');
-        } 
-        else if ($this->request->is('ajax')) {
-        	$this->render("Holdings/ajax/presenca");
-			$this->set('data', $this->request->data);
-        }
-		$this->Holding->recursive = 0;
-		$this->set('holdings', $this->Paginator->paginate());
+    /**
+     * index method
+     *
+     * @return void
+     */
+    public function index() {
+        $this->Holding->recursive = 0;
+        $this->Paginator->settings = array(
+            'conditions'=>array("Holding.user_id"=> $this->Session->read("Auth.User.id"))
+        );
+        $holdings = $this->Paginator->paginate();
+        $this->set(compact('holdings'));        
+    }
 
-	}
+    /**
+     * presenca method
+     *
+     * @return void
+     */
+    public function presence($id = null, $action = null) {
 
+        $this->set('var', $this->Holding->presence($id, $action));
 
-/**
- * presenca method
- *
- * @return void
- */
-	public function presence($id = null, $action = null) {
-		
-		$this->set('var', $this->Holding->presence($id, $action));
-		
         if ($this->request->is('ajax')) {
-        	$this->render("Holdings/ajax/presence");
-        	return true;
+            $this->render("Holdings/ajax/presence");
+            return true;
         }
-		if($this->request->is('post')){
-			$message = "";
-			foreach ($this->request->data['row'] as $id => $value) {
-				$message .= $this->set('var', $this->Holding->presence($id, 'sum'));
-			}
-			echo $this->Session->setFlash('Presença confirmada!', 'layout/success');
-		}
+        if ($this->request->is('post')) {
+            $message = "";
+            foreach ($this->request->data['row'] as $id => $value) {
+                $message .= $this->set('var', $this->Holding->presence($id, 'sum'));
+            }
+            echo $this->Session->setFlash('Presença confirmada!', 'layout/success');
+        }
         $this->redirect($this->referer());
-	}
+    }
 
+    /**
+     * view method
+     *
+     * @throws NotFoundException
+     * @param string $id
+     * @return void
+     */
+    public function view($id = null) {
+        if (!$this->Holding->exists($id)) {
+            throw new NotFoundException(__('Inválido holding'));
+        }
+        $options = array('conditions' => array('Holding.' . $this->Holding->primaryKey => $id));
+        $this->set('holding', $this->Holding->find('first', $options));
+    }
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Holding->exists($id)) {
-			throw new NotFoundException(__('Inválido holding'));
-		}
-		$options = array('conditions' => array('Holding.' . $this->Holding->primaryKey => $id));
-		$this->set('holding', $this->Holding->find('first', $options));
-	}
+    /**
+     * add method
+     *
+     * @return void
+     */
+    public function add() {
+        if ($this->request->is('post')) {
+            $this->Holding->create();
+            if ($this->Holding->save($this->request->data)) {
+                $this->Session->setFlash(__('Foi salvo.'), 'layout/success');
+                return $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
+            }
+        }
+        $users = $this->Holding->User->find('list');
+        $programs = $this->Holding->Program->find('list');
+        $this->set(compact('users', 'programs'));
+    }
 
+    /**
+     * edit method
+     *
+     * @throws NotFoundException
+     * @param string $id
+     * @return void
+     */
+    public function edit($id = null) {
+        if (!$this->Holding->exists($id)) {
+            throw new NotFoundException(__('Inválido holding'));
+        }
+        if ($this->request->is(array('post', 'put'))) {
+            if ($this->Holding->save($this->request->data)) {
+                $this->Session->setFlash(__('Foi salvo.'), 'layout/success');
+                return $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
+            }
+        } else {
+            $options = array('conditions' => array('Holding.' . $this->Holding->primaryKey => $id));
+            $this->request->data = $this->Holding->find('first', $options);
+        }
+        $users = $this->Holding->User->find('list');
+        $programs = $this->Holding->Program->find('list');
+        $this->set(compact('users', 'programs'));
+    }
 
-/**
- * add method
- *
- * @return void
- */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->Holding->create();
-			if ($this->Holding->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
-			}
-		}
-		$users = $this->Holding->User->find('list');
-		$programs = $this->Holding->Program->find('list');
-		$this->set(compact('users', 'programs'));
-	}
+    /**
+     * delete method
+     *
+     * @throws NotFoundException
+     * @param string $id
+     * @return void
+     */
+    public function delete($id = null) {
+        $this->Holding->id = $id;
+        if (!$this->Holding->exists()) {
+            throw new NotFoundException(__('Inválido holding'));
+        }
+        $this->request->onlyAllow('post', 'delete');
+        if ($this->Holding->delete()) {
 
+            $this->Session->setFlash(__('Foi excluído.'), 'layout/success');
+        } else {
+            $this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'layout/error');
+        }
+        return $this->redirect(array('action' => 'index'));
+    }
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function edit($id = null) {
-		if (!$this->Holding->exists($id)) {
-			throw new NotFoundException(__('Inválido holding'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Holding->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
-			}
-		} else {
-			$options = array('conditions' => array('Holding.' . $this->Holding->primaryKey => $id));
-			$this->request->data = $this->Holding->find('first', $options);
-		}
-		$users = $this->Holding->User->find('list');
-		$programs = $this->Holding->Program->find('list');
-		$this->set(compact('users', 'programs'));
-	}
-	
+    /**
+     * certificados method
+     *
+     * @throws NotFoundException
+     * @param string $id
+     * @return void
+     */
+    public function certificados($id) {
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function delete($id = null) {
-		$this->Holding->id = $id;
-		if (!$this->Holding->exists()) {
-			throw new NotFoundException(__('Inválido holding'));
-		}
-		$this->request->onlyAllow('post', 'delete');
-		if ($this->Holding->delete()) {
-	
-			$this->Session->setFlash(__('Foi excluído.'), 'layout/success');
-		} else {
-			$this->Session->setFlash(__('Não foi excluído. Por favor, tente novamente.'), 'layout/error');
-		}
-		return $this->redirect(array('action' => 'index'));
-	}
+        $this->Holding->id = $id;
+        if (!$this->Holding->exists()) {
+            throw new NotFoundException(__('Inválido holding'));
+        }
 
-/**
- * certificados method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-
-	public function certificados($id) {
-
-		$this->Holding->id = $id;
-		if (!$this->Holding->exists()) {
-			throw new NotFoundException(__('Inválido holding'));
-		}
-		
         $holding = $this->Holding->read(null, $id);
 
         $this->set(compact('holding'));
 
         // render pdf
-	    $this->Mpdf->init(array('format'=>"A4-L"));
-	    $this->Mpdf->SetDisplayMode('fullpage');
-	    $this->Mpdf->setFilename('Certificados.pdf');
-	    $this->Mpdf->setOutput('I');
-	    
-		$this->layout = 'pdf';
-		$this->render("Users/pdf/certificados");
-	}
+        $this->Mpdf->init(array('format' => "A4-L"));
+        $this->Mpdf->SetDisplayMode('fullpage');
+        $this->Mpdf->setFilename('Certificados.pdf');
+        $this->Mpdf->setOutput('I');
 
-
+        $this->layout = 'pdf';
+        $this->render("Users/pdf/certificados");
+    }
 
 }

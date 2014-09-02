@@ -18,12 +18,13 @@ administration = function() {
 
 	// para presence diferentes da data atual add class addpresence
 	$(".presence").each(function(index, el) {
-		var data = new Date($(this).attr("date"));
+		var data = $(this).html();
+		var date = new Date($(this).attr("date"));
 		var currenteDate = new Date();
 		var cd = currenteDate.getFullYear()+''+(currenteDate.getUTCMonth()+1)+''+currenteDate.getDate();
-		var d = data.getFullYear()+''+(data.getUTCMonth()+1)+''+data.getDate();
+		var d = date.getFullYear()+''+(date.getUTCMonth()+1)+''+date.getDate();
 
-		if (cd > d) { 
+		if (cd > d || data == "0") { 
 			$(this).addClass('addpresence');
 		};
 

@@ -9,8 +9,8 @@
 		),
 		array(
 			'plugin' => null,
-			'controller' => 'homes',
-			'action' => 'index'
+			'controller' => 'users',
+			'action' => 'add'
 		), 
 		array(
 			'escape' => false, 

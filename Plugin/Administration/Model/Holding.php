@@ -166,59 +166,46 @@ class Holding extends AdministrationAppModel {
 
 
 	public function validateHolding($check){
-		if(isset($this->data['Holding']['id']))
-		{ 
-			return true; 
-		}
-		else
-		{
-			$program = $this->Program->read(null, $this->data['Holding']['program_id']);
-			// pr($program);
-			$this->unbindModel(array('belongsTo' => array('User')));
-			$Holding = $this->find('all', array(
-				'recursive' => 2,
-				'conditions' => array(
-					'Holding.user_id' => $this->data['Holding']['user_id'],
-					'Program.date_begin >= ' => $program['Program']['date_begin'],
-					'Program.date_end <=' => $program['Program']['date_end'],
-					'Program.time_begin >= ' => $program['Program']['time_begin'],
-					'Program.time_end <= ' => $program['Program']['time_begin'],
-				)
-			));
-			// pr($Holding);
-			// exit;
-			return (empty($Holding)) ? true : false;
-			
-		}
+		$this->Program->recursive = -1;
+		$program = $this->Program->read(null, $this->data['Holding']['program_id']);
+		// pr($this->data); pr($program);
+		$this->unbindModel(array('belongsTo' => array('User')));
+		$Holding = $this->find('all', array(
+			'recursive' => 1,
+			'conditions' => array(
+				'Holding.user_id' => $this->data['Holding']['user_id'],
+				'Program.date_begin >= ' => $program['Program']['date_begin'],
+				'Program.date_end <=' => $program['Program']['date_end'],
+				'Program.time_begin >= ' => $program['Program']['time_begin'],
+				'Program.time_end <= ' => $program['Program']['time_end'],
+			)
+		));
+		// pr($Holding);
+		// exit;
+		// return false;
+		return (empty($Holding)) ? true : false;
 	}
 
 	public function validateVaga(){
-		if(isset($this->data['Holding']['id']))
-		{ 
-			return true; 
-		}
-		else
-		{
-			$holdings_count= $this->find('count', array(
-				'recursive' => -1,
-				'conditions' => array(
-					'Holding.program_id' => $this->data['Holding']['program_id'],
-					'Holding.status' => true,
-				)
-			));
+		$holdings_count= $this->find('count', array(
+			'recursive' => -1,
+			'conditions' => array(
+				'Holding.program_id' => $this->data['Holding']['program_id'],
+				'Holding.status' => true,
+			)
+		));
 
-			$program = $this->Program->find('first', array(
-				'recursive' => -1,
-				'conditions' => array(
-					'Program.id' => $this->data['Holding']['program_id']
-				)
-			));
+		$program = $this->Program->find('first', array(
+			'recursive' => -1,
+			'conditions' => array(
+				'Program.id' => $this->data['Holding']['program_id']
+			)
+		));
 
-			if( $holdings_count >= $program['Program']['vagas'] ){ 
-				return false; 
-			}
-			return true;
+		if( $holdings_count >= $program['Program']['vagas'] ){ 
+			return false; 
 		}
+		return true;
 		
 	}
 }

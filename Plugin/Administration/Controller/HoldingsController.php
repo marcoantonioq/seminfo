@@ -165,7 +165,7 @@ class HoldingsController extends AdministrationAppController {
 
 		$this->Holding->id = $id;
 		if (!$this->Holding->exists()) {
-			throw new NotFoundException(__('Inválido holding'));
+			throw new NotFoundException(__('Participação inválida'));
 		}
 		
         $holding = $this->Holding->read(null, $id);

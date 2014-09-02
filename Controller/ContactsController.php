@@ -12,6 +12,7 @@ class ContactsController extends AppController {
 	public function beforeFilter(){
 		parent::beforeFilter();
 		$this->set('title_for_layout', __('Contacts'));
+		$this->Auth->allow('index', 'add', 'view');
 	}
 
 /**

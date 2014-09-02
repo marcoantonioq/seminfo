@@ -20,6 +20,9 @@ class FormBehavior extends ModelBehavior {
 			)
 		));
 		if(!empty($toggle[$Model->name])){
+			if(!empty($toggle[$Model->name]['password']))
+				unset($toggle[$Model->name]['password']);
+
 			echo $toggle[$Model->name][$column] = ($toggle[$Model->name][$column]) ? 0 : 1;
 			$Model->save($toggle);
 			return $toggle[$Model->name][$column];			

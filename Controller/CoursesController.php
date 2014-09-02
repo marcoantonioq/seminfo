@@ -10,8 +10,9 @@ App::uses('AppController', 'Controller');
 class CoursesController extends AppController {
 
 	public function beforeFilter(){
-		parent::beforeFilter();
 		$this->set('title_for_layout', __('Courses'));
+		$this->Auth->allow('index', 'add', 'view');
+		parent::beforeFilter();
 	}
 
 /**
@@ -50,6 +51,7 @@ class CoursesController extends AppController {
 		}
 		$options = array('conditions' => array('Course.' . $this->Course->primaryKey => $id));
 		$this->set('course', $this->Course->find('first', $options));
+  
 	}
 
 

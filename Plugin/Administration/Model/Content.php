@@ -9,14 +9,14 @@ App::uses('AdministrationAppModel', 'Administration.Model');
 class Content extends AdministrationAppModel {
 	// public $displayField = 'id';
 
-public $actsAs = array(
-    'Upload' => array(
-        'foto' => array(
-        	'field' => 'file',
-        	'field_dir' => 'file_dir',
-        )
-    )
-);
+	public $actsAs = array(
+	    'Upload' => array(
+	        'foto' => array(
+	        	'field' => 'file',
+	        	'field_dir' => 'file_dir',
+	        )
+	    )
+	);
 
 /**
  * Validation rules
