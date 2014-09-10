@@ -6,3 +6,4 @@
 <?php echo $this->element('/Events/filter', array(), array('cache' => array('key' => 'Elemente/Events/filter', 'config' => 'day'))); ?>
 
 <?php echo $this->fetch('contents') ?>
+<div class='clearfix'></div>

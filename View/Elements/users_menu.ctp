@@ -34,7 +34,7 @@
 				
 				<li>
 					<?php echo $this->Html->link(
-						'Cursos <span class="subheader">Nossos Cursos</span>',
+						'Instituição <span class="subheader">Nossos Cursos</span>',
 						array(
 							'controller' => 'courses',
 							'action' => 'index'

@@ -65,13 +65,17 @@
 					<?php echo $this -> Session -> flash('auth'); ?>
 	
 					<?php echo $this -> fetch('content'); ?>
+					<div class='clearfix'></div>
 					<?php echo $this->fetch('sidebar') ?>
 				</div>
 			</div>
+			<div class='clearfix'></div>
 			<div id="footer" class="wrapper">
 					<?php echo $this -> element('footer', array(), array('cache' => array('key' => 'Elements_footer', 'config' => 'day'))); ?>
 			</div>	
+			<div class='clearfix'></div>
 			<?php echo $this->element('sql_dump'); ?>
+			<div class='clearfix'></div>
 			<div id="bottom">
 				<div class="wrapper">
 					<?php echo $this -> element('bootom',array(), array('cache' => array('key' => 'Elements_bootom', 'config' => 'day'))); ?>

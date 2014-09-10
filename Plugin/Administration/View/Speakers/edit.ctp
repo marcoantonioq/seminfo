@@ -3,7 +3,7 @@
 
 	<div class='span8'>		
 		<?php 
-			echo $this->Form->create('Speaker'); 
+			echo $this->Form->create('Speaker', array('type'=>'file'));
 			$this->Form->inputDefaults(array(
 				'class'=>'span12'
 			));

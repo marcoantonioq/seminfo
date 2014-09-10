@@ -22,8 +22,7 @@
 				<!-- post-thumb -->
 				<div class="post-thumbnail">
 					<?php if(!empty($content['Content']['file_dir'])){
-						echo $this->Html->image(
-						'/files/content/file/'.$content['Content']['file_dir'].'/'.$content['Content']['file'],
+						echo $this->Html->image($content['Content']['file_dir'],
 						array(
 							'width' => "596px",
 							/*'height'=>'270px', */
@@ -80,9 +79,6 @@
 							)
 						); 
 					?>
-				</li>
-				<li><strong>Categoria </strong> 
-						<?php echo $this->Html->link($content['Categoria']['alias'], array('controller' => 'categorias', 'action' => 'view', $content['Categoria']['id'])); ?>
 				</li>				
 				<hr>
 				<?php echo $this->Html->link('Voltar à página anterior','javascript:history.back()',array('class'=>'btn btn-success'));?>	

@@ -1,5 +1,6 @@
-<?php 
-	echo $this->Html->css(array(
+<?php
+
+echo $this->Html->css(array(
 		'/js/userload/users.css'
 	));
 
@@ -15,7 +16,7 @@
 <div class="row-fluid">
 
 
-	<div class='span8'>		
+    <div class='span8'>		
 		<?php 
 			echo $this->Form->create('User', array('type'=>'file')); 
 			$this->Form->inputDefaults(array(
@@ -55,8 +56,8 @@
 	 		)
 		 ); ?>
 
-		<div id="formcomplite">
-			
+        <div id="formcomplite">
+
 			<?php 
 				echo $this->Form->input('name', array(
 					'label' => 'Nome completo: ',
@@ -66,15 +67,15 @@
 
 				echo $this->Form->input('course_id', array(
 					'empty' => 'Selecione',
-	        		'label' => 'Estuda nesta instiução?',
-	        		'div'=>'clearfix',
-	        		'type' => 'hidden'
+                                        'label' => 'Estuda nesta instiução?',
+                                        'div'=>'clearfix',
+                                        'type' => 'hidden'
 				));
 
 				echo $this->Form->input('matricula', array(
 					'label' => 'Qual sua matricula?', 
 					'div'=>'clearfix',
-	        		'type' => 'hidden'
+                                        'type' => 'hidden'
 				));
 
 				echo $this->Form->input('sexo', array(
@@ -89,6 +90,7 @@
 
 				echo $this->Form->input('username', array(
 					'label'=>ucfirst(__('username')),
+                                        'type' => 'hidden'
 				));
 
 				echo $this->Form->input('password', array(
@@ -105,22 +107,28 @@
 
 				echo $this->Form->input('status', array(
 					'label'=>ucfirst(__('status')),
+                                        'type' => 'hidden',
+                                        'value' => '1'
 				));
 
 				echo $this->Form->input('website', array(
 					'label'=>ucfirst(__('website')),
+                                        'type' => 'hidden'
 				));
 
 				echo $this->Form->input('image', array(
 					'label'=>ucfirst(__('image')),
+                                        'type' => 'hidden'
 				));
 
 				echo $this->Form->input('image_dir', array(
 					'label'=>ucfirst(__('image_dir')),
+                                        'type' => 'hidden'
 				));
 
 				echo $this->Form->input('holding_count', array(
 					'label'=>ucfirst(__('holding_count')),
+                                        'type' => 'hidden'
 				));
 
 				// echo $this->Form->input('Message', array(
@@ -128,10 +136,10 @@
 				// ));			
 				
 			?>
-		</div>
-	</div>
+        </div>
+    </div>
 
-	<div class="form-actions form-horizontal">
+    <div class="form-actions form-horizontal">
 		<?php			  
 		echo $this->Form->button('Enviar', array(
 			'class'=>'btn btn-info'
@@ -145,6 +153,6 @@
 
 		?>		
 
-	</div>
+    </div>
 
 </div>

@@ -11,14 +11,17 @@
 
         <?php          
 
-            echo $this->Form->input('user_id', array(
-                'label'=>ucfirst(__('user_id')),
-            ));
 
             echo $this->Form->input('program_id', array(
                 'label'=>ucfirst(__('program_id')),
             ));
 
+            echo $this->Form->input('user_id', array(
+                'label'=>ucfirst(__('user_id')),
+                'type'=>'text',
+                'placeholder'=> 'Entre com código',
+                'autofocus' => true
+            ));
         ?>
         <div class="form-actions form-horizontal">
             <?php             echo $this->Form->button('Enviar', array(

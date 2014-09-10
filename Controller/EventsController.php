@@ -50,6 +50,7 @@ class EventsController extends AppController {
 		}
 		$options = array('conditions' => array('Event.' . $this->Event->primaryKey => $id));
 		$this->set('event', $this->Event->find('first', $options));
+                //pr($this->Event->find('first', $options));
 	}
 
 
@@ -99,6 +100,10 @@ class EventsController extends AppController {
 		$this->set(compact('sponsorships'));
 	}
 	
+        public function recustIndex() {
+		$events = $this -> Event -> find('list', array('recursive' => -1));		
+		return $events;
+	}
 
 /**
  * delete method

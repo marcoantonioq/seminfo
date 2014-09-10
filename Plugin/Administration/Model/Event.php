@@ -60,6 +60,7 @@ class Event extends AdministrationAppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+
 		'last' => array(
 			'datetime' => array(
 				'rule' => array('datetime'),

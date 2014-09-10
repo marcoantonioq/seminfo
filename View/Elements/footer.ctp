@@ -73,13 +73,10 @@
 			echo $this->Html->link($img, '/', array( 'escape'=>false,'target'=>'_blank'));
 			
 			$img = $this->Html->image("/files/home/tads.png", array('height' =>'60px')).' ';
-			echo $this->Html->link($img,  array('controller'=>'cursos', 'action'=>'view', 1), array( 'escape'=>false,'target'=>'_blank'));
-
-			$img = $this->Html->image("/files/home/tr.png", array('height' =>'60px')).' ';
-			echo $this->Html->link($img,  array('controller'=>'cursos', 'action'=>'view', 3), array( 'escape'=>false,'target'=>'_blank'));
+			echo $this->Html->link($img,  array('controller'=>'courses', 'action'=>'view', 1), array( 'escape'=>false,'target'=>'_blank'));
 
 			$img = $this->Html->image("/files/home/gti.png", array('height' =>'60px')).' ';
-			echo $this->Html->link($img,  array('controller'=>'cursos', 'action'=>'view', 2), array( 'escape'=>false,'target'=>'_blank'));
+			echo $this->Html->link($img,  array('controller'=>'courses', 'action'=>'view', 2), array( 'escape'=>false,'target'=>'_blank'));
 
 
 			$img = $this->Html->image("/files/home/ptv.png", array('height' =>'60px')).' ';

@@ -46,6 +46,7 @@
 			<dt><?php echo ucfirst(__('file')); ?></dt>
             <dd>
                 <?php echo h($content['Content']['file']); ?>
+                <?php echo $this->Html->image($content['Content']['file_dir']); ?>
                 &nbsp;
             </dd>
 			<dt><?php echo ucfirst(__('file_dir')); ?></dt>

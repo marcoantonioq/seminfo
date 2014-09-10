@@ -15,8 +15,7 @@
 				<div class="thumb-shadow">
 					<div class="post-thumbnail">
 						<?php if(!empty($content['file_dir'])){
-							echo $this->Html->image(
-							'/files/content/file/'.$content['file_dir'].'/'.$content['file'],
+							echo $this->Html->image($content['file_dir'],
 							array(
 								/*'width' => "596px",
 								'height'=>'270px', */

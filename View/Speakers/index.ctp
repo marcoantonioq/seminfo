@@ -13,39 +13,39 @@
 		<table cellpadding="0" cellspacing="0">
 			<th><?php echo $this->Paginator->sort('nome'); ?></th>
 		</table>
-	<?php if (!empty($palestrantes)): ?>
+	<?php if (!empty($speakers)): ?>
 		<div class="panes">	
 			<ul>
-				<?php foreach ($palestrantes as $palestrante): ?>
+				<?php foreach ($speakers as $speaker): ?>
 					
 					<div class='floatleft foto'><?php 
-						if(!empty($palestrante['Palestrante']['file_dir'])){
-							echo $this->Html->image('/files/palestrante/file/'.$palestrante['Palestrante']['file_dir'].'/'.$palestrante['Palestrante']['file'],
-								array('width' => '200', 'height' => '200', 'alt' => $palestrante['Palestrante']['nome'])
+						if(!empty($speaker['Speaker']['file_dir'])){
+							echo $this->Html->image($speaker['Speaker']['file_dir'],
+								array('width' => '200', 'height' => '200', 'alt' => $speaker['Speaker']['name'])
 							);
 						}else{
 							echo $this->Html->image('/img/template/282x267.gif',
-								array('width' => '200', 'height' => '200', 'alt' => $palestrante['Palestrante']['nome'])
+								array('width' => '200', 'height' => '200', 'alt' => $speaker['Speaker']['name'])
 							);
 						}						
 					?></div>
 				
 					<div class='palestrante thumb'>
-					<h3><?=$this->Html->link($palestrante['Palestrante']['nome'], array(
-						'controller'=>'palestrantes',
+					<h3><?=$this->Html->link($speaker['Speaker']['name'], array(
+						'controller'=>'speakers',
 						'action'=>'view',
-						$palestrante['Palestrante']['id']
+						$speaker['Speaker']['id']
 					)); ?></h3>
 					<strong>Contribuição: </strong>
-						<?php if (!empty($palestrante['Programa'])): ?>
-							<?php foreach ($palestrante['Programa'] as $key => $programa): ?>
+						<?php if (!empty($speaker['Program'])): ?>
+							<?php foreach ($palestrante['Program'] as $key => $program): ?>
 								<?php 
 									echo $this->Html->link(
-										$programa['nome'].'; ',
+										$program['nome'].'; ',
 										array(
-											'controller' => 'programas',
+											'controller' => 'programs',
 											'action' => 'view',
-											$programa['id']
+											$program['id']
 										)
 									);
 								?>
@@ -55,41 +55,41 @@
 					<p>
 						<?php 
 						$limite = 400;
-						if (strlen($palestrante['Palestrante']['descricao']) <= $limite) {
-							echo $palestrante['Palestrante']['descricao'];							
+						if (strlen($speaker['Speaker']['description']) <= $limite) {
+							echo $speaker['Speaker']['description'];							
 						}else{
-							echo substr($palestrante['Palestrante']['descricao'], 0, $limite).'... '.$this->Html->link('leia mais', array(
-								'controller'=>'palestrantes',
+							echo substr($speaker['Speaker']['description'], 0, $limite).'... '.$this->Html->link('leia mais', array(
+								'controller'=>'speakers',
 								'action'=>'view',
-								$palestrante['Palestrante']['id']
+								$speaker['Speaker']['id']
 							));
 						}
 						?>
 					</p>
 
-					<?php if (!empty($palestrante['Palestrante']['email'])): ?>
-						<a href="mailto:<?=$palestrante['Palestrante']['email']; ?>">Email</a>;
+					<?php if (!empty($speaker['Speaker']['email'])): ?>
+						<a href="mailto:<?=$speaker['Speaker']['email']; ?>">Email</a>;
 					<?php endif; ?>
 
-					<?php if (!empty($palestrante['Palestrante']['twitter'])): ?>
-							<a href="<?=$palestrante['Palestrante']['twitter']; ?>" title="Twitter">Twitter</a>;
+					<?php if (!empty($speaker['Speaker']['twitter'])): ?>
+							<a href="<?=$speaker['Speaker']['twitter']; ?>" title="Twitter">Twitter</a>;
 					<?php endif; ?>
 
-					<?php if (!empty($palestrante['Palestrante']['facebook'])): ?>
-							<a href="<?=$palestrante['Palestrante']['facebook']; ?>" target='_black' title="Facebook">Facebook</a>;
+					<?php if (!empty($speaker['Speaker']['facebook'])): ?>
+							<a href="<?=$speaker['Speaker']['facebook']; ?>"  target=”new” title="Facebook">Facebook</a>;
 					<?php endif; ?>
 					
-					<?php if (!empty($palestrante['Palestrante']['blog'])): ?>
-						<a href="http://<?=$palestrante['Palestrante']['blog']?>" target='_black' title="Saite <?=$palestrante['Palestrante']['nome'] ?>">Site</a>;
+					<?php if (!empty($speaker['Speaker']['blog'])): ?>
+						<a href="http://<?=$speaker['Speaker']['blog']?>" target='_black' title="Saite <?=$speaker['Speaker']['nome'] ?>">Site</a>;
 						<a href="" target='_black' title=""></a>
 					<?php endif; ?>
 					
-					<?php if (!empty($palestrante['Palestrante']['linkedin'])): ?>
-						<a href="<?=$palestrante['Palestrante']['linkedin']; ?>" target='_black' title="Linkedin">Linkedin</a>;
+					<?php if (!empty($speaker['Speaker']['linkedin'])): ?>
+						<a href="<?=$speaker['Speaker']['linkedin']; ?>" target='_black' title="Linkedin">Linkedin</a>;
 					<?php endif; ?>
 
-					<?php if (!empty($palestrante['Palestrante']['lattes'])): ?>
-						<a href="<?=$palestrante['Palestrante']['lattes']; ?>" target='_black' title="Lattes">Lattes</a>;
+					<?php if (!empty($speaker['Speaker']['lattes'])): ?>
+						<a href="<?=$speaker['Speaker']['lattes']; ?>" target='_black' title="Lattes">Lattes</a>;
 					<?php endif; ?>
 					</div>					
 				</p>

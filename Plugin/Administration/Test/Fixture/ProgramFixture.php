@@ -34,7 +34,7 @@ class ProgramFixture extends CakeTestFixture {
 		'description' => array('type' => 'text', 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'updated' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'holdding_count' => array('type' => 'integer', 'null' => true, 'default' => '0', 'unsigned' => false),
+		'holding_count' => array('type' => 'integer', 'null' => true, 'default' => '0', 'unsigned' => false),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
 			'fk_programas_tipoprogramas1_idx' => array('column' => 'typeprogram_id', 'unique' => 0),
@@ -73,7 +73,7 @@ class ProgramFixture extends CakeTestFixture {
 			'description' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
 			'created' => '2014-08-06 15:59:05',
 			'updated' => '2014-08-06 15:59:05',
-			'holdding_count' => 1
+			'holding_count' => 1
 		),
 	);
 

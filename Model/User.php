@@ -75,6 +75,12 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+                        'unique' => array(
+                                'required' => true,
+                                'allowEmpty' => false,
+                                'rule' => 'isUnique',
+                                'message' => 'e-mail já está em uso.'
+                       )
 		),
 		'cpf' => array(
 			'notEmpty' => array(
@@ -93,6 +99,12 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+                        'unique' => array(
+                                'required' => true,
+                                'allowEmpty' => false,
+                                'rule' => 'isUnique',
+                                'message' => 'e-mail já está em uso.'
+                       )
 		),
 		'phone' => array(
 			'notEmpty' => array(

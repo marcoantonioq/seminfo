@@ -2,7 +2,7 @@
 <div class="row-fluid">
     <div class="span12 well">
 		<?php echo $this->Html->link('Novo '.__('message'),
-				array('controller' => 'messages', 'action' => 'add'),
+				array('controller' => 'messages', 'action' => 'send'),
 				array('class'=> 'btn btn-success')
 			)." ";
 
@@ -14,7 +14,7 @@
 		<div id="rowmenus">
 		<hr>
 			    <?php echo $this->Html->link('Novo '.__('message'),
-						array('controller' => 'messages', 'action' => 'add'),
+						array('controller' => 'messages', 'action' => 'send'),
 						array('class'=> 'btn btn-block btn-success')
 					);
 			    ?> 
@@ -97,7 +97,7 @@
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('updated', ucfirst(__('updated'))); 
 					?>				

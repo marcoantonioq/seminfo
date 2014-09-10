@@ -11,59 +11,62 @@
 <?php $this->start('contents'); ?>
 	
 	<div class="">
-	<?php if (!empty($programas)): ?>
+                <?php pr($programs); ?>  
+	<?php if (!empty($programs)): 
+      
+            ?>
 		<div class="panes">	
 			<ul>
-				<?php foreach ($programas as $programa): ?>
+				<?php foreach ($programs as $program): ?>
 					<li>
 						<h2>
 							<?php echo $this->Html->link(
-								$programa['Tipoprograma']['title'].' - '.$programa['Programa']['nome'],
+								$program['Typeprogram']['title'].' - '.$program['Program']['name'],
 								array(
-									'controller'=>'programas',
+									'controller'=>'programs',
 									'action'=>'view',
-									$programa['Programa']['id']
+									$program['Program']['id']
 								)
 							); ?>
 						</h2>
-						<h5><?= $programa['Event']['nome'] ?></h5>
+						<h5><?= $program['Event']['name'] ?></h5>
 						<p>
-							<?= $programa['Programa']['descricao']; ?>							
+							<?= $program['Program']['description']; ?>							
 						</p>
 
 						<li>
 							<?php
 
-								if(date('d', strtotime($programa['Horario']['inicio'])) == date('d', strtotime($programa['Horario']['termino']))):
+								if(date('d', strtotime($program['Program']['date_begin'])) == date('d', strtotime($program['Program']['date_end']))):
 									echo ' Horário: <strong> '.
-									date('d/m H:i', strtotime($programa['Horario']['inicio'])).' as '.
-									date('H:i', strtotime($programa['Horario']['termino'])).'</strong>';
+									date('d/m H:i', strtotime($program['Program']['date_begin'])).' as '.
+									date('H:i', strtotime($program['Program']['date_end'])).'</strong>';
 								else:
 									echo ' Horário: <strong>de '.
-										date('d/m ', strtotime($programa['Horario']['inicio'])).' á '.
-										date('d/m', strtotime($programa['Horario']['termino'])).' das '.
-										date('H:i ', strtotime($programa['Horario']['inicio'])).' as '.
-										date('H:i', strtotime($programa['Horario']['termino'])).'</strong>';
+										date('d/m ', strtotime($program['Program']['date_begin'])).' á '.
+										date('d/m', strtotime($program['Program']['date_end'])).' das '.
+										date('H:i ', strtotime($program['Program']['time_begin'])).' as '.
+										date('H:i', strtotime($program['Program']['time_end'])).'</strong>';
 								endif;
 							?>
 						</li>
 						</p>
 						<ul class="meta">
-							<?php if(!empty($programa['Palestrante'])): ?>
-							<?php foreach ($programa['Palestrante'] as $palestrante): ?>
-							<li><strong>Palestrantes: </strong><?= $palestrante['nome'] ?></li>
-							<li><?= $palestrante['descricao'] ?></li>
-							<li><strong>Email </strong><?= $palestrante['email'] ?></li>							
+							<?php if(!empty($speakers['Palestrante'])): ?>
+							<?php foreach ($speakers['$Speaker'] as $speaker): ?>
+							<li><strong>Palestrantes: </strong><?= $program['name'] ?></li>
+							<li><?= $program['description'] ?></li>
+							<li><strong>Email </strong><?= $speaker['email'] ?></li>							
 							<?php endforeach; ?>
 							<?php endif; ?>
 							<li>
-								<?php if($programa['Programa']['status'] && ($programa['Programa']['usersprograma_count'] < $programa['Programa']['vagas']) && ($programa['Programa']['status'] == true)): ?>
+								<?php if($program['Program']['status'] && ($program['Program']['holding_count'] < $program['Program']['vagas']) && ($program['Program']['status'] == true)): ?>
 									<?php echo $this->Html->link(
 										'<span>Inscreva-se</span>',
 										array(
-											'controller' => 'usersprogramas', 
+											'controller' => 'holdings', 
 											'action' => 'add', 
-											$programa['Programa']['id']
+											$program['Program']['id']
 										),
 										array(
 											'escape' => false,

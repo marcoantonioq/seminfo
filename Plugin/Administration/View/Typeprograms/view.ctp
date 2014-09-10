@@ -84,7 +84,7 @@
 		<th><?php echo __('description'); ?></th>
 		<th><?php echo __('created'); ?></th>
 		<th><?php echo __('updated'); ?></th>
-		<th><?php echo __('holdding_count'); ?></th>
+		<th><?php echo __('holding_count'); ?></th>
 			<th data-th="Ações" class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		<?php foreach ($typeprogram['Program'] as $program): ?>
@@ -112,7 +112,7 @@
 			<td data-th=<?= ucfirst(__('description')) ?> ><?php echo $program['description']; ?></td>
 			<td data-th=<?= ucfirst(__('created')) ?> ><?php echo $program['created']; ?></td>
 			<td data-th=<?= ucfirst(__('updated')) ?> ><?php echo $program['updated']; ?></td>
-			<td data-th=<?= ucfirst(__('holdding_count')) ?> ><?php echo $program['holdding_count']; ?></td>
+			<td data-th=<?= ucfirst(__('holding_count')) ?> ><?php echo $program['holding_count']; ?></td>
 			<td data-th="Ações" class="actions">
 
 			<?php 

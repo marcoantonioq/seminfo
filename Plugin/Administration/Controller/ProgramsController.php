@@ -87,6 +87,16 @@ class ProgramsController extends AdministrationAppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Program->save($this->request->data)) {
+				$holdings = $this->Program->Holding->find("all", array(
+					'recursive' => -1,
+					'conditions' => array(
+						'Holding.program_id' => $this->request->data['Program']['id']
+					)
+				));
+
+				foreach ($holdings as $key => $holding) {
+					$this->Program->Holding->save($holding);
+				}
 				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {

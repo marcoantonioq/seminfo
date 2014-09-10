@@ -67,9 +67,7 @@ class ContentsController extends AdministrationAppController {
 				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		}
-		$users = $this->Content->User->find('list', array(
-			'conditions'=>array("User.id"=> $this->Session->read("Auth.User.id"))
-		));
+		$users = $this->Content->User->find('list', array('conditions'=>array('User.id'=>$this->Session->read("Auth.User.id"))));
 		$types = $this->Content->Type->find('list');
 		$this->set(compact('users', 'types'));
 	}
@@ -97,9 +95,7 @@ class ContentsController extends AdministrationAppController {
 			$options = array('conditions' => array('Content.' . $this->Content->primaryKey => $id));
 			$this->request->data = $this->Content->find('first', $options);
 		}
-		$users = $this->Content->User->find('list', array(
-			'conditions'=>array("User.id"=> $this->Session->read("Auth.User.id"))
-		));
+		$users = $this->Content->User->find('list', array('conditions'=>array('User.id'=>$this->Session->read("Auth.User.id"))));
 		$types = $this->Content->Type->find('list');
 		$this->set(compact('users', 'types'));
 	}

@@ -2,7 +2,7 @@
 
 <?php 
 	$this->assign('title', 'Palestrante'); 
-	$this->assign('subtitle', $palestrante['Palestrante']['nome']); 
+	$this->assign('subtitle', $speaker['Speaker']['name']); 
 ?>
 
 
@@ -13,44 +13,44 @@
 
 <div class="panes">	
 				<div class='floatleft foto'><?php 
-						if(!empty($palestrante['Palestrante']['file_dir'])){
-							echo $this->Html->image('/files/palestrante/file/'.$palestrante['Palestrante']['file_dir'].'/'.$palestrante['Palestrante']['file'],
-								array('width' => '200', 'height' => '200', 'alt' => $palestrante['Palestrante']['nome'])
+						if(!empty($speaker['Speaker']['file_dir'])){
+							echo $this->Html->image($speaker['Speaker']['file_dir'],
+								array('width' => '200', 'height' => '200', 'alt' => $speaker['Speaker']['nome'])
 							);
 						}else{
 							echo $this->Html->image('/img/template/282x267.gif',
-								array('width' => '200', 'height' => '200', 'alt' => $palestrante['Palestrante']['nome'])
+								array('width' => '200', 'height' => '200', 'alt' => $speaker['Speaker']['nome'])
 							);
 						}						
 					?></div>
 				
 					<div class='palestrante thumb'>
-					<h3><?=$palestrante['Palestrante']['nome']; ?></h3>
+					<h3><?=$speaker['Speaker']['nome']; ?></h3>
 					
-					<?=$palestrante['Palestrante']['descricao']; ?>
+					<?=$speaker['Speaker']['descricao']; ?>
 					</p>
 
-					<?php if (!empty($palestrante['Palestrante']['email'])): ?>
+					<?php if (!empty($speaker['Speaker']['email'])): ?>
 
-						<li><strong>Email: </strong><a href="mailto:<?=$palestrante['Palestrante']['email']; ?>">
-							<?=$palestrante['Palestrante']['email']; ?></a>
+						<li><strong>Email: </strong><a href="mailto:<?=$speaker['Palestrante']['email']; ?>">
+							<?=$speaker['Speaker']['email']; ?></a>
 						</li>
 					<?php endif; ?>
 
-					<?php if (!empty($palestrante['Palestrante']['twitter'])): ?>
-						<li><strong>Twitter: </strong><?=$palestrante['Palestrante']['twitter']; ?></li>
+					<?php if (!empty($palestrante['Speaker']['twitter'])): ?>
+						<li><strong>Twitter: </strong><?=$speaker['Speaker']['twitter']; ?></li>
 					<?php endif; ?>
 
-					<?php if (!empty($palestrante['Palestrante']['facebook'])): ?>
-						<li><strong>Facebook: </strong><?=$palestrante['Palestrante']['facebook']; ?></li>
+					<?php if (!empty($speaker['Speaker']['facebook'])): ?>
+						<li><strong>Facebook: </strong><?=$speaker['Speaker']['facebook']; ?></li>
 					<?php endif; ?>
 					
-					<?php if (!empty($palestrante['Palestrante']['blog'])): ?>
+					<?php if (!empty($palestrante['Speaker']['blog'])): ?>
 						<li><strong>Site: </strong><?=$palestrante['Palestrante']['blog']?></li>
 					<?php endif; ?>
 					
-					<?php if (!empty($palestrante['Palestrante']['linkedin'])): ?>
-						<li><strong>Linkedin: </strong><?=$palestrante['Palestrante']['linkedin']; ?></li>
+					<?php if (!empty($palestrante['Speaker']['linkedin'])): ?>
+						<li><strong>Linkedin: </strong><?=$palestrante['Speaker']['linkedin']; ?></li>
 					<?php endif; ?>
 
 					<?php if (!empty($palestrante['Palestrante']['lattes'])): ?>

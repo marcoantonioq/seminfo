@@ -91,8 +91,8 @@
 				'label'=>ucfirst(__('description')),
 			));
 
-			echo $this->Form->input('holdding_count', array(
-				'label'=>ucfirst(__('holdding_count')),
+			echo $this->Form->input('holding_count', array(
+				'label'=>ucfirst(__('holding_count')),
 			));
 
 			echo $this->Form->input('Speaker', array(

@@ -85,61 +85,61 @@
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('phone', ucfirst(__('phone'))); 
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('email', ucfirst(__('email'))); 
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('description', ucfirst(__('description'))); 
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('twitter', ucfirst(__('twitter'))); 
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('facebook', ucfirst(__('facebook'))); 
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('blog', ucfirst(__('blog'))); 
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('linkedin', ucfirst(__('linkedin'))); 
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('lattes', ucfirst(__('lattes'))); 
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide" class="hide">
 					<?php 
 						echo $this->Paginator->sort('file', ucfirst(__('file'))); 
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide" class="hide">
 					<?php 
 						echo $this->Paginator->sort('file_dir', ucfirst(__('file_dir'))); 
 					?>				
@@ -151,7 +151,7 @@
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('updated', ucfirst(__('updated'))); 
 					?>				

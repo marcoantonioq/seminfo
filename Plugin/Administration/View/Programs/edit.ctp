@@ -57,18 +57,27 @@
 
 			echo $this->Form->input('date_begin', array(
 				'label'=>ucfirst(__('date_begin')),
+				'dateFormat' => 'DMY',
+			    'minYear' => date('Y'),
+			    'maxYear' => date('Y') + 1,
 			));
 
 			echo $this->Form->input('date_end', array(
 				'label'=>ucfirst(__('date_end')),
+				'dateFormat' => 'DMY',
+			    'minYear' => date('Y'),
+			    'maxYear' => date('Y') + 1,
 			));
 
 			echo $this->Form->input('time_begin', array(
 				'label'=>ucfirst(__('time_begin')),
+			    'selected' => '07:00:00',
+
 			));
 
 			echo $this->Form->input('time_end', array(
 				'label'=>ucfirst(__('time_end')),
+			    'selected' => '07:00:00',
 			));
 
 			echo $this->Form->input('min_presence', array(
@@ -95,8 +104,8 @@
 				'label'=>ucfirst(__('description')),
 			));
 
-			echo $this->Form->input('holdding_count', array(
-				'label'=>ucfirst(__('holdding_count')),
+			echo $this->Form->input('holding_count', array(
+				'label'=>ucfirst(__('holding_count')),
 			));
 
 			echo $this->Form->input('Speaker', array(

@@ -13,12 +13,11 @@
 		?> 
 		<div id="rowmenus">
 		<hr>
-			    <?php echo $this->Html->link('Nova '.__('holding'),
-						array('controller' => 'holdings', 'action' => 'add'),
+			    <?php echo $this->Html->link('Presença',
+						array('controller' => 'holdings', 'action' => 'presence'),
 						array('class'=> 'btn btn-block btn-success')
 					);
-			    ?> 
-		    
+			    ?>		    
 
 					<?php 
 					echo $this->Html->link(__('Users'),
@@ -196,8 +195,9 @@
 		</td>
 
 		<td data-th="<?= ucfirst(__('certificado'));?>" >
-			<?php echo $this->Link->status($holding['Holding']['id'], 'certificado', $holding['Holding']['certificado']); ?>
 			<?php 
+
+			if ($holding['Holding']['certificado']) {
 				echo $this->Html->link('<span class="icon12  icomoon-icon-pencil-2"></span>', 
 					array(
 						'action' => 'certificados', 
@@ -210,7 +210,22 @@
 						'title'=>'Certificado',
 					)
 				); 
+			} else {
+				echo $this->Html->link('<span class="icon16 typ-icon-locked"></span>', 
+					array(
+						'action' => 'edit', 
+						$holding['Holding']['id']
+					),
+					array(
+						// 'target'=>'_blank',
+						'escape'=>false,
+						'class'=>'certificado',
+						'title'=>'Certificado',
+					)
+				); 
+			}
 			?>
+
 		</td>
 
 		<td data-th="<?= ucfirst(__('credenciado'));?>" >

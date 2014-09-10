@@ -97,9 +97,10 @@
             </dd>
             <dt>Código de barra</dt>
             <dd>
-                <canvas class="barcode" value="<?=str_pad($user['User']['id'], 13, '0', STR_PAD_LEFT);?>" width="200" height="100">
+                <span class="barcode" value="<?=$user['User']['id'];?>" width="200" height="100">
 
-                </canvas>
+                </span>
+
             </dd>
 		</dl>
 	</div>
@@ -161,20 +162,6 @@
 			<td data-th=<?= ucfirst(__('status')) ?> ><?php echo $holding['status']; ?></td>
 			<td data-th=<?= ucfirst(__('certificado')) ?> >
 				<?php echo $this->Link->status($holding['id'], 'certificado', $holding['certificado']); ?>
-				<?php 
-					echo $this->Html->link('<span class="icon12  icomoon-icon-pencil-2"></span>', 
-						array(
-							'action' => 'certificados', 
-							$holding['id']
-						),
-						array(
-							'target'=>'_blank',
-							'escape'=>false,
-							'class'=>'certificado',
-							'title'=>'Certificado',
-						)
-					); 
-				?>
 			</td>
 			<td data-th=<?= ucfirst(__('credenciado')) ?> >
 				<?php echo $this->Link->status($holding['id'],  'credenciado', $holding['credenciado']); ?>

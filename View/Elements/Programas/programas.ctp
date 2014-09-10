@@ -1,14 +1,14 @@
 <ul id="sidebar">
 	<li>
-		<?php $programas = $this->requestAction('Programas/requestIndex');	?>
-		<h6><?php echo $this->Html->link('Programas ativos', array('controller' => 'programas', 'action' => 'index')); ?></h6>		
+		<?php $programs = $this->requestAction('Programs/requestIndex');	?>
+		<h6><?php echo $this->Html->link('Programas ativos', array('controller' => 'programs', 'action' => 'index')); ?></h6>		
 		<ul>
-			<?php foreach($programas as $key => $list): ?>
+			<?php foreach($programs as $key => $list): ?>
 				<li class="cat-item" >
 					<?php echo $this->Html->link(
 						$list,
 						array(
-							'controller' => 'programas',
+							'controller' => 'programs',
 							'action' => 'view',
 							$key
 						)

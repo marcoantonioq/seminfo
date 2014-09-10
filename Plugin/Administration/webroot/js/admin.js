@@ -1,7 +1,7 @@
 
 /*
 	by: Marco Antônio Queiroz
-	IFGoiano
+	IFG - Campus Cidade de Goias
 */
 
 
@@ -30,6 +30,7 @@ navigation = function(){
 
 	// filter
 	$('#filter').hide();
+	$('#FilterId').focus();
 	$('table th:first').click(function(){
 		$('#filter').fadeToggle();
 		$('#FilterId').focus();
@@ -147,17 +148,20 @@ navigation = function(){
 plugins = function()
 {
 	// Gerando Barcode js
+	var settings = {
+      barWidth: 2,
+      barHeight: 50
+    };
+
     $(".barcode").each(function(index, el) {
     	var code = $(this).attr('value');
-    	$(this).EAN13(code);
+    	$(this).barcode(code, 'code128', settings);
     });
 }
 
 form = function()
 {
-	// Gerando Barcode js
 	if ( $("form:not(#FilterIndexForm)") ) {
-
     	$("form:not(#FilterIndexForm) :input[id$=Cpf]").mask("999.999.999-99")
     	$("form:not(#FilterIndexForm) :input[id$=Phone]").mask("(99) 9999-9999")
     	$("form:not(#FilterIndexForm) :input[id$=Password]").val("")
@@ -196,30 +200,56 @@ $(document).ready(function(){
 	navigation();
 	plugins();
 	form();
-	// Admin.extra();	
+	varkey();
+	// Admin.extra();
 });
 
+var varkey = function(){
 
-$(window).keydown(function(e){
-	// bloquear ctrl + j, 
-	// para o leitor de codigo de barras
-	if (e.ctrlKey && e.keyCode==74){
-	    return false;
-	}
+	$(window).keydown(function(e){
+		// bloquear ctrl + j, 
+		// para o leitor de codigo de barras
 
-	// Decla ctrl + f: filtro avançado
-	if (e.ctrlKey && e.keyCode == 70) 
-	{
-		$("#filter").show(1000);
-		$("#FilterId").focus();
-		return false;
-	};
+		// alert(e.ctrlKey);
+		// alert(e.keyCode);
 
-	// F5: reload page
-	if (e.keyCode == 116) 
-	{
-		location.reload(true);
-		return false;
-	}
-	
-})
+		if (e.ctrlKey && e.keyCode==74){
+		    return false;
+		}
+
+		// Decla ctrl + f: filtro avançado
+		if (e.ctrlKey && e.keyCode == 70) 
+		{
+			$("#filter").show(1000);
+			$("#FilterId").focus();
+			return false;
+		};
+
+		if( (e.keyCode > 95 && e.keyCode < 106 ) || (e.keyCode > 47 && e.keyCode < 58 ) )
+		{			
+			if( ! $("#FilterId").is(":visible") )
+			{
+				$("#filter").show(1000);
+				$("#FilterId").focus();
+				$("#FilterUserId").focus();
+			}
+
+		}
+
+		// F5: reload page
+		if (e.keyCode == 116) 
+		{
+			location.reload(true);
+			return false;
+		}
+
+
+		// alert(e.keyCode);
+		if(e.keyCode == 13)
+		{
+			// return false;
+			$("#FilterIndexForm").submit();
+		}
+		
+	})
+}

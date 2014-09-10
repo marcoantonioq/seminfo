@@ -1,3 +1,4 @@
+
 (function() {
   (function($, window, document) {
     "use strict";
@@ -174,3 +175,13 @@
   })(jQuery, window, document);
 
 }).call(this);
+
+
+
+$(document).ready(function(){
+  $(".barcode").each(function(index, el) {
+    var code = $(this).attr('value');
+    $(this).EAN13(code);
+  });
+
+})

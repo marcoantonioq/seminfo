@@ -214,7 +214,7 @@
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('updated', ucfirst(__('updated'))); 
 					?>				
@@ -222,7 +222,7 @@
 												
 				<th class="hide">
 					<?php 
-						echo $this->Paginator->sort('holdding_count', ucfirst(__('holdding_count'))); 
+						echo $this->Paginator->sort('holding_count', ucfirst(__('holding_count'))); 
 					?>				
 				</th>
 				
@@ -282,7 +282,7 @@
 									
 					<?php echo $this->Filter->conditions('updated'); ?>
 									
-					<?php echo $this->Filter->conditions('holdding_count'); ?>
+					<?php echo $this->Filter->conditions('holding_count'); ?>
 								
 				<td></td>
 			</tr>
@@ -407,8 +407,8 @@
 			&nbsp;
 		</td>
 
-		<td data-th="<?= ucfirst(__('holdding_count'));?>" >
-			<?php echo h($program['Program']['holdding_count']); ?>
+		<td data-th="<?= ucfirst(__('holding_count'));?>" >
+			<?php echo h($program['Program']['holding_count']); ?>
 			&nbsp;
 		</td>
 

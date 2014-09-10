@@ -1,5 +1,6 @@
 <?php
 App::uses('AdministrationAppController', 'Administration.Controller');
+App::uses('CakeEmail', 'Network/Email');
 /**
  * Messages Controller
  *
@@ -53,26 +54,6 @@ class MessagesController extends AdministrationAppController {
 
 
 /**
- * add method
- *
- * @return void
- */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->Message->create();
-			if ($this->Message->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
-			}
-		}
-		$users = $this->Message->User->find('list');
-		$this->set(compact('users'));
-	}
-
-
-/**
  * send method
  *
  * @return void
@@ -93,12 +74,40 @@ class MessagesController extends AdministrationAppController {
 				$users = $this->Message->User->find("all", $options);
 				$this->request->data = array();
 				$this->request->data['User'] = array();
+
 				foreach ($users as $key => $user) {
 					$this->request->data['User'][$key] = $user['User'];
 				}
+				unset($this->request->data['rowuser']);
+			}
 
-				// pr($users);
-	            // pr($this->request->data);
+
+			if(!empty($this->request->data['Message'])) {
+				$bcc = array();
+				foreach ($this->request->data["User"]["User"] as $key => $id) {
+					$user = $this->Message->User->find("first", array(
+						'recursive'=>-1,
+						'conditions' => array(
+							"User.id" => $id
+						)
+					));
+					$bcc[] = $user['User']['email'];
+				}
+
+    			if(!empty($bcc)){
+					$Email = new CakeEmail('smtp');
+					$Email->to($bcc);
+					// $Email->bcc($bcc);
+					$Email->emailFormat('html');
+					$Email->subject($this->request->data['Message']['title']);
+					if($Email->send($this->request->data['Message']['body'])){
+						$this->Message->save($this->request->data);
+						$this->Session->setFlash("Enviado com sucesso", 'success');
+						return $this->redirect(array('action'=>'index'));
+					}else{
+						$this->Session->setFlash("Erro ao enviar email!", 'error');
+					}
+    			}
 			}
 		}
 		$users = $this->Message->User->find('list');

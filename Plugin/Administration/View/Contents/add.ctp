@@ -46,6 +46,7 @@
 
 			echo $this->Form->input('file_dir', array(
 				'label'=>ucfirst(__('file_dir')),
+				'type'=>'file'
 			));			
 		?>
 		<div class="form-actions form-horizontal">

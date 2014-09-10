@@ -19,22 +19,27 @@
 				'class'=>'hide'
 			));
 
-			echo "<h3>{$this->request->data['User']['name']}</h3>";
+			echo "<h4>{$this->request->data['User']['name']}</h4>";
 
 			echo $this->Form->input('program_id', array(
 				'label'=>ucfirst(__('program_id')),
 				'class'=>'hide'
 			));
 
-			echo "<h3>{$this->request->data['Program']['name']}</h3>";
+			echo "<h4>{$this->request->data['Program']['name']}</h4>";
 
 			echo $this->Form->input('status', array(
 				'label'=>ucfirst(__('status')),
 			));
 
-			echo $this->Form->input('certificado', array(
-				'label'=>ucfirst(__('certificado')),
-			));
+			// echo $this->Form->input('certificado', array(
+			// 	'label'=>ucfirst(__('certificado')),
+			// 	'type'=>'select',
+			// 	'options'=>array(
+			// 		'0'=>'Bloquear',
+			// 		'1'=>'Liberar',
+			// 	)
+			// ));
 
 			echo $this->Form->input('credenciado', array(
 				'label'=>ucfirst(__('credenciado')),
@@ -46,9 +51,11 @@
 
 			echo $this->Form->input('presenca', array(
 				'label'=>ucfirst(__('presenca')),
-				'readonly'=>'true'
+				'readonly'=>'true',
+				'class'=>'hidden',
+				'style'=>'display:none'
 			));
-			
+
 			echo $this->Html->link($this->request->data['Holding']['presenca'],
 				array(
 					'controller'=>'holdings', 

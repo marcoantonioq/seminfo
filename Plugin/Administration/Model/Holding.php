@@ -22,8 +22,16 @@ class Holding extends AdministrationAppModel {
 	public $validate = array(
 		'user_id' => array(
 			'participando' => array(
-				'rule' => array('validateHolding','notempty'),
+				'rule' => array('validateHolding'),
 				'message' => 'Você estará ocupado nesse horário! :('
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'notempty',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -71,20 +79,27 @@ class Holding extends AdministrationAppModel {
  *
  * @var array
  */
+	
 	public $belongsTo = array(
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
 			'conditions' => '',
 			'fields' => '',
-			'order' => ''
+			'order' => '',
+			'counterCache' => true,
+			'counterScope' => array(
+              'Holding.status' => 1,
+              'Holding.credenciado' => 1
+            )
 		),
 		'Program' => array(
 			'className' => 'Program',
 			'foreignKey' => 'program_id',
 			'conditions' => '',
 			'fields' => '',
-			'order' => ''
+			'order' => '',
+			'counterCache' => true,
 		)
 	);
 
@@ -109,14 +124,6 @@ class Holding extends AdministrationAppModel {
  */
 
 	public function presenceValidade($check){
-
-		if(!empty($this->date['Holding']['presenca'])) {
-			$hoje = date('Ymd');
-			$date_presenca = date('Ymd', strtotime($participacao['Holding']['date_presenca']));
-			if( $hoje == $date_presenca ){
-				return false;
-			}
-		}
 		return true;
 	}
 
@@ -134,11 +141,12 @@ class Holding extends AdministrationAppModel {
 		$hoje = date('Ymd');
 		$date_presenca = date('Ymd', strtotime($participacao['Holding']['date_presenca']));
 
-		if( $hoje != $date_presenca )
+		if( !empty($participacao['Holding']['id']) && $hoje != $date_presenca )
 		{
 			$participacao['Holding']['date_presenca'] = date("Y-m-d h:m:s");
 			if($action == 'sum') $participacao['Holding']['presenca'] += 1;
 			if($action == 'sub') $participacao['Holding']['presenca'] -= 1;
+			// pr($participacao); exit;
 			$this->save($participacao);
 		}
 		return $participacao['Holding']['presenca'];
@@ -166,6 +174,9 @@ class Holding extends AdministrationAppModel {
 
 
 	public function validateHolding($check){
+		if (isset($this->data['Holding']['id'])){
+			return true;
+		}
 		$this->Program->recursive = -1;
 		$program = $this->Program->read(null, $this->data['Holding']['program_id']);
 		// pr($this->data); pr($program);
@@ -187,6 +198,9 @@ class Holding extends AdministrationAppModel {
 	}
 
 	public function validateVaga(){
+		if (isset($this->data['Holding']['id'])){
+			return true;
+		}
 		$holdings_count= $this->find('count', array(
 			'recursive' => -1,
 			'conditions' => array(

@@ -1,71 +1,139 @@
-<?php $this->extend('/Common/Events/index'); ?>
+<?php
+
+$this->extend('/Common/Events/index'); ?>
 
 <?php 
-$this->assign('title', 'Participações'); 
-$this->assign('subtitle', 'Em eventos'); 
-?>
+	$this->assign('title', $this->Session->read('Auth.User.name'));
+ 	$this->assign('subtitle', 'Participações em eventos');
+ ?>
 
 <!--
-	Bloco
+        Bloco
 -->
 <?php $this->start('contents'); ?>
-<?php if(!empty($holdings)): ?>
-	<div class="panes">	
-		<!-- Contents -->
-		
-		<div style="display: block;">
-			
-			<ul class="blocks-thumbs thumbs-rollover">
-				<?php foreach ($holdings as $event): ?>
-				<li>
-					<a href="/holdings/view/<?= $event['Holding']['id'] ?>" class="thumb" title="Imagem">
-						<?php if(!empty($event['Event']['file_dir'])){
-							echo $this->Html->image(
-								'/files/event/file/'.$event['Event']['file_dir'].'/'.$event['Event']['file'],
-								array(
-									'width' => "270px",
-									'height'=>'150px',
-									'alt' => $event['Event']['file']
-									)
-								);
-						}else{
-							echo $this->Html->image(
-								'/img/template/596x270.gif', 
-								array(
-									'width' => "150px",
-									'height'=>'270px',
-									'alt' => 'Post'
-									)
-								);
-							} ?>
-						</a>
-						<div class="excerpt">
-							<?= $this->Html->link($event['Event']['nome'], array('controller' => 'holdings', 'action' => 'view', $event['Holding']['id']), array('class' => 'header') ); ?>
-						</div>
-						<?php 
-						echo $this->Html->link(
-							'<span>Mais →</span>',
-							array('controller'=>'holdings', 'action'=>'view'),
-							array('escape' => FALSE, "class" =>"link-button")
-							);
-							?>
-						</li>			
-					<?php endforeach; ?>
-				</ul>
-			</div>
-		</div>
-		<?php echo $this->element('pagination');?>	
+<?php
+ 	echo $this->Html->css('timeline/timeline');
+	echo $this -> fetch('css');
+ ?>
 
-	<?php else: ?>
+<div>
+     <?php if (empty($holdings)): ?>
+    <h3>Não está á inscrito em nenhum programa</h3>
+            <?php $this->Html->link(
+                    'Veja os progrmas e inscreva-se em algums deles!',array(
+                            'controller' => 'programs',
+                            'action' => 'index'
+            )); ?>
+        <?php else: ?>
 
-	<h2>Você ainda não esta participando?</h2>
-	<?php echo $this->element('/Events/index', array(), array('cache' => array('key' => 'Elemente/Events/index', 'config' => 'elemente_events_index_log'))); ?>
-	
-	
+    <table cellpadding="0" cellspacing="0" >
+        <tr>
+        <h2><?php echo $this->Paginator->sort('program_id', 'Meu Programas'); ?></h2>
+        </tr>
+        <tr>
+            <th>Horario</th>
+            <th>Programa</th>
+            <th>Duração</th>
+            <th>Situação</th>
+            <th>Local</th>
+        </tr>
+
+
+            <?php foreach ($holdings as $holding): ?>
+
+        <tr>
+            <th><?php
+                
+                    if(date('d', strtotime($holding['Program']['time_begin'])) == date('d', strtotime($holding['Program']['time_end']))):
+                                                        echo '<strong> '.
+                                                        date('d/m H:i', strtotime($holding['Program']['time_begin'])).'</strong>';
+                                                else:
+                                                        echo '<strong>'.
+                                                                date('d/m ', strtotime($holding['Program']['date_begin'])).' á '.
+                                                                date('d/m', strtotime($holding['Program']['date_begin'])).'<br> as '.
+                                                                date('H:i ', strtotime($holding['Program']['time_end'])).'</strong>';
+                                                endif;
+       
+                ?>
+            </th>
+            <th><?php echo $this->Html->link($holding['Program']['name'],
+		    		array(
+			    		'controller' => 'programs', 
+			    		'action' => 'view', 
+			    		$holding['Program']['id']
+		    		)
+	    		);
+                ?>
+            </th>
+            <th> 
+                <?php echo $holding['Program']['duration']; ?>
+            </th>
+            <th> 
+                <?php if($holding['Holding']['certificado'] == true): ?>
+                    <?= $this->Html->link(
+                                ' <span>Certificado</span>', 
+                                array('controller' => 'holdings', 'action' => 'certificados', $holding['Holding']['id']),
+                                array('target' => '_blank', 'escape' => false)
+
+                        );
+                        ?>
+                <?php endif; ?>
+		<?php if(($holding['Program']['status'] == true) && ($holding['Holding']['certificado'] != true)): ?>			
+                        <?php echo $this->Form->postLink(
+                                ' Cancelar',
+                                array(
+                                        'action' => 'delete', 
+                                        $holding['Holding']['id']), 
+                                        null, 
+                                        __('Tem certeza de que deseja sair do programa # %s?', $holding['Program']['name']
+                                )
+                        );
+                        ?>
+                <?php endif; ?>
+
+            </th>
+            <th><?php echo $holding['Program']['local']; ?></th>
+        </tr>
+        <?php endforeach; ?>
+
+    </table>
 <?php endif; ?>
 
+</div>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+</div>
+
+
+<div class="actions">
+    <h3><?php echo __('Mais'); ?></h3>
+    <ul>
+        <li><?php echo $this->Html->link(__('Perfil'), array('controller' => 'users','action' => 'index')); ?></li>
+        <li><?php echo $this->Html->link(__('Mensagens'), array('controller' => 'users', 'action' => 'mensagens')); ?> </li>
+    </ul>
+</div>
+<div class='clearfix'></div>
+
+	<?php echo $this->element('pagination'); ?>
 <?php $this->end() ?>
 
 <!--
-	END Bloco
+        END Bloco
 -->

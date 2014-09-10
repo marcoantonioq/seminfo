@@ -91,7 +91,7 @@
 					?>				
 				</th>
 												
-				<th>
+				<th class="hide">
 					<?php 
 						echo $this->Paginator->sort('updated', ucfirst(__('updated'))); 
 					?>				

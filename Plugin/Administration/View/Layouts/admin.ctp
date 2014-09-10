@@ -16,6 +16,7 @@
 		'Administration.admin',
 		"Administration.icons",
 	));
+
 	echo $this->Html->script(
 		array(
 			'jquery.js',
@@ -24,7 +25,7 @@
 			'Administration.admin.js',
 			'Administration.ajax.js',
 			'Administration.ckeditor/ckeditor.js',
-			'Administration.jquery-barcode-en13.js',
+			'Administration.jquery-barcode-2.0.2.min.js',
 		)
 	);
 
@@ -32,7 +33,7 @@
 	echo $this->fetch('css');
 	echo $this->fetch('script');
 	?>
-
+	
 </head>
 <body>
 	<div id="header">

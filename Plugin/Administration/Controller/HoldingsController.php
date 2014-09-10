@@ -49,22 +49,51 @@ class HoldingsController extends AdministrationAppController {
  */
 	public function presence($id = null, $action = null) {
 		
-		$this->set('var', $this->Holding->presence($id, $action));
 		
         if ($this->request->is('ajax')) {
+			$this->set('var', $this->Holding->presence($id, $action));
         	$this->render("Holdings/ajax/presence");
         	return true;
         }
 		if($this->request->is('post')){
 			$message = "";
-			foreach ($this->request->data['row'] as $id => $value) {
-				$message .= $this->set('var', $this->Holding->presence($id, 'sum'));
-			}
-			echo $this->Session->setFlash('Presença confirmada!', 'layout/success');
-		}
-        $this->redirect($this->referer());
-	}
 
+			if(!empty($this->request->data['row'])) {
+				foreach ($this->request->data['row'] as $id => $value) {
+					$message .= $this->set('var', $this->Holding->presence($id, 'sum'));
+				}
+			}
+
+			if (!empty($this->request->data['Holding'])) {
+				$holding = $this->Holding->find('first', array(
+					'recursive' => -1,
+					'conditions'=>array(
+						'Holding.program_id' => $this->request->data['Holding']['program_id'],
+						'Holding.user_id' => $this->request->data['Holding']['user_id']
+					)
+				));
+
+				if (isset($holding['Holding']['presenca'])) {
+					$holding['Holding']['presenca'] += 1;
+					if ($this->Holding->save($holding)) {
+						echo $this->Session->setFlash('Presença confirmada!', 'layout/success');
+					} else {
+						echo $this->Session->setFlash('Error presença!', 'layout/error');
+					}
+				} else {
+					echo $this->Session->setFlash('Participação de usuário não encontrado!', 'layout/info');
+					$param = array('user'=>'add');
+					$this->set(compact('param'));
+				}
+			}
+			// pr($this->request->data['Holding']);
+
+		}
+        // $this->redirect($this->referer());
+        $users = $this->Holding->User->find('list');
+		$programs = $this->Holding->Program->find('list');
+		$this->set(compact('programs'));
+	}
 
 /**
  * view method
@@ -114,17 +143,19 @@ class HoldingsController extends AdministrationAppController {
 		if (!$this->Holding->exists($id)) {
 			throw new NotFoundException(__('Inválido holding'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
+		
+		$options = array('conditions' => array('Holding.' . $this->Holding->primaryKey => $id));
+		$this->request->data = $this->Holding->find('first', $options);
+
+		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Holding->save($this->request->data)) {
 				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
-		} else {
-			$options = array('conditions' => array('Holding.' . $this->Holding->primaryKey => $id));
-			$this->request->data = $this->Holding->find('first', $options);
-		}
+		}		
+
 		$users = $this->Holding->User->find('list');
 		$programs = $this->Holding->Program->find('list');
 		$this->set(compact('users', 'programs'));
@@ -161,7 +192,7 @@ class HoldingsController extends AdministrationAppController {
  * @return void
  */
 
-	public function certificados($id) {
+	public function certificados($id = null) {
 
 		$this->Holding->id = $id;
 		if (!$this->Holding->exists()) {
@@ -170,16 +201,23 @@ class HoldingsController extends AdministrationAppController {
 		
         $holding = $this->Holding->read(null, $id);
 
-        $this->set(compact('holding'));
+		if ($holding['Holding']['certificado']) {	
 
-        // render pdf
-	    $this->Mpdf->init(array('format'=>"A4-L"));
-	    $this->Mpdf->SetDisplayMode('fullpage');
-	    $this->Mpdf->setFilename('Certificados.pdf');
-	    $this->Mpdf->setOutput('I');
-	    
-		$this->layout = 'pdf';
-		$this->render("Users/pdf/certificados");
+	        $this->set(compact('holding'));
+
+	        // render pdf
+		    $this->Mpdf->init(array('format'=>"A4-L"));
+		    $this->Mpdf->SetDisplayMode('fullpage');
+		    $this->Mpdf->setFilename('Certificados.pdf');
+		    $this->Mpdf->setOutput('I');
+		    
+			$this->layout = 'pdf';
+			$this->render("Users/pdf/certificados");
+		} else {
+			$this->Session->setFlash(__('Certificado inválido, tente novamente.'), 'layout/error');
+			return $this->redirect($this->referer());
+		}
+
 	}
 
 

@@ -29,10 +29,18 @@
 
 			echo $this->Form->input('first', array(
 				'label'=>ucfirst(__('first')),
+				'dateFormat' => 'DMY',
+			    'minYear' => date('Y'),
+			    'maxYear' => date('Y') + 1,
+			    'selected' => '07:00:00',
 			));
 
 			echo $this->Form->input('last', array(
 				'label'=>ucfirst(__('last')),
+				'dateFormat' => 'DMY',
+			    'minYear' => date('Y'),
+			    'maxYear' => date('Y') + 1,
+			    'selected' => '07:00:00',
 			));
 
 			echo $this->Form->input('realization', array(

@@ -19,7 +19,7 @@
 								'width' => "282px",
 								'height'=>'150px')),
 						array(
-							'controller' => 'cursos',
+							'controller' => 'courses',
 							'action' => 'view',
 							$course['Course']['id']
 						),

@@ -250,6 +250,7 @@
 
 		<td data-th="<?= ucfirst(__('id'));?>" >
 			<?php echo h($user['User']['id']); ?>
+			<?php echo $this->Form->checkbox('rowuser.'.$user['User']['id'], array( 'class'=>'rowfilter hide' ));?>
 			&nbsp;
 		</td>
 
@@ -412,6 +413,16 @@
 			'formaction'=>'/seminfo/administration/users/credenciar',
 		)); 
 	?>
+
+
+	<?php 
+		echo  $this->Form->button('Enviar mensagem', array(
+		'class'=>'btn',
+		'style'=>'margin-bottom: 10px;',
+		'formaction'=>'/seminfo/administration/messages/send',
+		)); 
+	?>
+
 
 	<?php echo $this->Form->end(); ?>
 	<?php echo $this->element('layout/pagination'); ?>

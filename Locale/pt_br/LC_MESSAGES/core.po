@@ -2098,6 +2098,9 @@ msgstr "hora de término"
 msgid "min_presence"
 msgstr "mínimo de presença"
 
+msgid "presence"
+msgstr "presença"
+
 msgid "presenca"
 msgstr "presença"
 

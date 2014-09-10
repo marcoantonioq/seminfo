@@ -1,5 +1,5 @@
 <?php
-App::uses('AppModel', 'Model');
+App::uses('AdministrationAppModel', 'Administration.Model');
 /**
  * Holding Model
  *
@@ -22,8 +22,16 @@ class Holding extends AppModel {
 	public $validate = array(
 		'user_id' => array(
 			'participando' => array(
-				'rule' => array('validateHolding','notempty'),
+				'rule' => array('validateHolding'),
 				'message' => 'Você estará ocupado nesse horário! :('
+			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'notempty',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -43,6 +51,24 @@ class Holding extends AppModel {
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'certificado' => array(
+			'rule' => array('certificado'),
+			'message' => 'Minimo de presença requerido. :('
+		),
+		'presenca' => array(
+			'presenceValidade' => array(
+				'rule' => array('presenceValidade'),
+				'message' => 'Já possui presença hoje. :('
+			),
+			'numeric' => array(
+				'rule' => array('numeric'),
+				'message' => 'Apenas numeros',
+				'allowEmpty' => true,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
@@ -80,12 +106,56 @@ class Holding extends AppModel {
 		if(!empty($this->data['Holding']['program_id'])){
 			$program = $this->Program->read(null, $this->data['Holding']['program_id']);
 			if($this->data['Holding']['presenca'] >= $program['Program']['min_presence']) {
-				$this->data['Holding']['certificado'] = true;
+				$this->data['Holding']['certificado'] = 1;
 			}else{
-				$this->data['Holding']['certificado'] = false;
+				$this->data['Holding']['certificado'] = 0;
 			}			
 		}
 	}
+
+	/**
+ * valida presence
+ *
+ * @var array
+ */
+
+	public function certificado($check){
+		// pr($this->data['Holding']); exit();
+		if($this->data['Holding']['certificado'] == 1){
+			// Caso presence >= min_presence program certificate true
+			$program = $this->Program->read(null, $this->data['Holding']['program_id']);
+
+			// pr($program); exit();
+			if($this->data['Holding']['presenca'] < $program['Program']['min_presence']){
+				return false;
+			}
+
+		} else{
+			return true;			
+		}
+
+		return false;
+	}
+
+
+/**
+ * valida presence
+ *
+ * @var array
+ */
+
+	public function presenceValidade($check){
+
+		if(!empty($this->date['Holding']['presenca'])) {
+			$hoje = date('Ymd');
+			$date_presenca = date('Ymd', strtotime($participacao['Holding']['date_presenca']));
+			if( $hoje == $date_presenca ){
+				return false;
+			}
+		}
+		return true;
+	}
+
 
 /**
  * belongsTo associations
@@ -132,59 +202,51 @@ class Holding extends AppModel {
 
 
 	public function validateHolding($check){
-		if(isset($this->data['Holding']['id']))
-		{ 
-			return true; 
+		if (isset($this->data['Holding']['id'])){
+			return true;
 		}
-		else
-		{
-			$program = $this->Program->read(null, $this->data['Holding']['program_id']);
-			// pr($program);
-			$this->unbindModel(array('belongsTo' => array('User')));
-			$Holding = $this->find('all', array(
-				'recursive' => 2,
-				'conditions' => array(
-					'Holding.user_id' => $this->data['Holding']['user_id'],
-					'Program.date_begin >= ' => $program['Program']['date_begin'],
-					'Program.date_end <=' => $program['Program']['date_end'],
-					'Program.time_begin >= ' => $program['Program']['time_begin'],
-					'Program.time_end <= ' => $program['Program']['time_begin'],
-				)
-			));
-			// pr($Holding);
-			// exit;
-			return (empty($Holding)) ? true : false;
-			
-		}
+		$this->Program->recursive = -1;
+		$program = $this->Program->read(null, $this->data['Holding']['program_id']);
+		// pr($this->data); pr($program);
+		$this->unbindModel(array('belongsTo' => array('User')));
+		$Holding = $this->find('all', array(
+			'recursive' => 1,
+			'conditions' => array(
+				'Holding.user_id' => $this->data['Holding']['user_id'],
+				'Program.date_begin >= ' => $program['Program']['date_begin'],
+				'Program.date_end <=' => $program['Program']['date_end'],
+				'Program.time_begin >= ' => $program['Program']['time_begin'],
+				'Program.time_end <= ' => $program['Program']['time_end'],
+			)
+		));
+		// pr($Holding);
+		// exit;
+		// return false;
+		return (empty($Holding)) ? true : false;
 	}
 
 	public function validateVaga(){
-		if(isset($this->data['Holding']['id']))
-		{ 
-			return true; 
-		}
-		else
-		{
-			$holdings_count= $this->find('count', array(
-				'recursive' => -1,
-				'conditions' => array(
-					'Holding.program_id' => $this->data['Holding']['program_id'],
-					'Holding.status' => true,
-				)
-			));
-
-			$program = $this->Program->find('first', array(
-				'recursive' => -1,
-				'conditions' => array(
-					'Program.id' => $this->data['Holding']['program_id']
-				)
-			));
-
-			if( $holdings_count >= $program['Program']['vagas'] ){ 
-				return false; 
-			}
+		if (empty($this->data['Holding']['id']))
 			return true;
+		$holdings_count= $this->find('count', array(
+			'recursive' => -1,
+			'conditions' => array(
+				'Holding.program_id' => $this->data['Holding']['program_id'],
+				'Holding.status' => true,
+			)
+		));
+
+		$program = $this->Program->find('first', array(
+			'recursive' => -1,
+			'conditions' => array(
+				'Program.id' => $this->data['Holding']['program_id']
+			)
+		));
+
+		if( $holdings_count >= $program['Program']['vagas'] ){ 
+			return false; 
 		}
+		return true;
 		
 	}
 }

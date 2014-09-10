@@ -32,10 +32,22 @@ class ProgramsController extends AppController {
             $this->Paginator->settings = $this->Program->action($this->request->data);
             echo $this->Session->setFlash('Filtro definido!', 'layout/success');
         }
+        $holdings = $this->Program->Holding->find('list', array(
+        	'fields' => array('program_id', 'id'),
+        	'conditions' =>array(
+        		'Holding.user_id' => $this->Session->read('Auth.User.id')
+        	)
+        ));
 		$this->Program->recursive = 0;
-		$this->set('programs', $this->Paginator->paginate());
+		$programs = $this->Paginator->paginate();
+		$this->set( compact('programs', 'holdings') );
                 
                 
+	}
+        
+        public function requestIndex() {
+		$programs = $this->Program -> find('list');
+		return $programs;
 	}
 
 
@@ -52,6 +64,7 @@ class ProgramsController extends AppController {
 		}
 		$options = array('conditions' => array('Program.' . $this->Program->primaryKey => $id));
 		$this->set('program', $this->Program->find('first', $options));
+                //pr( $this->Program->find('first', $options));
 	}
 
 

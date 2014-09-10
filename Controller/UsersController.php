@@ -36,7 +36,7 @@ class UsersController extends AppController {
     	if ($this->request->is('post')) {
             if ($this->Auth->login()) {
                 $this->Session->setFlash('Logado com sucesso.', 'layout/success');
-                return $this->redirect($this->Auth->redirect());
+                return $this->redirect(array('controller'=>'programs'));
             } else {
                 $this->Session->setFlash('Nome de usuário ou senha estava incorreta.');
             }

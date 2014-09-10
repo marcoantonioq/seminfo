@@ -75,7 +75,7 @@
 			<?php echo $this->element('sql_dump'); ?>
 			<div id="bottom">
 				<div class="wrapper">
-					<?php echo $this -> element('bootom', array('cache' => '+1 day')); ?>
+					<?php //echo $this -> element('bootom', array('cache' => '+1 day')); ?>
 				</div>
 			</div>
 		</div>

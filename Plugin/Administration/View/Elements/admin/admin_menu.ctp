@@ -14,6 +14,17 @@
 		<li>
 			<?php 
 				echo $this->Html->link(
+				'Contato', 
+				array(
+					'plugin' => 'administration', 
+					'controller' => 'contacts',
+					'action' => 'index'),
+				 array('title' => 'Contato de usuários'));
+				 ?>
+		</li>
+		<li>
+			<?php 
+				echo $this->Html->link(
 				'Mensagens', 
 				array(
 					'plugin' => 'administration', 

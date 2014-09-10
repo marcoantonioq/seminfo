@@ -5,7 +5,7 @@
 		array(
 			'jquery.js',
 			'Administration.admin.js',
-			'Administration.jquery-barcode-en13.js',
+			// 'Administration.jquery-barcode-en13.js',
 		)
 	);
 

@@ -3,7 +3,7 @@
 		Instituto Federal Goiano
 	</a> 
 	-
-        <a href="<?php array("controller"=> "homes")?>"> Nucleo</a> 
+        <a href="<?php array("controller"=> "/")?>"> Nucleo</a> 
 </div>
 <!-- 
 <ul class="social ">

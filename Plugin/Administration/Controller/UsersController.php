@@ -12,7 +12,7 @@ class UsersController extends AdministrationAppController {
 	public function beforeFilter(){
 		parent::beforeFilter();
 		$this->set('title_for_layout', __('Users'));
-		$this->Auth->allow('index', 'add', 'view', 'getseminfo2013', 'login');
+		$this->Auth->allow('add', 'getseminfo2013', 'login');
 	}
 
 	public $components = array('Mpdf'); 
@@ -77,25 +77,19 @@ class UsersController extends AdministrationAppController {
  * @return void
  */
 	public function labels() {
+		$this->layout = 'pdf';
+        $this->Paginator->settings = $this->User->action($this->request->data);
+        $this->User->recursive = -1;
+        $users = $this->Paginator->paginate();
 
-		// if ($this->request->is('post')) 
-		// {
-            $this->Paginator->settings = $this->User->action($this->request->data);
-            $this->User->recursive = -1;
-            $users = $this->Paginator->paginate();
-            $this->set(compact('users'));
-
-            // render pdf
-			$this->layout = 'pdf';		
-		    $this->Mpdf->init();
-		    $this->Mpdf->setFilename('Etiquetas.pdf'); 		    
-		    $this->Mpdf->SetColumns(2);
-		    $this->Mpdf->setOutput('D');
-
-        // }
-        // else {
-        // 	$this->redirect(array('action'=>'index'));
-        // }
+        foreach ($users as $key => $user) {
+        	$name = explode(" ", $user["User"]['name']);
+        	if (!isset($name[1]))
+        		continue;
+        	$users[$key]['User']['name'] = $name[0]." ".$name[1];
+        }
+        
+        $this->set(compact('users'));
 	}
 
 /**

@@ -23,9 +23,9 @@
 				'label'=>ucfirst(__('status')),
 			));
 
-			echo $this->Form->input('certificado', array(
-				'label'=>ucfirst(__('certificado')),
-			));
+			// echo $this->Form->input('certificado', array(
+			// 	'label'=>ucfirst(__('certificado')),
+			// ));
 
 			echo $this->Form->input('credenciado', array(
 				'label'=>ucfirst(__('credenciado')),

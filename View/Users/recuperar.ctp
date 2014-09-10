@@ -11,7 +11,7 @@ Enviaremos um nova senha para seu e-mail cadastrado.
                 'pattern' => "^\d{3}.\d{3}.\d{3}-\d{2}$",
                 'label'=>'CPF: '
             ));
-            
+          
             echo $this->Form->submit(
                 __('Submit'),
                 array(

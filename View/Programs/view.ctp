@@ -2,7 +2,7 @@
 
 <?php 
 	$this->assign('title', 'Programa'); 
-	$this->assign('subtitle', $programa['Programa']['nome']);
+	$this->assign('subtitle', $program['Program']['name']);
 ?>
 
 <!--
@@ -17,13 +17,12 @@
 		<div class="thumb-shadow">
 			<div class="post-thumbnail">
 				<?php 
-					if(!empty($programa['Programa']['file_dir'])){
-						echo $this->Html->image(
-						'/files/programa/file/'.$programa['Programa']['file_dir'].'/'.$programa['Programa']['file'],
+					if(!empty($program['Program']['file_dir'])){
+						echo $this->Html->image($program['Program']['file_dir'],
 						array(
 							'width' => "596px",
 							'height'=>'270px', 
-							'alt' => $programa['Programa']['file']
+							'alt' => $program['Program']['file']
 						)
 						);
 					}else{
@@ -39,56 +38,56 @@
 				?>
 			</div>
 			<div class="the-excerpt">
-				<?= $programa['Programa']['descricao']; ?>
-				<?php if(!empty($programa['Programa']['conteudo'])): ?>
+				<?= $program['Program']['description']; ?>
+				<?php if(!empty($program['Program']['content'])): ?>
 				<h3>Conteúdo</h3>
 				<?php endif; ?>
-				<?= $programa['Programa']['conteudo']; ?>
+				<?= $program['Program']['content']; ?>
 			</div>
 		</div>
 		<ul class="meta">
 			<?php if(!empty($programa['Programa']['vagas'])): ?>
-			<!-- <li><strong>Inscritos: </strong> <?= $programa['Programa']['usersprograma_count']?></li> -->
+			<!-- <li><strong>Inscritos: </strong> <?= $program['Program']['usersprograma_count']?></li> -->
 			<li><strong>Vagas: </strong>
 				<?php 
-					if($programa['Programa']['vagas'] - $programa['Programa']['usersprograma_count']){
-						echo ($programa['Programa']['vagas'] - $programa['Programa']['usersprograma_count']); 								
+					if($program['Program']['vagas'] - $program['Program']['usersprograma_count']){
+						echo ($program['Program']['vagas'] - $program['Program']['usersprograma_count']); 								
 					}else{
 						echo "<span class='red'>Não há vagas.</span>";
 					}
 				 ?>
 			</li>
 			<?php endif; ?>
-			<li><strong>Local: </strong> <?= $programa['Programa']['local']; ?></li>
+			<li><strong>Local: </strong> <?= $program['Program']['local']; ?></li>
 			<li>
 				<?php
-					if(date('d', strtotime($programa['Horario']['inicio'])) == date('d', strtotime($programa['Horario']['termino']))):
+					if(date('d', strtotime($program['Program']['time_begin'])) == date('d', strtotime($program['Program']['time_end']))):
 						echo ' Horário: <strong>das '.
-						date('H:i', strtotime($programa['Horario']['inicio'])).' as '.
-						date('H:i - d/m', strtotime($programa['Horario']['termino'])).'</strong>';
+						date('H:i', strtotime($program['Program']['time_begin'])).' as '.
+						date('H:i - d/m', strtotime($program['Program']['time_end'])).'</strong>';
 					else:
 						echo ' Horário: <strong>de '.
-							date('d/m ', strtotime($programa['Horario']['inicio'])).' á '.
-							date('d/m', strtotime($programa['Horario']['termino'])).' das '.
-							date('H:i ', strtotime($programa['Horario']['inicio'])).' as '.
-							date('H:i', strtotime($programa['Horario']['termino'])).'</strong>';
+							date('d/m ', strtotime($program['Program']['time_begin'])).' á '.
+							date('d/m', strtotime($program['Program']['time_end'])).' das '.
+							date('H:i ', strtotime($program['Program']['time_begin'])).' as '.
+							date('H:i', strtotime($program['Program']['time_end'])).'</strong>';
 					endif;
 				 ?>
 			</li>
 			
 			<?php 
-					$datetime1 = new DateTime($programa['Horario']['inicio']);
-					$datetime2 = new DateTime($programa['Horario']['termino']);
+					$datetime1 = new DateTime($program['Program']['time_begin']);
+					$datetime2 = new DateTime($program['Program']['time_begin']);
 					$interval = $datetime1->diff($datetime2);
 			 ?>
 		</ul>
 		</p>
-		<?php if(($programa['Programa']['usersprograma_count'] < $programa['Programa']['vagas']) && ($programa['Programa']['status'] == true)): ?>
+		<?php if($program['Program']['status'] == true): ?>
 		<?php echo $this->Html->link(
 			'<span>Inscreva-se<span>', array(
-				'controller' => 'usersprogramas',
+				'controller' => 'holdings',
 				'action' => 'add',
-			 	$programa['Programa']['id']
+			 	$program['Program']['id']
 			),
 			array(
 				'escape' => false,
@@ -101,35 +100,35 @@
 	
 	
 			
-		<?php if (!empty($programa['Palestrante'])): ?>
+		<?php if (!empty($program['Speaker'])): ?>
 		<h3><?php echo __('Palestrante'); ?></h3>
 		<div class="panes">	
 			<ul>
-				<?php foreach ($programa['Palestrante'] as $palestrante): ?>
+				<?php foreach ($program['Speaker'] as $speaker): ?>
 					
 					<div class='floatleft foto'><?php 
-						if(!empty($palestrante['file_dir'])){
-							echo $this->Html->image('/files/palestrante/file/'.$palestrante['file_dir'].'/'.$palestrante['file'],
-								array('width' => '200', 'height' => '200', 'alt' => $palestrante['nome'])
+						if(!empty($speaker['file_dir'])){
+							echo $this->Html->image($speaker['file_dir'],
+								array('width' => '200', 'height' => '200', 'alt' => $speaker['name'])
 							);
 						}else{
 							echo $this->Html->image('/img/template/282x267.gif',
-								array('width' => '200', 'height' => '200', 'alt' => $palestrante['nome'])
+								array('width' => '200', 'height' => '200', 'alt' => $speaker['nome'])
 							);
 						}						
 					?></div>
 				
 					<div class='palestrante thumb'>
 					<h3>
-						<?= $this->Html->link($palestrante['nome'], array(
+						<?= $this->Html->link($speaker['name'], array(
 							'controller' => 'palestrantes',
 							'action' => 'view',
-							$palestrante['id']
+							$speaker['id']
 						));?>
 					</h3>
-						<?php if (!empty($palestrante['Programa'])): ?>
+						<?php if (!empty($speaker['Programa'])): ?>
 						<strong>Contribuição: </strong>
-							<?php foreach ($palestrante['Programa'] as $key => $programa): ?>
+							<?php foreach ($speaker['Programa'] as $key => $programa): ?>
 								<?php 
 									echo $this->Html->link(
 										$programa['nome'].'; ',
@@ -144,31 +143,31 @@
 						</p>
 						<?php endif; ?>
 					<p>
-						<?=$palestrante['descricao']; ?>
+						<?=$speaker['description']; ?>
 					</p>
 
-					<?php if (!empty($palestrante['email'])): ?>
-						<a href="mailto:<?=$palestrante['email']; ?>">Email</a>;
+					<?php if (!empty($speaker['email'])): ?>
+						<a href="mailto:<?=$speaker['email']; ?>">Email</a>;
 					<?php endif; ?>
 
-					<?php if (!empty($palestrante['twitter'])): ?>
-							<a href="http://<?=$palestrante['twitter']; ?>" title="Twitter">Twitter</a>;
+					<?php if (!empty($speaker['twitter'])): ?>
+							<a href="http://<?=$speaker['twitter']; ?>" title="Twitter">Twitter</a>;
 					<?php endif; ?>
 
-					<?php if (!empty($palestrante['facebook'])): ?>
-							<a href="http://<?=$palestrante['facebook']; ?>" target='_black' title="Facebook">Facebook</a>;
+					<?php if (!empty($speaker['facebook'])): ?>
+							<a href="http://<?=$speaker['facebook']; ?>" target='_black' title="Facebook">Facebook</a>;
 					<?php endif; ?>
 					
-					<?php if (!empty($palestrante['blog'])): ?>
-						<a href="http://<?=$palestrante['blog']?>" target='_black' title="Saite <?=$palestrante['Palestrante']['nome'] ?>">Site</a>;
+					<?php if (!empty($speaker['blog'])): ?>
+						<a href="http://<?=$speaker['blog']?>" target='_black' title="Saite <?=$palestrante['Palestrante']['nome'] ?>">Site</a>;
 					<?php endif; ?>
 					
-					<?php if (!empty($palestrante['linkedin'])): ?>
-						<a href="http://<?=$palestrante['linkedin']; ?>" target='_black' title="Linkedin">Linkedin</a>;
+					<?php if (!empty($speaker['linkedin'])): ?>
+						<a href="http://<?=$speaker['linkedin']; ?>" target='_black' title="Linkedin">Linkedin</a>;
 					<?php endif; ?>
 
-					<?php if (!empty($palestrante['lattes'])): ?>
-						<a href="http://<?=$palestrante['lattes']; ?>" target='_black' title="Lattes">Lattes</a>;
+					<?php if (!empty($speaker['lattes'])): ?>
+						<a href="http://<?=$speaker['lattes']; ?>" target='_black' title="Lattes">Lattes</a>;
 					<?php endif; ?>
 					</div>					
 				</p>

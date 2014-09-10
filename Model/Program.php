@@ -175,7 +175,8 @@ class Program extends AppModel {
 			'offset' => '',
 			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'counterQuery' => '',
+			'counter_cache' => true,
 		)
 	);
 

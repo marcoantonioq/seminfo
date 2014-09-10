@@ -43,6 +43,7 @@ administration = function() {
 					type: "GET",
 				    url: $(this)[0].href,
 				    success: function(data) {
+				    	// alert(data);
 				        if(data == 1) {
 				  	      	icon.removeClass('icon-remove');
 				        	icon.addClass('icon-ok');

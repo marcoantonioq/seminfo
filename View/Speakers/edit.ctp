@@ -1,5 +1,5 @@
 <div class="palestrantes form">
-<?php echo $this->Form->create('Palestrante'); ?>
+<?php echo $this->Form->create('Palestrante', array('type'=>'file'));  ?>
 	<fieldset>
 		<legend><?php echo __('Edit Palestrante'); ?></legend>
 	<?php

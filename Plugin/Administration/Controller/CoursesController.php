@@ -49,6 +49,7 @@ class CoursesController extends AdministrationAppController {
 		}
 		$options = array('conditions' => array('Course.' . $this->Course->primaryKey => $id));
 		$this->set('course', $this->Course->find('first', $options));
+
 	}
 
 

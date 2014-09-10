@@ -21,9 +21,7 @@ $this->assign('subtitle', 'Participe dos eventos no IFGoiano - Urutaí');
 	<div style="display: block;">
 		
 		<ul class="blocks-thumbs thumbs-rollover">
-		<?php 
-			// pr($events); 
-		?>
+		
 			<?php foreach ($events as $event): ?>
 				<li>
 					<?php if(!empty($event['Event']['file_dir'])){
@@ -69,11 +67,19 @@ $this->assign('subtitle', 'Participe dos eventos no IFGoiano - Urutaí');
 				</li>			
 			<?php endforeach; ?>
 				<li>
-					<a href="http://ifgoiano.edu.br/urutai/seminfo/">
-						<img src="/files/event/file/3/logo.png" alt="Imagem: SEMINFO 2012" width="270px" height="150px">
+					<a href="http://200.137.237.7/seminfo2013/index.php" target=”new”>
+                                            
+                                             <?php   echo $this->Html->image(
+						'/img/upload/seminfo2013.png'
+                                                     ,array(
+								'alt' => 'Imagem: '.$event['Event']['name'],
+								'width' => "270px",
+								'height'=>'150px',	
+							)
+						); ?>
 					</a>
 					<div class="excerpt">
-						<a href="http://ifgoiano.edu.br/urutai/seminfo/" class="header" title="Saiba tudo sobre SEMINFO 2012">SEMINFO 2012</a>
+						<a href="http://200.137.237.7/seminfo2013/index.php" target=”new” class="header" title="Ainda não pegou seu certificado da Seminfo 2013 ">SEMINFO 2013</a>
 					</div>
 				</li>
 		</ul>

@@ -119,9 +119,9 @@
                 <?=$program['Program']['updated']; ?>
                 &nbsp;
             </dd>
-			<dt><?php echo ucfirst(__('holdding_count')); ?></dt>
+			<dt><?php echo ucfirst(__('holding_count')); ?></dt>
             <dd>
-                <?=$program['Program']['holdding_count']; ?>
+                <?php echo $program['Program']['holding_count']; ?>
                 &nbsp;
             </dd>
 		</dl>
