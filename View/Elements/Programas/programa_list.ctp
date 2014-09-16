@@ -1,11 +1,11 @@
 <div class="panes">	
-	<!-- Contents -->
-	
-	<div style="display: block;">
-		
-		<ul class="blocks-thumbs thumbs-rollover">
+    <!-- Contents -->
+
+    <div style="display: block;">
+
+        <ul class="blocks-thumbs thumbs-rollover">
 			<?php foreach ($events as $event): ?>
-				<li>
+            <li>
 					<?php $this->Html->link(
 						$this->Html->img('/img/template/596x270.gif', array('width'=>'282px', 'height'=>'150px')),
 						array(
@@ -18,9 +18,9 @@
 							'escape' => false
 						)
 					); ?>
-					<div class="excerpt">
+                <div class="excerpt">
 						<?= $this->Html->link($event['Event']['nome'], array('controller' => 'events', 'action' => 'view', $event['Event']['id']), array('class' => 'header') ); ?>
-					</div>
+                </div>
 					<?php $this->Html->link(
 						'<span>Veja mais →</span>',
 						array(
@@ -33,8 +33,8 @@
 							'escape' => false
 						)
 					); ?>
-				</li>			
+            </li>			
 			<?php endforeach; ?>
-		</ul>
-	</div>
+        </ul>
+    </div>
 </div>

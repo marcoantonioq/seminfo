@@ -43,54 +43,67 @@ class HoldingsController extends AdministrationAppController {
 
 
 /**
+ * addpresence method
+ *
+ * @return void
+ */
+
+	private function __add($id){
+		// read
+    	$this->Holding->recursive = -1;
+    	$holding = $this->Holding->read(null, $id);    	
+    	// save
+    	$holding['Holding']['presenca'] += 1;
+    	$this->Holding->save($holding);
+    	$holding = $this->Holding->read(null, $id);    	
+    	return $holding['Holding']['presenca'];
+	}
+
+	public function addpresence($id = null) {
+		// set & render
+		$this->set('var', $this->__add($id));
+    	$this->render("Holdings/ajax/presence");
+    	// if (!$this->request->is('ajax'))
+     //    	$this->redirect($this->referer());
+	}
+
+	public function addpresenceall( ) {
+		$message = "";
+		if(!empty($this->request->data['row'])) {
+			foreach ($this->request->data['row'] as $id => $value) {
+				if($value == 1) 
+					$this->__add($id);
+			}
+		}
+        // $this->redirect($this->referer());				
+	}
+
+/**
  * presenca method
  *
  * @return void
  */
-	public function presence($id = null, $action = null) {
+	public function presence( ) {
 		
-		
-        if ($this->request->is('ajax')) {
-			$this->set('var', $this->Holding->presence($id, $action));
-        	$this->render("Holdings/ajax/presence");
-        	return true;
-        }
 		if($this->request->is('post')){
-			$message = "";
+			$program_id = $this->request->data['Holding']['program_id'];
+			$user_id = $this->request->data['Holding']['user_id'];				
+			$holding = $this->Holding->getHolding($program_id, $user_id);
 
-			if(!empty($this->request->data['row'])) {
-				foreach ($this->request->data['row'] as $id => $value) {
-					$message .= $this->set('var', $this->Holding->presence($id, 'sum'));
-				}
-			}
-
-			if (!empty($this->request->data['Holding'])) {
-				$holding = $this->Holding->find('first', array(
-					'recursive' => -1,
-					'conditions'=>array(
-						'Holding.program_id' => $this->request->data['Holding']['program_id'],
-						'Holding.user_id' => $this->request->data['Holding']['user_id']
-					)
-				));
-
-				if (isset($holding['Holding']['presenca'])) {
-					$holding['Holding']['presenca'] += 1;
-					if ($this->Holding->save($holding)) {
-						echo $this->Session->setFlash('Presença confirmada!', 'layout/success');
-					} else {
-						echo $this->Session->setFlash('Error presença!', 'layout/error');
-					}
+			if (isset($holding['Holding']['presenca'])) {					
+				if ($this->__add($holding['Holding']['id']) != $holding['Holding']['presenca']) {
+					echo $this->Session->setFlash('Presença confirmada!', 'layout/success');
 				} else {
-					echo $this->Session->setFlash('Participação de usuário não encontrado!', 'layout/info');
-					$param = array('user'=>'add');
-					$this->set(compact('param'));
+					echo $this->Session->setFlash('Erro: Tente novamente?', 'layout/error');
 				}
+			} else {
+				echo $this->Session->setFlash('Participação de usuário não encontrado!', 'layout/info');
+				$param = array('user'=>'add');
+				$this->set(compact('param'));
 			}
-			// pr($this->request->data['Holding']);
-
 		}
         // $this->redirect($this->referer());
-        $users = $this->Holding->User->find('list');
+        // $users = $this->Holding->User->find('list');
 		$programs = $this->Holding->Program->find('list');
 		$this->set(compact('programs'));
 	}

@@ -241,14 +241,13 @@
 				echo $this->Html->link($holding['Holding']['presenca']+"&nbsp;",
 					array(
 						'controller'=>'holdings', 
-						'action'=>'presence',
-						$holding['Holding']['id'],
-						'sum'
+						'action'=>'addpresence',
+						$holding['Holding']['id']
 					),
 					array(
 						'class'=>"sendAjax presence green btn bold",
 						'value'=>$holding['Holding']['id'],
-						'date' => $holding['Holding']['date_presenca']
+						'date' => $this->Date->date($holding['Holding']['date_presenca']),
 					)
 				); 
 			?>
@@ -328,10 +327,10 @@
 
 
 	<?php 
-		echo  $this->Form->button('Presença', array(
+		echo  $this->Form->button('Presença (select)', array(
 		'class'=>'btn',
 		'style'=>'margin-bottom: 10px;',
-		'formaction'=>'/seminfo/administration/holdings/presence',
+		'formaction'=>'/seminfo/administration/holdings/addpresenceall',
 		)); 
 	?>
 

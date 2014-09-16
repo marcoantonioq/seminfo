@@ -10,6 +10,9 @@ class AdministrationAppController extends AppController {
         // $this->Auth->allow();
         // pr($this->request); exit;
 
+        if($this->request->is('ajax')){
+            $this->layout='ajax';
+        }
     }
 
 	public function status($id, $action, $status = null){

@@ -1,4 +1,6 @@
-<?php $this->extend('/Common/Programas/index'); ?>
+<?php
+
+$this->extend('/Common/Programas/index'); ?>
 
 <?php 
 	$this->assign('title', 'Programas'); 
@@ -6,20 +8,19 @@
 ?>
 
 <!--
-	Bloco
+        Bloco
 -->
 <?php $this->start('contents'); ?>
-	
-	<div class="">
-                <?php pr($programs); ?>  
+
+<div class="">
 	<?php if (!empty($programs)): 
-      
+           // pr($programs);
             ?>
-		<div class="panes">	
-			<ul>
+    <div class="panes">	
+        <ul>
 				<?php foreach ($programs as $program): ?>
-					<li>
-						<h2>
+            <li>
+                <h2>
 							<?php echo $this->Html->link(
 								$program['Typeprogram']['title'].' - '.$program['Program']['name'],
 								array(
@@ -28,13 +29,13 @@
 									$program['Program']['id']
 								)
 							); ?>
-						</h2>
-						<h5><?= $program['Event']['name'] ?></h5>
-						<p>
+                </h2>
+                <h5><?= $program['Event']['name'] ?></h5>
+                <p>
 							<?= $program['Program']['description']; ?>							
-						</p>
+                </p>
 
-						<li>
+            <li>
 							<?php
 
 								if(date('d', strtotime($program['Program']['date_begin'])) == date('d', strtotime($program['Program']['date_end']))):
@@ -49,17 +50,17 @@
 										date('H:i', strtotime($program['Program']['time_end'])).'</strong>';
 								endif;
 							?>
-						</li>
-						</p>
-						<ul class="meta">
+            </li>
+            </p>
+            <ul class="meta">
 							<?php if(!empty($speakers['Palestrante'])): ?>
 							<?php foreach ($speakers['$Speaker'] as $speaker): ?>
-							<li><strong>Palestrantes: </strong><?= $program['name'] ?></li>
-							<li><?= $program['description'] ?></li>
-							<li><strong>Email </strong><?= $speaker['email'] ?></li>							
+                <li><strong>Palestrantes: </strong><?= $program['name'] ?></li>
+                <li><?= $program['description'] ?></li>
+                <li><strong>Email </strong><?= $speaker['email'] ?></li>							
 							<?php endforeach; ?>
 							<?php endif; ?>
-							<li>
+                <li>
 								<?php if($program['Program']['status'] && ($program['Program']['holding_count'] < $program['Program']['vagas']) && ($program['Program']['status'] == true)): ?>
 									<?php echo $this->Html->link(
 										'<span>Inscreva-se</span>',
@@ -73,24 +74,41 @@
 											'class'=>'link-button'
 										)
 									); ?>
+                                                                <?php 
+                                                                    else: echo $this->Html->link(
+										'<span>Esgotado</span>',
+										array(
+											'controller' => 'holdings', 
+											'action' => 'add', 
+											$program['Program']['id']
+										),
+										array(
+											'escape' => false,
+											'class'=>'link-button'
+										)
+									); 
+                                                                
+                                                                ?>        
+
 								<?php endif; ?>
-							</li>
-							
-						</ul>
-					</li>
-				</p>
-				<hr>
+                </li>
+
+            </ul>
+            </li>
+            </p>
+            <hr>
 				<?php endforeach; ?>
-			</ul>
-		</div>		
-		
+        </ul>
+    </div>		
+
 	<?php endif; ?>
+
 
 	<?php echo $this->element('pagination');?>	
 
-	</div>
+</div>
 <?php $this->end() ?>
 
 <!--
-	END Bloco
+        END Bloco
 -->

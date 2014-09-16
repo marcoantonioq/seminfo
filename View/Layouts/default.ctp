@@ -1,15 +1,16 @@
 <?php
+
 $cakeDescription = 'NUCLEO';
 ?>
 
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
 	<?php echo $this->Html->charset('UTF-8'); ?>
-	<title>
+        <title>
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
-	</title>
+        </title>
 	<?php
 	echo $this->Html->meta('icon');
 
@@ -20,29 +21,29 @@ $cakeDescription = 'NUCLEO';
 	echo $this->fetch('script');
 	echo $this->fetch('script');
 	?>
-</head>
-<body>
-	<div id="container">
-		<div id="header">
-			<span class='logo'>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <span class='logo'>
 				<?php echo $this->Html->link("NUCLEO", '/'); ?>
-			</span>
+                </span>
 			<?php echo $this -> element('layout/session-user', array('cache' => '+1 day')); ?>
-			<div class="clearfix"></div>
-		</div>
+                <div class="clearfix"></div>
+            </div>
 
-		<div id="content">
-			
+            <div id="content">
+
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->Session->flash('auth'); ?>
 
 			<?php echo $this->fetch('content'); ?>
-		</div>
+            </div>
 
-		<div id="footer">
-			Template Admin
-		</div>
+            <div id="footer">
+                Template Admin
+            </div>
 
-	</div>
-</body>
+        </div>
+    </body>
 </html>

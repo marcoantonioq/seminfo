@@ -1,5 +1,6 @@
 <?php
-	if($canonical!=null){
+
+if($canonical!=null){
 		$this->Html->meta('canonical', $canonical, array('inline' => false,'type' => null,'rel'=>'canonical','title'=>null));
 	}
 	if($keywords!=null){

@@ -1,5 +1,6 @@
-<?php 
-	echo $this->Html->link(
+<?php
+
+echo $this->Html->link(
 		$this->Html->image(
 			'/img/template/nucleo_informatica.png', 
 			array(

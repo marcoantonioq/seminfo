@@ -1,4 +1,6 @@
-<?php $this->extend('/Common/Events/view'); ?>
+<?php
+
+$this->extend('/Common/Events/view'); ?>
 
 <?php 
 	$this->assign('title', $event['Event']['name']); 
@@ -6,13 +8,13 @@
 ?>
 
 <!--
-	Bloco
+        Bloco
 -->
 <?php $this->start('contents'); ?>
 <div id="posts" class="single">
-	<div class="post">
-		<div class="thumb-shadow">
-			<div class="post-thumbnail">
+    <div class="post">
+        <div class="thumb-shadow">
+            <div class="post-thumbnail">
 				<?php if(!empty($event['Event']['file_dir'])){
 					echo $this->Html->image($event['Event']['file_dir'],
 					array(
@@ -31,19 +33,19 @@
 					)
 					);
 				} ?>
-			</div>
-			<div class="the-excerpt">
+            </div>
+            <div class="the-excerpt">
 				<?= $event['Event']['description']; ?>
-			</div>
-		<ul class="meta">
-			<li><strong>Inscrição: </strong> <?php echo ($event['Event']['status'] == 1 ? 'Aberta' : 'Encerrada'); ?></li>
-			<li><strong>Inicio do evento: </strong> 
+            </div>
+            <ul class="meta">
+                <li><strong>Inscrição: </strong> <?php echo ($event['Event']['status'] == 1 ? 'Aberta' : 'Encerrada'); ?></li>
+                <li><strong>Inicio do evento: </strong> 
 				<?php echo date('d/m/Y', strtotime($event['Event']['first'])); ?>
-				até 
+                    até 
 				<?php echo date('d/m/Y', strtotime($event['Event']['last'])); ?>
-			</li>
-		</ul>
-		</p>
+                </li>
+            </ul>
+            </p>
 		<?php if($event['Event']['status'] == 1): ?>
 			<?php echo $this->Html->link(
 				'<span>Programação do Evento</span>',
@@ -54,47 +56,47 @@
 					'class'=>'link-button-big'
 				)
 			); ?>
-                <br />
-                <br />
+            <br />
+            <br />
 		<?php endif; ?>
-		</div>							
-	</div>
+        </div>							
+    </div>
 </div>
 <?php $this->end() ?>
 
 <!--
-	END Bloco
+        END Bloco
 -->
 	<?php if (!empty($event['Program'])): ?>
-		</p>
-		<h3>Program: </h3>
-		<div class="panes">	
-			<ul>
-				<?php foreach ($event['programs'] as $programa): ?>
-				<hr>
-					<li>
-						<h6>
+</p>
+<h3>Program: </h3>
+<div class="panes">	
+    <ul>
+				<?php foreach ($event['Program'] as $program):   ?>
+        <hr>
+        <li>
+            <h6>
 						<?php echo $this->Html->link(
-							$programa['Tipoprograma']['title'].' - '.$programa['name'],
+							$program['Typeprograms']['title'].' - '.$program['name'],
 							array(
 								'controller' => 'programs',
 								'action' => 'view',
-								$programa['id']
+								$program['id']
 							)
 						); ?>
-						</h6>
-						
-						<?php if(!empty($programa['Palestrante'])): ?>
-						<strong>Palestrantes: </strong>
-						<?php foreach ($programa['Palestrante'] as $palestrante): ?>
-							<?= $this->Html->link($palestrante['nome'], array(
-								'controller'=>'palestrantes', 'action' =>'view',$palestrante['id']
+            </h6>
+
+						<?php if(!empty($program['Speakers'])): ?>
+            <strong>Palestrantes: </strong>
+						<?php foreach ($program['Speakers'] as $speaker): ?>
+							<?= $this->Html->link($speaker['nome'], array(
+								'controller'=>'speakers', 'action' =>'view',$speaker['id']
 							)); ?>;
 						<?php endforeach; ?>
 						<?php endif; ?>
-					</li>
-				</p>
+        </li>
+        </p>
 				<?php endforeach; ?>
-			</ul>
-	</div>		
+    </ul>
+</div>		
 	<?php endif; ?>

@@ -14,7 +14,8 @@
 				array(
 					'controller' => 'events',
 					'action' => 'view',
-					$event['Event']['id']
+					$event['Event']['id'],
+                                        'title'=>$event['Event']['name']      
 				),
 				array(
 					'class' => 'link-button-big',

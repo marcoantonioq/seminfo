@@ -1,15 +1,11 @@
 # User specific & automatically generated files #
 #################################################
 /Config/database.php
-/Config/database.php-default
-/Config/email.php
-Config/email.php
 /tmp
 /webroot/files/
 
 # OS generated files #
 ######################
-sftp-config.json
 .DS_Store
 .DS_Store?
 ._*

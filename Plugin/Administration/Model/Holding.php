@@ -41,6 +41,10 @@ class Holding extends AdministrationAppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'presenceValidade' => array(
+				'rule' => array('presenceValidade'),
+				'message' => 'Já possui presença hoje. :('
+			),
 		),
 		'program_id' => array(
 			'vagas' => array(
@@ -56,20 +60,16 @@ class Holding extends AdministrationAppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'presenca' => array(
-			'presenceValidade' => array(
-				'rule' => array('presenceValidade'),
-				'message' => 'Já possui presença hoje. :('
-			),
-			'numeric' => array(
-				'rule' => array('numeric'),
-				'message' => 'Apenas numeros',
-				'allowEmpty' => true,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+		// 'presenca' => array(
+		// 	'numeric' => array(
+		// 		'rule' => array('numeric'),
+		// 		'message' => 'Apenas numeros',
+		// 		'allowEmpty' => true,
+		// 		//'required' => false,
+		// 		//'last' => false, // Stop validation after this rule
+		// 		//'on' => 'create', // Limit validation to 'create' or 'update' operations
+		// 	),
+		// ),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -105,15 +105,7 @@ class Holding extends AdministrationAppModel {
 
 	public function beforeSave($option = array()){
 
-		// Caso presence >= min_presence program certificate true
-		if(!empty($this->data['Holding']['program_id'])){
-			$program = $this->Program->read(null, $this->data['Holding']['program_id']);
-			if($this->data['Holding']['presenca'] >= $program['Program']['min_presence']) {
-				$this->data['Holding']['certificado'] = true;
-			}else{
-				$this->data['Holding']['certificado'] = false;
-			}			
-		}
+		
 	}
 
 
@@ -124,33 +116,42 @@ class Holding extends AdministrationAppModel {
  */
 
 	public function presenceValidade($check){
+		if(empty($this->data['Holding']['date_presenca']))
+			return true;
+
+
+		$this->recursive = -1;
+		$holding = $this->read(null, $this->data['Holding']['id']);
+
+		pr($holding);
+		pr($this->data);
+		
+		if( ($holding['Holding']['presenca']) != $this->data['Holding']['presenca'] ){
+
+			$hoje = date('Ymd');
+			$date_presenca = date('Ymd', strtotime($this->data['Holding']['date_presenca']));
+
+			if( !empty($this->data['Holding']['id']) && !empty($this->data['Holding']['presenca']) && $hoje != $date_presenca )
+			{
+				$this->data['Holding']['date_presenca'] = date("Y-m-d h:m:s");
+				$this->data['Holding']['presenca'] += 1;
+			}
+
+		}
+		
+		// Caso presence >= min_presence program certificate true
+		if(!empty($this->data['Holding']['program_id'])){
+			$program = $this->Program->read(null, $this->data['Holding']['program_id']);
+			if($this->data['Holding']['presenca'] >= $program['Program']['min_presence']) {
+				$this->data['Holding']['certificado'] = true;
+			}else{
+				$this->data['Holding']['certificado'] = false;
+			}
+		}
+
 		return true;
 	}
 
-
-/**
- * belongsTo associations
- *
- * @var array
- */
-
-	public function presence($id, $action = ""){
-		
-		$participacao = $this->read(array('id', 'presenca', 'date_presenca'), $id);
-		
-		$hoje = date('Ymd');
-		$date_presenca = date('Ymd', strtotime($participacao['Holding']['date_presenca']));
-
-		if( !empty($participacao['Holding']['id']) && $hoje != $date_presenca )
-		{
-			$participacao['Holding']['date_presenca'] = date("Y-m-d h:m:s");
-			if($action == 'sum') $participacao['Holding']['presenca'] += 1;
-			if($action == 'sub') $participacao['Holding']['presenca'] -= 1;
-			// pr($participacao); exit;
-			$this->save($participacao);
-		}
-		return $participacao['Holding']['presenca'];
-	}
 
 	/**
  * status method
@@ -221,5 +222,17 @@ class Holding extends AdministrationAppModel {
 		}
 		return true;
 		
+	}
+
+	public function getHolding($user, $program){
+		$holding = $this->find('first', array(
+			'recursive' => -1,
+			'conditions'=>array(
+				'Holding.program_id' => $user,
+				'Holding.user_id' => $program
+			)
+		));
+		return $holding;
+
 	}
 }

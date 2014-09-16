@@ -7,15 +7,13 @@
 			<th><?php echo $this->Paginator->sort('alias'); ?></th>
 			<th class="actions"><?php echo __('Ações'); ?></th>
 	</tr>
-	<?php foreach ($tipoprogramas as $tipoprograma): ?>
+	<?php foreach ($tipoprograms as $tipoprogram): ?>
 	<tr>
-		<td><?php echo h($tipoprograma['Tipoprograma']['id']); ?>&nbsp;</td>
-		<td><?php echo h($tipoprograma['Tipoprograma']['title']); ?>&nbsp;</td>
-		<td><?php echo h($tipoprograma['Tipoprograma']['alias']); ?>&nbsp;</td>
+		<td><?php echo h($tipoprogram['Tipoprogram']['id']); ?>&nbsp;</td>
+		<td><?php echo h($tipoprogram['Tipoprogram']['title']); ?>&nbsp;</td>
+		<td><?php echo h($tipoprogram['Tipoprogram']['alias']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $tipoprograma['Tipoprograma']['id'])); ?>
-			<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $tipoprograma['Tipoprograma']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Deletar'), array('action' => 'delete', $tipoprograma['Tipoprograma']['id']), null, __('Tem certeza de que deseja excluir # %s?', $tipoprograma['Tipoprograma']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $tipoprogram['Tipoprogram']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

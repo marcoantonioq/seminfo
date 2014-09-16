@@ -1,8 +1,8 @@
 <p>
-	Você está em: 
-	<strong>
+    Você está em: 
+    <strong>
 		<?php
 			echo $this->Html->getCrumbs(' > ', $configs['titulo']);
 		?>
-	</strong>
+    </strong>
 </p>  

@@ -22,6 +22,11 @@
                 'placeholder'=> 'Entre com código',
                 'autofocus' => true
             ));
+
+            echo $this->Form->hidden('presenca', array(
+                'label'=>ucfirst(__('presenca')),
+                'readonly'=>'true'
+            ));
         ?>
         <div class="form-actions form-horizontal">
             <?php             echo $this->Form->button('Enviar', array(

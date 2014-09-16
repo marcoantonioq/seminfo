@@ -10,6 +10,7 @@
 	<ul>
 		<li><?php echo $this->Html->link(__('Perfil'), array('controller' => 'users','action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('Mensagens'), array('controller' => 'users', 'action' => 'mensagens')); ?> </li>
-		<li><?php echo $this->Html->link(__('Participações'), array('controller' => 'usersprogramas', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('Participações'), array('controller' => 'holdings', 'action' => 'index')); ?> </li>
+                <li><?php echo $this->Html->link(__('Contatos'), array('controller' => 'contacts', 'action' => 'index')); ?> </li>
 	</ul>
 </div>

@@ -18,8 +18,16 @@
 							array(
 								/*'width' => "596px",
 								'height'=>'270px', */
-								'alt' => $content['Content']['file']
-							)
+								'alt' => $content['Content']['file'],
+                                                                'title'=>$content['Content']['title'],
+                                                                'title'=>$content['Content']['title'],
+								'url' => array(
+									'controller' => 'contents',
+									'action' => 'view',
+									$content['Content']['id'])
+							),array('controller' => 'contents', 'action' => 'view', $content['Content']['id'])
+                                                                
+                                                                
 							);
 						}else{
 							echo $this->Html->image(
@@ -35,7 +43,7 @@
                                   
 					<div>
 						<?php 
-						$limite = 1000;
+						$limite = 700;
 						if (strlen($content['Content']['body']) <= $limite) {
 							echo $content['Content']['body'];							
 						}else{

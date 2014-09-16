@@ -1,11 +1,11 @@
 <ul id="sidebar">
-	<li>
-		
+    <li>
+
 		<?php $programs = $this->requestAction('Programs/requestIndex');	?>
-		<h6><?php echo $this->Html->link('Programas', array('controller' => 'programs', 'action' => 'index')); ?></h6>		
-		<ul>
+        <h6><?php echo $this->Html->link('Programas', array('controller' => 'programs', 'action' => 'index')); ?></h6>		
+        <ul>
 			<?php foreach($programs as $key => $list): ?>
-				<li class="cat-item" >
+            <li class="cat-item" >
 					<?php echo $this->Html->link(
 						$list,
 						array(
@@ -14,9 +14,9 @@
 							$key
 						)
 					); ?>		
-				</li>
+            </li>
 			<?php endforeach; ?>
-			<li ></li>
-		</ul>
-	</li>
+            <li ></li>
+        </ul>
+    </li>
 </ul>

@@ -1,6 +1,5 @@
 <ul id="sidebar">
-	<li>
-		
+	<li>		
 		<?php $events = $this->requestAction('Events/recustIndex');	?>
 		<h6><?php echo $this->Html->link('Eventos', array('controller' => 'events', 'action' => 'index')); ?></h6>		
 		<ul>

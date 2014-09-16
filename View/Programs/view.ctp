@@ -22,7 +22,8 @@
 						array(
 							'width' => "596px",
 							'height'=>'270px', 
-							'alt' => $program['Program']['file']
+							'alt' => $program['Program']['file'],
+                                                         'title'=>$program['Program']['name'],
 						)
 						);
 					}else{
@@ -38,7 +39,6 @@
 				?>
 			</div>
 			<div class="the-excerpt">
-				<?= $program['Program']['description']; ?>
 				<?php if(!empty($program['Program']['content'])): ?>
 				<h3>Conteúdo</h3>
 				<?php endif; ?>
@@ -47,11 +47,11 @@
 		</div>
 		<ul class="meta">
 			<?php if(!empty($programa['Programa']['vagas'])): ?>
-			<!-- <li><strong>Inscritos: </strong> <?= $program['Program']['usersprograma_count']?></li> -->
+			<!-- <li><strong>Inscritos: </strong> <?= $program['Program']['holding_count']?></li> -->
 			<li><strong>Vagas: </strong>
 				<?php 
-					if($program['Program']['vagas'] - $program['Program']['usersprograma_count']){
-						echo ($program['Program']['vagas'] - $program['Program']['usersprograma_count']); 								
+					if($program['Program']['vagas'] - $program['Program']['holding_count']){
+						echo ($program['Program']['vagas'] - $program['Program']['holding_count']); 								
 					}else{
 						echo "<span class='red'>Não há vagas.</span>";
 					}
@@ -94,7 +94,19 @@
 				'class' => 'link-button-big'
 			)
 		); 
-		?>
+		 else:            
+                    echo $this->Html->link(
+			'<span>Esgotado<span>', array(
+				'controller' => 'programs',
+				'action' => 'index'
+			),
+			array(
+				'escape' => false,
+				'class' => 'link-button-big'
+			)
+		); 
+                    
+                ?>   
 		<?php endif; ?>
 	</div>
 	
@@ -121,7 +133,7 @@
 					<div class='palestrante thumb'>
 					<h3>
 						<?= $this->Html->link($speaker['name'], array(
-							'controller' => 'palestrantes',
+							'controller' => 'speakers',
 							'action' => 'view',
 							$speaker['id']
 						));?>

@@ -66,30 +66,28 @@
 						}
 						?>
 					</p>
-
-					<?php if (!empty($speaker['Speaker']['email'])): ?>
+                                        <?php if (!empty($speaker['Speaker']['email'])): ?>
 						<a href="mailto:<?=$speaker['Speaker']['email']; ?>">Email</a>;
 					<?php endif; ?>
 
 					<?php if (!empty($speaker['Speaker']['twitter'])): ?>
-							<a href="<?=$speaker['Speaker']['twitter']; ?>" title="Twitter">Twitter</a>;
+							<a href="http://<?=$speaker['Speaker']['twitter']; ?>" title="Twitter">Twitter</a>;
 					<?php endif; ?>
 
 					<?php if (!empty($speaker['Speaker']['facebook'])): ?>
-							<a href="<?=$speaker['Speaker']['facebook']; ?>"  target=”new” title="Facebook">Facebook</a>;
+							<a href="http://<?=$speaker['Speaker']['facebook']; ?>" target='_black' title="Facebook">Facebook</a>;
 					<?php endif; ?>
 					
 					<?php if (!empty($speaker['Speaker']['blog'])): ?>
-						<a href="http://<?=$speaker['Speaker']['blog']?>" target='_black' title="Saite <?=$speaker['Speaker']['nome'] ?>">Site</a>;
-						<a href="" target='_black' title=""></a>
+						<a href="http://<?=$speaker['Speaker']['blog']?>" target='_black' title="Saite <?=$palestrante['Palestrante']['nome'] ?>">Site</a>;
 					<?php endif; ?>
 					
 					<?php if (!empty($speaker['Speaker']['linkedin'])): ?>
-						<a href="<?=$speaker['Speaker']['linkedin']; ?>" target='_black' title="Linkedin">Linkedin</a>;
+						<a href="http://<?=$speaker['Speaker']['linkedin']; ?>" target='_black' title="Linkedin">Linkedin</a>;
 					<?php endif; ?>
 
 					<?php if (!empty($speaker['Speaker']['lattes'])): ?>
-						<a href="<?=$speaker['Speaker']['lattes']; ?>" target='_black' title="Lattes">Lattes</a>;
+						<a href="http://<?=$speaker['Speaker']['lattes']; ?>" target='_black' title="Lattes">Lattes</a>;
 					<?php endif; ?>
 					</div>					
 				</p>

@@ -1,4 +1,6 @@
-<?php if( $this->Session->read('Auth.User.nome') ): ?>
+<?php
+
+if( $this->Session->read('Auth.User.nome') ): ?>
 <div id="branding">
     <div class="floatleft">
         <h4>
@@ -27,7 +29,7 @@
                     ?> 
                 </li>
                 <?php if($this->Session->read('Auth.User.grupo_id') == 1): ?>
-                    <li>
+                <li>
                         <?php $return = (empty($this->request->prefix) ? true : false );?>
                         <?php 
                             echo $this->Html->link('Alternar', 
@@ -38,7 +40,7 @@
                                     'action'=>'index'
                                 )
                             ); ?>
-                    </li>
+                </li>
                 <?php endif; ?>
                 <li>
                     <?php echo $this->Html->link('Logout', array('admin'=>false, 'plugin'=>'users', 'controller'=>'users', 'action'=>'logout')); ?>

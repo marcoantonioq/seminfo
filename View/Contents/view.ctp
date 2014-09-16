@@ -26,7 +26,8 @@
 						array(
 							'width' => "596px",
 							/*'height'=>'270px', */
-							'alt' => $content['Content']['file']
+							'alt' => $content['Content']['file'],
+                                                        'title'=>$content['Content']['title']
 						)
 						);
 					}else{

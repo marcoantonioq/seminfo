@@ -7,19 +7,17 @@
 			<th><?php echo $this->Paginator->sort('read'); ?></th>
 			<th class="actions"><?php echo __('Ações'); ?></th>
 	</tr>
-	<?php foreach ($messagesUsers as $messagesUser): ?>
+	<?php foreach ($usersMessages as $usersMessage): ?>
 	<tr>
 		<td>
-			<?php echo $this->Html->link($messagesUser['Message']['title'], array('controller' => 'messages', 'action' => 'view', $messagesUser['Message']['id'])); ?>
+			<?php echo $this->Html->link($usersMessage['Message']['title'], array('controller' => 'messages', 'action' => 'view', $usersMessage['Message']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($messagesUser['User']['name'], array('controller' => 'users', 'action' => 'view', $messagesUser['User']['id'])); ?>
+			<?php echo $this->Html->link($usersMessage['User']['name'], array('controller' => 'users', 'action' => 'view', $usersMessage['User']['id'])); ?>
 		</td>
-		<td><?php echo h($messagesUser['MessagesUser']['read']); ?>&nbsp;</td>
+		<td><?php echo h($usersMessage['UsersMessage']['read']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $messagesUser['MessagesUser']['id'])); ?>
-			<?php echo $this->Html->link(__('Editar'), array('action' => 'edit', $messagesUser['MessagesUser']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Deletar'), array('action' => 'delete', $messagesUser['MessagesUser']['id']), null, __('Tem certeza de que deseja excluir # %s?', $messagesUser['MessagesUser']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $usersMessage['UsersMessage']['id'])); ?>		
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -41,10 +39,10 @@
 <div class="actions">
 	<h3><?php echo __('Ações'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Messages User'), array('action' => 'add')); ?></li>
+<!--		<li><?php echo $this->Html->link(__('New Messages User'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('Listar Messages'), array('controller' => 'messages', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Message'), array('controller' => 'messages', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('Listar Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>-->
 	</ul>
 </div>

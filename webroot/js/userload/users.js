@@ -38,6 +38,19 @@ ajax = function(){
 	    		return false;
 	    	}
 	    	else{
+	    		switch(cpf){
+	    			case '00000000000':
+	    			case '11111111111': 
+	    			case '22222222222':
+	    			case '33333333333':
+	    			case '44444444444':
+	    			case '55555555555':
+	    			case '66666666666':
+	    			case '77777777777':
+	    			case '88888888888':
+	    			case '99999999999':
+	    				return false;
+	    		}
 	    		return true;
 	    	}	    	
     	}

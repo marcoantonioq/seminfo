@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * PHP 5
@@ -22,7 +23,7 @@
     Mas tenha calma, isso ainda não é o fim, tenho algumas dicas para te colocar novamente nos trilhos.
 </p>
 <ul>
-	<li>Se você digitou a URL na barra de endereços, <span class="text-success">confira se ele está correto</span>.</li>
+    <li>Se você digitou a URL na barra de endereços, <span class="text-success">confira se ele está correto</span>.</li>
     <li>Se você foi enviado para cá por um link, tente voltar para a <?php echo $this->Html->link('página anterior','javascript:history.back()',array('class'=>'btn btn-success'));?>.</li>
     <li>Outra solução é se guiar pelo menu de navegação, nele você encontra o caminho para as principais seções do nosso site com apenas 1 clique, logo ao final desta página vou colocar ele mais uma vez para te ajudar!</li>
     <li>Ou então, vá para a <?php echo $this->Html->link('página inicial','/',array('class'=>'btn btn-success'));?>, muito mais fácil de se localizar por lá.</li>
