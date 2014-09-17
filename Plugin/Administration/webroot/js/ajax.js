@@ -4,28 +4,28 @@ administration = function() {
 		$(this).click(function(event) {
 			var box = $(this);
 			var id = $(this).attr('value');
-			// $.ajax({
-			// 	type: "GET",
-			//     url: $(this)[0].href,
-			//     success: function(data) {
-			//     	// alert(data);
-			//     	box.html(data);
-			//     },
-			//     beforeSend: function(){
-			//     	box.html("<span class='beforeAjax'></span>");
-			//     },
-			//     error: function(data){
-			//     	alert("fail. :(");
-			//     }
+			$.ajax({
+				type: "GET",
+			    url: $(this)[0].href,
+			    success: function(data) {
+			    	// alert(data);
+			    	box.html(data);
+			    },
+			    beforeSend: function(){
+			    	box.html("<span class='beforeAjax'></span>");
+			    },
+			    error: function(data){
+			    	alert("fail. :(");
+			    }
 
-			// });
-			$.get( 
-				$(this)[0].href,
-				null, 
-				function(data) {
-					box.html(data);
-				}
-			);
+			});
+			// $.get( 
+			// 	$(this)[0].href,
+			// 	null, 
+			// 	function(data) {
+			// 		box.html(data);
+			// 	}
+			// );
 			return false;
 		});
 	});

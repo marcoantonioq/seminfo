@@ -152,7 +152,76 @@
 		</div>
 	</div>
 </div>
-	
+		
+<?php if (!empty($program['Document'])): ?>
+
+		<h3>
+			<a href="#"  id="Document">
+				<?php echo __('Documents'); ?>			</a>
+		</h3>
+		
+	<div class="tabela " id="Document">
+	<table class='rwd-table'>
+		<tr>
+			<th><?php echo __('id'); ?></th>
+		<th><?php echo __('title'); ?></th>
+		<th><?php echo __('author'); ?></th>
+		<th><?php echo __('institution'); ?></th>
+		<th><?php echo __('email'); ?></th>
+		<th><?php echo __('file'); ?></th>
+		<th><?php echo __('file_dir'); ?></th>
+		
+			<th data-th="Ações" class="actions"><?php echo __('Actions'); ?></th>
+		</tr>
+		<?php foreach ($program['Document'] as $document): ?>
+		<tr>
+			<td data-th=<?= ucfirst(__('id')) ?> ><?php echo $document['id']; ?></td>
+			<td data-th=<?= ucfirst(__('title')) ?> ><?php echo $document['title']; ?></td>
+			<td data-th=<?= ucfirst(__('author')) ?> ><?php echo $document['author']; ?></td>
+			<td data-th=<?= ucfirst(__('institution')) ?> ><?php echo $document['institution']; ?></td>
+			<td data-th=<?= ucfirst(__('email')) ?> ><?php echo $document['email']; ?></td>
+			<td data-th=<?= ucfirst(__('file')) ?> ><?php echo $document['file']; ?></td>
+			<td data-th=<?= ucfirst(__('file_dir')) ?> ><?php echo $document['file_dir']; ?></td>
+			
+			<td data-th="Ações" class="actions">
+
+			<?php 
+				echo $this->Html->link('<span class="icon12 brocco-icon-search"></span>', 
+					array(
+						'controller' => 'documents', 
+						'action' => 'view', 
+						$document['id']
+					),
+					array(
+						'escape'=>false,
+						'title'=>'Visualizar',
+						'class'=>'view',
+					)
+				); 
+				
+				echo $this->Html->link('<span class="icon12 brocco-icon-pencil"></span>', 
+					array(
+						'controller' => 'documents', 
+						'action' => 'edit', 
+						$document['id']
+					),
+					array(
+						'escape'=>false,
+						'class'=>'edit',
+						'title'=>'Editar',
+					)
+				);
+
+			?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+		</table>
+	</div>
+
+<?php endif; ?>
+
+
 		
 <?php if (!empty($program['Speaker'])): ?>
 
@@ -169,16 +238,7 @@
 		<th><?php echo __('institution'); ?></th>
 		<th><?php echo __('phone'); ?></th>
 		<th><?php echo __('email'); ?></th>
-		<th><?php echo __('description'); ?></th>
-		<th><?php echo __('twitter'); ?></th>
-		<th><?php echo __('facebook'); ?></th>
-		<th><?php echo __('blog'); ?></th>
-		<th><?php echo __('linkedin'); ?></th>
-		<th><?php echo __('lattes'); ?></th>
-		<th><?php echo __('file'); ?></th>
-		<th><?php echo __('file_dir'); ?></th>
 		<th><?php echo __('created'); ?></th>
-		<th><?php echo __('updated'); ?></th>
 			<th data-th="Ações" class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		<?php foreach ($program['Speaker'] as $speaker): ?>
@@ -188,16 +248,7 @@
 			<td data-th=<?= ucfirst(__('institution')) ?> ><?php echo $speaker['institution']; ?></td>
 			<td data-th=<?= ucfirst(__('phone')) ?> ><?php echo $speaker['phone']; ?></td>
 			<td data-th=<?= ucfirst(__('email')) ?> ><?php echo $speaker['email']; ?></td>
-			<td data-th=<?= ucfirst(__('description')) ?> ><?php echo $speaker['description']; ?></td>
-			<td data-th=<?= ucfirst(__('twitter')) ?> ><?php echo $speaker['twitter']; ?></td>
-			<td data-th=<?= ucfirst(__('facebook')) ?> ><?php echo $speaker['facebook']; ?></td>
-			<td data-th=<?= ucfirst(__('blog')) ?> ><?php echo $speaker['blog']; ?></td>
-			<td data-th=<?= ucfirst(__('linkedin')) ?> ><?php echo $speaker['linkedin']; ?></td>
-			<td data-th=<?= ucfirst(__('lattes')) ?> ><?php echo $speaker['lattes']; ?></td>
-			<td data-th=<?= ucfirst(__('file')) ?> ><?php echo $speaker['file']; ?></td>
-			<td data-th=<?= ucfirst(__('file_dir')) ?> ><?php echo $speaker['file_dir']; ?></td>
 			<td data-th=<?= ucfirst(__('created')) ?> ><?php echo $speaker['created']; ?></td>
-			<td data-th=<?= ucfirst(__('updated')) ?> ><?php echo $speaker['updated']; ?></td>
 			<td data-th="Ações" class="actions">
 
 			<?php 
@@ -234,9 +285,6 @@
 		</table>
 	</div>
 
-<?php endif; ?>
-
-
-		
+<?php endif; ?>	
 
 </div>

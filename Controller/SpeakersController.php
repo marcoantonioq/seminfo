@@ -50,6 +50,7 @@ class SpeakersController extends AppController {
 		}
 		$options = array('conditions' => array('Speaker.' . $this->Speaker->primaryKey => $id));
 		$this->set('speaker', $this->Speaker->find('first', $options));
+                
 	}
 
 

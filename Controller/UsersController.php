@@ -70,6 +70,30 @@ class UsersController extends AppController {
 			return $count;
 		}
 	}
+        
+        
+        
+        public function mensagens(){
+                $user =  $this->Session->read('Auth.User'); 
+		if ( !$this -> User -> exists($user['id'] )) {
+			return 0;
+		}
+		$this-> User -> recursive = 2;
+		$this-> User ->unbindModel(array(
+	        	'belongsTo' => array('Curso'),
+	        	'hasMany'	=> array('Content', 'Holding'),
+        ));
+	    $user = $this -> User -> find('first',array(
+				'conditions' => array(
+					'User.id' => $user['id'],
+				)
+		));
+		if($this->request->is('requested')){
+			return $user;
+		}else{
+			$this -> set(compact('user'));
+		}
+	}
 
 
 /**
@@ -77,13 +101,26 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		if ($this->request->is('post')) {
-            $this->Paginator->settings = $this->User->action($this->request->data);
-            echo $this->Session->setFlash('Filtro definido!', 'layout/success');
-        }
-		$this->User->recursive = 0;
-		$this->set('users', $this->Paginator->paginate());
+//	public function index() {
+//		if ($this->request->is('post')) {
+//            $this->Paginator->settings = $this->User->action($this->request->data);
+//            echo $this->Session->setFlash('Filtro definido!', 'layout/success');
+//        }
+//                $this->Paginator->settings = array('condicion'=>'User.id');
+//		$this->User->recursive = 0;
+//		$this->set('users', $this->Paginator->paginate());
+//                //pr($this->Paginator->paginate());
+//	}
+        
+        
+        public function index() {
+                $user =  $this->Session->read('Auth.User'); 
+             
+		if (!$this->User->exists($user['id'])) {
+			throw new NotFoundException(__('Inválido Usuário'));
+		}
+		$options = array('conditions' => array('User.' . $this->User->primaryKey => $user['id']));
+		$this->set('user', $this->User->find('first', $options));
 	}
 
 
@@ -163,8 +200,9 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('Foi salvo.'), 'layout/success');
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('Usuário cadastrado com sucesso.'), 'layout/success');
+                                return $this->redirect(array('controller'=>'programs','action'=>'index'));
+				
 			} else {
 				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}

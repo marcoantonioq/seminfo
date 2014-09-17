@@ -2128,4 +2128,13 @@ msgstr "caminho arquivo (foto)"
 msgid "reservations"
 msgstr "reservas"
 
+msgid "author"
+msgstr "autor"
+
+msgid "documents"
+msgstr "documentos"
+
+msgid "Documents"
+msgstr "Documentos"
+
 

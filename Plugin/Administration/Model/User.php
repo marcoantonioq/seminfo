@@ -56,6 +56,12 @@ class User extends AdministrationAppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'unique' => array(
+                'required' => true,
+                'allowEmpty' => true,
+                'rule' => 'isUnique',
+                'message' => 'User name já está em uso.'
+            )
 		),
 		'sexo' => array(
 			'notEmpty' => array(
@@ -70,11 +76,7 @@ class User extends AdministrationAppModel {
 		'password' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Incompatibilidade de senha ou menos de 6 caracteres.'
 			),
 		),
 		'email' => array(
@@ -86,6 +88,12 @@ class User extends AdministrationAppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'unique' => array(
+                'required' => true,
+                'allowEmpty' => false,
+                'rule' => 'isUnique',
+                'message' => 'e-mail já está em uso.'
+            )
 		),
 		'cpf' => array(
 			'notEmpty' => array(
@@ -104,6 +112,12 @@ class User extends AdministrationAppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'unique' => array(
+                'required' => true,
+                'allowEmpty' => false,
+                'rule' => 'isUnique',
+                'message' => 'CPF já está em uso. Informação obrigatória para geração de certificado.'
+            ),
 		),
 		'phone' => array(
 			'notEmpty' => array(

@@ -1,24 +1,33 @@
 <div id="page-title">
-	<span class="title">Cursos</span>
-	<span class="subtitle">Nossos cursos</span>
+    <span class="title">Cursos</span>
+    <span class="subtitle">Nossos cursos</span>
 </div>
 
 <div id="projects-list">
 
 
-	<div class="panes">	
-		<!-- Contents -->
-		<div style="display: block;">
-			
-			<ul class="blocks-thumbs thumbs-rollover">
+    <div class="panes">	
+        <!-- Contents -->
+        <div style="display: block;">
+
+            <ul class="blocks-thumbs thumbs-rollover">
 				<?php foreach ($courses as $course): ?>
-				<li>
+                <li>
 					<?php if(!empty($course['Course']['file_dir'])){
 						echo $this->Html->link(
 						$this->Html->image($course['Course']['file_dir'],array(
 								'width' => "282px",
-								'height'=>'150px')),
-						array(
+								'height'=>'150px',
+                                                                'title'=>$course['Course']['description'],
+                                                                'url' => array(
+									'controller' => 'courses',
+									'action' => 'view',
+									$course['Course']['id']
+                                                                    )
+                                                   
+                                                                    )
+                                                    ),
+                                                array(
 							'controller' => 'courses',
 							'action' => 'view',
 							$course['Course']['id']
@@ -37,7 +46,7 @@
 								)
 							);
 						} ?>
-					
+
 					<?php echo $this->Html->link(
 						"<h6>".$course['Course']['name'].' - '.$course['Course']['description']."<h6>",
 						array(
@@ -49,12 +58,12 @@
 							'escape' => false,
 						)
 					); ?>
-				</li>			
+                </li>			
 				<?php endforeach; ?>
-			</ul>
-		</div>
-	</div>
+            </ul>
+        </div>
+    </div>
 
 	<?php echo $this->element('pagination');?>
-	
+
 </div>

@@ -179,6 +179,9 @@ form = function()
     	// input count
     	$("form:not(#FilterIndexForm) :input[id$=Count]").parent().hide()
 
+    	// multible select
+    	$('select[multiple=multiple]').multiSelect({ selectableOptgroup: true });
+
 	};
 
 
@@ -227,7 +230,7 @@ var varkey = function(){
 
 		if( (e.keyCode > 95 && e.keyCode < 106 ) || (e.keyCode > 47 && e.keyCode < 58 ) )
 		{			
-			if( ! $("#FilterId").is(":visible") )
+			if( ! $("#FilterId").is(":visible") && ! $("#FilterUserId").is(":visible") )
 			{
 				$("#filter").show(1000);
 				$("#FilterId").focus();

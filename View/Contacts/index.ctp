@@ -2,12 +2,9 @@
 	<span class="title">Entre em contato</span>
 	<span class="subtitle">Retornaremos seu contato.</span>
 </div>
-
 <div class="one-column">
 	<?php echo $this->Form->create('Contact'); ?>
-	
 	<fieldset>
-
 	<?php
 		echo $this->Form->input('user_id');
 		echo $this->Form->input('name',array('type' => 'hidden'));
@@ -24,8 +21,7 @@
 	<?php echo $this->Form->end(__('Enviar')); ?>
 </div>
 
-
-<div class="one-column">
+<div id="sidebar" >
 	<!-- content -->
 	</p>
 	<?php 

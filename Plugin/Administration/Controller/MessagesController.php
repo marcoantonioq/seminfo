@@ -102,10 +102,10 @@ class MessagesController extends AdministrationAppController {
 					$Email->subject($this->request->data['Message']['title']);
 					if($Email->send($this->request->data['Message']['body'])){
 						$this->Message->save($this->request->data);
-						$this->Session->setFlash("Enviado com sucesso", 'success');
+						$this->Session->setFlash("Enviado com sucesso", 'layout/success');
 						return $this->redirect(array('action'=>'index'));
 					}else{
-						$this->Session->setFlash("Erro ao enviar email!", 'error');
+						$this->Session->setFlash("Erro ao enviar email!", 'layout/error');
 					}
     			}
 			}

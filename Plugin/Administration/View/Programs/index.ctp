@@ -6,6 +6,11 @@
 				array('class'=> 'btn btn-success')
 			)." ";
 
+			echo $this->Html->link('Anexos',
+				array('controller' => 'documents', 'action' => 'add'),
+				array('class'=> 'btn btn-warning')
+			)." ";
+
 			echo $this->Html->link('Menu', '#',
 				array('class'=> 'btn btn-info','id'=>'btnmenu')
 			);

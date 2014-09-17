@@ -11,13 +11,12 @@ class HoldingsController extends AppController {
 
     public function beforeFilter() {
         $this->set('title_for_layout', __('Holdings'));
-        $this->Auth->allow('index', 'add', 'view','acesso');
-        header('Access-Control-Allow-Origin: *'); 
+        $this->Auth->allow('index', 'add', 'view', 'acesso');
+        header('Access-Control-Allow-Origin: *');
         parent::beforeFilter();
     }
 
-    public $components = array('Paginator', 'Session','Mpdf');
-
+    public $components = array('Paginator', 'Session', 'Mpdf');
 
     /**
      * index method
@@ -25,27 +24,27 @@ class HoldingsController extends AppController {
      * @return void
      */
     public function index() {
-        if ($this->Session->read('Auth.User.id')) {
+       if ($this->Session->read('Auth.User.id')) {
             $this->Holding->recursive = 0;
             $this->Paginator->settings = array(
                 'conditions' => array("Holding.user_id" => $this->Session->read("Auth.User.id"))
             );
             $holdings = $this->Paginator->paginate();
-            pr($holdings);
+            //pr($holdings);
             $this->set(compact('holdings'));
-        }else{
+        } else {
             //$this->redirect($this->referer());
-            $this->redirect(array('controller'=>'users','action' => 'login')); 
+            $this->redirect(array('controller' => 'users', 'action' => 'login'));
         }
     }
-     
+
     /**
      * add method
      *
      * @return void
      */
     public function add($id = null) {
-        
+
         if (!$this->Session->read('Auth.User.id')) {
             $this->Session->setFlash('Você deve logar!');
             $this->redirect($this->referer());
@@ -70,14 +69,12 @@ class HoldingsController extends AppController {
             //$programs = $this->Holding->Program->find('list', array('conditions' => array('Program.id' => $id)));
             $programs = $this->Holding->Program->find('list', array('conditions' => array('Program.id' => $id)));
             $this->set(compact('programs'));
-           
         } else {
             $programs = $this->Holding->Program->find('list', array('conditions' => array('Program.id' => $id)));
         }
         $this->set(compact('users', 'programs'));
     }
-    
-    
+
 //  public function add() {
 //		if ($this->request->is('post')) {
 //			$this->Holding->create();
@@ -126,33 +123,30 @@ class HoldingsController extends AppController {
      * @param string $program
      * @return void
      */
-  public function certificados($id = null) {
-		$this->Holding->id = $id;
-		if (!$this->Holding->exists()) {
-			throw new NotFoundException(__('Participação inválida'));
-		}
-		
+    public function certificados($id = null) {
+        $this->Holding->id = $id;
+        if (!$this->Holding->exists()) {
+            throw new NotFoundException(__('Participação inválida'));
+        }
+
         $holding = $this->Holding->read(null, $id);
-                $this->layout = 'pdf';
-		if ($holding['Holding']['certificado']) {	
+        $this->layout = 'pdf';
+        if ($holding['Holding']['certificado']) {
 
-	        $this->set(compact('holding'));
+            $this->set(compact('holding'));
 
-	        // render pdf
-		    $this->Mpdf->init(array('format'=>"A4-L"));
-		    $this->Mpdf->SetDisplayMode('fullpage');
-		    $this->Mpdf->setFilename('Certificados.pdf');
-		    $this->Mpdf->setOutput('I');
-		    
-			
-			$this->render("Users/pdf/certificados");
-		} else {
-			$this->Session->setFlash(__('Certificado inválido, tente novamente.'), 'layout/error');
-			return $this->redirect($this->referer());
-		}
-	}
+            // render pdf
+            $this->Mpdf->init(array('format' => "A4-L"));
+            $this->Mpdf->SetDisplayMode('fullpage');
+            $this->Mpdf->setFilename('Certificados.pdf');
+            $this->Mpdf->setOutput('I');
 
-        
-    
+
+            $this->render("Users/pdf/certificados");
+        } else {
+            $this->Session->setFlash(__('Certificado inválido, tente novamente.'), 'layout/error');
+            return $this->redirect($this->referer());
+        }
+    }
 
 }

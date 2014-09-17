@@ -173,6 +173,19 @@ class Program extends AdministrationAppModel {
  * @var array
  */
 	public $hasMany = array(
+		'Document' => array(
+			'className' => 'Document',
+			'foreignKey' => 'program_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Holding' => array(
 			'className' => 'Holding',
 			'foreignKey' => 'program_id',

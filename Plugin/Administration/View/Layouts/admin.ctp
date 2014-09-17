@@ -15,6 +15,7 @@
 		'/bootstrap/css/bootstrap-responsive.min.css',
 		'Administration.admin',
 		"Administration.icons",
+		"Administration.multi-select",
 	));
 
 	echo $this->Html->script(
@@ -25,6 +26,7 @@
 			'Administration.admin.js',
 			'Administration.ajax.js',
 			'Administration.ckeditor/ckeditor.js',
+			'Administration.jquery.multi-select.js',
 			'Administration.jquery-barcode-2.0.2.min.js',
 		)
 	);

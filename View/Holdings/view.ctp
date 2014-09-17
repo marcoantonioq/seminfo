@@ -15,8 +15,7 @@
 		<div class="thumb-shadow">
 			<div class="post-thumbnail">
 				<?php if(!empty($holding['Event']['file_dir'])){
-					echo $this->Html->image(
-					'/files/event/file/'.$holding['Event']['file_dir'].'/'.$holding['Event']['file'],
+					echo $this->Html->image($holding['Event']['file_dir'],
 					array(
 						'width' => "596px",
 						'height'=>'270px', 
@@ -52,7 +51,7 @@
 	</div>
 
 	<div class="">
-		<?php if (!empty($holding['Programa'])): ?>
+		<?php if (!empty($holding['Program'])): ?>
 			<h3><?php echo __('Participação em Programas'); ?></h3>
 			<table cellpadding = "0" cellspacing = "0">
 			<tr>
@@ -63,21 +62,21 @@
 			<?php
 				
 				$i = 0;
-				foreach ($holding['Programa'] as $programa): ?>
+				foreach ($holding['Program'] as $program): ?>
 				<tr>
 					<td>
 						<?php 
 						echo $this->Html->link(
-							$programa['nome'], 
+							$programa['name'], 
 							array(
-								'controller' => 'programas', 
+								'controller' => 'programs', 
 								'action' => 'view', 
-								$programa['id']
+								$program['id']
 							)
 						);
 						?>
 					</td>
-					<td><?php echo $programa['duracao']; ?></td>
+					<td><?php echo $program['description']; ?></td>
 					<td class="actions">
 						<?php 
 							echo $this->Form->postLink(
@@ -87,14 +86,14 @@
 								'action' => 'delete', 
 								$programa['HoldingsPrograma']['id']), 
 								null, 
-								__('Tem certeza de que deseja excluir # %s?', $programa['nome'])
+								__('Tem certeza de que deseja excluir # %s?', $program['name'])
 							); 
 						?>
 
 						<!-- <?php echo $this->Form->postLink(__('Cancelar'), array('controller' => 'holdings_programas', 'action' => 'delete', $programa['HoldingsPrograma']['id']), null, __('Tem certeza de que deseja sair definitivamente %s?', $programa['nome'])); ?> -->
 						
 						<?php
-							if($programa['HoldingsPrograma']['certificado'] == 1){
+							if($program['HoldingsPrograma']['certificado'] == 1){
 								echo $this->Form->postlink(
 									'<span>Certificado</span>', 
 									array('controller' => 'holdings', 'action' => 'certificados', $holding['Holding']['id'], $programa['id'].'.pdf'), 

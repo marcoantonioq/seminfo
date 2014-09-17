@@ -1,118 +1,188 @@
-<div class="row-fluid">
+[<?php $this->extend('/Common/Users/index'); ?>
 
+<?php 
+	$this->assign('title', $this->request->data['User']['name']); 
+	$this->assign('subtitle', 'Editar cadastro'); 
+?>
 
-	<div class='span8'>		
-		<?php 
-			echo $this->Form->create('User'); 
-			$this->Form->inputDefaults(array(
-				'class'=>'span12'
-			));
+<!--
+	Bloco
+-->
+<?php $this->start('contents'); ?>
+
+	<div class="users form">
+	<?php echo $this->Form->create('User'); ?>
+		<fieldset>
+			<legend><?php echo __(''); ?></legend>
+		<?php
+			echo $this->Form->input('id');
+			echo $this->Form->input(
+				'name', 
+				array(
+					'label' => 'Nome: ',
+					'placeholder' => 'Digite seu nome...',
+					'div'=>'clearfix'
+				)
+			);
+
+			echo $this->Form->input(
+				'cpf', 
+				array(
+					'type' =>'hidden'
+				)
+			);
+			echo $this->Form->input(
+				'matricula', 
+				array(
+					'label' => 'Qual sua matricula?', 
+					'div'=>'clearfix',
+                                        'type' =>'hidden'
+				)
+			);
+			echo $this->Form->input(
+				'sexo_id', 
+				array(
+					'label' => 'Sexo',
+					'empty' => 'Selecione',
+                                        'se' => 'Masculino',
+                                        'options'=>array(
+						'Masculino'=>'Masculino',
+						'Feminino'=>'Feminino'
+					)
+				)
+			);
+
+			echo $this->Form->input(
+				'group_id', 
+				array(
+					//'empty' => 'Selecione',
+					//'value' => 2,
+					'label' => 'Grupo',
+					'div'=>'clearfix',
+					'type' => 'hidden'
+				)
+			);
+
+			echo $this->Form->input(
+				'username', 
+				array(
+					'placeholder' => 'Digite seu username...',
+					'label' => 'User name:',
+					'div'=>'clearfix'
+				)
+			);
+			echo $this->Form->input(
+				'email',
+				array(
+					'placeholder' => 'Digite E-mail...',
+					'div'=>'clearfix',
+					'type' => 'hidden',
+				)
+			);
+			echo $this->Form->input(
+				'phone', 
+				array(
+					'placeholder' => 'Digite telefone...',
+					'div'=>'clearfix',
+					'required' => true,
+					'id' =>'telefone',
+					'pattern' => '\(\d{2}\) \d{4}-\d{4}'
+				)
+			);
+			echo $this->Form->input(
+				'image', 
+				array(
+					'label' ,'Foto',
+					'div'=>'clearfix',
+					'type' => 'hidden',
+				)
+			);
+			echo $this->Form->input(
+				'image_dir', 
+				array(
+					'type' => 'hidden',
+					'div'=>'clearfix'
+				)
+			);
+			echo $this->Form->input(
+				'holding_count', 
+				array(
+					'div'=>'clearfix',
+					'type' => 'hidden',
+				)
+			);
+			echo $this->Form->input(
+				'password',
+				array(
+					'placeholder' =>'Digite senha...',
+					'label' => 'Senha: ', 
+					'value' => '',
+					'div'=>'clearfix',
+				)
+			);
+			echo $this->Form->input(
+				'password2',
+				array(
+					'placeholder' => 'Confirmar senha...',
+					'label' => __('Confirme a senha:'), 
+					'type' => 'password', 
+					'div'=>'clearfix',
+					'required' => true
+				)
+			);
 		?>
-		<?php  
-		
-
-			echo $this->Form->input('id', array(
-				'label'=>ucfirst(__('id')),
-			));
-
-			echo $this->Form->input('group_id', array(
-				'label'=>ucfirst(__('group_id')),
-			));
-
-			echo $this->Form->input('course_id', array(
-				'label'=>ucfirst(__('course_id')),
-			));
-
-			echo $this->Form->input('matricula', array(
-				'label'=>ucfirst(__('matricula')),
-			));
-
-			echo $this->Form->input('name', array(
-				'label'=>ucfirst(__('name')),
-			));
-
-			echo $this->Form->input('sexo', array(
-				'label'=>ucfirst(__('sexo')),
-			));
-
-			echo $this->Form->input('username', array(
-				'label'=>ucfirst(__('username')),
-			));
-
-			echo $this->Form->input('password', array(
-				'label'=>ucfirst(__('password')),
-			));
-
-			echo $this->Form->input('email', array(
-				'label'=>ucfirst(__('email')),
-			));
-
-			echo $this->Form->input('cpf', array(
-				'label'=>ucfirst(__('cpf')),
-			));
-
-			echo $this->Form->input('phone', array(
-				'label'=>ucfirst(__('phone')),
-			));
-
-			echo $this->Form->input('status', array(
-				'label'=>ucfirst(__('status')),
-			));
-
-			echo $this->Form->input('website', array(
-				'label'=>ucfirst(__('website')),
-			));
-
-			echo $this->Form->input('image', array(
-				'label'=>ucfirst(__('image')),
-			));
-
-			echo $this->Form->input('image_dir', array(
-				'label'=>ucfirst(__('image_dir')),
-			));
-
-			echo $this->Form->input('holding_count', array(
-				'label'=>ucfirst(__('holding_count')),
-			));
-
-			echo $this->Form->input('Message', array(
-				'label'=>ucfirst(__('Message')),
-			));			
-		?>
-		<div class="form-actions form-horizontal">
-			<?php			  echo $this->Form->button('Enviar', array(
-				'class'=>'btn btn-info'
-			))." ";
-			echo $this->Form->button('Limpar', array(
-				'type'=>'reset',
-				'class'=>'btn btn-warning'
-			));
-			
-			echo $this->Form->end();
-
-			?>		</div>
-
+		</fieldset>
+	<?php echo $this->Form->end(__('Enviar')); ?>
+	</div>
+	<div class="actions">
+		<h3><?php echo __('Ações'); ?></h3>
+		<ul>
+			<li><?php echo $this->Html->link(__('Voltar'), array('action' => 'index')); ?> </li>
+		</ul>
 	</div>
 
-	<div class="span4">
-		<div class="actions form-horizontal well ucase">
-			<h3><?php echo __('Actions'); ?></h3>
-			
-			<?php  echo $this->Html->link('Voltar', 
-				array( 'action' => 'index'),
-				array('class'=> 'btn btn-block')
-			); ?>
-		
-			<?php  echo $this->Html->link('Visualizar', 
-				array('action' => 'view', $this->params['pass'][0]),
-				array('class'=> 'btn btn-block btn-success')
-			); ?>			
-			<?php  echo $this->Form->postLink('Apagar',
-				array( 'action' => 'delete', $this->params['pass'][0]),
-                array('class'=> 'btn btn-block btn-danger', 'style'=>'margin-top: 5px;'),
-                __('Tem certeza de que deseja excluir?')
-			);?>
-				</div>
-	</div>
+<script type="text/javascript">
+	/* Máscaras ER */
+	function mascara(o,f){
+	    v_obj=o
+	    v_fun=f
+	    setTimeout("execmascara()",1)
+	}
+	function execmascara(){
+	    v_obj.value=v_fun(v_obj.value)
+	}
+	function mtel(v){
+	    v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
+	    v=v.replace(/^(\d{2})(\d)/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+	    v=v.replace(/(\d)(\d{4})$/,"$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+	    return v;
+	}
 
-</div>
+	function mCPF(v){
+	    v=v.replace(/\D/g,"");             //Remove tudo o que não é dígito
+	    v=v.replace(/^(\d{6})(\d)/g,"$1.$2");
+	    v=v.replace(/^(\d{3})(\d)/g,"$1.$2");
+	    v=v.replace(/(\d)(\d{2})$/,"$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+	    return v;
+	}
+
+	function id( el ){
+	  return document.getElementById( el );
+	}
+	window.onload = function(){
+	  id('telefone').onkeyup = function(){
+	    mascara( this, mtel );
+	  }
+	  id('cpf').onkeyup = function(){
+	    mascara( this, mCPF );
+	  }
+	}
+</script>
+
+<?php $this->end() ?>
+
+<!--
+	END Bloco
+-->
+
+

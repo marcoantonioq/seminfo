@@ -97,8 +97,9 @@
 
 			echo $this->Form->input('Speaker', array(
 				'label'=>ucfirst(__('Speaker')),
-			));			
+			));
 		?>
+
 		<div class="form-actions form-horizontal">
 			<?php			  echo $this->Form->button('Enviar', array(
 				'class'=>'btn btn-info'

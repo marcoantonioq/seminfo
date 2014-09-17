@@ -123,10 +123,11 @@ class Holding extends AdministrationAppModel {
 		$this->recursive = -1;
 		$holding = $this->read(null, $this->data['Holding']['id']);
 
-		pr($holding);
-		pr($this->data);
+		// pr($holding);
+		// pr($this->data);
 		
-		if( ($holding['Holding']['presenca']) != $this->data['Holding']['presenca'] ){
+		if($holding['Holding']['presenca'] != $this->data['Holding']['presenca'])
+		{
 
 			$hoje = date('Ymd');
 			$date_presenca = date('Ymd', strtotime($this->data['Holding']['date_presenca']));
@@ -139,7 +140,7 @@ class Holding extends AdministrationAppModel {
 
 		}
 		
-		// Caso presence >= min_presence program certificate true
+		// Caso presence >= min_presence program certificate = true
 		if(!empty($this->data['Holding']['program_id'])){
 			$program = $this->Program->read(null, $this->data['Holding']['program_id']);
 			if($this->data['Holding']['presenca'] >= $program['Program']['min_presence']) {

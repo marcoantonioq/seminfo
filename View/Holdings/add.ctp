@@ -1,4 +1,6 @@
-<?php $this->extend('/Common/Programas/index'); ?>
+<?php
+
+$this->extend('/Common/Programas/index'); ?>
 
 <?php 
 $this->assign('title', 'Confirmar inscrição'); 
@@ -7,21 +9,21 @@ $this->assign('subtitle', ''.((empty($programs['Program']['name']))?'':$programs
 <!--Bloco
 -->
 <?php $this->start('contents'); ?>
-	<div class="">
+<div class="">
 	<?php if(!empty($programs)): ?>
-	<div class="panes">	
-		<ul>
-			<li>
-<!--				<ul class="meta">
+    <div class="panes">	
+        <ul>
+            <li>
+                <!--				<ul class="meta">
 					<?php if(!empty($programs['Speaker']['id'])): ?>
 					<?php foreach ($programs['Speaker'] as $speaker): ?>
-					<li><strong>Palestrantes: </strong><?= $speaker['name'] ?></li>
+                                                        <li><strong>Palestrantes: </strong><?= $speaker['name'] ?></li>
 					<?php endforeach; ?>
-					<li><strong>Local: </strong><?= (empty($programs['Program']['local']))?'A definir':$programs['Program']['local'] ?></li>
+                                                        <li><strong>Local: </strong><?= (empty($programs['Program']['local']))?'A definir':$programs['Program']['local'] ?></li>
 					<?php endif; ?>
-		
-                                       
-					<li><h5>Horário:
+                                
+                                                       
+                                                        <li><h5>Horário:
 						<?php 
 						if(date('d', strtotime($programs['Program']['date_begin'])) == date('d', strtotime($programs['Program']['time_end']))):
 							echo date(' d/m  H:i', strtotime($programs['Program']['time_begin'])).' às '.
@@ -34,30 +36,30 @@ $this->assign('subtitle', ''.((empty($programs['Program']['name']))?'':$programs
                                            		date('H:i', strtotime($programs['Program']['time_end']));
 						endif;
 						?>
-					</h5></li>
-				</ul>-->
-			</li>
-			</p>
-		</ul>
-	</div>
+                                                        </h5></li>
+                                                </ul>-->
+            </li>
+            </p>
+        </ul>
+    </div>
 	<?php endif; ?>
 	<?php echo $this->Form->create('Holding'); ?>
-		<fieldset>
+    <fieldset>
 		<?php
 			echo $this->Form->input('user_id');
 			echo $this->Form->input('program_id');
 //			echo $this->Form->input('status', array('label' => 'Confirmar participação.'));
-//		echo $this->Form->input('reservas', array(
+//                        echo $this->Form->input('reservas', array(
 //				'type' => 'hidden',
 //				'label' => 'Não tenho certeza se vou participar! Ou, não possuir vagas! Marque como cadastro de reserva.'
 //			));
 		?>
-		</fieldset>
+    </fieldset>
 	<?php echo $this->Form->end(__('Confirmar cadastro')); ?>
-	</div>
+</div>
 
 	<?php echo $this->Html->link('Voltar à página anterior','javascript:history.back()',array('class'=>'btn btn-success'));?>
 <?php $this->end() ?>
 <!--
-	END Bloco
+        END Bloco
 -->

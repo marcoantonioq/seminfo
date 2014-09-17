@@ -15,14 +15,12 @@ $this->extend('/Common/Events/index'); ?>
  	echo $this->Html->css('timeline/timeline');
 	echo $this -> fetch('css');
  ?>
-
 <div>
      <?php if (empty($holdings)): ?>
-    <h3>Não está á inscrito em nenhum programa</h3>
-            <?php $this->Html->link(
-                    'Veja os progrmas e inscreva-se em algums deles!',array(
+            <?php echo $this->Html->link('Você não está inscrito em nossos programas, Inscreva - se já...!',array(
                             'controller' => 'programs',
                             'action' => 'index'
+                            
             )); ?>
         <?php else: ?>
 
@@ -33,6 +31,7 @@ $this->extend('/Common/Events/index'); ?>
         <tr>
             <th>Horario</th>
             <th>Programa</th>
+            <th>Colaborador</th>
             <th>Duração</th>
             <th>Situação</th>
             <th>Local</th>
@@ -65,6 +64,7 @@ $this->extend('/Common/Events/index'); ?>
 	    		);
                 ?>
             </th>
+            <th> <?php echo "name" ?> </th>
             <th> 
                 <?php echo $holding['Program']['duration']; ?>
             </th>
@@ -95,6 +95,8 @@ $this->extend('/Common/Events/index'); ?>
             <th><?php echo $holding['Program']['local']; ?></th>
         </tr>
         <?php endforeach; ?>
+
+
 
     </table>
 <?php endif; ?>

@@ -67,7 +67,11 @@ class ContactsController extends AdministrationAppController {
 				$this->Session->setFlash(__('Não pôde ser salvo. Por favor, tente novamente.'), 'layout/error');
 			}
 		}
-		$users = $this->Contact->User->find('list');
+		$users = $this->Contact->User->find('list', array(
+			'conditions'=>array(
+				"User.id" => $this->Session->read("Auth.User.id")
+			)
+		));
 		$this->set(compact('users'));
 	}
 
